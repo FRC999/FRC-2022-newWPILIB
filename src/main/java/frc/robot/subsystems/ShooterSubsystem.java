@@ -6,7 +6,10 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.LimitSwitchNormal;
+import com.ctre.phoenix.motorcontrol.LimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.RemoteLimitSwitchSource;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -30,6 +33,22 @@ public class ShooterSubsystem extends SubsystemBase {
 
       // Enable PID for the tilt motor
       configurePanMotorControllerForPosition();
+
+      limitSwitchMotorController = new WPI_TalonSRX(Constants.ShooterConstants.limitSwitchMotorPortID);
+      limitSwitchMotorController.configFactoryDefault();
+
+			panMotorController.configForwardLimitSwitchSource(	RemoteLimitSwitchSource.RemoteTalonSRX,
+													        LimitSwitchNormal.NormallyOpen,
+													        limitSwitchMotorController.getDeviceID(),
+													        Constants.ShooterConstants.configureTimeoutMs);
+
+      panMotorController.configReverseLimitSwitchSource(	RemoteLimitSwitchSource.RemoteTalonSRX,
+													        LimitSwitchNormal.NormallyOpen,
+													        limitSwitchMotorController.getDeviceID(),
+													        Constants.ShooterConstants.configureTimeoutMs);
+
+			System.out.println("Limit Switches locally enabled.");
+
     }
 
   }
