@@ -257,6 +257,7 @@ public class Robot extends TimedRobot {
 
         // Shooter settings
         ShooterConstants.tiltMotorPortID = 4;
+        ShooterConstants.limitSwitchMotorPortID = 54;
         ShooterConstants.shooterLimitSwitchDIOPort = 0;
 
         //potentiometer
