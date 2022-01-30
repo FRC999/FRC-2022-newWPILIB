@@ -38,12 +38,12 @@ public class ShooterSubsystem extends SubsystemBase {
       limitSwitchMotorController.configFactoryDefault();
 
 			panMotorController.configForwardLimitSwitchSource(	RemoteLimitSwitchSource.RemoteTalonSRX,
-													        LimitSwitchNormal.NormallyClosed,
+													        LimitSwitchNormal.NormallyOpen,
 													        limitSwitchMotorController.getDeviceID(),
 													        Constants.ShooterConstants.configureTimeoutMs);
 
       panMotorController.configReverseLimitSwitchSource(	RemoteLimitSwitchSource.RemoteTalonSRX,
-													        LimitSwitchNormal.NormallyClosed,
+													        LimitSwitchNormal.NormallyOpen,
 													        limitSwitchMotorController.getDeviceID(),
 													        Constants.ShooterConstants.configureTimeoutMs);
 
