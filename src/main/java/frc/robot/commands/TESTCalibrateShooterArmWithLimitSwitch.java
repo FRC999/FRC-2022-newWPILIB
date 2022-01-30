@@ -74,6 +74,10 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+
+    System.out.println("Limit switches: F " + RobotContainer.shooterSubsystem.limitSwitchMotorController.isFwdLimitSwitchClosed() +
+       " B " + RobotContainer.shooterSubsystem.limitSwitchMotorController.isRevLimitSwitchClosed() );
+
     return failToCalibrate || shooterLimitSwitch.get() ;
   }
 }
