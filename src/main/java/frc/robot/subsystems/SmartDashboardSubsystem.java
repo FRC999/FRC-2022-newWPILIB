@@ -72,6 +72,12 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     }
   }
 
+  public void updateLimelight(){
+    SmartDashboard.putBoolean("Target Sighted", (RobotContainer.networkTablesSubsystem.getDouble("limelight", "tv", 0) < 1.0) ? false : true);
+    SmartDashboard.putNumber("Target Confidence", RobotContainer.networkTablesSubsystem.getDouble("limelight", "tv", 0)) ;
+  
+  }
+
   public void updateAllDisplays() {
 
     if (Constants.RobotProperties.isIMU) {
@@ -99,6 +105,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
       updateOUValues();
     }
 
+    updateLimelight();
   }
 
   // Trajectory/kinematic driving update; updated from NavigationControlSubsystem
