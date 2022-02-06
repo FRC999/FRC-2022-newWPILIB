@@ -185,6 +185,7 @@ public final class Constants {
     public static final class ShooterConstants {
 
         public static int tiltMotorPortID = 4;
+        public static int[] shooterWheelMotorPortIDs = new int[2];
 
         public static int encoderUnitsPerShaftRotation = 4096;
 

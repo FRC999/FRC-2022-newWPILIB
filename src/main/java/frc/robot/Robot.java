@@ -275,8 +275,8 @@ public class Robot extends TimedRobot {
         RobotProperties.isIMU = true;
         RobotProperties.isNaVX = false;
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
-        RobotProperties.isPneumatics = false;
-        RobotProperties.isShooter = false;
+        RobotProperties.isPneumatics = true;
+        RobotProperties.isShooter = true;
         RobotProperties.isPotentiometer = false;
         RobotProperties.isIntake = true;
 
@@ -297,6 +297,9 @@ public class Robot extends TimedRobot {
         IntakeConstants.intakeMotorPort = 7;
 
         // Shooter settings
+        ShooterConstants.tiltMotorPortID = 4;
+        ShooterConstants.shooterLimitSwitchDIOPort = 0;
+        ShooterConstants.shooterWheelMotorPortIDs = new int[] { 8, 9 };
 
         //potentiometer     
 
