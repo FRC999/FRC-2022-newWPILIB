@@ -214,6 +214,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void shootBall(double power) {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Brake);
+    wheelMotorControllers[1].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[0].set(power);
   }
 
@@ -223,11 +224,13 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void pullBall(double power) {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Brake);
+    wheelMotorControllers[1].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[0].set(power);
   }
 
   public void stopShooterMotor() {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Coast);
+    wheelMotorControllers[1].setNeutralMode(NeutralMode.Coast);
     wheelMotorControllers[0].set(0);
   }
 
