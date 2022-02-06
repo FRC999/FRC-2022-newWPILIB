@@ -217,6 +217,15 @@ public class ShooterSubsystem extends SubsystemBase {
     wheelMotorControllers[0].set(power);
   }
 
+  public void pullBall() {
+    pullBall(FULLREVERSESPEED);
+  }
+
+  public void pullBall(double power) {
+    wheelMotorControllers[0].setNeutralMode(NeutralMode.Brake);
+    wheelMotorControllers[0].set(power);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
