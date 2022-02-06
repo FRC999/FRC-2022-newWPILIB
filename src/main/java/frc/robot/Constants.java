@@ -257,6 +257,8 @@ public final class Constants {
         //index 1 = reverse
         public static int[] intakeSolenoidChannel;
         public static int intakeMotorPort;
+        public static final double intakeForwardSpeed = 1.0;
+        public static final double intakeReverseSpeed = 1.0;
     }
 
     public static final int TeamNumber = 999;

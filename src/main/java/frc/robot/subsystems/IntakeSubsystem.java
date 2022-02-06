@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -43,6 +44,21 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public boolean isIntakeDown() {
     return intakeSolenoid.get() == Value.kForward;
+  }
+
+  public void rotateIntakeForward() {
+    intakeMotorController.setNeutralMode(NeutralMode.Brake);
+    intakeMotorController.set(Constants.IntakeConstants.intakeForwardSpeed);
+  }
+
+  public void rotateIntakeReverse() {
+    intakeMotorController.setNeutralMode(NeutralMode.Brake);
+    intakeMotorController.set(Constants.IntakeConstants.intakeReverseSpeed);
+  }
+
+  public void stopIntakeMotor() {
+    intakeMotorController.setNeutralMode(NeutralMode.Coast);
+    intakeMotorController.set(0);
   }
 
   @Override
