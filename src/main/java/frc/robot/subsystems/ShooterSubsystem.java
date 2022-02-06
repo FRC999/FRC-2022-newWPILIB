@@ -16,82 +16,82 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public static final double CALIBRATEMOTORPOWER = 0.05;
 
-  public WPI_TalonSRX panMotorController;
+  public WPI_TalonSRX tiltMotorController;
 
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
 
     if (Constants.RobotProperties.isShooter) {
-      panMotorController = new WPI_TalonSRX(Constants.ShooterConstants.tiltMotorPortID);
+      tiltMotorController = new WPI_TalonSRX(Constants.ShooterConstants.tiltMotorPortID);
 
       // panMotorController.configFactoryDefault();
       // panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
 
       // Enable PID for the tilt motor
-      configurePanMotorControllerForPosition();
+      configureTiltMotorControllerForPosition();
     }
 
   }
 
-  public void configurePanMotorControllerForPosition() {
+  public void configureTiltMotorControllerForPosition() {
 
     // Reset Hardware - ex
-    panMotorController.configFactoryDefault();
+    tiltMotorController.configFactoryDefault();
 
     // Configure the encoders for PID control
     //panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, Constants.ShooterConstants.PID_PAN,
     //  Constants.ShooterConstants.configureTimeoutMs);
 
 		/* Config the sensor used for Primary PID and sensor direction  - ex */
-    panMotorController.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 
-      Constants.ShooterConstants.PID_PAN,
+    tiltMotorController.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 
+      Constants.ShooterConstants.PID_TILT,
       Constants.ShooterConstants.configureTimeoutMs);
 
   	/* Ensure sensor is positive when output is positive - ex */
-    panMotorController.setSensorPhase(Constants.ShooterConstants.SensorPhase);
+    tiltMotorController.setSensorPhase(Constants.ShooterConstants.SensorPhase);
 
     		/**
 		 * Set based on what direction you want forward/positive to be.
 		 * This does not affect sensor phase. - ex 
 		 */ 
-		panMotorController.setInverted(Constants.ShooterConstants.MotorInvert);
+		tiltMotorController.setInverted(Constants.ShooterConstants.MotorInvert);
 
     /* Configure motor neutral deadband */
-    panMotorController.configNeutralDeadband(Constants.ShooterConstants.NeutralDeadband, Constants.ShooterConstants.configureTimeoutMs);
+    tiltMotorController.configNeutralDeadband(Constants.ShooterConstants.NeutralDeadband, Constants.ShooterConstants.configureTimeoutMs);
 
     /**
      * Max out the peak output (for all modes). However you can limit the output of
      * a given PID object with configClosedLoopPeakOutput().
      */
 
-    panMotorController.configPeakOutputForward(Constants.ShooterConstants.PeakOutput, Constants.ShooterConstants.configureTimeoutMs);
-    panMotorController.configPeakOutputReverse(Constants.ShooterConstants.PeakOutput*(-1), Constants.ShooterConstants.configureTimeoutMs);
-    panMotorController.configNominalOutputForward(0, Constants.ShooterConstants.configureTimeoutMs);
-    panMotorController.configNominalOutputReverse(0, Constants.ShooterConstants.configureTimeoutMs);
+    tiltMotorController.configPeakOutputForward(Constants.ShooterConstants.PeakOutput, Constants.ShooterConstants.configureTimeoutMs);
+    tiltMotorController.configPeakOutputReverse(Constants.ShooterConstants.PeakOutput*(-1), Constants.ShooterConstants.configureTimeoutMs);
+    tiltMotorController.configNominalOutputForward(0, Constants.ShooterConstants.configureTimeoutMs);
+    tiltMotorController.configNominalOutputReverse(0, Constants.ShooterConstants.configureTimeoutMs);
 
 		/**
 		 * Config the allowable closed-loop error, Closed-Loop output will be
 		 * neutral within this range. See Table in Section 17.2.1 for native
 		 * units per rotation. - ex
 		 */
-		panMotorController.configAllowableClosedloopError(Constants.ShooterConstants.SLOT_0,
-                                      Constants.ShooterConstants.panDefaultAcceptableError,
+		tiltMotorController.configAllowableClosedloopError(Constants.ShooterConstants.SLOT_0,
+                                      Constants.ShooterConstants.tiltDefaultAcceptableError,
                                       Constants.ShooterConstants.configureTimeoutMs);
 
 		/* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
 
     /* FPID Gains for pan motor */
 
-    panMotorController.config_kP(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.P_PAN, Constants.ShooterConstants.configureTimeoutMs);
-    panMotorController.config_kI(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.I_PAN, Constants.ShooterConstants.configureTimeoutMs);
-    panMotorController.config_kD(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.D_PAN, Constants.ShooterConstants.configureTimeoutMs);
-    panMotorController.config_kF(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.F_PAN, Constants.ShooterConstants.configureTimeoutMs);
+    tiltMotorController.config_kP(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.P_TILT, Constants.ShooterConstants.configureTimeoutMs);
+    tiltMotorController.config_kI(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.I_TILT, Constants.ShooterConstants.configureTimeoutMs);
+    tiltMotorController.config_kD(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.D_TILT, Constants.ShooterConstants.configureTimeoutMs);
+    tiltMotorController.config_kF(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.F_TILT, Constants.ShooterConstants.configureTimeoutMs);
 
 		/**
 		 * Grab the 360 degree position of the MagEncoder's absolute
 		 * position, and intitally set the relative sensor to match. - ex
 		 */
-		int absolutePosition = panMotorController.getSensorCollection().getPulseWidthPosition();
+		int absolutePosition = tiltMotorController.getSensorCollection().getPulseWidthPosition();
 
 		/* Mask out overflows, keep bottom 12 bits */
 		absolutePosition &= 0xFFF;
@@ -99,7 +99,7 @@ public class ShooterSubsystem extends SubsystemBase {
 		if (Constants.ShooterConstants.MotorInvert) { absolutePosition *= -1; }
 		
 		/* Set the quadrature (relative) sensor to match absolute */
-		panMotorController.setSelectedSensorPosition(absolutePosition, Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.configureTimeoutMs);
+		tiltMotorController.setSelectedSensorPosition(absolutePosition, Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.configureTimeoutMs);
 
     /* 
 
@@ -126,40 +126,40 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void calibrateForwardSlow() {
 
-    System.out.println("*** T F");
-    panMotorController.setNeutralMode(NeutralMode.Brake);
-    panMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
+    // System.out.println("*** T F");
+    tiltMotorController.setNeutralMode(NeutralMode.Brake);
+    tiltMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
     //panMotorController.setInverted(false);
     //panMotorController.set(CALIBRATEMOTORPOWER);
   }
 
   public void calibrateBackSlow() {
-    System.out.println("*** T B");
-    panMotorController.setNeutralMode(NeutralMode.Brake);
-    panMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER * (-1));
+    // System.out.println("*** T B");
+    tiltMotorController.setNeutralMode(NeutralMode.Brake);
+    tiltMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER * (-1));
     //panMotorController.setInverted(true);
     //panMotorController.set(CALIBRATEMOTORPOWER);
   }
 
   public void tiltMotorOff() {
-    System.out.println("*** T OFF");
-    panMotorController.setNeutralMode(NeutralMode.Coast);
-    panMotorController.set(0);
+    // System.out.println("*** T OFF");
+    tiltMotorController.setNeutralMode(NeutralMode.Coast);
+    tiltMotorController.set(0);
   }
 
   /**
    * Zero Shooter Tilt Encoder
    */
   public void zeroSRXEncoders() {
-    panMotorController.setSelectedSensorPosition(0);
+    tiltMotorController.setSelectedSensorPosition(0);
   }
 
-  public int getPanEncoder() {
-    return (int) panMotorController.getSelectedSensorPosition();
+  public int getTiltEncoder() {
+    return (int) tiltMotorController.getSelectedSensorPosition();
   }
 
-  public double getPanError() {
-    return panMotorController.getClosedLoopError();// Returns the PID error for Pan motion control;
+  public double getTiltError() {
+    return tiltMotorController.getClosedLoopError();// Returns the PID error for Pan motion control;
   }
 
   @Override

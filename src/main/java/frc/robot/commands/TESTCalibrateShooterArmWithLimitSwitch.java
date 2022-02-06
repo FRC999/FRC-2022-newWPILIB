@@ -47,7 +47,7 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
       System.out.println("DIO initialized");
 
       // Start downward rotation of the shooter motor
-      RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
+      RobotContainer.shooterSubsystem.tiltMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
 
   }
 
@@ -56,14 +56,14 @@ public class TESTCalibrateShooterArmWithLimitSwitch extends CommandBase {
   public void execute() {
 
     // drive the shooter arm down
-    RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
+    RobotContainer.shooterSubsystem.tiltMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     // stop the shooter arm motor at the end of the command
-    RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.PercentOutput, 0);
+    RobotContainer.shooterSubsystem.tiltMotorController.set(ControlMode.PercentOutput, 0);
 
     // zero out the shooter arm encoder
     RobotContainer.shooterSubsystem.zeroSRXEncoders();
