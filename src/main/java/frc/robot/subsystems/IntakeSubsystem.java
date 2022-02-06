@@ -28,6 +28,7 @@ public class IntakeSubsystem extends SubsystemBase {
       // Lower intake at the start of the game
       lowerIntake();
     }
+    System.out.println("**** Intake Subsystem Initialized");
   }
 
   public void lowerIntake() {
