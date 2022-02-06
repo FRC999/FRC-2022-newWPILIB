@@ -34,6 +34,14 @@ public class IntakeSubsystem extends SubsystemBase {
     intakeSolenoid.set(Value.kReverse);
   }
 
+  public boolean isIntakeUp() {
+    return intakeSolenoid.get() == Value.kReverse;
+  }
+
+  public boolean isIntakeDown() {
+    return intakeSolenoid.get() == Value.kForward;
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
