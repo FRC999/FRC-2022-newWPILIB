@@ -43,8 +43,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   }
 
   public void updateShooterValues() {
-    SmartDashboard.putNumber("Pan Encoder", RobotContainer.shooterSubsystem.getPanEncoder());
-    SmartDashboard.putNumber("Pan Error", RobotContainer.shooterSubsystem.getPanError() );
+    SmartDashboard.putNumber("Pan Encoder", RobotContainer.shooterSubsystem.getTiltEncoder());
+    SmartDashboard.putNumber("Pan Error", RobotContainer.shooterSubsystem.getTiltError() );
   }
 
   public void updatePotentiometerValues() {

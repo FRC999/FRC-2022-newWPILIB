@@ -212,7 +212,7 @@ public final class Constants {
 
         // Closed loop PAN PID parameter values 
         // Modified for Closed loop position control
-        public final static int PID_PAN = 0;
+        public final static int PID_TILT = 0;
 
         // Gains from 2021 - fast and powerfull
         
@@ -222,15 +222,15 @@ public final class Constants {
         public final static double D_PAN = 15;
         */
         // Gains from CTR example - slow and steady
-        public final static double P_PAN = 0.15;
-        public final static double I_PAN = 0.0;
-        public final static double D_PAN = 1;
+        public final static double P_TILT = 0.15;
+        public final static double I_TILT = 0.0;
+        public final static double D_TILT = 1;
 
         // TODO: adjust gains as needed.
 
-        public final static double F_PAN = 0; // set to zero for position closed loop
+        public final static double F_TILT = 0; // set to zero for position closed loop
         // Allowable error to exit movement methods
-        public static int panDefaultAcceptableError = 1;
+        public static int tiltDefaultAcceptableError = 1;
         public static int panAcceleration = 50;
         public static int panCruiseVelocity = 50;
         public final static int panSmoothing = 3;

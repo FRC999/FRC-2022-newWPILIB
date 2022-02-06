@@ -12,7 +12,7 @@ import frc.robot.RobotContainer;
 
 public class TESTShooterArmPosition extends CommandBase {
 
-  private double targetPosition = RobotContainer.shooterSubsystem.getPanEncoder();
+  private double targetPosition = RobotContainer.shooterSubsystem.getTiltEncoder();
 
   /** Creates a new TESTShooterArmPosion. */
   public TESTShooterArmPosition() {
@@ -25,8 +25,8 @@ public class TESTShooterArmPosition extends CommandBase {
   public void initialize() {
 
     // set the rotation position
-    targetPosition = RobotContainer.shooterSubsystem.getPanEncoder() + degreesToEncoderClicks(90);
-    RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.Position, targetPosition);
+    targetPosition = RobotContainer.shooterSubsystem.getTiltEncoder() + degreesToEncoderClicks(90);
+    RobotContainer.shooterSubsystem.tiltMotorController.set(ControlMode.Position, targetPosition);
     
   }
 
@@ -35,7 +35,7 @@ public class TESTShooterArmPosition extends CommandBase {
   public void execute() {
     // Test joystic slider for manual elevation change in PID
     double adjustedPosition = targetPosition + (1 - RobotContainer.driveStick.getRawAxis(3)) * 250 ;
-    RobotContainer.shooterSubsystem.panMotorController.set(ControlMode.Position, adjustedPosition);
+    RobotContainer.shooterSubsystem.tiltMotorController.set(ControlMode.Position, adjustedPosition);
   }
 
   // Called once the command ends or is interrupted.
