@@ -23,6 +23,9 @@ public class IntakeSubsystem extends SubsystemBase {
       intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
         Constants.IntakeConstants.intakeSolenoidChannel[0],
         Constants.IntakeConstants.intakeSolenoidChannel[1]);
+
+      // Lower intake at the start of the game
+      lowerIntake();
     }
   }
 
