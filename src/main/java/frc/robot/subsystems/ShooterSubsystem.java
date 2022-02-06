@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -18,6 +19,8 @@ import frc.robot.Constants;
 public class ShooterSubsystem extends SubsystemBase {
 
   private static final double CALIBRATEMOTORPOWER = 0.05;
+  private static final double FULLFORWARDSPEED = 1.0;
+  private static final double FULLREVERSESPEED = -1.0;
 
   public WPI_TalonSRX tiltMotorController;
   private WPI_TalonSRX[] wheelMotorControllers;
@@ -37,6 +40,8 @@ public class ShooterSubsystem extends SubsystemBase {
         new WPI_TalonSRX(Constants.ShooterConstants.shooterWheelMotorPortIDs[1]) 
       };
 
+      initializeWheelMotorControllers();
+
       shooterSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
         Constants.ShooterConstants.shooterSolenoidChannels[0],
         Constants.ShooterConstants.shooterSolenoidChannels[1]);
@@ -47,6 +52,19 @@ public class ShooterSubsystem extends SubsystemBase {
       configureTiltMotorControllerForPosition();
     }
 
+  }
+
+  public void initializeWheelMotorControllers() {
+    wheelMotorControllers[0].configFactoryDefault();
+    wheelMotorControllers[1].configFactoryDefault();
+
+    wheelMotorControllers[0].set(ControlMode.PercentOutput, 0);
+    wheelMotorControllers[1].set(ControlMode.PercentOutput, 0);
+
+    wheelMotorControllers[1].follow(wheelMotorControllers[0]);
+
+    wheelMotorControllers[0].setInverted(InvertType.None); // TODO: Check that the master motor is not inverted
+    wheelMotorControllers[1].setInverted(InvertType.OpposeMaster);
   }
 
   public void configureTiltMotorControllerForPosition() {
@@ -188,6 +206,14 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public boolean isPlungerRetracted() {
     return shooterSolenoid.get() == Value.kReverse;
+  }
+
+  public void shootBall() {
+
+  }
+
+  public void shootBall(Double power) {
+    
   }
 
   @Override
