@@ -9,15 +9,18 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  public static final double CALIBRATEMOTORPOWER = 0.05;
+  private static final double CALIBRATEMOTORPOWER = 0.05;
 
   public WPI_TalonSRX tiltMotorController;
-  public WPI_TalonSRX[] wheelMotorControllers;
+  private WPI_TalonSRX[] wheelMotorControllers;
+  private static DoubleSolenoid shooterSolenoid;
 
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
@@ -32,6 +35,10 @@ public class ShooterSubsystem extends SubsystemBase {
         new WPI_TalonSRX(Constants.ShooterConstants.shooterWheelMotorPortIDs[0]),
         new WPI_TalonSRX(Constants.ShooterConstants.shooterWheelMotorPortIDs[1]) 
       };
+
+      shooterSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
+        Constants.ShooterConstants.shooterSolenoidChannels[0],
+        Constants.ShooterConstants.shooterSolenoidChannels[1]);
 
       // Enable PID for the tilt motor
       configureTiltMotorControllerForPosition();

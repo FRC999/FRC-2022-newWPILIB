@@ -187,6 +187,10 @@ public final class Constants {
         public static int tiltMotorPortID = 4;
         public static int[] shooterWheelMotorPortIDs = new int[2];
 
+        // index 0 = forward
+        // index 1 = reverse
+        public static int[] shooterSolenoidChannels;
+
         public static int encoderUnitsPerShaftRotation = 4096;
 
         public static int shooterLimitSwitchDIOPort = 0;    // Limit switch used for shooter arm zeroing encoder

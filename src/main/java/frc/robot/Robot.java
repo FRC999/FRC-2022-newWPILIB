@@ -300,6 +300,7 @@ public class Robot extends TimedRobot {
         ShooterConstants.tiltMotorPortID = 4;
         ShooterConstants.shooterLimitSwitchDIOPort = 0;
         ShooterConstants.shooterWheelMotorPortIDs = new int[] { 8, 9 };
+        ShooterConstants.shooterSolenoidChannels = new int[] { 2, 3 };
 
         //potentiometer     
 
