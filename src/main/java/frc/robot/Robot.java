@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.DriveInterface;
+import frc.robot.Constants.IntakeConstants;
 import frc.robot.Constants.PigeonIMU;
 import frc.robot.Constants.PneumaticsConstants;
 import frc.robot.Constants.PotentiometerConstants;
@@ -277,6 +278,7 @@ public class Robot extends TimedRobot {
         RobotProperties.isPneumatics = false;
         RobotProperties.isShooter = false;
         RobotProperties.isPotentiometer = false;
+        RobotProperties.isIntake = true;
 
         // Drivetrain settings
         DriveConstants.isInvertdGearBox = true;
@@ -289,6 +291,10 @@ public class Robot extends TimedRobot {
 
         // IMU
         PigeonIMU.pigeonIMUId = 5;
+
+        // Intake Settings
+        IntakeConstants.intakeSolenoidChannel = new int[] { 0, 7 };
+        IntakeConstants.intakeMotorPort = 7;
 
         // Shooter settings
 

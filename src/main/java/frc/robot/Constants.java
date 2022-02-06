@@ -53,6 +53,7 @@ public final class Constants {
         public static boolean isPotentiometer;
         public static boolean isColorSensor;
         public static boolean isCANdle;
+        public static boolean isIntake;
 
     }
 
@@ -249,6 +250,13 @@ public final class Constants {
         public static final int MidBrightnessAngle = 180;
         public static final int ZeroBrightnessAngle = 270;
 
+    }
+
+    public static final class IntakeConstants {
+        //index 0 = forward
+        //index 1 = reverse
+        public static int[] intakeSolenoidChannel;
+        public static int intakeMotorPort;
     }
 
     public static final int TeamNumber = 999;
