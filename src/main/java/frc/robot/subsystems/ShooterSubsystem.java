@@ -226,6 +226,11 @@ public class ShooterSubsystem extends SubsystemBase {
     wheelMotorControllers[0].set(power);
   }
 
+  public void stopShooterMotor() {
+    wheelMotorControllers[0].setNeutralMode(NeutralMode.Coast);
+    wheelMotorControllers[0].set(0);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
