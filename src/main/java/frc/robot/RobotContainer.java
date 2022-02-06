@@ -164,8 +164,8 @@ public class RobotContainer {
         new JoystickButton(driveStick, 11).whenPressed(new FrankenbotExtendSolenoid());
         new JoystickButton(driveStick, 12).whenPressed(new FrankenbotRetractSolenoid());
 
-        new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(shooterTest::motorOn, shooterTest));
-        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterTest::motorOff, shooterTest));
+        new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(shooterTest::motorOn1, shooterTest));
+        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterTest::motorOff1, shooterTest));
 
         break;
 

@@ -42,6 +42,16 @@ public class TEMPShooterTestSubsystem extends SubsystemBase {
     shooterMotorController2.set(0);
   }
 
+  public void motorOn1() {
+    shooterMotorController1.setNeutralMode(NeutralMode.Brake);
+    shooterMotorController1.set(1);
+  }
+
+  public void motorOff1() {
+    shooterMotorController1.setNeutralMode(NeutralMode.Coast);
+    shooterMotorController1.set(0);
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
