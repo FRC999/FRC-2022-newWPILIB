@@ -231,9 +231,9 @@ public final class Constants {
         public final static double F_TILT = 0; // set to zero for position closed loop
         // Allowable error to exit movement methods
         public static int tiltDefaultAcceptableError = 1;
-        public static int panAcceleration = 50;
-        public static int panCruiseVelocity = 50;
-        public final static int panSmoothing = 3;
+        public static int tiltAcceleration = 50;
+        public static int tiltCruiseVelocity = 50;
+        public final static int tiltSmoothing = 3;
 
         /**
         * Talon PID methods often demand slot ID's, so we need to do this :(

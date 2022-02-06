@@ -43,8 +43,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   }
 
   public void updateShooterValues() {
-    SmartDashboard.putNumber("Pan Encoder", RobotContainer.shooterSubsystem.getTiltEncoder());
-    SmartDashboard.putNumber("Pan Error", RobotContainer.shooterSubsystem.getTiltError() );
+    SmartDashboard.putNumber("Tilt Encoder", RobotContainer.shooterSubsystem.getTiltEncoder());
+    SmartDashboard.putNumber("Tilt Error", RobotContainer.shooterSubsystem.getTiltError() );
   }
 
   public void updatePotentiometerValues() {
@@ -72,6 +72,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     }
   }
 
+  // TODO: check values to be put on smart dashboard
   public void updateAllDisplays() {
 
     if (Constants.RobotProperties.isIMU) {
