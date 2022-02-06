@@ -28,6 +28,11 @@ public class ShooterSubsystem extends SubsystemBase {
       // panMotorController.configFactoryDefault();
       // panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
 
+      wheelMotorControllers = new WPI_TalonSRX[] {
+        new WPI_TalonSRX(Constants.ShooterConstants.shooterWheelMotorPortIDs[0]),
+        new WPI_TalonSRX(Constants.ShooterConstants.shooterWheelMotorPortIDs[1]) 
+      };
+
       // Enable PID for the tilt motor
       configureTiltMotorControllerForPosition();
     }
