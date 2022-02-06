@@ -209,11 +209,12 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void shootBall() {
-
+    shootBall(FULLFORWARDSPEED);
   }
 
-  public void shootBall(Double power) {
-    
+  public void shootBall(double power) {
+    wheelMotorControllers[0].setNeutralMode(NeutralMode.Brake);
+    wheelMotorControllers[0].set(power);
   }
 
   @Override
