@@ -15,14 +15,12 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.DriveManuallyCommand;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.TESTCalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.TESTShooterArmPosition;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IMUPassthroughSubsystem;
 import frc.robot.subsystems.NavigationControlSubsystem;
 import frc.robot.subsystems.NetworkTablesSubsystem;
@@ -48,9 +46,8 @@ import frc.robot.subsystems.TEMPShooterTestSubsystem;
 
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final AutonomousPlaceholderCommand m_autoCommand = new AutonomousPlaceholderCommand(m_exampleSubsystem);
+  private final AutonomousPlaceholderCommand placeholderAutoCommand = new AutonomousPlaceholderCommand();
 
   public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
@@ -197,6 +194,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return placeholderAutoCommand;
   }
 }
