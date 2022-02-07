@@ -26,6 +26,13 @@ public class ShooterSubsystem extends SubsystemBase {
   private WPI_TalonSRX[] wheelMotorControllers;
   private static DoubleSolenoid shooterSolenoid;
 
+  /**
+   * We suppose to zero encoder when we calibrate the shooter arm
+   * But if something happens during calibration, we need to remember the ZERO (down) position of the tilt arm
+   * in encoder setting
+   */
+  private double zeroTiltPosition;
+
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
 
@@ -184,7 +191,7 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * Zero Shooter Tilt Encoder
    */
-  public void zeroSRXEncoders() {
+  public void zeroTiltMotorEncoder() {
     tiltMotorController.setSelectedSensorPosition(0);
   }
 
@@ -194,6 +201,26 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public double getTiltError() {
     return tiltMotorController.getClosedLoopError();// Returns the PID error for Pan motion control;
+  }
+
+  /**
+   * Tilt Shooter arm at specific angle
+   * This will be extensively used by the commands that need to hold the arm at specific angle
+   */
+  public void tiltShooterArm(double degrees) {
+    tiltMotorController.set(ControlMode.Position, zeroTiltPosition + degreesToEncoderClicks(degrees));
+  }
+  // Remember tilt encoder setting - used to remember the ZERO position
+  public void initTiltShooterArm() {
+    zeroTiltPosition = getTiltEncoder();
+  }
+
+  /**
+   * Convert encoder clicks to degrees for the tilt motor
+   * Note that the resolution and error of this process is 0.17 of a degree
+   */
+   public int degreesToEncoderClicks(double degrees) {
+    return (int)(Constants.ShooterConstants.encoderUnitsPerShaftRotation * degrees / 360.0) ;
   }
 
   public void pushBall() {
