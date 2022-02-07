@@ -240,7 +240,7 @@ public class Robot extends TimedRobot {
         RobotProperties.isNaVX = false;
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = false;
-        RobotProperties.isShooter = true;
+        RobotProperties.isShooter = false;
         RobotProperties.isPotentiometer = true;
         RobotProperties.isColorSensor = true;
         RobotProperties.isCANdle = true;
