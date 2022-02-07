@@ -56,16 +56,21 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   }
 
   public void updateColorSensorValues() {
-    SmartDashboard.putNumber("Color Sensor Proximity", RobotContainer.colorSensorTestSubsystem.getObjectProximity());
-    SmartDashboard.putString("Color Detected", RobotContainer.colorSensorTestSubsystem.getSeenColor());
-    SmartDashboard.putBoolean("Red Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallRed());
-    SmartDashboard.putBoolean("Blue Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallBlue());
+    SmartDashboard.putNumber("Shooter Color Sensor Proximity", RobotContainer.colorSensorTestSubsystem.getObjectProximityShooter());
+    SmartDashboard.putString("Shooter Color Detected", RobotContainer.colorSensorTestSubsystem.getSeenColorShooter());
+    SmartDashboard.putBoolean("Shooter Red Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallRedShooter());
+    SmartDashboard.putBoolean("Shooter Blue Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallBlueShooter());
+
+    SmartDashboard.putNumber("Hopper Color Sensor Proximity", RobotContainer.colorSensorTestSubsystem.getObjectProximityHopper());
+    SmartDashboard.putString("Hopper Color Detected", RobotContainer.colorSensorTestSubsystem.getSeenColorHopper());
+    SmartDashboard.putBoolean("Hopper Red Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallRedHopper());
+    SmartDashboard.putBoolean("Hopper Blue Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallBlueHopper());
   }
 
   public void ballColorChange(){
-    if (RobotContainer.colorSensorTestSubsystem.isBallBlue()){
+    if (RobotContainer.colorSensorTestSubsystem.isBallBlueShooter()){
       RobotContainer.candleSubsystem.setLEDBlue();
-    } else if (RobotContainer.colorSensorTestSubsystem.isBallRed()){
+    } else if (RobotContainer.colorSensorTestSubsystem.isBallRedShooter()){
       RobotContainer.candleSubsystem.setLEDRed();
     } else {
       RobotContainer.candleSubsystem.setLEDOff();
@@ -89,11 +94,13 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     }
 
     if (Constants.RobotProperties.isColorSensor) {
-      updateColorSensorValues();
+      // updateColorSensorValues();
+      // TODO: decide on the Dashboard telemetry for the color sensors
     }
 
     if (Constants.RobotProperties.isCANdle) {
-      ballColorChange();
+      // ballColorChange();
+      // TODO: program CANdle telemetry for the ball color change
     }
 
     if (RobotProperties.driveInterface == DriveInterface.ONESTICK) {
