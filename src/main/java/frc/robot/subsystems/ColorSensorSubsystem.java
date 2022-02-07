@@ -31,7 +31,12 @@ public class ColorSensorSubsystem extends SubsystemBase {
   private final Color kRedTarget = new Color(0.561, 0.232, 0.114);
   private final Color kYellowTarget = new Color(0.361, 0.524, 0.113);
 
-  
+  /**
+   * Proximity is measured 0-10cm with a value in 0..2047 range
+   * The larger the value, the closer is the object
+   */
+  private final int PROXIMITYTHRESHOLD = 800;  // Threshold when we consider the object present
+
   /** Creates a new TEMPColorSensorTestSubsystem. */
   public ColorSensorSubsystem() {
     if (RobotProperties.isColorSensor) {
@@ -75,12 +80,24 @@ public class ColorSensorSubsystem extends SubsystemBase {
     return colorString;
   }
 
+
+  /**
+   *  Color confidence is 1 - euclidian distance of the two color vectors
+   * May consider using it when detecting a ball color
+   * @param color
+   * @return double
+   */
   public double getSeenColorConfidence(Color color) {   // It will return most closely matched color as ENUM
     ColorMatchResult match = colorMatcher.matchClosestColor(color);
     return match.confidence;
   }
 
-  public String getSeenColorHopper() {
+  /**
+   * Color detection methods are public in order to allow telemetry
+   * @return int
+   */
+
+   public String getSeenColorHopper() {
     lastSeenColorHopper = hopperColorSensor.getColor();
     return getSeenColor(lastSeenColorHopper);
   }
@@ -90,13 +107,25 @@ public class ColorSensorSubsystem extends SubsystemBase {
     return getSeenColor(lastSeenColorShooter);
   }
 
-  public int getObjectProximityHopper() {   // It will return most closely matched color as ENUM
+  /**
+   * Proximity methods are public in order to allow telemetry
+   * @return int
+   */
+
+  public int getObjectProximityHopper() {
     return hopperColorSensor.getProximity();
   }
 
-  public int getObjectProximityShooter() {   // It will return most closely matched color as ENUM
+  public int getObjectProximityShooter() {
     return shooterColorSensor.getProximity();
   }
+
+  /**
+   * Methods that check the color of the ball
+   * @return boolean
+   */
+
+  // TODO: consider checking color confidence to augment results
 
   public boolean isBallRedHopper(){    // Will return true if a ball is red
     lastSeenColorHopper = hopperColorSensor.getColor();
@@ -116,6 +145,18 @@ public class ColorSensorSubsystem extends SubsystemBase {
   public boolean isBallBlueShooter(){     // Will return true if a ball is blue
     lastSeenColorShooter = shooterColorSensor.getColor();
     return (colorMatcher.matchClosestColor(lastSeenColorShooter).color == kBlueTarget) ;
+  }
+
+  /** 
+   * Methods that check the presence of the ball - used in intake/hopper/shooter sequences
+   * @return boolean
+   */
+
+  public boolean isBallInHopper() {
+    return hopperColorSensor.getProximity() <= PROXIMITYTHRESHOLD ;
+  }
+  public boolean isBallInShooter() {
+    return shooterColorSensor.getProximity() <= PROXIMITYTHRESHOLD ;
   }
 
   @Override
