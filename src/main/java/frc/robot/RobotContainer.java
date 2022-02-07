@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotProperties;
+import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
@@ -49,7 +50,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final AutonomousPlaceholderCommand m_autoCommand = new AutonomousPlaceholderCommand(m_exampleSubsystem);
 
   public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
