@@ -50,6 +50,23 @@ public class DescriptiveMath {
         return sum / m.length;
     }
 
+    public static double trimmean(final double[] arr, final int percent) {
+        if ( percent < 0 || 100 < percent ) {
+            throw new IllegalArgumentException("Unexpected value: " + percent);
+        }
+    
+        if ( 0 == arr.length ) {
+            return Double.NaN;
+        }
+    
+        final int n = arr.length;
+        final int k = (int) Math.round(n * ( percent / 100.0 ) / 2.0); // Check overflow
+        double list[] = Arrays.copyOf(arr,arr.length);
+        Arrays.sort(list);
+    
+        return winsorizedMean( arr, mean( arr ), k, k );
+    }
+
     // Function to get slice of a primitive array in Java
     public static double[] getSliceOfArray(double[] arr,
             int startIndex, int endIndex) {
