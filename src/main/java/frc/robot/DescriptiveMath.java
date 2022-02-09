@@ -4,10 +4,7 @@
 
 package frc.robot;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
 
 /** 
  * This class contains supplemental methods that help with vision processing
