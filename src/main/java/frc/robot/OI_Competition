@@ -1,0 +1,36 @@
+LEFT JOYSTICK
+
+RIGHT JOYSTICK
+
+BUTTON BOARD
+
+( 1 ) Intake Down
+
+( 2 ) Intake Up
+
+( 3 ) Intake Start
+
+( 4 ) Intake Stop
+
+( 5 ) Intake Reverse
+
+( 6 ) Ball-in sequence
+    CheckSensors->ShooterUp->(IntakeStart && WaitForHopperSensor)->
+    IntakeStop->ShooterDown->CheckShooterSensor
+
+( 7 ) Shooter sequence
+    CheckShooterSensor->CheckVisionToGetAngle->
+        (TiltArmToAngle && RotateWheels)->WaitUntilSpeed->
+        (PushPlunger && CheckShooterSensor)->(StopWheels && PullPlunger && TiltArmDown)
+
+( 8 ) 
+
+( 9 ) 
+
+( 10 ) 
+
+( 11 ) 
+( 11 ) 
+( 11 ) 
+
+( 12 ) Calibrate Shooter Arm

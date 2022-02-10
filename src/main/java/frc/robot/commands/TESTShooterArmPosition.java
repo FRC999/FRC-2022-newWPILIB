@@ -25,7 +25,7 @@ public class TESTShooterArmPosition extends CommandBase {
   public void initialize() {
 
     // set the rotation position
-    targetPosition = RobotContainer.shooterSubsystem.getTiltEncoder() + degreesToEncoderClicks(90);
+    targetPosition = RobotContainer.shooterSubsystem.getTiltEncoder() + degreesToEncoderClicks(45);
     RobotContainer.shooterSubsystem.tiltMotorController.set(ControlMode.Position, targetPosition);
     
   }

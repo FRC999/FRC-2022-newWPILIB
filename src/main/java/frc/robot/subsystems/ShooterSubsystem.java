@@ -223,7 +223,7 @@ public class ShooterSubsystem extends SubsystemBase {
     return (int)(Constants.ShooterConstants.encoderUnitsPerShaftRotation * degrees / 360.0) ;
   }
 
-  public void pushBall() {
+  public void extendPlunger() {
     shooterSolenoid.set(Value.kForward);
   }
 
@@ -235,27 +235,27 @@ public class ShooterSubsystem extends SubsystemBase {
     return shooterSolenoid.get() == Value.kReverse;
   }
 
-  public void shootBall() {
-    shootBall(FULLFORWARDSPEED);
+  public void startShooterWheelMotor() {
+    startShooterWheelMotor(FULLFORWARDSPEED);
   }
 
-  public void shootBall(double power) {
+  public void startShooterWheelMotor(double power) {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[0].set(power);
   }
 
-  public void pullBall() {
-    pullBall(FULLREVERSESPEED);
+  public void startShooterWheelMotorReverse() {
+    startShooterWheelMotorReverse(FULLREVERSESPEED);
   }
 
-  public void pullBall(double power) {
+  public void startShooterWheelMotorReverse(double power) {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[0].set(power);
   }
 
-  public void stopShooterMotor() {
+  public void stopShooterWheelsMotor() {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Coast);
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Coast);
     wheelMotorControllers[0].set(0);

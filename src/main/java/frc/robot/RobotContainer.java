@@ -14,14 +14,17 @@ import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.commands.AutonomousPlaceholderCommand;
+import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
+import frc.robot.commands.ShooterArmPosition;
 import frc.robot.commands.TESTCalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.TESTShooterArmPosition;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IMUPassthroughSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
 import frc.robot.subsystems.NavigationControlSubsystem;
 import frc.robot.subsystems.NetworkTablesSubsystem;
 import frc.robot.subsystems.PneumaticsSubsystem;
@@ -60,6 +63,8 @@ public class RobotContainer {
   public static final TEMPShooterTestSubsystem shooterTest = new TEMPShooterTestSubsystem();
   
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+
+  public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   public static final PotentiometerSubsystem potentiometerSubsystem = new PotentiometerSubsystem();
 
@@ -178,6 +183,45 @@ public class RobotContainer {
         new JoystickButton(driveStick, 8).whenPressed(new TESTCalibrateShooterArmWithLimitSwitch());
 
         break;
+      
+      case C2022:
+
+        // Test routine
+        // TODO: Replace with command sequences for the competition
+
+        // Intake UP/DOWN test
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
+
+        // Intake FORWARD test
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeInButton)
+          .whenPressed(new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem))
+          .whenReleased(new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem));
+
+        // Intake REVERSE test
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeReverseButton)
+          .whenPressed(new InstantCommand(intakeSubsystem::rotateIntakeReverse,intakeSubsystem))
+          .whenReleased(new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem));
+
+        // Shooter arm test
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)
+          .whenPressed(new ShooterArmPosition())
+          .whenReleased(new CalibrateShooterArmWithLimitSwitch());
+
+        // Shooter wheels test
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterWheelButton)
+          .whenPressed(new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::stopShooterWheelsMotor,shooterSubsystem));
+
+        // Shooter plunger test
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterPlungerButton)
+          .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
+
+        // Shooter arm calibration
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmCalibrateButton)
+          .whenPressed(new CalibrateShooterArmWithLimitSwitch());
+
 
       default:
     }
