@@ -173,6 +173,7 @@ public final class Constants {
         public static final int ShooterArmAngleButton = 6;
         public static final int ShooterArmDownButton = 7;
         public static final int ShooterWheelButton = 8;
+        public static final int ShooterWheelReverseButton = 9;
         public static final int ShooterPlungerButton = 12;
         public static final int ShooterArmCalibrateButton = 12;
     }
@@ -276,7 +277,7 @@ public final class Constants {
         public static int[] intakeSolenoidChannel;
         public static int intakeMotorPort;
         public static final double intakeForwardSpeed = 1.0;
-        public static final double intakeReverseSpeed = 1.0;
+        public static final double intakeReverseSpeed = -1.0;
     }
 
     public static final int TeamNumber = 999;

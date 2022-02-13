@@ -241,8 +241,8 @@ public class Robot extends TimedRobot {
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = false;
         RobotProperties.isShooter = false;
-        RobotProperties.isPotentiometer = true;
-        RobotProperties.isColorSensor = true;
+        RobotProperties.isPotentiometer = false;
+        RobotProperties.isColorSensor = false;
         RobotProperties.isCANdle = true;
 
         // Drivetrain settings
@@ -275,7 +275,7 @@ public class Robot extends TimedRobot {
         RobotProperties.isIMU = true;
         RobotProperties.isNaVX = false;
         RobotProperties.driveInterface = DriveInterface.ONESTICK; // TODO: change to SPLITSTICK before comp
-        RobotProperties.isPneumatics = true;
+        RobotProperties.isPneumatics = false;
         RobotProperties.isShooter = true;
         RobotProperties.isPotentiometer = false;
         RobotProperties.isIntake = true;
@@ -294,12 +294,12 @@ public class Robot extends TimedRobot {
 
         // Intake Settings
         IntakeConstants.intakeSolenoidChannel = new int[] { 0, 7 };
-        IntakeConstants.intakeMotorPort = 7;
+        IntakeConstants.intakeMotorPort = 5;
 
         // Shooter settings
-        ShooterConstants.tiltMotorPortID = 4;
+        ShooterConstants.tiltMotorPortID = 10;
         ShooterConstants.shooterLimitSwitchDIOPort = 0;
-        ShooterConstants.shooterWheelMotorPortIDs = new int[] { 8, 9 };
+        ShooterConstants.shooterWheelMotorPortIDs = new int[] { 11,12 };
         ShooterConstants.shooterSolenoidChannels = new int[] { 2, 3 };
 
         //potentiometer     

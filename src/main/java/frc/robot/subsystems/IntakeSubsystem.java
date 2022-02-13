@@ -21,6 +21,7 @@ public class IntakeSubsystem extends SubsystemBase {
   public IntakeSubsystem() {
     if(Constants.RobotProperties.isIntake) {
       intakeMotorController = new WPI_TalonSRX(Constants.IntakeConstants.intakeMotorPort);
+      intakeMotorController.setInverted(true);
       intakeSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
         Constants.IntakeConstants.intakeSolenoidChannel[0],
         Constants.IntakeConstants.intakeSolenoidChannel[1]);

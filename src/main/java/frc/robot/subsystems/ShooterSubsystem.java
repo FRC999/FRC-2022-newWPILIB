@@ -68,10 +68,10 @@ public class ShooterSubsystem extends SubsystemBase {
     wheelMotorControllers[0].set(ControlMode.PercentOutput, 0);
     wheelMotorControllers[1].set(ControlMode.PercentOutput, 0);
 
-    wheelMotorControllers[1].follow(wheelMotorControllers[0]);
+    //wheelMotorControllers[1].follow(wheelMotorControllers[0]);
 
     wheelMotorControllers[0].setInverted(InvertType.None); // TODO: Check that the master motor is not inverted
-    wheelMotorControllers[1].setInverted(InvertType.OpposeMaster);
+    wheelMotorControllers[1].setInverted(InvertType.None);
   }
 
   public void configureTiltMotorControllerForPosition() {
@@ -243,6 +243,7 @@ public class ShooterSubsystem extends SubsystemBase {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[0].set(power);
+    wheelMotorControllers[1].set(power);
   }
 
   public void startShooterWheelMotorReverse() {
@@ -253,12 +254,14 @@ public class ShooterSubsystem extends SubsystemBase {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[0].set(power);
+    wheelMotorControllers[1].set(power);
   }
 
-  public void stopShooterWheelsMotor() {
+  public void stopShooterWheelMotor() {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Coast);
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Coast);
     wheelMotorControllers[0].set(0);
+    wheelMotorControllers[1].set(0);
   }
 
   @Override

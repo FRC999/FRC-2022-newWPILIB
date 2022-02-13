@@ -24,9 +24,9 @@ public class ShooterArmPosition extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //RobotContainer.shooterSubsystem.tiltShooterArm(45 + (1 - RobotContainer.driveStick.getRawAxis(3))*1 );
+    RobotContainer.shooterSubsystem.tiltShooterArm(45 + RobotContainer.driveStick.getRawAxis(3)*20 );
     // TODO - check Z-slider units before doing adjustment
-    RobotContainer.shooterSubsystem.tiltShooterArm(45);
+    //RobotContainer.shooterSubsystem.tiltShooterArm(45);
   }
 
   // Called once the command ends or is interrupted.
