@@ -275,7 +275,7 @@ public class Robot extends TimedRobot {
         RobotProperties.isIMU = true;
         RobotProperties.isNaVX = false;
         RobotProperties.driveInterface = DriveInterface.ONESTICK; // TODO: change to SPLITSTICK before comp
-        RobotProperties.isPneumatics = false;
+        RobotProperties.isPneumatics = true;
         RobotProperties.isShooter = true;
         RobotProperties.isPotentiometer = false;
         RobotProperties.isIntake = true;
@@ -293,14 +293,14 @@ public class Robot extends TimedRobot {
         PigeonIMU.pigeonIMUId = 5;
 
         // Intake Settings
-        IntakeConstants.intakeSolenoidChannel = new int[] { 0, 7 };
+        IntakeConstants.intakeSolenoidChannel = new int[] { 2, 3 };
         IntakeConstants.intakeMotorPort = 5;
 
         // Shooter settings
         ShooterConstants.tiltMotorPortID = 10;
         ShooterConstants.shooterLimitSwitchDIOPort = 0;
         ShooterConstants.shooterWheelMotorPortIDs = new int[] { 11,12 };
-        ShooterConstants.shooterSolenoidChannels = new int[] { 2, 3 };
+        ShooterConstants.shooterSolenoidChannels = new int[] { 1 , 0 };
 
         //potentiometer     
 

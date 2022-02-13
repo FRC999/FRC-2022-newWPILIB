@@ -27,7 +27,7 @@ public class IntakeSubsystem extends SubsystemBase {
         Constants.IntakeConstants.intakeSolenoidChannel[1]);
 
       // Lower intake at the start of the game
-      lowerIntake();
+      raiseIntake();
     }
     System.out.println("**** Intake Subsystem Initialized");
   }

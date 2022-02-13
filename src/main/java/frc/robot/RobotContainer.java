@@ -190,8 +190,8 @@ public class RobotContainer {
         // TODO: Replace with command sequences for the competition
 
         // Intake UP/DOWN test
-        //new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
-        //new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
 
         // Intake FORWARD test
         new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeInButton)
@@ -218,9 +218,9 @@ public class RobotContainer {
           .whenReleased(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem));
 
         // Shooter plunger test
-        //new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterPlungerButton)
-        //  .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem))
-        //  .whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterPlungerButton)
+          .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
 
         // Shooter arm calibration
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmCalibrateButton)
