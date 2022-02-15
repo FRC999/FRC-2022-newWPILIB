@@ -244,6 +244,7 @@ public class Robot extends TimedRobot {
         RobotProperties.isPotentiometer = false;
         RobotProperties.isColorSensor = false;
         RobotProperties.isCANdle = true;
+        RobotProperties.isTestMotor = true;
 
         // Drivetrain settings
         DriveConstants.isInvertdGearBox = false;
@@ -260,6 +261,9 @@ public class Robot extends TimedRobot {
         // Shooter settings
         ShooterConstants.tiltMotorPortID = 4;
         ShooterConstants.shooterLimitSwitchDIOPort = 0;
+
+        // Test Motor settings
+        
 
         //potentiometer
         PotentiometerConstants.PotentiometerPort = 3;

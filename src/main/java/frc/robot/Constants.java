@@ -54,6 +54,7 @@ public final class Constants {
         public static boolean isColorSensor;
         public static boolean isCANdle;
         public static boolean isIntake;
+        public static boolean isTestMotor;
 
     }
 
@@ -278,6 +279,11 @@ public final class Constants {
         public static int intakeMotorPort;
         public static final double intakeForwardSpeed = 1.0;
         public static final double intakeReverseSpeed = -1.0;
+    }
+
+    public static final class TestHardwareConstants {
+        public static int testMotorPort = 4;
+        public static int testEncoderPort = 4;
     }
 
     public static final int TeamNumber = 999;
