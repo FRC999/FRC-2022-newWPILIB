@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -27,7 +28,7 @@ public class TESTMotorSubsystem extends SubsystemBase {
       testMotorController = new WPI_TalonSRX(Constants.TestHardwareConstants.testMotorPort);
 
       testMotorController.configFactoryDefault();
-      testMotorController.configSelectedFeedbackSensor(testMotorController, 0, 20);
+      testMotorController.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 20);
     }
 
   }
