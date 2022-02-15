@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -31,6 +32,33 @@ public class TESTMotorSubsystem extends SubsystemBase {
       testMotorController.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 20);
     }
 
+  }
+
+  public void zeroTestEncoders() {
+    testMotorController.setSelectedSensorPosition(0);
+  }
+
+  public int getTestMotorEncoder() {
+    return (int) testMotorController.getSelectedSensorPosition();
+  }
+
+  public double getTestMotorError() {
+    return testMotorController.getClosedLoopError();// Returns the PID error for Pan motion control;
+  }
+
+  public void motorForwardSlow() {
+    testMotorController.setNeutralMode(NeutralMode.Brake);
+    testMotorController.set(CALIBRATEMOTORPOWER);
+  }
+
+  public void motorReverseSlow() {
+    testMotorController.setNeutralMode(NeutralMode.Brake);
+    testMotorController.set((-1)*CALIBRATEMOTORPOWER);
+  }
+
+  public void motorOff() {
+    testMotorController.setNeutralMode(NeutralMode.Coast);
+    testMotorController.set(0);
   }
 
   @Override

@@ -38,6 +38,7 @@ import frc.robot.subsystems.ColorSensorSubsystem;
  * Temporary testing
  */
 import frc.robot.subsystems.TEMPShooterTestSubsystem;
+import frc.robot.subsystems.TESTMotorSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -64,6 +65,8 @@ public class RobotContainer {
   
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
 
+  public static final TESTMotorSubsystem testMotorSubsystem = new TESTMotorSubsystem();
+  
   public static final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
 
   public static final PotentiometerSubsystem potentiometerSubsystem = new PotentiometerSubsystem();
@@ -181,6 +184,12 @@ public class RobotContainer {
 
         //new JoystickButton(driveStick, 7).whenPressed(new TESTShooterArmPosition());
         //new JoystickButton(driveStick, 8).whenPressed(new TESTCalibrateShooterArmWithLimitSwitch());
+
+        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(testMotorSubsystem::motorForwardSlow, testMotorSubsystem));
+        new JoystickButton(driveStick, 9).whenReleased(new InstantCommand(testMotorSubsystem::motorOff, testMotorSubsystem));
+
+        new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(testMotorSubsystem::motorReverseSlow, testMotorSubsystem));
+        new JoystickButton(driveStick, 10).whenReleased(new InstantCommand(testMotorSubsystem::motorOff, testMotorSubsystem));
 
         break;
               

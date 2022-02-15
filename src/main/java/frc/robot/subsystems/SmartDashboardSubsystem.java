@@ -47,6 +47,12 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Tilt Error", RobotContainer.shooterSubsystem.getTiltError() );
   }
 
+  public void updateTestMotorValues() {
+    SmartDashboard.putNumber("TEST Encoder", RobotContainer.testMotorSubsystem.getTestMotorEncoder());
+    SmartDashboard.putNumber("TEST Error", RobotContainer.testMotorSubsystem.getTestMotorError() );
+  }
+
+
   public void updatePotentiometerValues() {
     SmartDashboard.putNumber("Potentiometer Value", RobotContainer.potentiometerSubsystem.getPotVal());
   }
@@ -89,6 +95,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     if (Constants.RobotProperties.isShooter) {
        updateShooterValues();
     }
+
+    if (Constants.RobotProperties.isTestMotor) {
+      updateTestMotorValues();
+   }
+
     if (Constants.RobotProperties.isPotentiometer) {
       updatePotentiometerValues();
     }
