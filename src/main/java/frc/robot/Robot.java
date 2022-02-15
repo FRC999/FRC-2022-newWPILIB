@@ -20,6 +20,7 @@ import frc.robot.Constants.RobotDriveChassisConstants;
 import frc.robot.Constants.RobotModel;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.Constants.ShooterConstants;
+import frc.robot.Constants.TestHardwareConstants;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -263,7 +264,8 @@ public class Robot extends TimedRobot {
         ShooterConstants.shooterLimitSwitchDIOPort = 0;
 
         // Test Motor settings
-        
+        TestHardwareConstants.testMotorPort = 4;
+        TestHardwareConstants.testEncoderPort = 4;
 
         //potentiometer
         PotentiometerConstants.PotentiometerPort = 3;

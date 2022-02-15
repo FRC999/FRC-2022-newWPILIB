@@ -17,7 +17,7 @@ import frc.robot.Constants;
 
 public class TESTMotorSubsystem extends SubsystemBase {
 
-  private static final double CALIBRATEMOTORPOWER = 0.05;
+  private static final double CALIBRATEMOTORPOWER = 0.2;
   private static final double FULLFORWARDSPEED = 1.0;
   private static final double FULLREVERSESPEED = -1.0;
 
@@ -30,7 +30,10 @@ public class TESTMotorSubsystem extends SubsystemBase {
 
       testMotorController.configFactoryDefault();
       testMotorController.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 20);
+
+      System.out.println("*** === Test Motor CAN ID: " + Constants.TestHardwareConstants.testMotorPort);
     }
+    System.out.println("** Test Motor Subsystem Configured");
 
   }
 
@@ -47,16 +50,19 @@ public class TESTMotorSubsystem extends SubsystemBase {
   }
 
   public void motorForwardSlow() {
+    System.out.println("*** Start Forward SLOW");
     testMotorController.setNeutralMode(NeutralMode.Brake);
     testMotorController.set(CALIBRATEMOTORPOWER);
   }
 
   public void motorReverseSlow() {
+    System.out.println("*** Start Reverse SLOW");
     testMotorController.setNeutralMode(NeutralMode.Brake);
     testMotorController.set((-1)*CALIBRATEMOTORPOWER);
   }
 
   public void motorOff() {
+    System.out.println("*** Stop Test Motor");
     testMotorController.setNeutralMode(NeutralMode.Coast);
     testMotorController.set(0);
   }
