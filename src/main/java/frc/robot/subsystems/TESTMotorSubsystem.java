@@ -31,13 +31,15 @@ public class TESTMotorSubsystem extends SubsystemBase {
       testMotorController.configFactoryDefault();
       testMotorController.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 20);
 
+      configureTestMotorControllerForPosition();
+
       System.out.println("*** === Test Motor CAN ID: " + Constants.TestHardwareConstants.testMotorPort);
     }
     System.out.println("** Test Motor Subsystem Configured");
 
   }
 
-  public void configurePanMotorControllerForPosition() {
+  public void configureTestMotorControllerForPosition() {
 
     // Reset Hardware - ex
     testMotorController.configFactoryDefault();
@@ -48,7 +50,7 @@ public class TESTMotorSubsystem extends SubsystemBase {
 
 		/* Config the sensor used for Primary PID and sensor direction  - ex */
     testMotorController.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 
-      Constants.ShooterConstants.PID_PAN,
+      Constants.ShooterConstants.PID_TILT,
       Constants.ShooterConstants.configureTimeoutMs);
 
   	/* Ensure sensor is positive when output is positive - ex */
@@ -79,17 +81,17 @@ public class TESTMotorSubsystem extends SubsystemBase {
 		 * units per rotation. - ex
 		 */
 		testMotorController.configAllowableClosedloopError(Constants.ShooterConstants.SLOT_0,
-                                      Constants.ShooterConstants.panDefaultAcceptableError,
+                                      Constants.ShooterConstants.tiltDefaultAcceptableError,
                                       Constants.ShooterConstants.configureTimeoutMs);
 
 		/* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
 
     /* FPID Gains for pan motor */
 
-    testMotorController.config_kP(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.P_PAN, Constants.ShooterConstants.configureTimeoutMs);
-    testMotorController.config_kI(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.I_PAN, Constants.ShooterConstants.configureTimeoutMs);
-    testMotorController.config_kD(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.D_PAN, Constants.ShooterConstants.configureTimeoutMs);
-    testMotorController.config_kF(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.F_PAN, Constants.ShooterConstants.configureTimeoutMs);
+    testMotorController.config_kP(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.P_TILT, Constants.ShooterConstants.configureTimeoutMs);
+    testMotorController.config_kI(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.I_TILT, Constants.ShooterConstants.configureTimeoutMs);
+    testMotorController.config_kD(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.D_TILT, Constants.ShooterConstants.configureTimeoutMs);
+    testMotorController.config_kF(Constants.ShooterConstants.SLOT_0, Constants.ShooterConstants.F_TILT, Constants.ShooterConstants.configureTimeoutMs);
 
 		/**
 		 * Grab the 360 degree position of the MagEncoder's absolute
