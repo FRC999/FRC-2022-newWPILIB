@@ -13,6 +13,7 @@ import frc.robot.Constants;
 
 /**
  * Subsystem to test motor controllers on demo board and other robots
+ * This subsystem may help you to quickly test a motor in a field
  */
 
 public class TESTMotorSubsystem extends SubsystemBase {

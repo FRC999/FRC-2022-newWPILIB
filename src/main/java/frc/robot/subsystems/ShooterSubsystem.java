@@ -18,7 +18,7 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  private static final double CALIBRATEMOTORPOWER = 0.05;
+  private static final double CALIBRATEMOTORPOWER = 0.1;
   private static final double FULLFORWARDSPEED = 1.0;
   private static final double FULLREVERSESPEED = -1.0;
 

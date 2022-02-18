@@ -167,6 +167,9 @@ public final class Constants {
     // Button assignment for the 2022 competition robot
     // This will probably be unique for that robot
     public static final class OIC2022TEST {
+
+        // drivestick
+
         public static final int IntakeDownButton = 10;
         public static final int IntakeUpButton = 11;
         public static final int IntakeInButton = 3;
@@ -177,6 +180,12 @@ public final class Constants {
         public static final int ShooterWheelReverseButton = 9;
         public static final int ShooterPlungerButton = 12;
         public static final int ShooterArmCalibrateButton = 2;
+
+        // turnstick
+        public static final int ShooterArmZeroEncoder = 10;
+        public static final int ShooterArmSlowlyForward = 11;
+        public static final int ShooterArmSlowlyBack = 12;
+
     }
     public static final class PigeonIMU {
         // If you have PigeonIMU, this is the ID of the Talon SRX the IMU is connected
