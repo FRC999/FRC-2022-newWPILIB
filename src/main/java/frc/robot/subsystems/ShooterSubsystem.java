@@ -18,9 +18,9 @@ import frc.robot.Constants;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  private static final double CALIBRATEMOTORPOWER = 0.1;
-  private static final double FULLFORWARDSPEED = 1.0;
-  private static final double FULLREVERSESPEED = -1.0;
+  private static final double CALIBRATEMOTORPOWER = 0.2;
+  private static final double FULLFORWARDSPEED = 0.7;
+  private static final double FULLREVERSESPEED = -0.7;
 
   public WPI_TalonSRX tiltMotorController;
   private WPI_TalonSRX[] wheelMotorControllers;
@@ -90,8 +90,10 @@ public class ShooterSubsystem extends SubsystemBase {
 
   	/* Ensure sensor is positive when output is positive - ex */
     tiltMotorController.setSensorPhase(Constants.ShooterConstants.SensorPhase);
+   // tiltMotorController.setSensorPhase(false);
 
-    		/**
+
+    /**
 		 * Set based on what direction you want forward/positive to be.
 		 * This does not affect sensor phase. - ex 
 		 */ 
@@ -177,14 +179,14 @@ public class ShooterSubsystem extends SubsystemBase {
   public void calibrateBackSlow() {
     // System.out.println("*** T B");
     tiltMotorController.setNeutralMode(NeutralMode.Brake);
-    tiltMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER * (-1));
+    tiltMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
     //panMotorController.setInverted(true);
     //panMotorController.set(CALIBRATEMOTORPOWER);
   }
 
   public void tiltMotorOff() {
     // System.out.println("*** T OFF");
-    tiltMotorController.setNeutralMode(NeutralMode.Coast);
+    tiltMotorController.setNeutralMode(NeutralMode.Brake);  // leave the tilt motor in break mode so it will not just drop down
     tiltMotorController.set(0);
   }
 
@@ -193,6 +195,7 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   public void zeroTiltMotorEncoder() {
     tiltMotorController.setSelectedSensorPosition(0);
+    zeroTiltPosition = getTiltEncoder();
   }
 
   public int getTiltEncoder() {
@@ -208,7 +211,11 @@ public class ShooterSubsystem extends SubsystemBase {
    * This will be extensively used by the commands that need to hold the arm at specific angle
    */
   public void tiltShooterArm(double degrees) {
-    tiltMotorController.set(ControlMode.Position, zeroTiltPosition + degreesToEncoderClicks(degrees));
+    // tiltMotorController.set(ControlMode.Position, zeroTiltPosition + degreesToEncoderClicks(degrees));
+
+    System.out.println("**** ZT " + zeroTiltPosition + " T " + (zeroTiltPosition +0) + " E " + getTiltEncoder());
+
+    tiltMotorController.set(ControlMode.Position,  zeroTiltPosition -540);
   }
   // Remember tilt encoder setting - used to remember the ZERO position
   public void initTiltShooterArm() {

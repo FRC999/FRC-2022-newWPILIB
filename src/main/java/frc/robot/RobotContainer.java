@@ -234,7 +234,7 @@ public class RobotContainer {
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmCalibrateButton)
           .whenPressed(new CalibrateShooterArmWithLimitSwitch());
 
-        // Shooter arm slowly forward
+        // Shooter arm zero encoder
         new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterArmZeroEncoder)
           .whenPressed(new  InstantCommand(shooterSubsystem::zeroTiltMotorEncoder,shooterSubsystem));
           // Shooter arm slowly forward

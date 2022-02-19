@@ -230,9 +230,9 @@ public final class Constants {
         // Motor neutral dead-band, set to the minimum 0.1%
         public final static double NeutralDeadband = 0.001;
         // Sensor phase - to ensure that sensor is positive when the output is positive
-        public final static boolean SensorPhase =  true;
+        public final static boolean SensorPhase =  false;
         // Invert shooter motor
-        public final static boolean MotorInvert =  false;
+        public final static boolean MotorInvert =  true;
         // Peak Output - forward and reverse*(-1)
         public final static double PeakOutput = 0.3;
 
@@ -246,15 +246,22 @@ public final class Constants {
         // Gains from 2021 - fast and powerfull
         
         /* 
-        public final static double P_PAN = 1.5;
-        public final static double I_PAN = 0.0002;
-        public final static double D_PAN = 15;
+        public final static double P_TILT = 1.5;
+        public final static double I_TILT = 0.0002;
+        public final static double D_TILT = 15;
         */
+
+        public final static double P_TILT = 0.8;
+        public final static double I_TILT = 0.0002;
+        public final static double D_TILT = 0.8;
+        
+
         // Gains from CTR example - slow and steady
+        /*
         public final static double P_TILT = 0.15;
         public final static double I_TILT = 0.0;
         public final static double D_TILT = 1;
-
+        */
         // TODO: adjust gains as needed.
 
         public final static double F_TILT = 0; // set to zero for position closed loop
@@ -286,8 +293,8 @@ public final class Constants {
         //index 1 = reverse
         public static int[] intakeSolenoidChannel;
         public static int intakeMotorPort;
-        public static final double intakeForwardSpeed = 1.0;
-        public static final double intakeReverseSpeed = -1.0;
+        public static final double intakeForwardSpeed = 0.7;
+        public static final double intakeReverseSpeed = -0.7;
     }
 
     public static final class TestHardwareConstants {
