@@ -1,6 +1,38 @@
-LEFT JOYSTICK
+DRIVE JOYSTICK
 
-RIGHT JOYSTICK
+( 3 ) PUSH - Intake In Start
+( 3 ) RELS - Intake Stop
+
+( 4 ) PUSH - Intake Reverse Start
+( 4 ) RELS - Intake Reverse Stop
+
+( 5 ) Shooter Arm Calibration with Limit Switch
+
+( 6 ) Shooter Arm 45 degree angle
+
+( 8 ) PUSH - Shooter Wheels Rotate In
+( 8 ) RELS - Shooter Wheels Stop
+
+( 9 ) PUSH - Shooter Wheels Rotate Reverse
+( 9 ) RELS - Shooter Wheels Stop
+
+( 10 ) Intake Down
+
+( 11 ) Intake Up
+
+( 12 ) PUSH - Shooter Plunger Push
+( 12 ) RELS - Shooter Plunger Retract
+
+TURN JOYSTICK
+
+( 10 ) Zero Tilt Encoder
+
+( 11 ) PUSH - Shooter Arm Tilt Forward Slow
+( 11 ) RELS - Shooter Arm Tilt Stop 
+
+( 12 ) PUSH - Shooter Arm Tilt Backward Slow
+( 12 ) RELS - Shooter Arm Tilt Stop 
+
 
 BUTTON BOARD
 

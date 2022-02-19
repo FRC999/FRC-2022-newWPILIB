@@ -179,7 +179,7 @@ public final class Constants {
         public static final int ShooterWheelButton = 8;
         public static final int ShooterWheelReverseButton = 9;
         public static final int ShooterPlungerButton = 12;
-        public static final int ShooterArmCalibrateButton = 2;
+        public static final int ShooterArmCalibrateButton = 5;
 
         // turnstick
         public static final int ShooterArmZeroEncoder = 10;

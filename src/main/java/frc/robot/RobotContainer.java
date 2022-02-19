@@ -18,6 +18,7 @@ import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
+import frc.robot.commands.ShooterArmPosition;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IMUPassthroughSubsystem;
@@ -210,9 +211,10 @@ public class RobotContainer {
           .whenReleased(new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem));
 
         // Shooter arm test
-        //new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)
-        //  .whenPressed(new ShooterArmPosition())
-        //  .whenReleased(new CalibrateShooterArmWithLimitSwitch());
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)
+          .whenPressed(new ShooterArmPosition())
+          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
+          //.whenReleased(new CalibrateShooterArmWithLimitSwitch());  // TODO: keep the shooter arm UP not down
 
         // Shooter wheels test
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterWheelButton)
@@ -237,10 +239,12 @@ public class RobotContainer {
           .whenPressed(new  InstantCommand(shooterSubsystem::zeroTiltMotorEncoder,shooterSubsystem));
           // Shooter arm slowly forward
         new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterArmSlowlyForward)
-          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateForwardSlow,shooterSubsystem));
+          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateForwardSlow,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
         // Shooter arm slowly back
         new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterArmSlowlyBack)
-          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateBackSlow,shooterSubsystem));
+          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateBackSlow,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
 
 
       default:

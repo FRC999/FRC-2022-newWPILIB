@@ -12,7 +12,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class CalibrateShooterArmWithLimitSwitch extends CommandBase {
-  private final double CALIBRATIONPERCENTOUTPUT = -0.1 ; // should be reasonably slow; we do not want to hit the pan hard
+  private final double CALIBRATIONPERCENTOUTPUT = 0.1 ; // should be reasonably slow; we do not want to hit the pan hard
   private boolean failToCalibrate = false ; // this will be set if calibration cannot be done, for instance, if the DIO limit cannot be read
 
   // The Limit switch is interruptor - meaning, the circuit is closed until it's pressed.
@@ -72,6 +72,7 @@ public class CalibrateShooterArmWithLimitSwitch extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    System.out.println("*** Calibration Command finish");
     return failToCalibrate || shooterLimitSwitch.get() ;
   }
 }
