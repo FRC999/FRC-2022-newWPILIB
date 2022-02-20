@@ -172,21 +172,18 @@ public class ShooterSubsystem extends SubsystemBase {
     // System.out.println("*** T F");
     tiltMotorController.setNeutralMode(NeutralMode.Brake);
     tiltMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
-    //panMotorController.setInverted(false);
-    //panMotorController.set(CALIBRATEMOTORPOWER);
   }
 
   public void calibrateBackSlow() {
     // System.out.println("*** T B");
     tiltMotorController.setNeutralMode(NeutralMode.Brake);
     tiltMotorController.set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
-    //panMotorController.setInverted(true);
-    //panMotorController.set(CALIBRATEMOTORPOWER);
   }
 
   public void tiltMotorOff() {
     // System.out.println("*** T OFF");
-    tiltMotorController.setNeutralMode(NeutralMode.Brake);  // leave the tilt motor in break mode so it will not just drop down
+    // leave the tilt motor in break mode so it will not just drop down
+    tiltMotorController.setNeutralMode(NeutralMode.Brake);
     tiltMotorController.set(0);
   }
 
@@ -211,12 +208,12 @@ public class ShooterSubsystem extends SubsystemBase {
    * This will be extensively used by the commands that need to hold the arm at specific angle
    */
   public void tiltShooterArm(double degrees) {
-    // tiltMotorController.set(ControlMode.Position, zeroTiltPosition + degreesToEncoderClicks(degrees));
+    tiltMotorController.set(ControlMode.Position, zeroTiltPosition - degreesToEncoderClicks(degrees));
 
-    System.out.println("**** ZT " + zeroTiltPosition + " T " + (zeroTiltPosition +0) + " E " + getTiltEncoder());
-
-    tiltMotorController.set(ControlMode.Position,  zeroTiltPosition -540);
+    // System.out.println("**** ZT " + zeroTiltPosition + " T " + (zeroTiltPosition +0) + " E " + getTiltEncoder());
+    //tiltMotorController.set(ControlMode.Position,  zeroTiltPosition -540);
   }
+
   // Remember tilt encoder setting - used to remember the ZERO position
   public void initTiltShooterArm() {
     zeroTiltPosition = getTiltEncoder();
@@ -228,6 +225,14 @@ public class ShooterSubsystem extends SubsystemBase {
    */
    public int degreesToEncoderClicks(double degrees) {
     return (int)(Constants.ShooterConstants.encoderUnitsPerShaftRotation * degrees / 360.0) ;
+  }
+
+  public int EncoderClicksToDegrees(int clicks) {
+    return (int)(360.0 * clicks / Constants.ShooterConstants.encoderUnitsPerShaftRotation) ;
+  }
+
+  public int getTiltAngle() {
+    return EncoderClicksToDegrees((int)(getTiltEncoder() - zeroTiltPosition));
   }
 
   public void extendPlunger() {

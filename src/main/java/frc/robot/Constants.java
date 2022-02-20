@@ -229,10 +229,19 @@ public final class Constants {
         public final static int closedLoopPeriodMs = 1;
         // Motor neutral dead-band, set to the minimum 0.1%
         public final static double NeutralDeadband = 0.001;
+
+        /**
+         * 2022 Shooter -
+         * With motor inverted, the positive power means tilting BACK/UP (negative power - tilting DOWN)
+         * SensorPhase ("false" in thise case) is set to track POSITIVE encoder change on UP rotation
+         * (so positive power -> positive encoder rotation)
+         */
+
         // Sensor phase - to ensure that sensor is positive when the output is positive
         public final static boolean SensorPhase =  false;
         // Invert shooter motor
-        public final static boolean MotorInvert =  true;
+        public final static boolean MotorInvert =  true;  
+
         // Peak Output - forward and reverse*(-1)
         public final static double PeakOutput = 0.3;
 
@@ -246,6 +255,7 @@ public final class Constants {
         // Gains from 2021 - fast and powerfull
         
         /* 
+        // Aggressive settings
         public final static double P_TILT = 1.5;
         public final static double I_TILT = 0.0002;
         public final static double D_TILT = 15;
@@ -258,6 +268,7 @@ public final class Constants {
 
         // Gains from CTR example - slow and steady
         /*
+        // Very weak settings
         public final static double P_TILT = 0.15;
         public final static double I_TILT = 0.0;
         public final static double D_TILT = 1;
