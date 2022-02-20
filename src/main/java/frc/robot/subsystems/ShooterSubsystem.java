@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class ShooterSubsystem extends SubsystemBase {
 
@@ -247,8 +248,17 @@ public class ShooterSubsystem extends SubsystemBase {
     return shooterSolenoid.get() == Value.kReverse;
   }
 
+  /**
+   * manually adjust shooter wheel power using Z-tail on the turnstick
+   * The -1..1 range is converted to 0..1 multiplier
+   * @return double
+   */
+  public double shooterWheelPowerAdjustment() {
+    return RobotContainer.turnStick.getRawAxis(3)*0.5 + 0.5;
+  }
+
   public void startShooterWheelMotor() {
-    startShooterWheelMotor(FULLFORWARDSPEED);
+    startShooterWheelMotor(FULLFORWARDSPEED * shooterWheelPowerAdjustment() ); // adjust shooter power
   }
 
   public void startShooterWheelMotor(double power) {
@@ -259,7 +269,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void startShooterWheelMotorReverse() {
-    startShooterWheelMotorReverse(FULLREVERSESPEED);
+    startShooterWheelMotorReverse(FULLREVERSESPEED);  // No need to adjust it
   }
 
   public void startShooterWheelMotorReverse(double power) {

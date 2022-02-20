@@ -265,15 +265,19 @@ public class RobotContainer {
         Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
         JoystickButton shooterSemiAutoSequence = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterSemiAutoSequence) ;
         
+        // TODO: Make sure that PID on a shooter arm is not cancelled by this
+
         shooterSemiAutoSequence
           .and(ballInShooterDetector)
-          .whenActive(  new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem) // Spin the wheels, continue until the end of the command
-              .deadlineWith(new WaitCommand(1)  // Wait 1 second
+          .whenActive(  
+              new WaitCommand(1)  // Wait 1 second
                             .andThen(new InstantCommand(shooterSubsystem::extendPlunger))  // push plunger; no subsystem requirement, so not to stop motors
                             .andThen(new WaitCommand(1))  // Wait 1 second)
-                            ) // end deadlinewith
-              .andThen(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem))  // retract plunger
-              .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem))  // stop shooter motor
+               .andThen(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem))  // retract plunger
+               .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem))  // stop shooter motor
+            .deadlineWith (
+                new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem) // Spin the wheels, continue until the end of the sequence
+              ) // end deadlinewith
           ); // end whenactive
       
       default:
