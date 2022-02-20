@@ -182,6 +182,7 @@ public final class Constants {
         public static final int ShooterArmCalibrateButton = 5;
 
         // turnstick
+        public static final int ShooterSemiAutoSequence = 7;
         public static final int ShooterArmZeroEncoder = 10;
         public static final int ShooterArmSlowlyForward = 11;
         public static final int ShooterArmSlowlyBack = 12;

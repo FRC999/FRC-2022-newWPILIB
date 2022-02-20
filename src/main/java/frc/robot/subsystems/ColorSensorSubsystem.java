@@ -153,10 +153,10 @@ public class ColorSensorSubsystem extends SubsystemBase {
    */
 
   public boolean isBallInHopper() {
-    return hopperColorSensor.getProximity() <= PROXIMITYTHRESHOLD ;
+    return hopperColorSensor.getProximity() >= PROXIMITYTHRESHOLD ;
   }
   public boolean isBallInShooter() {
-    return shooterColorSensor.getProximity() <= PROXIMITYTHRESHOLD ;
+    return shooterColorSensor.getProximity() >= PROXIMITYTHRESHOLD ;
   }
 
   @Override

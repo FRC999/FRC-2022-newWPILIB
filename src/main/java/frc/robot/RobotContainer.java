@@ -9,7 +9,9 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotProperties;
@@ -71,7 +73,7 @@ public class RobotContainer {
 
   public static final CANdleSubsystem candleSubsystem = new CANdleSubsystem();
 
-  public static final ColorSensorSubsystem colorSensorTestSubsystem = new ColorSensorSubsystem();
+  public static final ColorSensorSubsystem colorSensorSubsystem = new ColorSensorSubsystem();
 
   // PowerDistributionBoard - used for telemetry information
   public static final PowerDistributionPanelSubsystem pdpSubsystem = new PowerDistributionPanelSubsystem();
@@ -246,7 +248,34 @@ public class RobotContainer {
           .whenPressed(new  InstantCommand(shooterSubsystem::calibrateBackSlow,shooterSubsystem))
           .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
 
+        /**
+         * Shooter Semi-auto sequence
+         * 
+         * Spin the wheels
+         *  in parallel:
+         *    1. Wait 1 second
+         *    2. Push plunger
+         *    3. Wait 1 second
+         * Then
+         * Retract plunger
+         * Stop the wheels
+         * 
+        */
 
+        Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
+        JoystickButton shooterSemiAutoSequence = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterSemiAutoSequence) ;
+        
+        shooterSemiAutoSequence
+          .and(ballInShooterDetector)
+          .whenActive(  new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem) // Spin the wheels, continue until the end of the command
+              .deadlineWith(new WaitCommand(1)  // Wait 1 second
+                            .andThen(new InstantCommand(shooterSubsystem::extendPlunger))  // push plunger; no subsystem requirement, so not to stop motors
+                            .andThen(new WaitCommand(1))  // Wait 1 second)
+                            ) // end deadlinewith
+              .andThen(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem))  // retract plunger
+              .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem))  // stop shooter motor
+          ); // end whenactive
+      
       default:
     }
 

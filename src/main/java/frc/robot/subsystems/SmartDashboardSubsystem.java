@@ -63,21 +63,21 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   }
 
   public void updateColorSensorValues() {
-    SmartDashboard.putNumber("Shooter Color Sensor Proximity", RobotContainer.colorSensorTestSubsystem.getObjectProximityShooter());
-    SmartDashboard.putString("Shooter Color Detected", RobotContainer.colorSensorTestSubsystem.getSeenColorShooter());
-    SmartDashboard.putBoolean("Shooter Red Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallRedShooter());
-    SmartDashboard.putBoolean("Shooter Blue Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallBlueShooter());
+    SmartDashboard.putNumber("Shooter Color Sensor Proximity", RobotContainer.colorSensorSubsystem.getObjectProximityShooter());
+    SmartDashboard.putString("Shooter Color Detected", RobotContainer.colorSensorSubsystem.getSeenColorShooter());
+    SmartDashboard.putBoolean("Shooter Red Ball Detected", RobotContainer.colorSensorSubsystem.isBallRedShooter());
+    SmartDashboard.putBoolean("Shooter Blue Ball Detected", RobotContainer.colorSensorSubsystem.isBallBlueShooter());
 
-    SmartDashboard.putNumber("Hopper Color Sensor Proximity", RobotContainer.colorSensorTestSubsystem.getObjectProximityHopper());
-    SmartDashboard.putString("Hopper Color Detected", RobotContainer.colorSensorTestSubsystem.getSeenColorHopper());
-    SmartDashboard.putBoolean("Hopper Red Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallRedHopper());
-    SmartDashboard.putBoolean("Hopper Blue Ball Detected", RobotContainer.colorSensorTestSubsystem.isBallBlueHopper());
+    SmartDashboard.putNumber("Hopper Color Sensor Proximity", RobotContainer.colorSensorSubsystem.getObjectProximityHopper());
+    SmartDashboard.putString("Hopper Color Detected", RobotContainer.colorSensorSubsystem.getSeenColorHopper());
+    SmartDashboard.putBoolean("Hopper Red Ball Detected", RobotContainer.colorSensorSubsystem.isBallRedHopper());
+    SmartDashboard.putBoolean("Hopper Blue Ball Detected", RobotContainer.colorSensorSubsystem.isBallBlueHopper());
   }
 
   public void ballColorChange(){
-    if (RobotContainer.colorSensorTestSubsystem.isBallBlueShooter()){
+    if (RobotContainer.colorSensorSubsystem.isBallBlueShooter()){
       RobotContainer.candleSubsystem.setLEDBlue();
-    } else if (RobotContainer.colorSensorTestSubsystem.isBallRedShooter()){
+    } else if (RobotContainer.colorSensorSubsystem.isBallRedShooter()){
       RobotContainer.candleSubsystem.setLEDRed();
     } else {
       RobotContainer.candleSubsystem.setLEDOff();
