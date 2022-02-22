@@ -47,6 +47,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Tilt Error", RobotContainer.shooterSubsystem.getTiltError() );
     SmartDashboard.putNumber("Tilt Angle", RobotContainer.shooterSubsystem.getTiltAngle() );
     SmartDashboard.putNumber("Shooter Power Adjustment", RobotContainer.shooterSubsystem.shooterWheelPowerAdjustment() );
+    SmartDashboard.putNumber("Tilt ZT", RobotContainer.shooterSubsystem.getTiltZT() );
   }
 
   public void updateTestMotorValues() {
@@ -107,7 +108,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     }
 
     if (Constants.RobotProperties.isColorSensor) {
-      // updateColorSensorValues();
+      updateColorSensorValues();
       // TODO: decide on the Dashboard telemetry for the color sensors
     }
 

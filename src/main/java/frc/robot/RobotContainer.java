@@ -215,7 +215,8 @@ public class RobotContainer {
         // Shooter arm test
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)
           .whenPressed(new ShooterArmPosition())
-          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
+          // .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem))
+          ;
           //.whenReleased(new CalibrateShooterArmWithLimitSwitch());  // TODO: keep the shooter arm UP not down
 
         // Shooter wheels test
@@ -262,7 +263,9 @@ public class RobotContainer {
          * 
         */
 
-        Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
+        //Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
+        Trigger ballInShooterDetector = new Trigger(() -> true);
+
         JoystickButton shooterSemiAutoSequence = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterSemiAutoSequence) ;
         
         // TODO: Make sure that PID on a shooter arm is not cancelled by this
@@ -273,8 +276,8 @@ public class RobotContainer {
               new WaitCommand(1)  // Wait 1 second
                             .andThen(new InstantCommand(shooterSubsystem::extendPlunger))  // push plunger; no subsystem requirement, so not to stop motors
                             .andThen(new WaitCommand(1))  // Wait 1 second)
-               .andThen(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem))  // retract plunger
-               .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem))  // stop shooter motor
+               .andThen(new InstantCommand(shooterSubsystem::retractPlunger))  // retract plunger
+               .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor))  // stop shooter motor
             .deadlineWith (
                 new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem) // Spin the wheels, continue until the end of the sequence
               ) // end deadlinewith

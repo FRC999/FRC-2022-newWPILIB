@@ -71,8 +71,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
     //wheelMotorControllers[1].follow(wheelMotorControllers[0]);
 
-    wheelMotorControllers[0].setInverted(InvertType.None); // TODO: Check that the master motor is not inverted
-    wheelMotorControllers[1].setInverted(InvertType.None);
+    wheelMotorControllers[0].setInverted(InvertType.InvertMotorOutput); // TODO: Check that the master motor is not inverted
+    wheelMotorControllers[1].setInverted(InvertType.InvertMotorOutput);
   }
 
   public void configureTiltMotorControllerForPosition() {
@@ -193,7 +193,8 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   public void zeroTiltMotorEncoder() {
     tiltMotorController.setSelectedSensorPosition(0);
-    zeroTiltPosition = getTiltEncoder();
+    // zeroTiltPosition = getTiltEncoder();
+    zeroTiltPosition = 0;
   }
 
   public int getTiltEncoder() {
@@ -211,7 +212,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void tiltShooterArm(double degrees) {
     tiltMotorController.set(ControlMode.Position, zeroTiltPosition - degreesToEncoderClicks(degrees));
 
-    // System.out.println("**** ZT " + zeroTiltPosition + " T " + (zeroTiltPosition +0) + " E " + getTiltEncoder());
+    System.out.println("**** ZT " + zeroTiltPosition + " T " + (zeroTiltPosition +0) + " E " + getTiltEncoder() + " NP " +  (zeroTiltPosition - degreesToEncoderClicks(degrees)));
     //tiltMotorController.set(ControlMode.Position,  zeroTiltPosition -540);
   }
 
@@ -234,6 +235,14 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public int getTiltAngle() {
     return EncoderClicksToDegrees((int)(getTiltEncoder() - zeroTiltPosition));
+  }
+
+  public double getTiltZT() {
+    return zeroTiltPosition;
+  }
+
+  public double getTiltAdjustment() {
+    return RobotContainer.driveStick.getRawAxis(3)*20;
   }
 
   public void extendPlunger() {
