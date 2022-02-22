@@ -35,7 +35,8 @@ public class ColorSensorSubsystem extends SubsystemBase {
    * Proximity is measured 0-10cm with a value in 0..2047 range
    * The larger the value, the closer is the object
    */
-  private final int PROXIMITYTHRESHOLD = 800;  // Threshold when we consider the object present
+  private final int HOPPERPROXIMITYTHRESHOLD = 150;  // Threshold when we consider the object present
+  private final int SHOOTERPROXIMITYTHRESHOLD = 400;  // Threshold when we consider the object present
 
   /** Creates a new TEMPColorSensorTestSubsystem. */
   public ColorSensorSubsystem() {
@@ -45,14 +46,14 @@ public class ColorSensorSubsystem extends SubsystemBase {
       hopperColorSensor = new ColorSensorV3(hopperI2CPort);
       if (! hopperColorSensor.isConnected()) {  // cannot determine the presence of the sensor
         // We need color/proximity sensor for the right shooter sequence, so just print a message for now
-        System.out.println("***=== ERROR: hopper color sensor is not detected");
+        System.out.println("*** === ERROR: hopper color sensor is not detected");
       }
 
       // Instantiate and configure shooter color sensor
       shooterColorSensor = new ColorSensorV3(shooterI2CPort);
       if (! shooterColorSensor.isConnected()) {  // cannot determine the presence of the sensor
         // We need color/proximity sensor for the right shooter sequence, so just print a message for now
-        System.out.println("***=== ERROR: shooter color sensor is not detected");
+        System.out.println("*** === ERROR: shooter color sensor is not detected");
       }
            
       colorMatcher.addColorMatch(kBlueTarget);
@@ -153,10 +154,10 @@ public class ColorSensorSubsystem extends SubsystemBase {
    */
 
   public boolean isBallInHopper() {
-    return hopperColorSensor.getProximity() >= PROXIMITYTHRESHOLD ;
+    return hopperColorSensor.getProximity() >= HOPPERPROXIMITYTHRESHOLD ;
   }
   public boolean isBallInShooter() {
-    return shooterColorSensor.getProximity() >= PROXIMITYTHRESHOLD ;
+    return shooterColorSensor.getProximity() >= SHOOTERPROXIMITYTHRESHOLD ;
   }
 
   @Override
