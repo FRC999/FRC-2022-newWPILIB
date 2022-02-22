@@ -263,8 +263,8 @@ public class RobotContainer {
          * 
         */
 
-        //Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
-        Trigger ballInShooterDetector = new Trigger(() -> true);
+        Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
+        //Trigger ballInShooterDetector = new Trigger(() -> true);
 
         JoystickButton shooterSemiAutoSequence = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterSemiAutoSequence) ;
         
