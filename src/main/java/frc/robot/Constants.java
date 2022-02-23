@@ -49,6 +49,7 @@ public final class Constants {
         public static DriveInterface driveInterface;
         public static boolean isPneumatics;
         public static boolean isShooter;
+        public static boolean isClimber;
         public static boolean isTEMPShooterTest;
         public static boolean isPotentiometer;
         public static boolean isColorSensor;
@@ -282,6 +283,85 @@ public final class Constants {
         public static int tiltAcceleration = 50;
         public static int tiltCruiseVelocity = 50;
         public final static int tiltSmoothing = 3;
+
+        /**
+        * Talon PID methods often demand slot ID's, so we need to do this :(
+        */
+        public final static int SLOT_0 = 0;
+
+    }
+
+    public static final class ClimberConstants {
+
+        public static int[] climberMotorPortIDs = new int[2];
+
+        // index 0 = forward
+        // index 1 = reverse
+
+        public static int encoderUnitsPerShaftRotation = 4096;
+
+        // Closed loop constants
+        // How long we wait for a configuration change to happen before we give up and
+        // report a failure in milliseconds
+        public final static int configureTimeoutMs = 30;
+        // Full motor output value
+        public final static int fullMotorOutput = 1023;
+        // How many milliseconds between each closed loop call
+        public final static int closedLoopPeriodMs = 1;
+        // Motor neutral dead-band, set to the minimum 0.1%
+        public final static double NeutralDeadband = 0.001;
+
+        /**
+         * 2022 Shooter -
+         * With motor inverted, the positive power means tilting BACK/UP (negative power - tilting DOWN)
+         * SensorPhase ("false" in thise case) is set to track POSITIVE encoder change on UP rotation
+         * (so positive power -> positive encoder rotation)
+         */
+
+        // Sensor phase - to ensure that sensor is positive when the output is positive
+        public final static boolean[] SensorPhase =  {false,true};
+        // Invert shooter motor
+        public final static boolean[] MotorInvert =  {true,false};  
+
+        // Peak Output - forward and reverse*(-1)
+        public final static double PeakOutput = 0.3;
+
+        public final static int Izone_0 = 500;
+        public final static double PeakOutput_0 = 1;
+
+        // Closed loop PID parameter values 
+        // Modified for Closed loop position control
+        public final static int PID_CLIMB = 0;
+
+        // Gains from 2021 - fast and powerfull
+        
+        /* 
+        // Aggressive settings
+        public final static double P_CLIMB = 1.5;
+        public final static double I_CLIMB = 0.0002;
+        public final static double D_CLIMB = 15;
+        */
+
+        public final static double P_CLIMB = 0.8;
+        public final static double I_CLIMB = 0.0002;
+        public final static double D_CLIMB = 0.8;
+        
+
+        // Gains from CTR example - slow and steady
+        /*
+        // Very weak settings
+        public final static double P_CLIMB = 0.15;
+        public final static double I_CLIMB = 0.0;
+        public final static double D_CLIMB = 1;
+        */
+        // TODO: adjust gains as needed.
+
+        public final static double F_CLIMB = 0; // set to zero for position closed loop
+        // Allowable error to exit movement methods
+        public static int climbDefaultAcceptableError = 1;
+        public static int climbAcceleration = 50;
+        public static int climbCruiseVelocity = 50;
+        public final static int climbSmoothing = 3;
 
         /**
         * Talon PID methods often demand slot ID's, so we need to do this :(

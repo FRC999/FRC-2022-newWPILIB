@@ -22,6 +22,7 @@ import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.ShooterArmPosition;
 import frc.robot.subsystems.CANdleSubsystem;
+import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IMUPassthroughSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
@@ -64,6 +65,8 @@ public class RobotContainer {
   public static final TEMPShooterTestSubsystem shooterTest = new TEMPShooterTestSubsystem();
   
   public static final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
+
+  public static final ClimberSubsystem climberSubsystem = new ClimberSubsystem();
 
   public static final TESTMotorSubsystem testMotorSubsystem = new TESTMotorSubsystem();
   
