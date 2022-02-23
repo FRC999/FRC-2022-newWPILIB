@@ -61,7 +61,7 @@ public class ColorSensorSubsystem extends SubsystemBase {
       colorMatcher.addColorMatch(kRedTarget);
       colorMatcher.addColorMatch(kYellowTarget);
     }
-    System.out.println("ColorSensorSubsystem is initialized");
+    System.out.println("ColorSensorSubsystem Initialization complete");
   }
 
   public String getSeenColor(Color color) {   // It will return most closely matched color as ENUM

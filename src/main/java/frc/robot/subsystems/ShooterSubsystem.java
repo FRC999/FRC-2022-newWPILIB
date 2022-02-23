@@ -60,6 +60,8 @@ public class ShooterSubsystem extends SubsystemBase {
       configureTiltMotorControllerForPosition();
     }
 
+    System.out.println("**** Shooter Initialization complete");
+
   }
 
   public void initializeWheelMotorControllers() {

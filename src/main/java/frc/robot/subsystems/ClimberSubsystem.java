@@ -34,9 +34,11 @@ public class ClimberSubsystem extends SubsystemBase {
 
       initializeClimberMotorControllers();
 
-      // Enable PID for the tilt motor
+      // Enable PID for the climber motors
       configureClimberMotorControllerForPosition();
     }
+
+    System.out.println("**** Climber Initialization complete");
   }
 
   public void initializeClimberMotorControllers() {
