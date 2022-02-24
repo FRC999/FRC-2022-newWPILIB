@@ -17,6 +17,9 @@ public class ClimberSubsystem extends SubsystemBase {
   private static final double CALIBRATEMOTORPOWER = 0.2;
   private static final double FULLFORWARDSPEED = 0.7;
   private static final double FULLREVERSESPEED = -0.7;
+  private static final int CLIMBEREXTENDED = 80000;
+  private static final int CLIMBERRETRACTED = 0;
+
 
     private WPI_TalonSRX[] climberMotorControllers;
 
@@ -36,7 +39,12 @@ public class ClimberSubsystem extends SubsystemBase {
 
       // Enable PID for the climber motors
       configureClimberMotorControllerForPosition();
+
+      // Zero climber encoders
+      zeroClimberMotorEncoders();
+    
     }
+
 
     System.out.println("**** Climber Initialization complete");
   }
@@ -113,6 +121,16 @@ public class ClimberSubsystem extends SubsystemBase {
     }
 
   } // End configureShooterMotorControllerForPosition
+
+  public void zeroClimberMotorEncoders() {
+    for (int i = 0; i<=1; i++) {
+      climberMotorControllers[i].setSelectedSensorPosition(0);
+    }
+  }
+
+  public void retractClimber() {
+    climberMotorControllers[1].set(CLIMBERRETRACTED);
+  }
 
   @Override
   public void periodic() {
