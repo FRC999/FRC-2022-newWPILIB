@@ -27,6 +27,8 @@ public class ShooterSubsystem extends SubsystemBase {
   private WPI_TalonSRX[] wheelMotorControllers;
   private static DoubleSolenoid shooterSolenoid;
 
+  private double shooterAnglePID; 
+  private double shooterSpeedPID; 
   /**
    * We suppose to zero encoder when we calibrate the shooter arm
    * But if something happens during calibration, we need to remember the ZERO (down) position of the tilt arm
@@ -213,8 +215,9 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   public void tiltShooterArm(double degrees) {
     tiltMotorController.set(ControlMode.Position, zeroTiltPosition - degreesToEncoderClicks(degrees));
-
-    System.out.println("**** ZT " + zeroTiltPosition + " T " + (zeroTiltPosition +0) + " E " + getTiltEncoder() + " NP " +  (zeroTiltPosition - degreesToEncoderClicks(degrees)));
+    
+    shooterAnglePID = degrees;
+    //System.out.println("**** ZT " + zeroTiltPosition + " T " + (zeroTiltPosition +0) + " E " + getTiltEncoder() + " NP " +  (zeroTiltPosition - degreesToEncoderClicks(degrees)));
     //tiltMotorController.set(ControlMode.Position,  zeroTiltPosition -540);
   }
 
@@ -277,6 +280,16 @@ public class ShooterSubsystem extends SubsystemBase {
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[0].set(power);
     wheelMotorControllers[1].set(power);
+
+    shooterSpeedPID = power; 
+  }
+
+  public double getShooterWheelPID() {
+    return shooterSpeedPID;
+  }
+
+  public double getShooterAnglePID() {
+    return shooterAnglePID;
   }
 
   public void startShooterWheelMotorReverse() {

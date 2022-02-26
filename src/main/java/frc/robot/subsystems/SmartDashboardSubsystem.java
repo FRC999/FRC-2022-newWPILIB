@@ -48,6 +48,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Tilt Angle", RobotContainer.shooterSubsystem.getTiltAngle() );
     SmartDashboard.putNumber("Shooter Power Adjustment", RobotContainer.shooterSubsystem.shooterWheelPowerAdjustment() );
     SmartDashboard.putNumber("Tilt ZT", RobotContainer.shooterSubsystem.getTiltZT() );
+    SmartDashboard.putNumber("Shooter Angle", RobotContainer.shooterSubsystem.getShooterAnglePID() );
+    SmartDashboard.putNumber("Shooter Power", RobotContainer.shooterSubsystem.getShooterWheelPID() );
   }
 
   public void updateTestMotorValues() {

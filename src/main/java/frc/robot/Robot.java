@@ -246,7 +246,7 @@ public class Robot extends TimedRobot {
         RobotProperties.isPotentiometer = false;
         RobotProperties.isColorSensor = false;
         RobotProperties.isCANdle = true;
-        RobotProperties.isTestMotor = true;
+        RobotProperties.isTestMotor = false;
 
         // Drivetrain settings
         DriveConstants.isInvertdGearBox = false;
