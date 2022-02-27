@@ -20,7 +20,7 @@ import frc.robot.RobotContainer;
 public class ShooterSubsystem extends SubsystemBase {
 
   private static final double CALIBRATEMOTORPOWER = 0.2;
-  private static final double FULLFORWARDSPEED = 0.7;
+  private static final double FULLFORWARDSPEED = 1.0;
   private static final double FULLREVERSESPEED = -0.7;
 
   public WPI_TalonSRX tiltMotorController;

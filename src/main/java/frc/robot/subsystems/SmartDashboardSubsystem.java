@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Constants;
+import frc.robot.DescriptiveMath;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.RobotProperties;
@@ -66,6 +67,12 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Z-Slider", RobotContainer.driveStick.getRawAxis(3));
   }
 
+  public void updateLimelightValues() {
+    SmartDashboard.putNumber("Limelight tlong", RobotContainer.networkTablesSubsystem.getDouble("limelight", "tlong", 0));
+    SmartDashboard.putNumber("Limelight thor", RobotContainer.networkTablesSubsystem.getDouble("limelight", "thor", 0));
+    // SmartDashboard.putNumber("Limelight mean", DescriptiveMath.trimmean(RobotContainer.targetingCamera.getSamples(), 10));
+  }
+
   public void updateColorSensorValues() {
     SmartDashboard.putNumber("Shooter Color Sensor Proximity", RobotContainer.colorSensorSubsystem.getObjectProximityShooter());
     SmartDashboard.putString("Shooter Color Detected", RobotContainer.colorSensorSubsystem.getSeenColorShooter());
@@ -122,6 +129,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     if (RobotProperties.driveInterface == DriveInterface.ONESTICK) {
       updateOUValues();
     }
+
+    updateLimelightValues();
 
   }
 

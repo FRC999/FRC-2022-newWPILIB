@@ -40,6 +40,7 @@ import frc.robot.subsystems.ColorSensorSubsystem;
  */
 import frc.robot.subsystems.TEMPShooterTestSubsystem;
 import frc.robot.subsystems.TESTMotorSubsystem;
+import frc.robot.subsystems.TargetingCamera;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -82,6 +83,8 @@ public class RobotContainer {
   public static final PowerDistributionPanelSubsystem pdpSubsystem = new PowerDistributionPanelSubsystem();
 
   public static NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
+
+  // public static TargetingCamera targetingCamera = new TargetingCamera();
 
   // Telemetry subsustems must be instantiated last. We report on the other
   // subsystems there
