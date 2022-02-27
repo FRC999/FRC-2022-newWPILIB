@@ -29,6 +29,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private double shooterAnglePID; 
   private double shooterSpeedPID; 
+
   /**
    * We suppose to zero encoder when we calibrate the shooter arm
    * But if something happens during calibration, we need to remember the ZERO (down) position of the tilt arm
@@ -36,8 +37,99 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private double zeroTiltPosition;
 
+  private final int MAXDISTANCE = 19;
+  private final int MINDISTANCE = 3;
+
+  /**
+   * Artillery firing table -
+   *  First dimension - distance-to target (ft)
+   *  Second dimension - 0 - high goal, 1 - low goal
+   *  Third dimension - 0 - angle, 1 - shooter power
+   * 
+   * Distance is measured from the outer edge of the upper ring to the edge of the back bumper 
+   */
+  private final double[][][] artilleryTable = {
+    {{}},  // 0 ft - skip
+    {{}},  // 1 ft - skip
+    {
+      {87.0, 0.547}, //2 ft high goal
+      {} //skip low goal
+    },
+    {
+      {84.0, 0.524}, //3 ft high goal
+      {} //skip low goal
+    },
+    {
+      {}, //skip high goal
+      {64.0, 0.285} //5 ft low goal
+    }, 
+    {
+      {68.0, 0.635}, //6 ft high goal
+      {47.0, 0.402} //6 ft low goal
+    },
+    {
+      {64.0, 0.602}, //7 ft high goal
+      {47.0, 0.449} //7 ft low goal
+    },
+    {
+      {65.0, 0.618}, //8 ft high goal
+      {43.0, 0.465} //8 ft low goal
+    },
+    {
+      {65.0, 0.653}, //9 ft high goal
+      {45.0, 0.5} //9 ft low goal
+    },
+    {
+      {64.0, 0.7}, //10 ft high goal
+      {42.0, 0.507} //10 ft low goal
+    },
+    {
+      {65.0, 0.708}, //11 ft high goal
+      {42.0, 0.507} //11 ft low goal
+    },
+    {
+      {62.0, 0.708}, //12 ft high goal
+      {45.0, 0.543} //12 ft low goal
+    },
+    {
+      {64.0, 0.759}, //13 ft high goal
+      {46.0, 0.547} //13 ft low goal
+    },
+    {
+      {61.0, 0.751}, //14 ft high goal
+      {44.0, 0.59} //14 ft low goal
+    },
+    {
+      {59.0, 0.787}, //15 ft high goal
+      {45.0, 0.61} //15 ft low goal
+    },
+    {
+      {}, //16 ft high goal
+      {} //16 ft low goal
+    },
+    {
+      {61.0, 0.889}, //17 ft high
+      {} //skip 17 ft low
+    },
+    {
+      {}, //18 ft high
+      {}
+    },
+    {
+      {61.0, 1.0}, //19 ft high goal
+      {} //skip
+    }
+  };
+
+  //array that keeps current shooter firing values, element 0 is angle, element 1 is power
+  private double [] shootingSolution = new double [2]; 
+  private int goalSelection = -1; //-1 = no goal selected, 0= high goal selected, 1= low goal selected
+  private int attemptedDistanceSelection = 3; //3-19
+
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
+
+
 
     if (Constants.RobotProperties.isShooter) {
       tiltMotorController = new WPI_TalonSRX(Constants.ShooterConstants.tiltMotorPortID);
@@ -308,6 +400,59 @@ public class ShooterSubsystem extends SubsystemBase {
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Coast);
     wheelMotorControllers[0].set(0);
     wheelMotorControllers[1].set(0);
+  }
+
+  /**
+   * 
+   * @param distance, goal - 0 high, 1 low
+   * @return -1 if there is no solution, 0 if solution is set
+   */
+  public int setFiringSolution(int distance, int goal) {
+    attemptedDistanceSelection= distance;
+    if (distance<0 || distance>=shootingSolution.length || goal<0 || goal>1){
+      goalSelection =-1;
+      return -1;
+    }
+    if (artilleryTable[distance][goal].length != 2){
+      goalSelection =-1;
+      return -1;
+    }
+    goalSelection= goal;
+    shootingSolution= artilleryTable[distance][goal];
+
+    return 0;
+  }
+
+  public int getGoalSelection (){
+    return goalSelection;
+  }
+
+  public double[] getShootingSolution(){
+    return shootingSolution;
+  }
+
+  public int getAttemptedDistanceSelection(){
+    return attemptedDistanceSelection;
+  }
+
+  public void nextShootingSolution(int goal){
+    int newDistance = getAttemptedDistanceSelection() +1;
+    if (newDistance>MAXDISTANCE){
+      setFiringSolution(MINDISTANCE, goal);
+    }
+    else{ 
+      setFiringSolution(newDistance, goal);
+    }
+  }
+
+  public void previousShootingSolution(int goal){
+    int newDistance = getAttemptedDistanceSelection() +1;
+    if (newDistance<MINDISTANCE){
+      setFiringSolution(MAXDISTANCE, goal);
+    }
+    else{ 
+      setFiringSolution(newDistance, goal);
+    }
   }
 
   @Override

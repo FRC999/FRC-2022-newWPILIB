@@ -255,6 +255,35 @@ public class RobotContainer {
           .whenPressed(new  InstantCommand(shooterSubsystem::calibrateBackSlow,shooterSubsystem))
           .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
 
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterLowerGoalNext)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
+
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterLowerGoalPrevious)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.previousShootingSolution(1)));
+
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterHighGoalNext)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(0)));
+
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterHighGoalPrevious)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.previousShootingSolution(0)));
+
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterTiltFiringSolution)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.tiltShooterArm( (shooterSubsystem.getShootingSolution())[0])) );
+        
+        JoystickButton shooterExecuteFiringSolution = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterExecuteFiringSolution) ;
+
+        shooterExecuteFiringSolution
+          .whenActive(  
+              new WaitCommand(1)  // Wait 1 second
+                            .andThen(new InstantCommand(shooterSubsystem::extendPlunger))  // push plunger; no subsystem requirement, so not to stop motors
+                            .andThen(new WaitCommand(1))  // Wait 1 second)
+               .andThen(new InstantCommand(shooterSubsystem::retractPlunger))  // retract plunger
+               .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor))  // stop shooter motor
+            .deadlineWith (
+              new InstantCommand(() -> shooterSubsystem.startShooterWheelMotor( (shooterSubsystem.getShootingSolution())[1])) // Spin the wheels, continue until the end of the sequence
+              ) // end deadlinewith
+          ); // end whenactive
+         
         /**
          * Shooter Semi-auto sequence
          * 
