@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -14,7 +15,7 @@ import frc.robot.Constants;
 
 public class ClimberSubsystem extends SubsystemBase {
 
-  private static final double CALIBRATEMOTORPOWER = 0.2;
+  private static final double CALIBRATEMOTORPOWER = 0.25;
   private static final double FULLFORWARDSPEED = 0.7;
   private static final double FULLREVERSESPEED = -0.7;
   private static final int CLIMBEREXTENDED = 80000;
@@ -31,8 +32,8 @@ public class ClimberSubsystem extends SubsystemBase {
       // panMotorController.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition);
 
       climberMotorControllers = new WPI_TalonSRX[] {
-        new WPI_TalonSRX(Constants.ShooterConstants.shooterWheelMotorPortIDs[0]),
-        new WPI_TalonSRX(Constants.ShooterConstants.shooterWheelMotorPortIDs[1]) 
+        new WPI_TalonSRX(Constants.ClimberConstants.climberMotorPortIDs[0]),
+        new WPI_TalonSRX(Constants.ClimberConstants.climberMotorPortIDs[1]) 
       };
 
       initializeClimberMotorControllers();
@@ -56,7 +57,7 @@ public class ClimberSubsystem extends SubsystemBase {
     climberMotorControllers[0].setInverted(InvertType.InvertMotorOutput); // TODO: Check that the master motor is not inverted
 
     climberMotorControllers[1].follow(climberMotorControllers[0]);
-    climberMotorControllers[1].setInverted(InvertType.OpposeMaster);  // TODO: check inversion on the follower
+    climberMotorControllers[1].setInverted(InvertType.FollowMaster);  // TODO: check inversion on the follower
 
     climberMotorControllers[0].set(ControlMode.PercentOutput, 0);
   }
@@ -130,6 +131,35 @@ public class ClimberSubsystem extends SubsystemBase {
 
   public void retractClimber() {
     climberMotorControllers[1].set(CLIMBERRETRACTED);
+  }
+
+  public void calibrateForwardSlow() {
+
+    // System.out.println("*** C F");
+    climberMotorControllers[0].setNeutralMode(NeutralMode.Brake);
+    climberMotorControllers[0].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
+    climberMotorControllers[1].setNeutralMode(NeutralMode.Brake);
+    climberMotorControllers[1].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
+
+  }
+
+  public void calibrateBackSlow() {
+    // System.out.println("*** C B");
+    climberMotorControllers[0].setNeutralMode(NeutralMode.Brake);
+    climberMotorControllers[0].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
+    climberMotorControllers[1].setNeutralMode(NeutralMode.Brake);
+    climberMotorControllers[1].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
+
+  }
+
+  public void climberMotorOff() {
+    // System.out.println("*** T OFF");
+    // leave the tilt motor in break mode so it will not just drop down
+    climberMotorControllers[0].setNeutralMode(NeutralMode.Brake);
+     // leave the tilt motor in break mode so it will not just drop down
+     climberMotorControllers[1].setNeutralMode(NeutralMode.Brake);
+    climberMotorControllers[0].set(0);
+    climberMotorControllers[1].set(0);
   }
 
   @Override

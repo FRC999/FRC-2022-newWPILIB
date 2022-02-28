@@ -193,6 +193,8 @@ public final class Constants {
         public static final int ShooterLowerGoalPrevious = 4;
         public static final int ShooterTiltFiringSolution = 7;
         public static final int ShooterExecuteFiringSolution = 8;
+        public static final int ClimberLeftCalibrate = 1;
+        public static final int ClimberRightCalibrate = 2;
             
     }
     public static final class PigeonIMU {
@@ -325,9 +327,9 @@ public final class Constants {
          */
 
         // Sensor phase - to ensure that sensor is positive when the output is positive
-        public final static boolean[] SensorPhase =  {false,true};
+        public final static boolean[] SensorPhase =  {false,false};
         // Invert shooter motor
-        public final static boolean[] MotorInvert =  {true,false};  
+        public final static boolean[] MotorInvert =  {true,true};  
 
         // Peak Output - forward and reverse*(-1)
         public final static double PeakOutput = 0.3;
