@@ -28,7 +28,11 @@ public class ShooterSubsystem extends SubsystemBase {
   private static DoubleSolenoid shooterSolenoid;
 
   private double shooterAnglePID; 
-  private double shooterSpeedPID; 
+  private double shooterSpeedPID;
+  
+  private final double LIMELIGHTANGLE = 45;
+  private final double LIMELIGHTHEIGHT = 85;
+  private final double UPPERHUBHEIGHT = 264;
 
   /**
    * We suppose to zero encoder when we calibrate the shooter arm
@@ -453,6 +457,11 @@ public class ShooterSubsystem extends SubsystemBase {
     else{ 
       setFiringSolution(newDistance, goal);
     }
+  }
+
+  public double getTargetDistance(){
+    return Math.round((UPPERHUBHEIGHT-LIMELIGHTHEIGHT) /
+      Math.tan(Math.toRadians(LIMELIGHTANGLE+RobotContainer.networkTablesSubsystem.getDouble("limelight", "ty", 0)))/30.48);
   }
 
   @Override

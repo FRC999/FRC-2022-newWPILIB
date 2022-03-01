@@ -71,9 +71,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   }
 
   public void updateLimelightValues() {
-    SmartDashboard.putNumber("Limelight tlong", RobotContainer.networkTablesSubsystem.getDouble("limelight", "tlong", 0));
+    SmartDashboard.putNumber("Limelight ty", RobotContainer.networkTablesSubsystem.getDouble("limelight", "ty", 0));
     SmartDashboard.putNumber("Limelight thor", RobotContainer.networkTablesSubsystem.getDouble("limelight", "thor", 0));
     // SmartDashboard.putNumber("Limelight mean", DescriptiveMath.trimmean(RobotContainer.targetingCamera.getSamples(), 10));
+    SmartDashboard.putNumber("Limelight distance", RobotContainer.shooterSubsystem.getTargetDistance());
   }
 
   public void updateColorSensorValues() {
