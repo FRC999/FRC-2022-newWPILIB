@@ -460,8 +460,13 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public double getTargetDistance(){
-    return Math.round((UPPERHUBHEIGHT-LIMELIGHTHEIGHT) /
-      Math.tan(Math.toRadians(LIMELIGHTANGLE+RobotContainer.networkTablesSubsystem.getDouble("limelight", "ty", 0)))/30.48);
+    return Math.round( (UPPERHUBHEIGHT-LIMELIGHTHEIGHT) /
+              Math.tan(
+                Math.toRadians(
+                  LIMELIGHTANGLE+RobotContainer.networkTablesSubsystem.getDouble("limelight", "ty", 0)
+                )
+              )
+            /30.48);
   }
 
   @Override
