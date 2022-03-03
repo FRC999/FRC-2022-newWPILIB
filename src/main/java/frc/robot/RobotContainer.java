@@ -186,6 +186,11 @@ public class RobotContainer {
         break;
 
       case DEMOBOARD:
+
+        new JoystickButton(driveStick, 7) // testing trajectory binding
+          .whenPressed(new AutonomousTrajectoryRioCommand("10ftForward.wpilib"))
+          .whenReleased(new InstantCommand(driveSubsystem::driveTrainBrakeMode)
+          .andThen(new InstantCommand(() -> driveSubsystem.manualDrive(0, 0))));
         
         //new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterSubsystem::calibrateForwardSlow, shooterSubsystem));
         //new JoystickButton(driveStick, 9).whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
