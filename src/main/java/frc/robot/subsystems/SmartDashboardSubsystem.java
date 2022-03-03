@@ -12,6 +12,14 @@ import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.RobotProperties;
 public class SmartDashboardSubsystem extends SubsystemBase {
+
+  /**
+   * The following two items are used to reduce frequency of telemetry generation
+   * We will update some telemetry once per MAXCOUNT loops.
+   */
+  private final int MAXCOUNT=10;
+  private int counter=0;
+
   /** Creates a new SmartDashboardSubsystem. */
   public SmartDashboardSubsystem() {
 
@@ -122,12 +130,12 @@ public class SmartDashboardSubsystem extends SubsystemBase {
       updatePotentiometerValues();
     }
 
-    if (Constants.RobotProperties.isColorSensor) {
+    if (Constants.RobotProperties.isColorSensor && (counter%MAXCOUNT==0)) {
       updateColorSensorValues();
       // TODO: decide on the Dashboard telemetry for the color sensors
     }
 
-    if (Constants.RobotProperties.isCANdle) {
+    if (Constants.RobotProperties.isCANdle && (counter%MAXCOUNT==0)) {
       // ballColorChange();
       // TODO: program CANdle telemetry for the ball color change
     }
@@ -147,13 +155,15 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   }
 
-
-
-
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     updateAllDisplays();
+
+    // Telemetry counter
+    counter++;
+    if (counter>=MAXCOUNT){
+      counter=0;
+    }
   }
 }
