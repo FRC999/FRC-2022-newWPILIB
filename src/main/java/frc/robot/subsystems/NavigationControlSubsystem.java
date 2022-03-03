@@ -39,8 +39,8 @@ public class NavigationControlSubsystem extends SubsystemBase {
   private DifferentialDriveKinematics kinematics;
   private static DifferentialDriveOdometry odometry;
 
-  //private RamseteController ramseteController = new RamseteController();
-  public RamseteController ramseteController = new RamseteController();
+  private RamseteController ramseteController = new RamseteController();
+  //public RamseteController ramseteController = new RamseteController();
 
   private SimpleMotorFeedforward feedforward;
 
