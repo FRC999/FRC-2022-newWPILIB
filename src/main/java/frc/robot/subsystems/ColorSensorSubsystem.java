@@ -42,11 +42,13 @@ public class ColorSensorSubsystem extends SubsystemBase {
   public ColorSensorSubsystem() {
     if (RobotProperties.isColorSensor) {
 
-      // Instantiate and configure hopper color sensor
-      hopperColorSensor = new ColorSensorV3(hopperI2CPort);
-      if (! hopperColorSensor.isConnected()) {  // cannot determine the presence of the sensor
-        // We need color/proximity sensor for the right shooter sequence, so just print a message for now
-        System.out.println("*** === ERROR: hopper color sensor is not detected");
+      if (RobotProperties.isHopperSensor) { // do not instantiate hopperColorSensor unless the flag is set to true
+        // Instantiate and configure hopper color sensor
+        hopperColorSensor = new ColorSensorV3(hopperI2CPort);
+        if (! hopperColorSensor.isConnected()) {  // cannot determine the presence of the sensor
+          // We need color/proximity sensor for the right shooter sequence, so just print a message for now
+          System.out.println("*** === ERROR: hopper color sensor is not detected");
+        }
       }
 
       // Instantiate and configure shooter color sensor

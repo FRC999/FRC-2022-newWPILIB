@@ -83,10 +83,12 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putBoolean("Shooter Red Ball Detected", RobotContainer.colorSensorSubsystem.isBallRedShooter());
     SmartDashboard.putBoolean("Shooter Blue Ball Detected", RobotContainer.colorSensorSubsystem.isBallBlueShooter());
 
-    SmartDashboard.putNumber("Hopper Color Sensor Proximity", RobotContainer.colorSensorSubsystem.getObjectProximityHopper());
-    SmartDashboard.putString("Hopper Color Detected", RobotContainer.colorSensorSubsystem.getSeenColorHopper());
-    SmartDashboard.putBoolean("Hopper Red Ball Detected", RobotContainer.colorSensorSubsystem.isBallRedHopper());
-    SmartDashboard.putBoolean("Hopper Blue Ball Detected", RobotContainer.colorSensorSubsystem.isBallBlueHopper());
+    if (RobotProperties.isHopperSensor) {
+      SmartDashboard.putNumber("Hopper Color Sensor Proximity", RobotContainer.colorSensorSubsystem.getObjectProximityHopper());
+      SmartDashboard.putString("Hopper Color Detected", RobotContainer.colorSensorSubsystem.getSeenColorHopper());
+      SmartDashboard.putBoolean("Hopper Red Ball Detected", RobotContainer.colorSensorSubsystem.isBallRedHopper());
+      SmartDashboard.putBoolean("Hopper Blue Ball Detected", RobotContainer.colorSensorSubsystem.isBallBlueHopper());
+    }
   }
 
   public void ballColorChange(){

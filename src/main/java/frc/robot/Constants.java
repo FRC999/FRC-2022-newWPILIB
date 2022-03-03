@@ -56,6 +56,7 @@ public final class Constants {
         public static boolean isCANdle;
         public static boolean isIntake;
         public static boolean isTestMotor;
+        public static boolean isHopperSensor; // disable hopper color sensor as suspect in RIO lockups
 
     }
 
