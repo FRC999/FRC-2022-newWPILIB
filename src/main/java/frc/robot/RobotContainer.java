@@ -116,8 +116,6 @@ public class RobotContainer {
     //imuSubsystem = new IMUPassthroughSubsystem();
     //pneumaticsSubsystem = new PneumaticsSubsystem();
 
-    configureButtonBindings();
-
     // Set Driver telemetry
     shuffleboardSubsystem.setDriveSubsystemTelemetry(driveSubsystem);
 
@@ -136,6 +134,8 @@ public class RobotContainer {
     if (Constants.RobotProperties.isIMU) {
       navigationControlSubsystem = new NavigationControlSubsystem(driveSubsystem, imuSubsystem);
     }
+
+    configureButtonBindings();
 
   }
 
