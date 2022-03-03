@@ -18,8 +18,12 @@ public class AutonomousTrajectoryRioCommand extends RamseteCommand {
     super(trajectory, () -> {
       return RobotContainer.navigationControlSubsystem.getPosition();
     }, // Lambda supplies pose for robot
-        RobotContainer.navigationControlSubsystem.getRamseteController(), // Grab kinematics controller from Robot.java
+
+        // RobotContainer.navigationControlSubsystem.getRamseteController(), // Grab kinematics controller from Robot.java
+        RobotContainer.navigationControlSubsystem.ramseteController,
+
         RobotContainer.navigationControlSubsystem.getFeedforward(),
+        
         RobotContainer.navigationControlSubsystem.getKinematics(), () -> {
           return RobotContainer.navigationControlSubsystem.getWheelSpeeds();
         }, RobotContainer.navigationControlSubsystem.getLeftPidController(),

@@ -38,7 +38,9 @@ public class NavigationControlSubsystem extends SubsystemBase {
   private IMUPassthroughSubsystem imu;
   private DifferentialDriveKinematics kinematics;
   private static DifferentialDriveOdometry odometry;
-  private RamseteController ramseteController = new RamseteController();
+
+  //private RamseteController ramseteController = new RamseteController();
+  public RamseteController ramseteController = new RamseteController();
 
   private SimpleMotorFeedforward feedforward;
 
@@ -175,7 +177,7 @@ public class NavigationControlSubsystem extends SubsystemBase {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryName, ex.getStackTrace());
       System.out.println(trajectoryPath);
     }
-    System.out.println("Read Trajectory " + trajectory);
+    //System.out.println("Read Trajectory " + trajectory);
     return trajectory;
   }
 
