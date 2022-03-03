@@ -179,6 +179,9 @@ public class NavigationControlSubsystem extends SubsystemBase {
   }
 
   public RamseteController getRamseteController() {
+
+    System.out.println("RC " + ramseteController);
+
     return ramseteController;
   }
 
