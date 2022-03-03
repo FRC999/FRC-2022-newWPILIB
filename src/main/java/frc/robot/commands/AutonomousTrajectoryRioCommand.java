@@ -35,6 +35,7 @@ public class AutonomousTrajectoryRioCommand extends RamseteCommand {
         }, RobotContainer.navigationControlSubsystem, RobotContainer.driveSubsystem // Set requirements
     );
     this.trajectory = trajectory;
+    addRequirements(RobotContainer.driveSubsystem);
   }
 
   public AutonomousTrajectoryRioCommand(String alpha) {
@@ -61,6 +62,7 @@ public class AutonomousTrajectoryRioCommand extends RamseteCommand {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    System.out.println("*** Trajectory ended. Interrupted: " + interrupted);
   }
 
   // Returns true when the command should end.
