@@ -16,6 +16,7 @@ import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.commands.AutonomousPlaceholderCommand;
+import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
@@ -172,12 +173,15 @@ public class RobotContainer {
 
     switch (RobotProperties.robotModel) {
       case FRANKENBOT:
+        new JoystickButton(driveStick, 7)
+          .whenPressed(new AutonomousTrajectoryRioCommand("10ftForward.wpilib"))
+          .whenReleased(new InstantCommand(driveSubsystem::driveTrainBrakeMode)
+          .andThen(new InstantCommand(() -> driveSubsystem.manualDrive(0, 0))));
+        // new JoystickButton(driveStick, 11).whenPressed(new FrankenbotExtendSolenoid());
+        // new JoystickButton(driveStick, 12).whenPressed(new FrankenbotRetractSolenoid());
 
-        new JoystickButton(driveStick, 11).whenPressed(new FrankenbotExtendSolenoid());
-        new JoystickButton(driveStick, 12).whenPressed(new FrankenbotRetractSolenoid());
-
-        new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(shooterTest::motorOn, shooterTest));
-        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterTest::motorOff, shooterTest));
+        // new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(shooterTest::motorOn, shooterTest));
+        // new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterTest::motorOff, shooterTest));
 
         break;
 

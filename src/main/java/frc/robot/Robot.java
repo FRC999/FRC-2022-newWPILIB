@@ -213,8 +213,8 @@ public class Robot extends TimedRobot {
         RobotProperties.isIMU = true;
         RobotProperties.isNaVX = true;
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
-        RobotProperties.isPneumatics = true;
-        RobotProperties.isTEMPShooterTest = true;
+        RobotProperties.isPneumatics = false;
+        RobotProperties.isTEMPShooterTest = false;
 
         // Drivetrain settings
         DriveConstants.isInvertdGearBox = false;
