@@ -14,7 +14,7 @@ public class AutonomousTrajectoryRioCommand extends RamseteCommand {
 
   Trajectory trajectory;
 
-  AutonomousTrajectoryRioCommand(Trajectory trajectory) {
+  public AutonomousTrajectoryRioCommand(Trajectory trajectory) {
     super(trajectory, () -> {
       return RobotContainer.navigationControlSubsystem.getPosition();
     }, // Lambda supplies pose for robot
@@ -34,7 +34,7 @@ public class AutonomousTrajectoryRioCommand extends RamseteCommand {
   }
 
   public AutonomousTrajectoryRioCommand(String alpha) {
-    this(NavigationControlSubsystem.getTrajectory(alpha));
+        this(NavigationControlSubsystem.getTrajectory(alpha));
     System.out.println("initalized trajectory command: " + alpha);
   }
 

@@ -175,6 +175,7 @@ public class NavigationControlSubsystem extends SubsystemBase {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryName, ex.getStackTrace());
       System.out.println(trajectoryPath);
     }
+    System.out.println("Read Trajectory " + trajectory);
     return trajectory;
   }
 
