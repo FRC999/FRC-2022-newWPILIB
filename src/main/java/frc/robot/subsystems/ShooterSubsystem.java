@@ -412,7 +412,7 @@ public class ShooterSubsystem extends SubsystemBase {
    * @param distance, goal - 0 high, 1 low
    * @return false if there is no solution, true if solution is set
    */
-  public boolean setFiringSolution(int distance, int goal) {
+  public boolean setShootingSolution(int distance, int goal) {
     attemptedDistanceSelection= distance;
     shootingSolutionSet = false;
     if (distance<0 || distance>=shootingSolution.length || goal<0 || goal>1){
@@ -443,6 +443,14 @@ public class ShooterSubsystem extends SubsystemBase {
     return shootingSolution;
   }
 
+  public double getShootingSolutionAngle() {
+    return shootingSolution[0];
+  }
+
+  public double getShootingSolutionPower() {
+    return shootingSolution[1];
+  }
+
   public int getAttemptedDistanceSelection(){
     return attemptedDistanceSelection;
   }
@@ -450,20 +458,20 @@ public class ShooterSubsystem extends SubsystemBase {
   public void nextShootingSolution(int goal){
     int newDistance = getAttemptedDistanceSelection() +1;
     if (newDistance>MAXDISTANCE){
-      setFiringSolution(MINDISTANCE, goal);
+      setShootingSolution(MINDISTANCE, goal);
     }
     else{ 
-      setFiringSolution(newDistance, goal);
+      setShootingSolution(newDistance, goal);
     }
   }
 
   public void previousShootingSolution(int goal){
     int newDistance = getAttemptedDistanceSelection() +1;
     if (newDistance<MINDISTANCE){
-      setFiringSolution(MAXDISTANCE, goal);
+      setShootingSolution(MAXDISTANCE, goal);
     }
     else{ 
-      setFiringSolution(newDistance, goal);
+      setShootingSolution(newDistance, goal);
     }
   }
 

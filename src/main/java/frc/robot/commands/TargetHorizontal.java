@@ -7,7 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
-public class TargetingHorizontal extends CommandBase {
+public class TargetHorizontal extends CommandBase {
 
   private final double Kp = -0.1;
   private final double min_command = 0.05;
@@ -20,7 +20,7 @@ public class TargetingHorizontal extends CommandBase {
   
 
   /** Creates a new TargetingHorizontal. */
-  public TargetingHorizontal() {
+  public TargetHorizontal() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.shooterSubsystem);
     addRequirements(RobotContainer.driveSubsystem);
