@@ -126,7 +126,8 @@ public class ShooterSubsystem extends SubsystemBase {
   };
 
   //array that keeps current shooter firing values, element 0 is angle, element 1 is power
-  private double [] shootingSolution = new double [2]; 
+  private double [] shootingSolution = new double [2];
+  private boolean shootingSolutionSet = false;  // used to determine whether Shooting Solution was set successfully
   private int goalSelection = -1; //-1 = no goal selected, 0= high goal selected, 1= low goal selected
   private int attemptedDistanceSelection = 3; //3-19
 
@@ -409,22 +410,29 @@ public class ShooterSubsystem extends SubsystemBase {
   /**
    * 
    * @param distance, goal - 0 high, 1 low
-   * @return -1 if there is no solution, 0 if solution is set
+   * @return false if there is no solution, true if solution is set
    */
-  public int setFiringSolution(int distance, int goal) {
+  public boolean setFiringSolution(int distance, int goal) {
     attemptedDistanceSelection= distance;
+    shootingSolutionSet = false;
     if (distance<0 || distance>=shootingSolution.length || goal<0 || goal>1){
       goalSelection =-1;
-      return -1;
+      return false;
     }
     if (artilleryTable[distance][goal].length != 2){
       goalSelection =-1;
-      return -1;
+      return false;
     }
     goalSelection= goal;
     shootingSolution= artilleryTable[distance][goal];
 
-    return 0;
+    shootingSolutionSet = true;
+
+    return true;
+  }
+
+  public boolean getShootingSolutionSet () {
+    return shootingSolutionSet;
   }
 
   public int getGoalSelection (){
