@@ -194,8 +194,8 @@ public final class Constants {
         public static final int ShooterLowerGoalPrevious = 4;
         public static final int ShooterTiltFiringSolution = 7;
         public static final int ShooterExecuteFiringSolution = 8;
-        public static final int ClimberLeftCalibrate = 1;
-        public static final int ClimberRightCalibrate = 2;
+        public static final int ClimberDown = 1;
+        public static final int ClimberUp = 2;
             
     }
     public static final class PigeonIMU {

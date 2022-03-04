@@ -229,11 +229,11 @@ public class RobotContainer {
 
         // Climber Calibration
           // Shooter arm slowly forward
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberLeftCalibrate)
+        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberDown)
           .whenPressed(new  InstantCommand(climberSubsystem::calibrateForwardSlow,climberSubsystem))
           .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
         // Shooter arm slowly back
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberRightCalibrate)
+        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberUp)
           .whenPressed(new  InstantCommand(climberSubsystem::calibrateBackSlow,climberSubsystem))
           .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
 
