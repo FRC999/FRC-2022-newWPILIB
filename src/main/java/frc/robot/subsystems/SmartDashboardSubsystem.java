@@ -79,9 +79,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   }
 
   public void updateLimelightValues() {
-    SmartDashboard.putNumber("Limelight ty", RobotContainer.networkTablesSubsystem.getDouble("limelight", "ty", 0));
-    SmartDashboard.putNumber("Limelight thor", RobotContainer.networkTablesSubsystem.getDouble("limelight", "thor", 0));
+    SmartDashboard.putNumber("Limelight ty", RobotContainer.shooterSubsystem.getTargetVerticalOffset());
+    SmartDashboard.putNumber("Limelight tx", RobotContainer.shooterSubsystem.getTargetHorizontalOffset());
     // SmartDashboard.putNumber("Limelight mean", DescriptiveMath.trimmean(RobotContainer.targetingCamera.getSamples(), 10));
+    SmartDashboard.putBoolean("Limelight target detected", RobotContainer.shooterSubsystem.targetDetected());
     SmartDashboard.putNumber("Limelight distance", RobotContainer.shooterSubsystem.getTargetDistance());
   }
 

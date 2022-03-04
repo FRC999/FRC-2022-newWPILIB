@@ -463,10 +463,22 @@ public class ShooterSubsystem extends SubsystemBase {
     return Math.round( (UPPERHUBHEIGHT-LIMELIGHTHEIGHT) /
               Math.tan(
                 Math.toRadians(
-                  LIMELIGHTANGLE+RobotContainer.networkTablesSubsystem.getDouble("limelight", "ty", 0)
+                  LIMELIGHTANGLE + getTargetVerticalOffset()
                 )
               )
             /30.48);
+  }
+
+  // Methods that get Limelight information used in targeting
+
+  public double getTargetVerticalOffset() { // -24.85 to 24.85 degrees
+    return RobotContainer.networkTablesSubsystem.getDouble("limelight", "ty", 0);
+  }
+  public double getTargetHorizontalOffset() { // -29.8 to 29.8 degrees
+    return RobotContainer.networkTablesSubsystem.getDouble("limelight", "tx", 0);
+  }
+  public boolean targetDetected() {
+    return (RobotContainer.networkTablesSubsystem.getDouble("limelight", "tv", 0) == 1)?true:false;
   }
 
   @Override
