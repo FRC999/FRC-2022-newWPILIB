@@ -207,11 +207,15 @@ public class RobotContainer {
         //new JoystickButton(driveStick, 7).whenPressed(new TESTShooterArmPosition());
         //new JoystickButton(driveStick, 8).whenPressed(new TESTCalibrateShooterArmWithLimitSwitch());
 
-        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(testMotorSubsystem::motorForwardSlow, testMotorSubsystem));
-        new JoystickButton(driveStick, 9).whenReleased(new InstantCommand(testMotorSubsystem::motorOff, testMotorSubsystem));
+        //new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(testMotorSubsystem::motorForwardSlow, testMotorSubsystem));
+        //new JoystickButton(driveStick, 9).whenReleased(new InstantCommand(testMotorSubsystem::motorOff, testMotorSubsystem));
 
-        new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(testMotorSubsystem::motorReverseSlow, testMotorSubsystem));
-        new JoystickButton(driveStick, 10).whenReleased(new InstantCommand(testMotorSubsystem::motorOff, testMotorSubsystem));
+        //new JoystickButton(driveStick, 10).whenPressed(new InstantCommand(testMotorSubsystem::motorReverseSlow, testMotorSubsystem));
+        //new JoystickButton(driveStick, 10).whenReleased(new InstantCommand(testMotorSubsystem::motorOff, testMotorSubsystem));
+
+        // Switch to next shooting goal
+        new JoystickButton(bbl, Constants.OIC2022TEST.ShooterLowerGoalNext)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
 
         break;
               
@@ -283,6 +287,7 @@ public class RobotContainer {
           .whenPressed(new  InstantCommand(shooterSubsystem::calibrateBackSlow,shooterSubsystem))
           .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
 
+        // Switch to next shooting goal
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterLowerGoalNext)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
 
