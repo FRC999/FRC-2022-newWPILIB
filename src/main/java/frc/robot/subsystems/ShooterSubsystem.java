@@ -423,6 +423,9 @@ public class ShooterSubsystem extends SubsystemBase {
       return false;
     }
     if (artilleryTable[distance][goal].length != 2){
+
+      System.out.println ("L "+ artilleryTable[distance][goal].length);
+
       goalSelection =-1;
       return false;
     }
