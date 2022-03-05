@@ -99,6 +99,8 @@ public class RobotContainer {
   public static Joystick driveStick;
   public static Joystick turnStick;
   public static XboxController xboxController;
+  public static Joystick bbl; // button box left side
+  public static Joystick bbr; // button box right side
 
   // = new Joystick(OIConstants.driverControllerPort);
 
@@ -151,6 +153,11 @@ public class RobotContainer {
         break;
       case ONESTICK: // add 1 stick
         driveStick = new Joystick(OIConstants.driverControllerPort);
+        break;
+      case ONENEWBB: // 1 stick + button box
+        driveStick = new Joystick(OIConstants.driverControllerPort);
+        bbl =  new Joystick(OIConstants.bbLeftPort);
+        bbr =  new Joystick(OIConstants.bbRightPort);
         break;
       case XBOXANDSTICK: // 1 stick and XBOX controller are created
         driveStick = new Joystick(OIConstants.driverControllerPort);
@@ -245,11 +252,12 @@ public class RobotContainer {
           ;
           //.whenReleased(new CalibrateShooterArmWithLimitSwitch());  // TODO: keep the shooter arm UP not down
 
-        // Shooter wheels test
+        // Shooter wheels test - shoot ball
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterWheelButton)
           .whenPressed(new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem))
           .whenReleased(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem));
 
+        // Shooter wheels test - ball intake
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterWheelReverseButton)
           .whenPressed(new InstantCommand(shooterSubsystem::startShooterWheelMotorReverse,shooterSubsystem))
           .whenReleased(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem));
@@ -289,9 +297,18 @@ public class RobotContainer {
 
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterTiltFiringSolution)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.tiltShooterArm( (shooterSubsystem.getShootingSolution())[0])) );
+
+        JoystickButton ballIntoShooterButton = new JoystickButton(driveStick, Constants.OIC2022TEST.BallIntoShooterButton) ;
+        ballIntoShooterButton
+          .whileHeld(   // Rotate intake and shooter wheels to get the ball IN
+            new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem)
+            .alongWith(new InstantCommand(shooterSubsystem::startShooterWheelMotorReverse,shooterSubsystem)) )
+          .whenReleased( // Stop intake and shooter wheel
+            new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem)
+            .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem)) 
+          );
         
         JoystickButton shooterExecuteFiringSolution = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterExecuteFiringSolution) ;
-
         shooterExecuteFiringSolution
           .whenActive(  
               new WaitCommand(1)  // Wait 1 second

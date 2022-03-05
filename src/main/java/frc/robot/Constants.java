@@ -27,7 +27,7 @@ public final class Constants {
     }
 
     public static enum DriveInterface {
-        ONESTICK, SPLITSTICK, XBOX, XBOXANDSTICK
+        ONESTICK, SPLITSTICK, XBOX, XBOXANDSTICK, ONENEWBB
     }
 
     public static final class RobotProperties { // configure the type of robot here, such as presence/absence of a
@@ -164,6 +164,8 @@ public final class Constants {
         public static final int driverControllerPort = 0;
         public static final int turnControllerPort = 2;
         public static final int xboxControllerPort = 1;
+        public static final int bbLeftPort = 3;
+        public static final int bbRightPort = 5;
     }
 
     // Button assignment for the 2022 competition robot
@@ -182,6 +184,7 @@ public final class Constants {
         public static final int ShooterWheelReverseButton = 9;
         public static final int ShooterPlungerButton = 12;
         public static final int ShooterArmCalibrateButton = 5;
+        public static final int BallIntoShooterButton = 1;
 
         // turnstick
         public static final int ShooterSemiAutoSequence = 9;
