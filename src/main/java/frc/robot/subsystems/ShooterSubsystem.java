@@ -413,7 +413,10 @@ public class ShooterSubsystem extends SubsystemBase {
    * @return false if there is no solution, true if solution is set
    */
   public boolean setShootingSolution(int distance, int goal) {
-    attemptedDistanceSelection= distance;
+
+    System.out.println("Attempted preset " + distance + " " + goal);
+
+    attemptedDistanceSelection = distance;
     shootingSolutionSet = false;
     if (distance<0 || distance>=shootingSolution.length || goal<0 || goal>1){
       goalSelection =-1;
@@ -427,6 +430,8 @@ public class ShooterSubsystem extends SubsystemBase {
     shootingSolution= artilleryTable[distance][goal];
 
     shootingSolutionSet = true;
+
+    System.out.println("Preset successful");
 
     return true;
   }
