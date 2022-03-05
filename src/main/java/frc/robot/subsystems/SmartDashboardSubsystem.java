@@ -57,6 +57,9 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Tilt Angle", RobotContainer.shooterSubsystem.getTiltAngle() );
     SmartDashboard.putNumber("Shooter Power Adjustment", RobotContainer.shooterSubsystem.shooterWheelPowerAdjustment() );
     SmartDashboard.putNumber("Tilt ZT", RobotContainer.shooterSubsystem.getTiltZT() );
+  }
+
+  public void updateShooterSolutionValues() {
     SmartDashboard.putNumber("Shooter Angle", RobotContainer.shooterSubsystem.getShooterAnglePID() );
     SmartDashboard.putNumber("Shooter Power", RobotContainer.shooterSubsystem.getShooterWheelPID() );
     SmartDashboard.putNumber("Shooter Goal", RobotContainer.shooterSubsystem.getGoalSelection());
@@ -122,6 +125,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     if (Constants.RobotProperties.isShooter) {
        updateShooterValues();
     }
+
+    updateShooterSolutionValues();
 
     if (Constants.RobotProperties.isTestMotor) {
       updateTestMotorValues();
