@@ -288,19 +288,19 @@ public class RobotContainer {
           .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
 
         // Switch to next shooting goal
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterLowerGoalNext)
+        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterLowerGoalNext)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
 
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterLowerGoalPrevious)
+        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterLowerGoalPrevious)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.previousShootingSolution(1)));
 
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterHighGoalNext)
+        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterHighGoalNext)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(0)));
 
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterHighGoalPrevious)
+        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterHighGoalPrevious)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.previousShootingSolution(0)));
 
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterTiltFiringSolution)
+        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterTiltFiringSolution)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.tiltShooterArm( (shooterSubsystem.getShootingSolution())[0])) );
 
         JoystickButton ballIntoShooterButton = new JoystickButton(driveStick, Constants.OIC2022TEST.BallIntoShooterButton) ;
