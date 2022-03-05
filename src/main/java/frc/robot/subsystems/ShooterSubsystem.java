@@ -418,7 +418,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
     attemptedDistanceSelection = distance;
     shootingSolutionSet = false;
-    if (distance<0 || distance>=shootingSolution.length || goal<0 || goal>1){
+    if (distance<0 || distance>=artilleryTable.length || goal<0 || goal>1){
       goalSelection =-1;
       return false;
     }
