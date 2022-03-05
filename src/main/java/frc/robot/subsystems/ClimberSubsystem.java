@@ -15,7 +15,7 @@ import frc.robot.Constants;
 
 public class ClimberSubsystem extends SubsystemBase {
 
-  private static final double CALIBRATEMOTORPOWER = 0.25;
+  private static final double CALIBRATEMOTORPOWER = 0.35;
   private static final double FULLFORWARDSPEED = 0.7;
   private static final double FULLREVERSESPEED = -0.7;
   private static final int CLIMBEREXTENDED = 80000;
