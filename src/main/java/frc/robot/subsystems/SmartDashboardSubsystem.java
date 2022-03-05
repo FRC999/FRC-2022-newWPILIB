@@ -63,7 +63,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Shooter Angle", RobotContainer.shooterSubsystem.getShooterAnglePID() );
     SmartDashboard.putNumber("Shooter Power", RobotContainer.shooterSubsystem.getShooterWheelPID() );
     SmartDashboard.putNumber("Shooter Goal", RobotContainer.shooterSubsystem.getGoalSelection());
-    SmartDashboard.putNumberArray("Shooter A/P", RobotContainer.shooterSubsystem.getShootingSolution());
+    SmartDashboard.putNumber("Shooter Solution Angle", RobotContainer.shooterSubsystem.getShootingSolution()[0]);
+    SmartDashboard.putNumber("Shooter Solution Power", RobotContainer.shooterSubsystem.getShootingSolution()[1]);
     SmartDashboard.putNumber("Shooter Attempted Distance", RobotContainer.shooterSubsystem.getAttemptedDistanceSelection());
   }
 
