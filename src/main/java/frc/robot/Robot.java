@@ -240,7 +240,7 @@ public class Robot extends TimedRobot {
         // Subsystem Settings
         RobotProperties.isIMU = true;
         RobotProperties.isNaVX = false;
-        RobotProperties.driveInterface = DriveInterface.ONESTICK;
+        RobotProperties.driveInterface = DriveInterface.ONENEWBB;
         RobotProperties.isPneumatics = false;
         RobotProperties.isShooter = false;
         RobotProperties.isPotentiometer = false;
