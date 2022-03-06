@@ -201,12 +201,19 @@ public final class Constants {
         public static final int ClimberDown = 1;
         public static final int ClimberUp = 2;
 
-        // buttonbox
+        // buttonbox1 (left)
         public static final int TargetHorizontalButton = 4;
         public static final int TargetVerticalHighButton = 5;
         public static final int TargetVerticalLowButton = 6;
         public static final int AutoShootLowButton = 7;
         public static final int AutoShootHighButton = 8;
+        public static final int ClimberUp0 = 9;
+        public static final int ClimberDown0 = 11;
+        public static final int ZeroClimberEncoders = 10;
+
+        // buttonbox2 (right)
+        public static final int ClimberUp1 = 2;
+        public static final int ClimberDown1 = 1;
             
     }
     public static final class PigeonIMU {

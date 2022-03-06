@@ -54,12 +54,13 @@ public class ClimberSubsystem extends SubsystemBase {
     climberMotorControllers[0].configFactoryDefault();
     climberMotorControllers[1].configFactoryDefault();
 
-    climberMotorControllers[0].setInverted(InvertType.InvertMotorOutput); // TODO: Check that the master motor is not inverted
+    climberMotorControllers[0].setInverted(InvertType.InvertMotorOutput);
 
-    climberMotorControllers[1].follow(climberMotorControllers[0]);
-    climberMotorControllers[1].setInverted(InvertType.FollowMaster);  // TODO: check inversion on the follower
+    //climberMotorControllers[1].follow(climberMotorControllers[0]);  // not setting FOLLOWER mode since one climber is slower than the other.
+    //climberMotorControllers[1].setInverted(InvertType.FollowMaster); 
 
     climberMotorControllers[0].set(ControlMode.PercentOutput, 0);
+    climberMotorControllers[1].set(ControlMode.PercentOutput, 0);
   }
 
   public void configureClimberMotorControllerForPosition() {
@@ -129,8 +130,12 @@ public class ClimberSubsystem extends SubsystemBase {
     }
   }
 
-  public void retractClimber() {
-    climberMotorControllers[1].set(CLIMBERRETRACTED);
+  public void retractClimber(int motor) {
+    climberMotorControllers[motor].set(CLIMBERRETRACTED);
+  }
+
+  public void extendClimber(int motor) {
+    climberMotorControllers[motor].set(CLIMBEREXTENDED);
   }
 
   public void calibrateForwardSlow() {
@@ -152,6 +157,31 @@ public class ClimberSubsystem extends SubsystemBase {
 
   }
 
+  public void calibrateForwardSlow(int motor) {
+    climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
+    climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
+  }
+
+  public void calibrateBackSlow(int motor) {
+    climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
+    climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
+  }
+
+  public int getEncoder(int encoder) {  // should be 0 or 1
+    return (int) climberMotorControllers[encoder].getSelectedSensorPosition();
+  }
+
+  public double getEncoderError(int encoder) {
+    return climberMotorControllers[encoder].getClosedLoopError();// Returns the PID error for Pan motion control;
+  }
+
+  // Make sure to adjust Units-of-measure if needed
+  // The RAW output is "number of ticks per 100ms", so you may need to convert it
+  // into m/s
+  public int getEncoderSpeed(int encoder) { // should be 0 or 1
+    return (int) climberMotorControllers[encoder].getSelectedSensorVelocity();
+  }
+
   public void climberMotorOff() {
     // System.out.println("*** T OFF");
     // leave the tilt motor in break mode so it will not just drop down
@@ -160,6 +190,11 @@ public class ClimberSubsystem extends SubsystemBase {
      climberMotorControllers[1].setNeutralMode(NeutralMode.Brake);
     climberMotorControllers[0].set(0);
     climberMotorControllers[1].set(0);
+  }
+
+  public void climberMotorOff(int motor) {
+    climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
+    climberMotorControllers[motor].set(0);
   }
 
   @Override

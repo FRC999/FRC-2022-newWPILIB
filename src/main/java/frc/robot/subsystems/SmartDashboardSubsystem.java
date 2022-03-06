@@ -68,11 +68,17 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Shooter Attempted Distance", RobotContainer.shooterSubsystem.getAttemptedDistanceSelection());
   }
 
+  public void updateClimberValues() {
+    SmartDashboard.putNumber("Climber0 Encoder", RobotContainer.climberSubsystem.getEncoder(0));
+    SmartDashboard.putNumber("Climber0 Error", RobotContainer.climberSubsystem.getEncoderError(0));
+    SmartDashboard.putNumber("Climber1 Encoder", RobotContainer.climberSubsystem.getEncoder(1));
+    SmartDashboard.putNumber("Climber1 Error", RobotContainer.climberSubsystem.getEncoderError(1));
+  }
+
   public void updateTestMotorValues() {
     SmartDashboard.putNumber("TEST Encoder", RobotContainer.testMotorSubsystem.getTestMotorEncoder());
     SmartDashboard.putNumber("TEST Error", RobotContainer.testMotorSubsystem.getTestMotorError() );
   }
-
 
   public void updatePotentiometerValues() {
     SmartDashboard.putNumber("Potentiometer Value", RobotContainer.potentiometerSubsystem.getPotVal());
@@ -128,6 +134,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     }
 
     updateShooterSolutionValues();
+
+    if (Constants.RobotProperties.isClimber) {
+      updateClimberValues();
+    }
 
     if (Constants.RobotProperties.isTestMotor) {
       updateTestMotorValues();

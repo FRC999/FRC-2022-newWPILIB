@@ -389,6 +389,8 @@ public class RobotContainer {
 
           if (RobotProperties.driveInterface == DriveInterface.SPLITNEWBB) {  // BB will be used for special function testing
 
+            // Test targeting
+
             new JoystickButton(bbl, Constants.OIC2022TEST.TargetHorizontalButton)
               .whenPressed(new TargetHorizontal());
 
@@ -398,12 +400,34 @@ public class RobotContainer {
             new JoystickButton(bbl, Constants.OIC2022TEST.TargetVerticalLowButton)
               .whenPressed(new TargetVertical(1));
 
+            // Test auto-shoot
+
             new JoystickButton(bbl, Constants.OIC2022TEST.AutoShootHighButton)
               .whenPressed(new TargetAndShootHigh());
 
             new JoystickButton(bbl, Constants.OIC2022TEST.AutoShootLowButton)
               .whenPressed(new TargetAndShootLow());
 
+            // Test climber
+
+            new JoystickButton(bbl, Constants.OIC2022TEST.ZeroClimberEncoders)
+              .whenPressed(new  InstantCommand(climberSubsystem::zeroClimberMotorEncoders,climberSubsystem));
+
+            new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown0)
+              .whenPressed(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(0),climberSubsystem))
+              .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
+          
+            new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp0)
+              .whenPressed(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
+              .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
+
+            new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown1)
+              .whenPressed(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
+              .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
+          
+            new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp1)
+              .whenPressed(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
+              .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
           }
       
       default:
