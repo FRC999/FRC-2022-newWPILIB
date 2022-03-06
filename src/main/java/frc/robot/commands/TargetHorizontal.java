@@ -9,7 +9,7 @@ import frc.robot.RobotContainer;
 
 public class TargetHorizontal extends CommandBase {
 
-  private final double Kp = -0.1;
+  private final double Kp = -0.2;
   private final double min_command = 0.05;
   private final double MAXERROR = 1.0;
 

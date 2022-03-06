@@ -98,6 +98,7 @@ public class RobotContainer {
   // initialized
   public static Joystick driveStick;
   public static Joystick turnStick;
+  public static Joystick auxStick;
   public static XboxController xboxController;
   public static Joystick bbl; // button box left side
   public static Joystick bbr; // button box right side
@@ -287,7 +288,7 @@ public class RobotContainer {
           .whenPressed(new  InstantCommand(shooterSubsystem::calibrateBackSlow,shooterSubsystem))
           .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
 
-        // Switch to next shooting goal
+        // Switch shooting goal: HIGH/LOW, up/down
         new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterLowerGoalNext)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
 
@@ -300,9 +301,11 @@ public class RobotContainer {
         new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterHighGoalPrevious)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.previousShootingSolution(0)));
 
+        // Set shooter arm to firing solution
         new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterTiltFiringSolution)
           .whenPressed(new InstantCommand(() -> shooterSubsystem.tiltShooterArm( (shooterSubsystem.getShootingSolution())[0])) );
 
+        // one-button ball intake
         JoystickButton ballIntoShooterButton = new JoystickButton(driveStick, Constants.OIC2022TEST.BallIntoShooterButton) ;
         ballIntoShooterButton
           .whileHeld(   // Rotate intake and shooter wheels to get the ball IN
@@ -313,6 +316,7 @@ public class RobotContainer {
             .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem)) 
           );
         
+        // Shoot using firing solution power
         JoystickButton shooterExecuteFiringSolution = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterExecuteFiringSolution) ;
         shooterExecuteFiringSolution
           .whenActive(  
@@ -343,6 +347,7 @@ public class RobotContainer {
         //Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
         Trigger ballInShooterDetector = new Trigger(() -> true);
 
+        // Shoot with current angle, and manual motor power adjustment via tail
         JoystickButton shooterSemiAutoSequence = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterSemiAutoSequence) ;
         
         // TODO: Make sure that PID on a shooter arm is not cancelled by this

@@ -8,15 +8,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class TargetVerticalHigh extends CommandBase {
+public class TargetVertical extends CommandBase {
 
   private boolean endCommand = false;
   private double distance ; // distance to the target
   private double angle ; // shooter arm angle
+  int goal;
 
   /** Creates a new ShooterArmPositionSolution. */
-  public TargetVerticalHigh() {
+  public TargetVertical(int g) {    // 0 - high, 1 -low target
     // Use addRequirements() here to declare subsystem dependencies.
+    goal = g ;
     addRequirements(RobotContainer.shooterSubsystem);
   }
 
@@ -28,7 +30,7 @@ public class TargetVerticalHigh extends CommandBase {
     }
     distance = RobotContainer.shooterSubsystem.getTargetDistance();
 
-    if ( RobotContainer.shooterSubsystem.setShootingSolution( (int)Math.round(distance), 0) ) { // if firing solution for high goal exists (also set the solution parameters)
+    if ( RobotContainer.shooterSubsystem.setShootingSolution( (int)Math.round(distance), goal) ) { // if firing solution for high goal exists (also set the solution parameters)
       angle = RobotContainer.shooterSubsystem.getShootingSolutionAngle();
       if (angle > 0 && angle < 90) { // invalid number from the shooting solution
         RobotContainer.shooterSubsystem.tiltShooterArm(angle);

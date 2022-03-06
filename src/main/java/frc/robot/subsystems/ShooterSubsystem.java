@@ -55,32 +55,30 @@ public class ShooterSubsystem extends SubsystemBase {
   private final double[][][] artilleryTable = {
     {{}},  // 0 ft - skip
     {{}},  // 1 ft - skip
-    {
-      {87.0, 0.547}, //2 ft high goal
-      {} //skip low goal
-    },
-    {
-      {84.0, 0.524}, //3 ft high goal
-      {} //skip low goal
-    },
-    {
-      {}, //skip high goal
-      {64.0, 0.285} //5 ft low goal
+    {{}},  // 2 ft - skip
+    {{}},  // 3 ft - skip
+    { // 4ft
+      {80.0, 0.819}, //skip high goal
+      {65.0, 0.285} //5 ft low goal
+    }, 
+    { // 5ft
+      {77.0, 57,5}, //skip high goal
+      {49.0, 0.402} //5 ft low goal
     }, 
     {
-      {68.0, 0.635}, //6 ft high goal
+      {71.0, 0.582}, //6 ft high goal
       {47.0, 0.402} //6 ft low goal
     },
     {
-      {64.0, 0.602}, //7 ft high goal
-      {47.0, 0.449} //7 ft low goal
+      {73.0, 0.618}, //7 ft high goal
+      {45.0, 0.460} //7 ft low goal
     },
     {
-      {65.0, 0.618}, //8 ft high goal
+      {71.0, 0.598}, //8 ft high goal
       {43.0, 0.465} //8 ft low goal
     },
     {
-      {65.0, 0.653}, //9 ft high goal
+      {72.0, 0.645}, //9 ft high goal
       {45.0, 0.5} //9 ft low goal
     },
     {
@@ -121,7 +119,7 @@ public class ShooterSubsystem extends SubsystemBase {
     },
     {
       {61.0, 1.0}, //19 ft high goal
-      {} //skip
+      {50.0, 0.751} //skip
     }
   };
 

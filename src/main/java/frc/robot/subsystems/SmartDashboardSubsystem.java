@@ -131,7 +131,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
     if (Constants.RobotProperties.isTestMotor) {
       updateTestMotorValues();
-   }
+    }
 
     if (Constants.RobotProperties.isPotentiometer) {
       updatePotentiometerValues();

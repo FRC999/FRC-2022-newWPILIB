@@ -27,7 +27,7 @@ public final class Constants {
     }
 
     public static enum DriveInterface {
-        ONESTICK, SPLITSTICK, XBOX, XBOXANDSTICK, ONENEWBB
+        ONESTICK, SPLITSTICK, XBOX, XBOXANDSTICK, ONENEWBB, THREESTICK
     }
 
     public static final class RobotProperties { // configure the type of robot here, such as presence/absence of a
