@@ -337,7 +337,19 @@ public class RobotContainer {
             new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem)
             .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem)) 
           );
-        
+
+        // one-button reverse
+        JoystickButton intakeShooterReverse = new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeShooterReverseButton) ;
+        intakeShooterReverse
+          .whileHeld(   // Rotate intake and shooter wheels to get the ball IN
+            new InstantCommand(intakeSubsystem::rotateIntakeReverse,intakeSubsystem)
+            .alongWith(new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem)) )
+          .whenReleased( // Stop intake and shooter wheel
+            new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem)
+            .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem)) 
+          );
+
+
         // Shoot using firing solution power
         JoystickButton shooterExecuteFiringSolution = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterExecuteFiringSolution) ;
         shooterExecuteFiringSolution

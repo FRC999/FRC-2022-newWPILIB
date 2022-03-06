@@ -175,19 +175,23 @@ public final class Constants {
 
         // drivestick
 
-        public static final int IntakeDownButton = 10;
-        public static final int IntakeUpButton = 11;
-        public static final int IntakeInButton = 3;
-        public static final int IntakeReverseButton = 4;
-        public static final int ShooterArmAngleButton = 6;
+        public static final int IntakeShooterReverseButton = 1;
+        public static final int ShooterArmAngleButton = 4;
+        public static final int ShooterArmCalibrateButton = 3;
+        public static final int IntakeDownButton = 11;
+        public static final int IntakeUpButton = 12;
+        // --
         public static final int ShooterArmDownButton = 7;
         public static final int ShooterWheelButton = 8;
         public static final int ShooterWheelReverseButton = 9;
         public static final int ShooterPlungerButton = 12;
-        public static final int ShooterArmCalibrateButton = 5;
-        public static final int BallIntoShooterButton = 1;
+        public static final int IntakeInButton = 3;
+        // tail controls manual angle of the shooter arm 
 
         // turnstick
+
+        public static final int BallIntoShooterButton = 1;
+        public static final int IntakeReverseButton = 1;
         public static final int ShooterSemiAutoSequence = 9;
         public static final int ShooterArmZeroEncoder = 10;
         public static final int ShooterArmSlowlyForward = 11;
@@ -200,6 +204,9 @@ public final class Constants {
         public static final int ShooterExecuteFiringSolution = 8;
         public static final int ClimberDown = 1;
         public static final int ClimberUp = 2;
+
+        // aux stick
+
 
         // buttonbox1 (left)
         public static final int TargetHorizontalButton = 4;
