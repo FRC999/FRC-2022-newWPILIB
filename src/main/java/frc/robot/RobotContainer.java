@@ -22,6 +22,10 @@ import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.ShooterArmPosition;
+import frc.robot.commands.TargetAndShootHigh;
+import frc.robot.commands.TargetAndShootLow;
+import frc.robot.commands.TargetHorizontal;
+import frc.robot.commands.TargetVertical;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -155,8 +159,26 @@ public class RobotContainer {
       case ONESTICK: // add 1 stick
         driveStick = new Joystick(OIConstants.driverControllerPort);
         break;
+      case THREESTICK: // 3 sticks
+        turnStick = new Joystick(OIConstants.turnControllerPort);
+        driveStick = new Joystick(OIConstants.driverControllerPort);
+        auxStick = new Joystick(OIConstants.auxControllerPort);
+        break;
       case ONENEWBB: // 1 stick + button box
         driveStick = new Joystick(OIConstants.driverControllerPort);
+        bbl =  new Joystick(OIConstants.bbLeftPort);
+        bbr =  new Joystick(OIConstants.bbRightPort);
+        break;
+      case SPLITNEWBB: // 2-sticks + button box
+        turnStick = new Joystick(OIConstants.turnControllerPort);
+        driveStick = new Joystick(OIConstants.driverControllerPort);
+        bbl =  new Joystick(OIConstants.bbLeftPort);
+        bbr =  new Joystick(OIConstants.bbRightPort);
+        break;
+      case THREENEWBB: // 3-sticks + button box
+        turnStick = new Joystick(OIConstants.turnControllerPort);
+        driveStick = new Joystick(OIConstants.driverControllerPort);
+        auxStick = new Joystick(OIConstants.auxControllerPort);
         bbl =  new Joystick(OIConstants.bbLeftPort);
         bbr =  new Joystick(OIConstants.bbRightPort);
         break;
@@ -364,9 +386,30 @@ public class RobotContainer {
                 new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem) // Spin the wheels, continue until the end of the sequence
               ) // end deadlinewith
           ); // end whenactive
+
+          if (RobotProperties.driveInterface == DriveInterface.SPLITNEWBB) {  // BB will be used for special function testing
+
+            new JoystickButton(bbl, Constants.OIC2022TEST.TargetHorizontalButton)
+              .whenPressed(new TargetHorizontal());
+
+            new JoystickButton(bbl, Constants.OIC2022TEST.TargetVerticalHighButton)
+              .whenPressed(new TargetVertical(0));
+
+            new JoystickButton(bbl, Constants.OIC2022TEST.TargetVerticalLowButton)
+              .whenPressed(new TargetVertical(1));
+
+            new JoystickButton(bbl, Constants.OIC2022TEST.AutoShootHighButton)
+              .whenPressed(new TargetAndShootHigh());
+
+            new JoystickButton(bbl, Constants.OIC2022TEST.AutoShootLowButton)
+              .whenPressed(new TargetAndShootLow());
+
+          }
       
       default:
     }
+
+
 
     Robot.simpleCSVLogger.writeData("ButtonBinding Configured");
 

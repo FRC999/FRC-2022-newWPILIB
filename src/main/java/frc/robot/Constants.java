@@ -27,7 +27,7 @@ public final class Constants {
     }
 
     public static enum DriveInterface {
-        ONESTICK, SPLITSTICK, XBOX, XBOXANDSTICK, ONENEWBB, THREESTICK
+        ONESTICK, SPLITSTICK, XBOX, XBOXANDSTICK, ONENEWBB, THREESTICK, SPLITNEWBB, THREENEWBB
     }
 
     public static final class RobotProperties { // configure the type of robot here, such as presence/absence of a
@@ -163,6 +163,7 @@ public final class Constants {
     public static final class OIConstants {
         public static final int driverControllerPort = 0;
         public static final int turnControllerPort = 2;
+        public static final int auxControllerPort = 4;
         public static final int xboxControllerPort = 1;
         public static final int bbLeftPort = 3;
         public static final int bbRightPort = 5;
@@ -199,6 +200,13 @@ public final class Constants {
         public static final int ShooterExecuteFiringSolution = 8;
         public static final int ClimberDown = 1;
         public static final int ClimberUp = 2;
+
+        // buttonbox
+        public static final int TargetHorizontalButton = 4;
+        public static final int TargetVerticalHighButton = 5;
+        public static final int TargetVerticalLowButton = 6;
+        public static final int AutoShootLowButton = 7;
+        public static final int AutoShootHighButton = 8;
             
     }
     public static final class PigeonIMU {
