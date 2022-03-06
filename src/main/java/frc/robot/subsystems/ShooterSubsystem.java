@@ -30,9 +30,9 @@ public class ShooterSubsystem extends SubsystemBase {
   private double shooterAnglePID; 
   private double shooterSpeedPID;
   
-  private final double LIMELIGHTANGLE = 45;
-  private final double LIMELIGHTHEIGHT = 85;
-  private final double UPPERHUBHEIGHT = 264;
+  private final double LIMELIGHTANGLE = 18;
+  private final double LIMELIGHTHEIGHT = 85.1; // cm
+  private final double UPPERHUBHEIGHT = 264;   // cm
 
   /**
    * We suppose to zero encoder when we calibrate the shooter arm
@@ -474,7 +474,7 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void previousShootingSolution(int goal){
-    int newDistance = getAttemptedDistanceSelection() +1;
+    int newDistance = getAttemptedDistanceSelection() -1;
     if (newDistance<MINDISTANCE){
       setShootingSolution(MAXDISTANCE, goal);
     }

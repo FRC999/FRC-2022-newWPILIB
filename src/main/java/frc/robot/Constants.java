@@ -229,7 +229,9 @@ public final class Constants {
         // index 1 = reverse
         public static int[] shooterSolenoidChannels;
 
-        public static int encoderUnitsPerShaftRotation = 4096;
+        //public static int encoderUnitsPerShaftRotation = 4096;
+        public static int encoderUnitsPerShaftRotation = 4360;
+
 
         public static int shooterLimitSwitchDIOPort = 0;    // Limit switch used for shooter arm zeroing encoder
 
