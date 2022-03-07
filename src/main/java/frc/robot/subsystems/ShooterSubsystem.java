@@ -30,7 +30,7 @@ public class ShooterSubsystem extends SubsystemBase {
   private double shooterAnglePID; 
   private double shooterSpeedPID;
   
-  private final double LIMELIGHTANGLE = 18;
+  private final double LIMELIGHTANGLE = 35;
   private final double LIMELIGHTHEIGHT = 85.1; // cm
   private final double UPPERHUBHEIGHT = 264;   // cm
 
