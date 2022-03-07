@@ -247,96 +247,9 @@ public class RobotContainer {
         // Test routine
         // TODO: Replace with command sequences for the competition
 
-        // Intake UP/DOWN test
-        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
-        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
-
-        // Intake FORWARD test
-        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeInButton)
-          .whenPressed(new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem))
-          .whenReleased(new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem));
-
-        // Intake REVERSE test
-        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeReverseButton)
-          .whenPressed(new InstantCommand(intakeSubsystem::rotateIntakeReverse,intakeSubsystem))
-          .whenReleased(new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem));
-
-        // Climber Calibration
-          // Shooter arm slowly forward
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberDown)
-          .whenPressed(new  InstantCommand(climberSubsystem::calibrateForwardSlow,climberSubsystem))
-          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
-        // Shooter arm slowly back
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberUp)
-          .whenPressed(new  InstantCommand(climberSubsystem::calibrateBackSlow,climberSubsystem))
-          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
-
-
-        // Shooter arm test
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)
-          .whenPressed(new ShooterArmPosition())
-          // .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem))
-          ;
-          //.whenReleased(new CalibrateShooterArmWithLimitSwitch());  // TODO: keep the shooter arm UP not down
-
-        // Shooter wheels test - shoot ball
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterWheelButton)
-          .whenPressed(new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem))
-          .whenReleased(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem));
-
-        // Shooter wheels test - ball intake
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterWheelReverseButton)
-          .whenPressed(new InstantCommand(shooterSubsystem::startShooterWheelMotorReverse,shooterSubsystem))
-          .whenReleased(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem));
-
-        // Shooter plunger test
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterPlungerButton)
-          .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem))
-          .whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
-
-        // Shooter arm calibration
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmCalibrateButton)
-          .whenPressed(new CalibrateShooterArmWithLimitSwitch());
-
-        // Shooter arm zero encoder
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterArmZeroEncoder)
-          .whenPressed(new  InstantCommand(shooterSubsystem::zeroTiltMotorEncoder,shooterSubsystem));
-          // Shooter arm slowly forward
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterArmSlowlyForward)
-          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateForwardSlow,shooterSubsystem))
-          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
-        // Shooter arm slowly back
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterArmSlowlyBack)
-          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateBackSlow,shooterSubsystem))
-          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
-
-        // Switch shooting goal: HIGH/LOW, up/down
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterLowerGoalNext)
-          .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
-
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterLowerGoalPrevious)
-          .whenPressed(new InstantCommand(() -> shooterSubsystem.previousShootingSolution(1)));
-
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterHighGoalNext)
-          .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(0)));
-
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterHighGoalPrevious)
-          .whenPressed(new InstantCommand(() -> shooterSubsystem.previousShootingSolution(0)));
-
-        // Set shooter arm to firing solution
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterTiltFiringSolution)
-          .whenPressed(new InstantCommand(() -> shooterSubsystem.tiltShooterArm( (shooterSubsystem.getShootingSolution())[0])) );
-
-        // one-button ball intake
-        JoystickButton ballIntoShooterButton = new JoystickButton(driveStick, Constants.OIC2022TEST.BallIntoShooterButton) ;
-        ballIntoShooterButton
-          .whileHeld(   // Rotate intake and shooter wheels to get the ball IN
-            new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem)
-            .alongWith(new InstantCommand(shooterSubsystem::startShooterWheelMotorReverse,shooterSubsystem)) )
-          .whenReleased( // Stop intake and shooter wheel
-            new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem)
-            .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem)) 
-          );
+        // *****************
+        // *** DRIVESTICK ***
+        // *****************
 
         // one-button reverse
         JoystickButton intakeShooterReverse = new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeShooterReverseButton) ;
@@ -349,21 +262,41 @@ public class RobotContainer {
             .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem)) 
           );
 
+        // Shooter arm calibration
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmCalibrateButton)
+          .whenPressed(new CalibrateShooterArmWithLimitSwitch());
 
-        // Shoot using firing solution power
-        JoystickButton shooterExecuteFiringSolution = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterExecuteFiringSolution) ;
-        shooterExecuteFiringSolution
-          .whenActive(  
-              new WaitCommand(1)  // Wait 1 second
-                            .andThen(new InstantCommand(shooterSubsystem::extendPlunger))  // push plunger; no subsystem requirement, so not to stop motors
-                            .andThen(new WaitCommand(1))  // Wait 1 second)
-               .andThen(new InstantCommand(shooterSubsystem::retractPlunger))  // retract plunger
-               .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor))  // stop shooter motor
-            .deadlineWith (
-              new InstantCommand(() -> shooterSubsystem.startShooterWheelMotor( (shooterSubsystem.getShootingSolution())[1])) // Spin the wheels, continue until the end of the sequence
-              ) // end deadlinewith
-          ); // end whenactive
-         
+        // Shooter arm to 45 +- manual adjustment via Z-tail
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)
+          .whenPressed(new ShooterArmPosition());
+          
+        // Intake UP/DOWN
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
+
+        // *****************
+        // *** TURNSTICK ***
+        // *****************
+
+        // one-button ball intake
+        JoystickButton ballIntoShooterButton = new JoystickButton(turnStick, Constants.OIC2022TEST.BallIntoShooterButton) ;
+        ballIntoShooterButton
+          .whileHeld(   // Rotate intake and shooter wheels to get the ball IN
+            new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem)
+            .alongWith(new InstantCommand(shooterSubsystem::startShooterWheelMotorReverse,shooterSubsystem)) )
+          .whenReleased( // Stop intake and shooter wheel
+            new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem)
+            .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem)) 
+          );
+
+        // Intake UP/DOWN
+        new JoystickButton(turnStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
+        new JoystickButton(turnStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
+
+        // *****************
+        // ***  AUXSTICK ***
+        // *****************
+
         /**
          * Shooter Semi-auto sequence
          * 
@@ -377,12 +310,11 @@ public class RobotContainer {
          * Stop the wheels
          * 
         */
-
         //Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
         Trigger ballInShooterDetector = new Trigger(() -> true);
 
         // Shoot with current angle, and manual motor power adjustment via tail
-        JoystickButton shooterSemiAutoSequence = new JoystickButton(turnStick, Constants.OIC2022TEST.ShooterSemiAutoSequence) ;
+        JoystickButton shooterSemiAutoSequence = new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterSemiAutoSequence) ;
         
         // TODO: Make sure that PID on a shooter arm is not cancelled by this
 
@@ -398,6 +330,121 @@ public class RobotContainer {
                 new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem) // Spin the wheels, continue until the end of the sequence
               ) // end deadlinewith
           ); // end whenactive
+
+        // Switch shooting goal: HIGH/LOW, up/down
+        new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterLowerGoalNext)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
+
+        new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterLowerGoalPrevious)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.previousShootingSolution(1)));
+
+        new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterHighGoalNext)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(0)));
+
+        new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterHighGoalPrevious)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.previousShootingSolution(0)));
+
+        // Shooter arm zero encoder
+        new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterArmZeroEncoder)
+          .whenPressed(new  InstantCommand(shooterSubsystem::zeroTiltMotorEncoder,shooterSubsystem));
+          // Shooter arm slowly forward
+        new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterArmSlowlyForward)
+          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateForwardSlow,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
+        // Shooter arm slowly back
+        new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterArmSlowlyBack)
+          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateBackSlow,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
+
+        // Set shooter arm angle to the one in firing solution
+        new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterTiltFiringSolution)
+          .whenPressed(new InstantCommand(() -> shooterSubsystem.tiltShooterArm( (shooterSubsystem.getShootingSolution())[0])) );
+
+        // Shoot using firing solution power
+        JoystickButton shooterExecuteFiringSolution = new JoystickButton(auxStick, Constants.OIC2022TEST.ShooterExecuteFiringSolution) ;
+        shooterExecuteFiringSolution
+          .whenActive(  
+              new WaitCommand(1)  // Wait 1 second
+                            .andThen(new InstantCommand(shooterSubsystem::extendPlunger))  // push plunger; no subsystem requirement, so not to stop motors
+                            .andThen(new WaitCommand(1))  // Wait 1 second)
+               .andThen(new InstantCommand(shooterSubsystem::retractPlunger))  // retract plunger
+               .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor))  // stop shooter motor
+            .deadlineWith (
+              new InstantCommand(() -> shooterSubsystem.startShooterWheelMotor( (shooterSubsystem.getShootingSolution())[1])) // Spin the wheels, continue until the end of the sequence
+              ) // end deadlinewith
+          ); // end whenactive
+
+
+        // *****************
+        // ***  BBLEFT   ***
+        // *****************
+
+        JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
+
+        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown0)
+          .and(climberSafetySwitch)
+          .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(0),climberSubsystem))
+          .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
+    
+        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp0)
+          .and(climberSafetySwitch)
+          .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
+          .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
+
+        // Climber arms together
+        // Shooter arm slowly UP
+        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberDown)
+          .whenPressed(new  InstantCommand(climberSubsystem::calibrateForwardSlow,climberSubsystem))
+          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
+        // Shooter arm slowly DOWN
+        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberUp)
+          .whenPressed(new  InstantCommand(climberSubsystem::calibrateBackSlow,climberSubsystem))
+          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
+
+
+        // Shooter plunger and climber arms lock - same pneumatics
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterPlungerButton)
+          .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
+
+        // *****************
+        // ***  BBRIGHT   ***
+        // *****************
+
+        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown1)
+          .and(climberSafetySwitch)
+          .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
+          .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
+    
+        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp1)
+          .and(climberSafetySwitch)
+          .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
+          .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
+
+        /*
+
+        // Intake FORWARD test
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeInButton)
+          .whenPressed(new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem))
+          .whenReleased(new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem));
+
+        // Intake REVERSE test
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeReverseButton)
+          .whenPressed(new InstantCommand(intakeSubsystem::rotateIntakeReverse,intakeSubsystem))
+          .whenReleased(new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem));
+
+
+        // Shooter wheels test - shoot ball
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterWheelButton)
+          .whenPressed(new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem));
+
+        // Shooter wheels test - ball intake
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterWheelReverseButton)
+          .whenPressed(new InstantCommand(shooterSubsystem::startShooterWheelMotorReverse,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem));
+
+        
 
           if (RobotProperties.driveInterface == DriveInterface.SPLITNEWBB) {  // BB will be used for special function testing
 
@@ -425,27 +472,11 @@ public class RobotContainer {
             new JoystickButton(bbl, Constants.OIC2022TEST.ZeroClimberEncoders)
               .whenPressed(new  InstantCommand(climberSubsystem::zeroClimberMotorEncoders,climberSubsystem));
 
-            new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown0)
-              .whenPressed(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(0),climberSubsystem))
-              .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
-          
-            new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp0)
-              .whenPressed(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
-              .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
-
-            new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown1)
-              .whenPressed(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
-              .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
-          
-            new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp1)
-              .whenPressed(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
-              .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
           }
+        */
       
       default:
     }
-
-
 
     Robot.simpleCSVLogger.writeData("ButtonBinding Configured");
 

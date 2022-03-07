@@ -162,11 +162,11 @@ public final class Constants {
 
     public static final class OIConstants {
         public static final int driverControllerPort = 0;
-        public static final int turnControllerPort = 2;
-        public static final int auxControllerPort = 4;
-        public static final int xboxControllerPort = 1;
+        public static final int turnControllerPort = 1;
+        public static final int auxControllerPort = 2;
         public static final int bbLeftPort = 3;
-        public static final int bbRightPort = 5;
+        public static final int bbRightPort = 4;
+        public static final int xboxControllerPort = 1;
     }
 
     // Button assignment for the 2022 competition robot
@@ -176,52 +176,61 @@ public final class Constants {
         // drivestick
 
         public static final int IntakeShooterReverseButton = 1;
-        public static final int ShooterArmAngleButton = 4;
         public static final int ShooterArmCalibrateButton = 3;
+        public static final int ShooterArmAngleButton = 4;
         public static final int IntakeDownButton = 11;
         public static final int IntakeUpButton = 12;
         // --
         public static final int ShooterArmDownButton = 7;
         public static final int ShooterWheelButton = 8;
         public static final int ShooterWheelReverseButton = 9;
-        public static final int ShooterPlungerButton = 12;
+
         public static final int IntakeInButton = 3;
-        // tail controls manual angle of the shooter arm 
 
         // turnstick
 
         public static final int BallIntoShooterButton = 1;
+        // --
+        // Intake Up - 12
+        // Intake Down - 11
+        // --
         public static final int IntakeReverseButton = 1;
-        public static final int ShooterSemiAutoSequence = 9;
-        public static final int ShooterArmZeroEncoder = 10;
-        public static final int ShooterArmSlowlyForward = 11;
-        public static final int ShooterArmSlowlyBack = 12;
-        public static final int ShooterHighGoalNext = 5;
-        public static final int ShooterHighGoalPrevious = 3;
-        public static final int ShooterLowerGoalNext = 6;
-        public static final int ShooterLowerGoalPrevious = 4;
-        public static final int ShooterTiltFiringSolution = 7;
-        public static final int ShooterExecuteFiringSolution = 8;
-        public static final int ClimberDown = 1;
-        public static final int ClimberUp = 2;
 
         // aux stick
 
+        public static final int ShooterSemiAutoSequence = 1; // uses current tilt and power adjusted by Z-tail
+        public static final int ShooterHighGoalNext = 6;
+        public static final int ShooterHighGoalPrevious = 4;
+        public static final int ShooterLowerGoalNext = 5;
+        public static final int ShooterLowerGoalPrevious = 3;
+
+        public static final int ShooterArmZeroEncoder = 9;
+        public static final int ShooterArmSlowlyForward = 7;
+        public static final int ShooterArmSlowlyBack = 8;
+
+        public static final int ShooterTiltFiringSolution = 11; // Tilt shooter arm to the angle in firing solution
+        public static final int ShooterExecuteFiringSolution = 12; // current angle, power from firing solution
 
         // buttonbox1 (left)
+
+        public static final int ClimberSafetySwitch = 1;
+        public static final int ClimberUp0 = 7;
+        public static final int ClimberDown0 = 8;
+        public static final int ClimberDown = 11;
+        public static final int ClimberUp = 9;
+        public static final int ShooterPlungerButton = 10;
+        // --
         public static final int TargetHorizontalButton = 4;
         public static final int TargetVerticalHighButton = 5;
         public static final int TargetVerticalLowButton = 6;
         public static final int AutoShootLowButton = 7;
         public static final int AutoShootHighButton = 8;
-        public static final int ClimberUp0 = 9;
-        public static final int ClimberDown0 = 11;
         public static final int ZeroClimberEncoders = 10;
 
         // buttonbox2 (right)
         public static final int ClimberUp1 = 2;
         public static final int ClimberDown1 = 1;
-            
+       
     }
     public static final class PigeonIMU {
         // If you have PigeonIMU, this is the ID of the Talon SRX the IMU is connected
