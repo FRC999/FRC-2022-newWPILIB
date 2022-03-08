@@ -1,0 +1,13 @@
+This is a short-term TODO list
+
+For 03/08:
+
+Check the climber arm speed
+Check the right climber arm direction
+Check the encoders of both climber arms
+Check the auto-shoot sequence (shoot without a ball, but check that the whole sequence goes from beginning to end)
+
+Create Phoenixvision feed on SmartDashboard
+Check why PhoenixVision does not output on Driver Station (or connect direct camera feed there)
+
+Look at the autonomous rooutine
