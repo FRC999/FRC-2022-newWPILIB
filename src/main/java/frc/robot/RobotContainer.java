@@ -381,23 +381,23 @@ public class RobotContainer {
 
         JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
 
-        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown0)
-          .and(climberSafetySwitch)
+        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown0)
+          //.and(climberSafetySwitch)
           .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
     
-        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp0)
-          .and(climberSafetySwitch)
+        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp0)
+          //.and(climberSafetySwitch)
           .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
 
         // Climber arms together
         // Shooter arm slowly UP
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberDown)
+        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown)
           .whenPressed(new  InstantCommand(climberSubsystem::calibrateForwardSlow,climberSubsystem))
           .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
         // Shooter arm slowly DOWN
-        new JoystickButton(turnStick, Constants.OIC2022TEST.ClimberUp)
+        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp)
           .whenPressed(new  InstantCommand(climberSubsystem::calibrateBackSlow,climberSubsystem))
           .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
 
@@ -412,12 +412,12 @@ public class RobotContainer {
         // *****************
 
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown1)
-          .and(climberSafetySwitch)
+          //.and(climberSafetySwitch)
           .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
     
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp1)
-          .and(climberSafetySwitch)
+          //.and(climberSafetySwitch)
           .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
 

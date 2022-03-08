@@ -161,11 +161,11 @@ public final class Constants {
     }
 
     public static final class OIConstants {
-        public static final int driverControllerPort = 0;
-        public static final int turnControllerPort = 1;
+        public static final int driverControllerPort = 1;
+        public static final int turnControllerPort = 0;
         public static final int auxControllerPort = 2;
-        public static final int bbLeftPort = 3;
-        public static final int bbRightPort = 4;
+        public static final int bbLeftPort = 4;
+        public static final int bbRightPort = 3;
         public static final int xboxControllerPort = 1;
     }
 
@@ -214,8 +214,8 @@ public final class Constants {
         // buttonbox1 (left)
 
         public static final int ClimberSafetySwitch = 1;
-        public static final int ClimberUp0 = 7;
-        public static final int ClimberDown0 = 8;
+        public static final int ClimberUp0 = 6;
+        public static final int ClimberDown0 = 7;
         public static final int ClimberDown = 11;
         public static final int ClimberUp = 9;
         public static final int ShooterPlungerButton = 10;
@@ -228,8 +228,8 @@ public final class Constants {
         public static final int ZeroClimberEncoders = 10;
 
         // buttonbox2 (right)
-        public static final int ClimberUp1 = 2;
-        public static final int ClimberDown1 = 1;
+        public static final int ClimberUp1 = 8;
+        public static final int ClimberDown1 = 9;
        
     }
     public static final class PigeonIMU {

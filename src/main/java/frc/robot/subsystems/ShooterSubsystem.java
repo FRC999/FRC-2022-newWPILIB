@@ -19,7 +19,7 @@ import frc.robot.RobotContainer;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-  private static final double CALIBRATEMOTORPOWER = 0.2;
+  private static final double CALIBRATEMOTORPOWER = 0.4;
   private static final double FULLFORWARDSPEED = 1.0;
   private static final double FULLREVERSESPEED = -0.7;
 
@@ -66,7 +66,7 @@ public class ShooterSubsystem extends SubsystemBase {
       {49.0, 0.402} //5 ft low goal
     }, 
     {
-      {71.0, 0.582}, //6 ft high goal
+      {71.0, 0.543}, //6 ft high goal
       {47.0, 0.402} //6 ft low goal
     },
     {
@@ -78,7 +78,7 @@ public class ShooterSubsystem extends SubsystemBase {
       {43.0, 0.465} //8 ft low goal
     },
     {
-      {72.0, 0.645}, //9 ft high goal
+      {65.0, 0.614}, //9 ft high goal
       {45.0, 0.5} //9 ft low goal
     },
     {
@@ -98,7 +98,7 @@ public class ShooterSubsystem extends SubsystemBase {
       {46.0, 0.547} //13 ft low goal
     },
     {
-      {61.0, 0.751}, //14 ft high goal
+      {48.0, 0.70}, //14 ft high goal
       {44.0, 0.59} //14 ft low goal
     },
     {
