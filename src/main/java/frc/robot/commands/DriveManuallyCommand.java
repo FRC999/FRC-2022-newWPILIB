@@ -29,6 +29,9 @@ public class DriveManuallyCommand extends CommandBase {
 
     switch (RobotProperties.driveInterface) {
       case SPLITSTICK:
+        move = RobotContainer.driveStick.getY() * (-1);
+        turn = RobotContainer.turnStick.getX();
+        break;
       case THREENEWBB: // add 2 sticks
         move = RobotContainer.driveStick.getY() * (-1);
         turn = RobotContainer.turnStick.getX();
@@ -42,6 +45,10 @@ public class DriveManuallyCommand extends CommandBase {
         move = RobotContainer.xboxController.getRightY();
         turn = RobotContainer.xboxController.getRightX();
         break;
+      default:  // assume at least driveStick and turnStick by default
+        move = RobotContainer.driveStick.getY() * (-1);
+        turn = RobotContainer.turnStick.getX();
+      break;
     }
 
     RobotContainer.driveSubsystem.manualDrive(move, turn * Constants.DriveConstants.turnAdjust);

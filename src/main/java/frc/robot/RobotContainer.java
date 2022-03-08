@@ -22,6 +22,8 @@ import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.ShooterArmPosition;
+import frc.robot.commands.ShooterOneButtonShot;
+import frc.robot.commands.ShooterOneButtonShotPreset;
 import frc.robot.commands.TargetAndShootHigh;
 import frc.robot.commands.TargetAndShootLow;
 import frc.robot.commands.TargetHorizontal;
@@ -422,7 +424,31 @@ public class RobotContainer {
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
 
         /*
+          new JoystickButton(bbr, Constants.OIC2022TEST.PresetClose)
+          .whenActive(
+            new InstantCommand(() -> shooterSubsystem.setShootingSolution(6,0),shooterSubsystem)
+                .andThen(new InstantCommand(() -> shooterSubsystem.tiltShooterArm( (shooterSubsystem.getShootingSolution())[0])))
+                .andThen(new WaitCommand(2))
+                .andThen(new InstantCommand(shooterSubsystem::extendPlunger))  // push plunger; no subsystem requirement, so not to stop motors
+                .andThen(new WaitCommand(1))  // Wait 1 second)
+                .andThen(new InstantCommand(shooterSubsystem::retractPlunger))  // retract plunger
+                .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor))  // stop shooter motor
+              .deadlineWith (
+                  new InstantCommand(() -> shooterSubsystem.startShooterWheelMotor( (shooterSubsystem.getShootingSolution())[1])) // Spin the wheels, continue until the end of the sequence
+              ) // end deadlinewith
+            );
+        */
 
+        new JoystickButton(bbr, Constants.OIC2022TEST.PresetClose)
+          .whenPressed(new ShooterOneButtonShotPreset(6,0)) ;       // shoot at 6ft high target
+
+        new JoystickButton(bbr, Constants.OIC2022TEST.PresetMiddle)
+          .whenPressed(new ShooterOneButtonShotPreset(9,0)) ;       // shoot at 6ft high target
+
+        new JoystickButton(bbr, Constants.OIC2022TEST.PresetFar)
+          .whenPressed(new ShooterOneButtonShotPreset(14,0)) ;       // shoot at 14ft high target
+
+        /*
         // Intake FORWARD test
         new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeInButton)
           .whenPressed(new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem))

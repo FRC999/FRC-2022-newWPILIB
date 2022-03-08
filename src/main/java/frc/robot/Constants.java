@@ -228,6 +228,12 @@ public final class Constants {
         public static final int ZeroClimberEncoders = 10;
 
         // buttonbox2 (right)
+
+        // Presents - close, medium, far
+        public static final int PresetClose = 3;
+        public static final int PresetMiddle = 4;
+        public static final int PresetFar = 5;
+
         public static final int ClimberUp1 = 8;
         public static final int ClimberDown1 = 9;
        
