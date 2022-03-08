@@ -24,3 +24,4 @@ Get the 90 degree USB-C and connect to the roborio, 2nd monitor and other place
 Talk to drivers re: setup/cleanup procedure
 
 Add commands to interrupt drive, shooter, intake, climber subsystems
+    * done but not binded to a button
