@@ -370,9 +370,9 @@ public final class Constants {
          */
 
         // Sensor phase - to ensure that sensor is positive when the output is positive
-        public final static boolean[] SensorPhase =  {false,false};
+        public final static boolean[] SensorPhase =  {false,true};
         // Invert shooter motor
-        public final static boolean[] MotorInvert =  {true,true};  
+        public final static boolean[] MotorInvert =  {true,false};  
 
         // Peak Output - forward and reverse*(-1)
         public final static double PeakOutput = 0.3;
