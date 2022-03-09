@@ -159,6 +159,18 @@ public final class Constants {
         public static double turnAdjust = 0.6;
 
     }
+    /**
+     * A class containing relevant measurements of the field, ideally for use in autonomous.
+     * 
+     */
+    public static final class FieldConstants {
+        //distance from the wall of the hub to the edge of the tarmac at the widest point
+        public final static double tarmacWidestPoint = 84.75; 
+        //distance from the wall of the hub to the balls located around the tarmac
+        public final static double ballFromHub = 116.17;
+        //distance from tarmac tape to ball
+        public final static double tapeToBall = 40.44;
+    }
 
     public static final class OIConstants {
         public static final int driverControllerPort = 1;

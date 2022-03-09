@@ -7,6 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -19,8 +21,10 @@ import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.DriveManuallyCommand;
+import frc.robot.commands.DriveFromHubAutonomousCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
+import frc.robot.commands.OneBallAuto;
 import frc.robot.commands.ShooterArmPosition;
 import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
@@ -28,6 +32,7 @@ import frc.robot.commands.TargetAndShootHigh;
 import frc.robot.commands.TargetAndShootLow;
 import frc.robot.commands.TargetHorizontal;
 import frc.robot.commands.TargetVertical;
+import frc.robot.commands.TwoBallAuto;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -113,12 +118,16 @@ public class RobotContainer {
 
   public static NavigationControlSubsystem navigationControlSubsystem;
 
+  public static SendableChooser<Command> autoChooser = new SendableChooser<>();
+
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-
-
+    
+    //Configure SendableChooser to contain autonomous routines.
+    AutonomousConfigure();
+    
     // Configure the button bindings
     configureDriverInterface();
 
@@ -146,6 +155,16 @@ public class RobotContainer {
 
     configureButtonBindings();
 
+  }
+
+  public void AutonomousConfigure() {
+    //port autonomous routines as commands
+    //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
+    autoChooser.setDefaultOption("Drive From Hub", new DriveFromHubAutonomousCommand());
+    autoChooser.addOption("OneBallAuto", new OneBallAuto());
+    autoChooser.addOption("Two Ball Auto", new TwoBallAuto());
+    //port SendableChooser data to the SmartDashboard
+    SmartDashboard.putData(autoChooser);
   }
 
   /**
@@ -516,6 +535,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return placeholderAutoCommand;
+    return RobotContainer.autoChooser.getSelected();
   }
 }
