@@ -107,8 +107,9 @@ public final class Constants {
         public static boolean kLeftEncoderReversed = false;
         public static boolean kRightEncoderReversed = true;
 
+        // TODO: Measure EncoderCPR - they're not attached to the wheelshaft, but rather to the Falcons
         public static final int kEncoderCPR = 1024;
-        public static final double kWheelDiameterInches = 6;
+        public static final double kWheelDiameterInches = 5;
         public static final double kEncoderDistancePerPulse =
                 // Assumes the encoders are directly mounted on the wheel shafts
                 (kWheelDiameterInches * Math.PI) / (double) kEncoderCPR;
