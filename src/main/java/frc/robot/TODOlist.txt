@@ -2,8 +2,15 @@ This is a short-term TODO list
 
 For 03/09:
 
+*** High Priority
+
+Measure kEncoderCPR (line 111 in Constants) to check the driving distance per 1 ft
+
+*** Regular priority
+
 Check the autonomous routine
 Add the plunger out to on DisabledInit, and check that plunger in on Teleop init
+Limelight auto routine
 
 
 For 03/08:
