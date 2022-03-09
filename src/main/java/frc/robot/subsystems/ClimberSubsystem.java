@@ -51,16 +51,17 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void initializeClimberMotorControllers() {
-    climberMotorControllers[0].configFactoryDefault();
-    climberMotorControllers[1].configFactoryDefault();
 
-    climberMotorControllers[0].setInverted(InvertType.InvertMotorOutput);
+    for (int i=0;i<=1;i++) {
+      climberMotorControllers[i].configFactoryDefault();
 
-    //climberMotorControllers[1].follow(climberMotorControllers[0]);  // not setting FOLLOWER mode since one climber is slower than the other.
-    //climberMotorControllers[1].setInverted(InvertType.FollowMaster); 
+      climberMotorControllers[i].setInverted(Constants.ClimberConstants.MotorInvert[i]);
 
-    climberMotorControllers[0].set(ControlMode.PercentOutput, 0);
-    climberMotorControllers[1].set(ControlMode.PercentOutput, 0);
+      //climberMotorControllers[1].follow(climberMotorControllers[0]);  // not setting FOLLOWER mode since one climber is slower than the other.
+      //climberMotorControllers[1].setInverted(InvertType.FollowMaster); 
+
+      climberMotorControllers[i].set(ControlMode.PercentOutput, 0);
+    }
   }
 
   public void configureClimberMotorControllerForPosition() {
