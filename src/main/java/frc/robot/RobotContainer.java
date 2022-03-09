@@ -20,6 +20,7 @@ import frc.robot.Constants.RobotProperties;
 import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
+import frc.robot.commands.CommandInterruptor;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.DriveFromHubAutonomousCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
@@ -399,6 +400,10 @@ public class RobotContainer {
         // *****************
         // ***  BBLEFT   ***
         // *****************
+
+        // Command interruptor - interrupt interruptable commands that use motors - in case they get stuck
+        new JoystickButton(bbl, Constants.OIC2022TEST.CommandInterruptorSwitch)
+        .whenPressed(new CommandInterruptor());
 
         JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
 

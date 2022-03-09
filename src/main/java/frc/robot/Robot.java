@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import java.util.Objects;
+
 import javax.tools.DiagnosticCollector;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -90,6 +92,11 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
+    if (isTeleop()) { // if we got here from TeleOp
+      if (Constants.RobotProperties.isClimber && ! Objects.isNull(m_robotContainer) && ! Objects.isNull(RobotContainer.shooterSubsystem) ) { // if ShooterSubsystem is created
+        RobotContainer.shooterSubsystem.extendPlunger();  // engage climber lock - tied to the plunger solenoid
+      }
+    }
 
     // disable loggin if needed
     if (Constants.RobotProperties.robotLogging) {
@@ -101,6 +108,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
+
+
   }
 
   /**

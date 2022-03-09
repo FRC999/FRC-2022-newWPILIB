@@ -1,5 +1,11 @@
 This is a short-term TODO list
 
+For 03/09:
+
+Check the autonomous routine
+Add the plunger out to on DisabledInit, and check that plunger in on Teleop init
+
+
 For 03/08:
 
 *** High Priority
