@@ -3,23 +3,23 @@ This is a short-term TODO list
 For 03/08:
 
 *** High Priority
-Ask Nolan to solder wires in the buttonbox
+++++ Ask Nolan to solder wires in the buttonbox
 Talk to drivers re: what to do if you're stuck either with the intake or with the shooter or plunger
 
 *** Regular priority
 
-Check the climber arm speed
-Check the right climber arm direction
-Check the encoders of both climber arms
-Check the auto-shoot sequence (shoot without a ball, but check that the whole sequence goes from beginning to end)
+++++ Check the climber arm speed
+++++ Check the right climber arm direction
+++++ Check the encoders of both climber arms
+++++ Check the auto-shoot sequence (shoot without a ball, but check that the whole sequence goes from beginning to end)
 
-Create Phoenixvision feed on SmartDashboard
-Check why PhoenixVision does not output on Driver Station (or connect direct camera feed there)
-Reorganize icons on the SmartDashboard
++++++ Create Phoenixvision feed on SmartDashboard
++++++ Check why PhoenixVision does not output on Driver Station (or connect direct camera feed there)
+++   Reorganize icons on the SmartDashboard
 
 Look at the autonomous rooutine
 
-Get the 90 degree USB-C and connect to the roborio, 2nd monitor and other place
++++++ Get the 90 degree USB-C and connect to the roborio, 2nd monitor and other place
 
 Talk to drivers re: setup/cleanup procedure
 
