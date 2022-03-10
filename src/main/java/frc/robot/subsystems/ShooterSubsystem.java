@@ -491,6 +491,13 @@ public class ShooterSubsystem extends SubsystemBase {
             /30.48);
   }
 
+  public boolean targetDistanceNotLess(double distance){
+    return getTargetDistance()>=distance; }
+
+  public boolean targetDistanceNotMore(double distance){
+      return getTargetDistance()<=distance; }
+  
+
   // Methods that get Limelight information used in targeting
 
   public double getTargetVerticalOffset() { // -24.85 to 24.85 degrees
