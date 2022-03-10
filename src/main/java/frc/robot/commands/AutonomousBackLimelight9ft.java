@@ -10,8 +10,10 @@ import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
 
 /**
+ * Intake down
  * Drive back for up to 2 seconds, until the Limelight shows you're 9 ft from the target
  * Stop
+ * Wait 0.5s
  * Shoot 9ft preset
  */
 
@@ -28,12 +30,14 @@ public class AutonomousBackLimelight9ft extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       sequence(
+        new IntakeDown(),
         race(
           new WaitCommand(2),
           new InstantCommand(() -> RobotContainer.driveSubsystem.manualDrive(-0.5, 0),RobotContainer.driveSubsystem)
             .until(() -> RobotContainer.shooterSubsystem.targetDistanceNotLess(SHOOTINGDISTANCE)) )
         ),
         new DriveStopCommand(),
+        new WaitCommand(0.5),
         new ShooterOneButtonShotPreset((int)SHOOTINGDISTANCE, 0)
     );
   }
