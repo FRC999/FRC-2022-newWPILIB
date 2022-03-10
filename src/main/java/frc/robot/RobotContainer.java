@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotProperties;
+import frc.robot.commands.AutonomousBackLimelight9ft;
 import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
@@ -164,6 +165,7 @@ public class RobotContainer {
     autoChooser.setDefaultOption("Drive From Hub", new DriveFromHubAutonomousCommand());
     autoChooser.addOption("OneBallAuto", new OneBallAuto());
     autoChooser.addOption("Two Ball Auto", new TwoBallAuto());
+    autoChooser.addOption("OneBall Lime", new AutonomousBackLimelight9ft()); // one-ball limelight-driven command
     //port SendableChooser data to the SmartDashboard
     SmartDashboard.putData(autoChooser);
   }
