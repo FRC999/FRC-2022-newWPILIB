@@ -407,6 +407,9 @@ public class RobotContainer {
         new JoystickButton(bbl, Constants.OIC2022TEST.CommandInterruptorSwitch)
         .whenPressed(new CommandInterruptor());
 
+        new JoystickButton(bbl, Constants.OIC2022TEST.SpecialCommand)
+        .whenPressed(new AutonomousBackLimelight9ft());
+
         JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
 
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown0)

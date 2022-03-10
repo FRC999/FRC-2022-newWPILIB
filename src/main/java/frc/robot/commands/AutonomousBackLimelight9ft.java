@@ -31,14 +31,16 @@ public class AutonomousBackLimelight9ft extends SequentialCommandGroup {
     addCommands(
       sequence(
         new IntakeDown(),
+        new CalibrateShooterArmWithLimitSwitch(),
         race(
-          new WaitCommand(2),
-          new InstantCommand(() -> RobotContainer.driveSubsystem.manualDrive(-0.5, 0),RobotContainer.driveSubsystem)
-            .until(() -> RobotContainer.shooterSubsystem.targetDistanceNotLess(SHOOTINGDISTANCE)) )
+          new WaitCommand(7),
+          new DriveUntilDistanceLimelight()
         ),
+        
         new DriveStopCommand(),
         new WaitCommand(0.5),
         new ShooterOneButtonShotPreset((int)SHOOTINGDISTANCE, 0)
+      )
     );
   }
 }

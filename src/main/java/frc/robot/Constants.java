@@ -241,6 +241,8 @@ public final class Constants {
         public static final int AutoShootHighButton = 8;
         public static final int ZeroClimberEncoders = 10;
 
+        public static final int SpecialCommand = 8;
+
         // buttonbox2 (right)
 
         // Presents - close, medium, far

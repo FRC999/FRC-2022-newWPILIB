@@ -151,7 +151,7 @@ public class ShooterSubsystem extends SubsystemBase {
         Constants.ShooterConstants.shooterSolenoidChannels[0],
         Constants.ShooterConstants.shooterSolenoidChannels[1]);
 
-      retractPlunger(); // do it at the beginning of TeleOp
+      // retractPlunger(); // do it at the beginning of TeleOp
 
       // Enable PID for the tilt motor
       configureTiltMotorControllerForPosition();
