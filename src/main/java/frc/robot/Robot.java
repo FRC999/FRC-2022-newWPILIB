@@ -96,6 +96,9 @@ public class Robot extends TimedRobot {
       if (Constants.RobotProperties.isClimber && ! Objects.isNull(m_robotContainer) && ! Objects.isNull(RobotContainer.shooterSubsystem) ) { // if ShooterSubsystem is created
         RobotContainer.shooterSubsystem.extendPlunger();  // engage climber lock - tied to the plunger solenoid
       }
+      if (! Objects.isNull(m_robotContainer) && ! Objects.isNull(RobotContainer.driveSubsystem) ) { // if DriveSubsystem is created
+        RobotContainer.driveSubsystem.driveTrainCoastMode();  // leave the drivetrain in COAST at the end of the game
+      }
     }
 
     // disable loggin if needed
