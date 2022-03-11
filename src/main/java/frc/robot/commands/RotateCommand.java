@@ -11,10 +11,15 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.IMUPassthroughSubsystem;
 
 public class RotateCommand extends CommandBase {
-  /** Creates a new AutonomousPlaceholderCommand. */
-  public RotateCommand() {
-      addRequirements(RobotContainer.driveSubsystem);
+  /** Rotate to angle
+   * POSTIIVE DOUBLE : COUNTERCLOCKWISE
+   * NEGATIVE DOUBLE : CLOCKWISE
+   */
+  double rotateAngle;
+  public RotateCommand(double angle) {
+    addRequirements(RobotContainer.driveSubsystem);
     //addRequirements(IMUPassthroughSubsystem);
+    rotateAngle = angle;
   }
 
   double initialYaw;
@@ -29,8 +34,7 @@ public class RotateCommand extends CommandBase {
   public void initialize() {
       
       initialYaw = RobotContainer.imuSubsystem.getYaw();
-      targetYaw = initialYaw*-1;
-      //targetYaw = initialYaw+180;
+      targetYaw = initialYaw+rotateAngle;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -42,14 +46,15 @@ public class RotateCommand extends CommandBase {
     } else if (currentYaw < targetYaw - margin) {
         RobotContainer.driveSubsystem.manualDrive(0, turnSpeed);
     } else {
-        RobotContainer.driveSubsystem.manualDrive(0, turnSpeed);
         acceptable = true;
     }
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) { }
+  public void end(boolean interrupted) { 
+    RobotContainer.driveSubsystem.manualDrive(0, 0);
+  }
 
   // Returns true when the command should end.
   @Override

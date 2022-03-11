@@ -20,13 +20,13 @@ import frc.robot.Constants.RobotProperties;
 import frc.robot.commands.AutonomousBackLimelight9ft;
 import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.AutonomousTrajectoryRioCommand;
+import frc.robot.commands.AutonomousTwoBallLimelight;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.CommandInterruptor;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.DriveFromHubAutonomousCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
-import frc.robot.commands.OneBallAuto;
 import frc.robot.commands.ShooterArmPosition;
 import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
@@ -162,9 +162,8 @@ public class RobotContainer {
   public void AutonomousConfigure() {
     //port autonomous routines as commands
     //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
-    autoChooser.setDefaultOption("Drive From Hub", new DriveFromHubAutonomousCommand());
-    autoChooser.addOption("OneBallAuto", new OneBallAuto());
-    autoChooser.addOption("Two Ball Auto", new TwoBallAuto());
+    autoChooser.setDefaultOption("One Ball Auto", new AutonomousBackLimelight9ft());
+    autoChooser.addOption("Two Ball Auto", new AutonomousTwoBallLimelight());
     autoChooser.addOption("OneBall Lime", new AutonomousBackLimelight9ft()); // one-ball limelight-driven command
     //port SendableChooser data to the SmartDashboard
     SmartDashboard.putData(autoChooser);
@@ -409,6 +408,9 @@ public class RobotContainer {
 
         new JoystickButton(bbl, Constants.OIC2022TEST.SpecialCommand)
         .whenPressed(new AutonomousBackLimelight9ft());
+
+        new JoystickButton(bbl, Constants.OIC2022TEST.SpecialCommand2)
+        .whenPressed(new AutonomousTwoBallLimelight());
 
         JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
 

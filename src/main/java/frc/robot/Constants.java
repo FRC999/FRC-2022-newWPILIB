@@ -172,8 +172,8 @@ public final class Constants {
         //distance from tarmac tape to ball
         public final static double tapeToBall = 40.44;
 
-        public final static double turnMargin = 5.0;
-        public final static double turnSpeed = 0.5;
+        public final static double turnMargin = 1.0;
+        public final static double turnSpeed = 0.3;
     }
 
     public static final class OIConstants {
@@ -243,8 +243,10 @@ public final class Constants {
         public static final int AutoShootLowButton = 7;
         public static final int AutoShootHighButton = 8;
         public static final int ZeroClimberEncoders = 10;
-
+        
+        //TODO: TEST BUTTONS (CURRENTLY USED FOR AUTO COMMANDS)
         public static final int SpecialCommand = 8;
+        public static final int SpecialCommand2 = 7;
 
         // buttonbox2 (right)
 
