@@ -30,14 +30,14 @@ public class AutonomousTwoBallLimelight extends SequentialCommandGroup {
           new AutonomousDriveStraight(0.3)
         ),
         new InstantCommand(RobotContainer.intakeSubsystem::stopIntakeMotor,RobotContainer.intakeSubsystem),
-        new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor,RobotContainer.shooterSubsystem) 
-      ),
-      race(
-        new WaitCommand(2.0),
-        new AutonomousDriveStraight(-0.3)
-      ),
-      new RotateCommand(-90),
-      new ShooterOneButtonShotPreset((int)9, 0)
+        new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor,RobotContainer.shooterSubsystem),
+        race(
+          new WaitCommand(2.0),
+          new AutonomousDriveStraight(-0.3)
+        ),
+        new RotateCommand(-90),
+        new ShooterOneButtonShotPreset((int)9, 0)
+      )
     );
   }
 }

@@ -1,0 +1,60 @@
+*********************************
+* Driver Station Setup checlist *
+*********************************
+
+Connect extension cord and make sure it's powereed up
+Setup driver station laptop
+Plugin USB hub
+Seup three joysticks (all plugged into USB hub):
+ - turnstick on the right of the laptop
+ - drivestick on the left of the laptop
+ - auxstick left of the drivestick
+Setup second monotor to the left of the auxstick
+ - plugin the USB power into the monitor
+ - plugin the HDMI mini into the monitor and connect to the laptop
+Setup buttonbox to the left of the second monitor
+ - plugin two USB A/B cables into the buttonbox and the USB hub
+Turn on the laptop
+ - Login and Make sure the second monitor works
+Start:
+ - FRC Driver Station
+ - SmartDashboard 2022
+Move SmartDashboard to the second monitor and maximize
+Check the order of joysticks/buttonboxes from right to left with the driver station
+Check visibility of game elements
+
+****************************
+* Physical Robot checklist *
+****************************
+
+=== BEFORE EACH GAME ===
+
+- Check the power of the battery with the tail
+- Check that air dump valve is closed
+- Check that climber safety pins are removed from both the climber arms and third arm
+- Check that pan limit switch is connected to DIO port 0
+- Check that the robot camera cap is removed
+- Check that the on-board USB battery that is used by camera and network switch is charged
+- Check that both network switch and Pi are plugged into the USB battery
+- Check that both the camera and the network switch are working (green lights at the network switch)
+- Precharge pneumatics and make sure that the intake is UP before placing the robot on the field
+
+=== AFTER EACH GAME ===
+
+- Replace the battery
+- Cap the driver camera if needed
+- unplug devices from the USB battery if needed
+- change the USB battery (may need to do so on the robot)
+- install climber safety pins if needed in climber arms and third arm
+- dump air by opening the air valve if needed
+- perform visual inspection of the robot for dents/missing parts
+
+***************************************************
+* Physical Robot placement and Autonomous Routine *
+***************************************************
+
+Robot should be placed no greater than 7ft from the target (preferably 6ft), facing the target
+It should not be placed too close to the target (to make sure that the camera sees the target right away)
+Choose OneBallLimelight routine via Sendable Chooser
+ for the Autonomous Routine before the start of the game
+ 
