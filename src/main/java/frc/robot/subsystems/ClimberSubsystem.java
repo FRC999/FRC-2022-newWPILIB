@@ -176,33 +176,13 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void calibrateForwardSlow(int motor) {
-    if (climberLimitsOverride) {
       climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
       climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
-    } else {
-      if (getEncoder(motor) < maxEncoder[motor]) {
-        climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
-        climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
-      } else {
-        climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
-        climberMotorControllers[motor].set(0);
-      }
-    }
   }
 
   public void calibrateBackSlow(int motor) {
-    if (climberLimitsOverride) {
       climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
       climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
-    } else {
-      if (getEncoder(motor) > zeroEncoder[motor]) {
-        climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
-        climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
-      } else {
-        climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
-        climberMotorControllers[motor].set(0);  
-      }
-    }
   }
 
   public int getEncoder(int encoder) {  // should be 0 or 1
