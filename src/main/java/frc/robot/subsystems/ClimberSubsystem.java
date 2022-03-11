@@ -10,6 +10,9 @@ import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -20,6 +23,11 @@ public class ClimberSubsystem extends SubsystemBase {
   private static final double FULLREVERSESPEED = -0.7;
   private static final int CLIMBEREXTENDED = 80000;
   private static final int CLIMBERRETRACTED = 0;
+
+  private static DoubleSolenoid thirdArmSolenoid;
+
+  private int[] zeroEncoder = new int[] {0,0};
+  private int[] maxEncoder = new int[] {10000,10000};
 
 
     private WPI_TalonSRX[] climberMotorControllers;
@@ -43,7 +51,14 @@ public class ClimberSubsystem extends SubsystemBase {
 
       // Zero climber encoders
       zeroClimberMotorEncoders();
-    
+
+      for (int i=0;i<=1;i++) {
+        zeroEncoder[i] = getEncoder(i);
+      }
+
+      thirdArmSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM,
+        Constants.ClimberConstants.climberSolenoidChannels[0],
+        Constants.ClimberConstants.climberSolenoidChannels[1]); 
     }
 
 
@@ -159,13 +174,23 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void calibrateForwardSlow(int motor) {
-    climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
-    climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
+    if (getEncoder(motor) < maxEncoder[motor]) {
+      climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
+      climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
+    } else {
+      climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
+      climberMotorControllers[motor].set(0);
+    }
   }
 
   public void calibrateBackSlow(int motor) {
-    climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
-    climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
+    if (getEncoder(motor) > zeroEncoder[motor]) {
+      climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
+      climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
+    } else {
+      climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
+      climberMotorControllers[motor].set(0);  
+    }
   }
 
   public int getEncoder(int encoder) {  // should be 0 or 1
@@ -197,6 +222,15 @@ public class ClimberSubsystem extends SubsystemBase {
     climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
     climberMotorControllers[motor].set(0);
   }
+
+  public void extendThirdArm() {
+    thirdArmSolenoid.set(Value.kForward);
+  }
+
+  public void retractThirdArm() {
+    thirdArmSolenoid.set(Value.kReverse);
+  }
+
 
   @Override
   public void periodic() {

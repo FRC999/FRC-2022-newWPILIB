@@ -365,6 +365,8 @@ public final class Constants {
 
     public static final class ClimberConstants {
 
+        public static int[] climberSolenoidChannels = new int[] { 4 , 5 };
+
         public static int[] climberMotorPortIDs = new int[2];
 
         // index 0 = forward

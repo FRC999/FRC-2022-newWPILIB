@@ -436,9 +436,9 @@ public class RobotContainer {
 
 
         // Shooter plunger and climber arms lock - same pneumatics
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterPlungerButton)
-          .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem))
-          .whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
+        new JoystickButton(bbl, Constants.OIC2022TEST.ShooterPlungerButton)
+          .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem));
+          //.whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
 
         // *****************
         // ***  BBRIGHT   ***
@@ -446,13 +446,19 @@ public class RobotContainer {
 
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown1)
           //.and(climberSafetySwitch)
-          .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
+          .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
     
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp1)
           //.and(climberSafetySwitch)
-          .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
+          .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
+
+        new JoystickButton(bbr, 2)
+          //.and(climberSafetySwitch)
+          .whenPressed(new  InstantCommand(climberSubsystem::extendThirdArm,climberSubsystem));
+        new JoystickButton(bbr, 1)
+          .whenPressed(new InstantCommand(climberSubsystem::retractThirdArm,climberSubsystem));
 
         /*
           new JoystickButton(bbr, Constants.OIC2022TEST.PresetClose)
