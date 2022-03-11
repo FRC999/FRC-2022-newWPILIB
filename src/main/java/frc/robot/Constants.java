@@ -163,13 +163,16 @@ public final class Constants {
      * A class containing relevant measurements of the field, ideally for use in autonomous.
      * 
      */
-    public static final class FieldConstants {
+    public static final class AutoConstants {
         //distance from the wall of the hub to the edge of the tarmac at the widest point
         public final static double tarmacWidestPoint = 84.75; 
         //distance from the wall of the hub to the balls located around the tarmac
         public final static double ballFromHub = 116.17;
         //distance from tarmac tape to ball
         public final static double tapeToBall = 40.44;
+
+        public final static double turnMargin = 5.0;
+        public final static double turnSpeed = 0.5;
     }
 
     public static final class OIConstants {

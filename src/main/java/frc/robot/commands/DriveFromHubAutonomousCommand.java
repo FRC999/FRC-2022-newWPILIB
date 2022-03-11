@@ -16,7 +16,7 @@ public class DriveFromHubAutonomousCommand extends CommandBase {
     addRequirements(RobotContainer.driveSubsystem);
   }
 
-  double distanceValue = Constants.FieldConstants.tarmacWidestPoint;
+  double distanceValue = Constants.AutoConstants.tarmacWidestPoint;
   double encodedDistance = Constants.DriveConstants.kEncoderDistancePerPulse / distanceValue;
   //-1 should be backwards
   int sign = -1;

@@ -16,7 +16,7 @@ public class DriveFromTapeAutonomousCommand extends CommandBase {
     addRequirements(RobotContainer.driveSubsystem);
   }
 
-  double distanceValue = Constants.FieldConstants.tapeToBall;
+  double distanceValue = Constants.AutoConstants.tapeToBall;
   double encodedDistance = Constants.DriveConstants.kEncoderDistancePerPulse / distanceValue;
   int sign = 1;
   int finalVal = (int)encodedDistance*sign;
