@@ -18,7 +18,7 @@ import frc.robot.Constants;
 
 public class ClimberSubsystem extends SubsystemBase {
 
-  private static final double CALIBRATEMOTORPOWER = 1.0;
+  private static final double CALIBRATEMOTORPOWER = 0.5;
   private static final double FULLFORWARDSPEED = 0.7;
   private static final double FULLREVERSESPEED = -0.7;
   private static final int CLIMBEREXTENDED = 80000;
@@ -29,7 +29,7 @@ public class ClimberSubsystem extends SubsystemBase {
   private static DoubleSolenoid thirdArmSolenoid;
 
   private int[] zeroEncoder = new int[] {0,0};
-  private int[] maxEncoder = new int[] {10000,10000};
+  private int[] maxEncoder = new int[] {19833,19833};
 
 
   private WPI_TalonSRX[] climberMotorControllers;
@@ -180,7 +180,7 @@ public class ClimberSubsystem extends SubsystemBase {
       climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
       climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
     } else {
-      if (getEncoder(motor) < maxEncoder[motor]) {
+      if (getEncoder(motor) > zeroEncoder[motor]){
         climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
         climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER);
       } else {
@@ -195,7 +195,7 @@ public class ClimberSubsystem extends SubsystemBase {
       climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
       climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
     } else {
-      if (getEncoder(motor) > zeroEncoder[motor]) {
+      if (getEncoder(motor) < maxEncoder[motor]) {
         climberMotorControllers[motor].setNeutralMode(NeutralMode.Brake);
         climberMotorControllers[motor].set(ControlMode.PercentOutput, CALIBRATEMOTORPOWER*(-1));
       } else {

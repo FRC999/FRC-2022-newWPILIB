@@ -421,12 +421,12 @@ public class RobotContainer {
 
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown0)
           //.and(climberSafetySwitch)
-          .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(0),climberSubsystem))
+          .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
     
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp0)
           //.and(climberSafetySwitch)
-          .whenActive(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
+          .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
 
         // Climber arms together
