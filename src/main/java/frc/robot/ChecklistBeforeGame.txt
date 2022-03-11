@@ -35,6 +35,8 @@ Check visibility of game elements
 - Check that pan limit switch is connected to DIO port 0
 - Check that the robot camera cap is removed
 - Check that the on-board USB battery that is used by camera and network switch is charged
+- Check that both network switch and Pi are plugged into the USB battery
+- Check that both the camera and the network switch are working (green lights at the network switch)
 - Precharge pneumatics and make sure that the intake is UP before placing the robot on the field
 
 ***************************************************
@@ -45,3 +47,4 @@ Robot should be placed no greater than 7ft from the target (preferably 6ft), fac
 It should not be placed too close to the target (to make sure that the camera sees the target right away)
 Choose OneBallLimelight routine via Sendable Chooser
  for the Autonomous Routine before the start of the game
+ 
