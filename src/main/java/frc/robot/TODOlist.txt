@@ -3,6 +3,8 @@ This is a short-term TODO list
 For 3/11:
 
 Phase/inversion for climber motors, assign to the right buttons
+Check that the plunger-out button is working on bottom-yellow button
+Talk to the drivers re: new button assignments and safety/command cancel
 
 For 03/10:
 
