@@ -406,11 +406,16 @@ public class RobotContainer {
         new JoystickButton(bbl, Constants.OIC2022TEST.CommandInterruptorSwitch)
         .whenPressed(new CommandInterruptor());
 
+        // Climber Limits Override Switch
+        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberLimitsOverrideSwitch)
+          .whenPressed(new InstantCommand(climberSubsystem::climberLimitsOverrideSet))
+          .whenReleased(new InstantCommand(climberSubsystem::climberLimitsOverrideUnset));
+
         new JoystickButton(bbl, Constants.OIC2022TEST.SpecialCommand)
-        .whenPressed(new AutonomousBackLimelight9ft());
+          .whenPressed(new AutonomousBackLimelight9ft());
 
         new JoystickButton(bbl, Constants.OIC2022TEST.SpecialCommand2)
-        .whenPressed(new AutonomousTwoBallLimelight());
+          .whenPressed(new AutonomousTwoBallLimelight());
 
         JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
 

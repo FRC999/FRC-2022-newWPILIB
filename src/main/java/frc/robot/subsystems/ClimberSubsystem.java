@@ -24,13 +24,15 @@ public class ClimberSubsystem extends SubsystemBase {
   private static final int CLIMBEREXTENDED = 80000;
   private static final int CLIMBERRETRACTED = 0;
 
+  private boolean climberLimitsOverride;
+
   private static DoubleSolenoid thirdArmSolenoid;
 
   private int[] zeroEncoder = new int[] {0,0};
   private int[] maxEncoder = new int[] {10000,10000};
 
 
-    private WPI_TalonSRX[] climberMotorControllers;
+  private WPI_TalonSRX[] climberMotorControllers;
 
   /** Creates a new ClimberSubsystem. */
   public ClimberSubsystem() {
@@ -231,6 +233,13 @@ public class ClimberSubsystem extends SubsystemBase {
     thirdArmSolenoid.set(Value.kReverse);
   }
 
+  public void climberLimitsOverrideSet() {
+    climberLimitsOverride = true;
+  }
+
+  public void climberLimitsOverrideUnset() {
+    climberLimitsOverride = false;
+  }
 
   @Override
   public void periodic() {
