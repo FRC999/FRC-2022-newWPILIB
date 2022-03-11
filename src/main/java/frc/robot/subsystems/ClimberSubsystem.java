@@ -21,15 +21,13 @@ public class ClimberSubsystem extends SubsystemBase {
   private static final double CALIBRATEMOTORPOWER = 1.0;
   private static final double FULLFORWARDSPEED = 0.7;
   private static final double FULLREVERSESPEED = -0.7;
-  private static final int CLIMBEREXTENDED = 80000;
+  private static final int CLIMBEREXTENDED = 19400;
   private static final int CLIMBERRETRACTED = 0;
-
-  private boolean climberLimitsOverride;
 
   private static DoubleSolenoid thirdArmSolenoid;
 
   private int[] zeroEncoder = new int[] {0,0};
-  private int[] maxEncoder = new int[] {10000,10000};
+  private int[] maxEncoder = new int[] {19400,19400};
 
 
   private WPI_TalonSRX[] climberMotorControllers;
@@ -223,12 +221,13 @@ public class ClimberSubsystem extends SubsystemBase {
     thirdArmSolenoid.set(Value.kReverse);
   }
 
-  public void climberLimitsOverrideSet() {
-    climberLimitsOverride = true;
+  public void extentClimberArm(int motor) {
+    climberMotorControllers[motor].set(ControlMode.Position, maxEncoder[motor]);
+   
   }
 
-  public void climberLimitsOverrideUnset() {
-    climberLimitsOverride = false;
+  public void retractClimberArm(int motor) {
+    climberMotorControllers[motor].set(ControlMode.Position, 0);
   }
 
   @Override

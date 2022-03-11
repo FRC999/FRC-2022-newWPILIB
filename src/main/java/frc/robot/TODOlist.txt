@@ -1,11 +1,15 @@
 This is a short-term TODO list
 
+For 3/11:
+
+Phase/inversion for climber motors, assign to the right buttons
+
 For 03/10:
 
 *** High Priority
 
 Measure kEncoderCPR (line 111 in Constants) to check the driving distance per 1 ft
-Test 1-ball limelight auto command
+*** Test 1-ball limelight auto command
 
 *** Regular priority
 
