@@ -39,6 +39,16 @@ Check visibility of game elements
 - Check that both the camera and the network switch are working (green lights at the network switch)
 - Precharge pneumatics and make sure that the intake is UP before placing the robot on the field
 
+=== AFTER EACH GAME ===
+
+- Replace the battery
+- Cap the driver camera if needed
+- unplug devices from the USB battery if needed
+- change the USB battery (may need to do so on the robot)
+- install climber safety pins if needed in climber arms and third arm
+- dump air by opening the air valve if needed
+- perform visual inspection of the robot for dents/missing parts
+
 ***************************************************
 * Physical Robot placement and Autonomous Routine *
 ***************************************************
