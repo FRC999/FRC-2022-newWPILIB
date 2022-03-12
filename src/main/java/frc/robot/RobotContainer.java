@@ -162,7 +162,7 @@ public class RobotContainer {
   public void AutonomousConfigure() {
     //port autonomous routines as commands
     //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
-    autoChooser.setDefaultOption("One Ball Auto", new AutonomousBackLimelight9ft());
+    autoChooser.setDefaultOption("OneBall Lime", new AutonomousBackLimelight9ft());
     autoChooser.addOption("Two Ball Auto", new AutonomousTwoBallLimelight());
     autoChooser.addOption("OneBall Lime", new AutonomousBackLimelight9ft()); // one-ball limelight-driven command
     //port SendableChooser data to the SmartDashboard
@@ -292,7 +292,18 @@ public class RobotContainer {
         // Shooter arm to 45 +- manual adjustment via Z-tail
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)
           .whenPressed(new ShooterArmPosition());
-          
+
+        // climber PID test
+        new JoystickButton(driveStick, 7)
+          .whenPressed(new InstantCommand(() -> climberSubsystem.extentClimberArm(0)))
+          .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0)))
+          ;
+        new JoystickButton(driveStick, 8)
+          .whenPressed(new InstantCommand(() -> climberSubsystem.retractClimberArm(0)))
+          .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0)))
+          ;
+
+
         // Intake UP/DOWN
         new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
         new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));

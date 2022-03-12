@@ -26,7 +26,7 @@ public class ClimberSubsystem extends SubsystemBase {
 
   private static DoubleSolenoid thirdArmSolenoid;
 
-  private int[] zeroEncoder = new int[] {0,0};
+  private int[] zeroEncoder = new int[] {3000,3000};
 
   private int[] maxEncoder = new int[] {19833,19833};
 
@@ -224,6 +224,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void extentClimberArm(int motor) {
+    System.out.println("PID C E"+motor);
     climberMotorControllers[motor].set(ControlMode.Position, maxEncoder[motor]);
    
   }

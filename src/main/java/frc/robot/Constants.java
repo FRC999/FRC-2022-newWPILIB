@@ -398,10 +398,10 @@ public final class Constants {
         public final static boolean[] MotorInvert =  {false,false};  
 
         // Peak Output - forward and reverse*(-1)
-        public final static double PeakOutput = 1.0; // peak output for all modes
+        public final static double PeakOutput = 0.5; // peak output for all modes
 
         public final static int Izone_0 = 500;
-        public final static double PeakOutput_0 = 1;
+        public final static double PeakOutput_0 = 0.5;
 
         // Closed loop PID parameter values 
         // Modified for Closed loop position control
@@ -416,18 +416,19 @@ public final class Constants {
         public final static double D_CLIMB = 15;
         */
 
+        /*
         public final static double P_CLIMB = 0.8;
         public final static double I_CLIMB = 0.0002;
         public final static double D_CLIMB = 0.8;
-        
+        */
 
         // Gains from CTR example - slow and steady
-        /*
+        
         // Very weak settings
         public final static double P_CLIMB = 0.15;
         public final static double I_CLIMB = 0.0;
         public final static double D_CLIMB = 1;
-        */
+        
         // TODO: adjust gains as needed.
 
         public final static double F_CLIMB = 0; // set to zero for position closed loop
