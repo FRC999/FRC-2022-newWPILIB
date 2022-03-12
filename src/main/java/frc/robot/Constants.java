@@ -206,6 +206,9 @@ public final class Constants {
         // turnstick
 
         public static final int BallIntoShooterButton = 1;
+        public static final int TurnstickIntakeUpButton = 3;
+        public static final int TurnstickIntakeDownButton = 4;
+
         // --
         // Intake Up - 12
         // Intake Down - 11
