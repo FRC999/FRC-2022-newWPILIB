@@ -245,10 +245,13 @@ public final class Constants {
         public static final int ZeroClimberEncoders = 10;
         
         //TODO: TEST BUTTONS (CURRENTLY USED FOR AUTO COMMANDS)
-        public static final int SpecialCommand = 8;
-        public static final int SpecialCommand2 = 7;
+        public static final int Autonomous1ballTestButton = 8;
+        public static final int Autonomous2ballTestButton = 7;
 
         // buttonbox2 (right)
+
+        public static int RetractThirdArm = 1;
+        public static int ExtendThirdArm = 2;
 
         // Presents - close, medium, far
         public static final int PresetClose = 3;
@@ -397,8 +400,8 @@ public final class Constants {
         // Invert shooter motor
         public final static boolean[] MotorInvert =  {false,false};  
 
-        // Peak Output - forward and reverse*(-1)
-        public final static double PeakOutput = 0.5; // peak output for all modes
+        // Peak Output - forward and reverse*(-1) *** IMPORTANT *** 
+        public final static double PeakOutput = 0.5; // TODO: peak output for all modes
 
         public final static int Izone_0 = 500;
         public final static double PeakOutput_0 = 0.5;

@@ -293,14 +293,15 @@ public class RobotContainer {
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)
           .whenPressed(new ShooterArmPosition());
 
-        // climber PID test
+        // climber PID test - left arm
         new JoystickButton(driveStick, 7)
           .whenPressed(new InstantCommand(() -> climberSubsystem.extentClimberArm(0)))
           .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0)))
           ;
+        // climber PID test - right arm
         new JoystickButton(driveStick, 8)
-          .whenPressed(new InstantCommand(() -> climberSubsystem.retractClimberArm(0)))
-          .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0)))
+          .whenPressed(new InstantCommand(() -> climberSubsystem.retractClimberArm(1)))
+          .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(1)))
           ;
 
 
@@ -417,11 +418,31 @@ public class RobotContainer {
         new JoystickButton(bbl, Constants.OIC2022TEST.CommandInterruptorSwitch)
         .whenPressed(new CommandInterruptor());
 
-        new JoystickButton(bbl, Constants.OIC2022TEST.SpecialCommand)
+        new JoystickButton(bbl, Constants.OIC2022TEST.Autonomous1ballTestButton)
           .whenPressed(new AutonomousBackLimelight9ft());
 
-        new JoystickButton(bbl, Constants.OIC2022TEST.SpecialCommand2)
+        new JoystickButton(bbl, Constants.OIC2022TEST.Autonomous2ballTestButton)
           .whenPressed(new AutonomousTwoBallLimelight());
+
+        // Climber arms together
+        // Shooter arm slowly UP
+        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown)
+          .whenPressed(new  InstantCommand(climberSubsystem::calibrateBackSlow,climberSubsystem))
+          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
+        // Shooter arm slowly DOWN
+        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp)
+          .whenPressed(new  InstantCommand(climberSubsystem::calibrateForwardSlow,climberSubsystem))
+          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
+
+
+        // Shooter plunger and climber arms lock - same pneumatics
+        new JoystickButton(bbl, Constants.OIC2022TEST.ShooterPlungerButton)
+          .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem));
+          //.whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
+
+        // *****************
+        // ***  BBRIGHT   ***
+        // *****************
 
         JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
 
@@ -435,26 +456,6 @@ public class RobotContainer {
           .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
 
-        // Climber arms together
-        // Shooter arm slowly UP
-        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown)
-          .whenPressed(new  InstantCommand(climberSubsystem::calibrateForwardSlow,climberSubsystem))
-          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
-        // Shooter arm slowly DOWN
-        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp)
-          .whenPressed(new  InstantCommand(climberSubsystem::calibrateBackSlow,climberSubsystem))
-          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
-
-
-        // Shooter plunger and climber arms lock - same pneumatics
-        new JoystickButton(bbl, Constants.OIC2022TEST.ShooterPlungerButton)
-          .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem));
-          //.whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
-
-        // *****************
-        // ***  BBRIGHT   ***
-        // *****************
-
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp1)
           //.and(climberSafetySwitch)
           .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
@@ -465,10 +466,10 @@ public class RobotContainer {
           .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
 
-        new JoystickButton(bbr, 2)
+        new JoystickButton(bbr, Constants.OIC2022TEST.RetractThirdArm)
           //.and(climberSafetySwitch)
           .whenPressed(new  InstantCommand(climberSubsystem::extendThirdArm,climberSubsystem));
-        new JoystickButton(bbr, 1)
+        new JoystickButton(bbr, Constants.OIC2022TEST.ExtendThirdArm)
           .whenPressed(new InstantCommand(climberSubsystem::retractThirdArm,climberSubsystem));
 
         /*
