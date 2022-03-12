@@ -30,6 +30,7 @@ Check visibility of game elements
 === BEFORE EACH GAME ===
 
 - Check the power of the battery with the tail
+- Unplug/plug back networkj switch, make sure the lights are ON on it
 - Check that air dump valve is closed
 - Check that climber safety pins are removed from both the climber arms and third arm
 - Check that pan limit switch is connected to DIO port 0
