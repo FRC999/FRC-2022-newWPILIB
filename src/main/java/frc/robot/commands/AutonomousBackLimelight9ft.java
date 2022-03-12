@@ -39,8 +39,13 @@ public class AutonomousBackLimelight9ft extends SequentialCommandGroup {
         
         new DriveStopCommand(),
         new WaitCommand(0.5),
-        new ShooterOneButtonShotPreset((int)SHOOTINGDISTANCE, 0)
-      )
+        new ShooterOneButtonShotPreset((int)SHOOTINGDISTANCE, 0),
+        new CalibrateShooterArmWithLimitSwitch(),
+        race(
+          new WaitCommand(5),
+          new DriveUntil14Limelight()
+        )
+       )
     );
   }
 }

@@ -327,8 +327,8 @@ public class RobotContainer {
         // Intake UP/DOWN
         new JoystickButton(turnStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
         new JoystickButton(turnStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
-        new JoystickButton(turnStick, Constants.OIC2022TEST.TurnstickIntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
-        new JoystickButton(turnStick, Constants.OIC2022TEST.TurnstickIntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
+        //new JoystickButton(turnStick, Constants.OIC2022TEST.TurnstickIntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
+        //new JoystickButton(turnStick, Constants.OIC2022TEST.TurnstickIntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
 
         // *****************
         // ***  AUXSTICK ***
