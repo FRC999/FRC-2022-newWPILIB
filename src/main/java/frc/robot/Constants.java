@@ -424,7 +424,7 @@ public final class Constants {
 
         // Gains from CTR example - slow and steady
         
-        // Very weak settings
+        // Very weak settings - worked well on the climber
         public final static double P_CLIMB = 0.15;
         public final static double I_CLIMB = 0.0;
         public final static double D_CLIMB = 1;

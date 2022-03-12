@@ -226,7 +226,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void extentClimberArm(int motor) {
-    System.out.println("PID C E"+motor);
+    //System.out.println("PID C E"+motor);
     climberMotorControllers[motor].set(ControlMode.Position, maxEncoder[motor]);
    
   }

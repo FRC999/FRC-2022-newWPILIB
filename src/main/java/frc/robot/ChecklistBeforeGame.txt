@@ -38,6 +38,7 @@ Check visibility of game elements
 - Check that both network switch and Pi are plugged into the USB battery
 - Check that both the camera and the network switch are working (green lights at the network switch)
 - Precharge pneumatics and make sure that the intake is UP before placing the robot on the field
+- Check with the alliance members that everyone passed the inspection before the match
 
 === AFTER EACH GAME ===
 
