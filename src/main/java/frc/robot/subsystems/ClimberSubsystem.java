@@ -216,10 +216,12 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public void extendThirdArm() {
+    System.out.println("E T A");
     thirdArmSolenoid.set(Value.kForward);
   }
 
   public void retractThirdArm() {
+    System.out.println("R T A");
     thirdArmSolenoid.set(Value.kReverse);
   }
 
