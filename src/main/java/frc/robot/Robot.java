@@ -280,7 +280,7 @@ public class Robot extends TimedRobot {
 
         // Shooter settings
         ShooterConstants.tiltMotorPortID = 4;
-        ShooterConstants.shooterLimitSwitchDIOPort = 0;
+        ShooterConstants.shooterLimitSwitchDIOPort = 1;
 
         // Test Motor settings
         TestHardwareConstants.testMotorPort = 4;
@@ -326,7 +326,7 @@ public class Robot extends TimedRobot {
 
         // Shooter settings
         ShooterConstants.tiltMotorPortID = 10;
-        ShooterConstants.shooterLimitSwitchDIOPort = 0;
+        ShooterConstants.shooterLimitSwitchDIOPort = 1;
         ShooterConstants.shooterWheelMotorPortIDs = new int[] { 11,12 };
         ShooterConstants.shooterSolenoidChannels = new int[] { 1 , 0 };
 

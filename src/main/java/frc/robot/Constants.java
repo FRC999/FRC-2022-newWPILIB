@@ -297,7 +297,7 @@ public final class Constants {
         public static int encoderUnitsPerShaftRotation = 4360;
 
 
-        public static int shooterLimitSwitchDIOPort = 0;    // Limit switch used for shooter arm zeroing encoder
+        public static int shooterLimitSwitchDIOPort = 1;    // Limit switch used for shooter arm zeroing encoder
 
         // Closed loop constants
         // How long we wait for a configuration change to happen before we give up and
@@ -323,7 +323,7 @@ public final class Constants {
         public final static boolean MotorInvert =  true;  
 
         // Peak Output - forward and reverse*(-1)
-        public final static double PeakOutput = 0.5;
+        public final static double PeakOutput = 0.3;
 
         public final static int Izone_0 = 500;
         public final static double PeakOutput_0 = 1;

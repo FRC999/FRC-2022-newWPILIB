@@ -294,15 +294,15 @@ public class RobotContainer {
           .whenPressed(new ShooterArmPosition());
 
         // climber PID test - left arm
-        new JoystickButton(driveStick, 7)
-          .whenPressed(new InstantCommand(() -> climberSubsystem.extentClimberArm(0)))
-          .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0)))
-          ;
+        //new JoystickButton(driveStick, 7)
+        //  .whenPressed(new InstantCommand(() -> climberSubsystem.extentClimberArm(0)))
+        //  .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(0)))
+        //  ;
         // climber PID test - right arm
-        new JoystickButton(driveStick, 8)
-          .whenPressed(new InstantCommand(() -> climberSubsystem.retractClimberArm(1)))
-          .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(1)))
-          ;
+        //new JoystickButton(driveStick, 8)
+        //  .whenPressed(new InstantCommand(() -> climberSubsystem.retractClimberArm(1)))
+        //  .whenReleased(new InstantCommand(() -> climberSubsystem.climberMotorOff(1)))
+        //  ;
 
 
         // Intake UP/DOWN
