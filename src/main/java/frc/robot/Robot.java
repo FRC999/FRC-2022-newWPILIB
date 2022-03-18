@@ -92,9 +92,9 @@ public class Robot extends TimedRobot {
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
   public void disabledInit() {
-      if (! Objects.isNull(m_robotContainer) && ! Objects.isNull(RobotContainer.driveSubsystem) ) { // if DriveSubsystem is created
-        RobotContainer.driveSubsystem.driveTrainCoastMode();  // leave the drivetrain in COAST at the end of the game
-      }
+      //if (! Objects.isNull(m_robotContainer) && ! Objects.isNull(RobotContainer.driveSubsystem) ) { // if DriveSubsystem is created
+      //  RobotContainer.driveSubsystem.driveTrainCoastMode();  // leave the drivetrain in COAST at the end of the game
+      //}
     //}
 
     // disable loggin if needed
@@ -230,7 +230,7 @@ public class Robot extends TimedRobot {
         // Subsystem Settings
         RobotProperties.isIMU = true;
         RobotProperties.isNaVX = true;
-        RobotProperties.driveInterface = DriveInterface.ONESTICK;
+        RobotProperties.driveInterface = DriveInterface.SPLITSTICK;
         RobotProperties.isPneumatics = false;
         RobotProperties.isTEMPShooterTest = false;
 
