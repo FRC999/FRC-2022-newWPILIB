@@ -18,6 +18,7 @@ import frc.robot.Constants.DriveInterface;
 import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.commands.AutonomousBackLimelight9ft;
+import frc.robot.commands.AutonomousDriveLinear;
 import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.AutonomousTwoBallLimelight;
@@ -270,7 +271,7 @@ public class RobotContainer {
       case C2020:
 
         new JoystickButton(turnStick, 11)
-          .whenPressed(new  TESTTenFeetForward())
+          .whenPressed(new  AutonomousDriveLinear(2))
           .whenReleased(new DriveStopCommand());
 
         break;

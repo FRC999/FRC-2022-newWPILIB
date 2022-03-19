@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -19,14 +20,18 @@ public class TESTTenFeetForward extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addRequirements(RobotContainer.driveSubsystem); 
 
+    System.out.println("*** Auto test - L T" +  10*Constants.DriveConstants.ticksPerFoot[0]);
+    System.out.println("*** Auto test - R T" +  10*Constants.DriveConstants.ticksPerFoot[1]);
+
     addCommands(
+      new PrintCommand("****** Starting TEST ...."),
       new InstantCommand(RobotContainer.driveSubsystem::zeroDriveEncoders,RobotContainer.driveSubsystem),
       new InstantCommand(() -> RobotContainer.driveSubsystem.simpleMotionMagic(
         10*Constants.DriveConstants.ticksPerFoot[0],
         10*Constants.DriveConstants.ticksPerFoot[1]),
         RobotContainer.driveSubsystem)
         .until(RobotContainer.driveSubsystem::acceptableLinearError),
-        new DriveStopCommand()
+      new DriveStopCommand()
     );
   }
 }

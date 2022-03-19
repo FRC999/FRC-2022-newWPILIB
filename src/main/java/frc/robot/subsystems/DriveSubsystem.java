@@ -285,7 +285,8 @@ public class DriveSubsystem extends SubsystemBase {
      */
     rightDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
         DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs, DriveConstants.configureTimeoutMs);
+    leftDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
+        DriveConstants.configureTimeoutMs);
 
     /* Motion Magic Configurations */
 
@@ -340,6 +341,9 @@ public class DriveSubsystem extends SubsystemBase {
   
   public boolean acceptableLinearError(int motor){
     double closedLoopError = ((motor==0)?leftDriveTalonFX[0].getClosedLoopError():rightDriveTalonFX[0].getClosedLoopError()) ;
+
+    System.out.println("A C L M " + motor + " E " + closedLoopError);
+
     return Math.abs(closedLoopError) < Constants.DriveConstants.maximumLinearError[motor] ;
   }
 
