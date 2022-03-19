@@ -66,10 +66,10 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     // Engage brake mode
-    //driveTrainBrakeMode();
+    driveTrainBrakeMode();
 
-    // TEST
-    driveTrainCoastMode();
+    // TEST Coast Mode
+    //driveTrainCoastMode();
 
     zeroDriveEncoders();
 
@@ -324,6 +324,14 @@ public class DriveSubsystem extends SubsystemBase {
   public void velocityPid(double leftSpeedTics, double rightSpeedTics) {
     leftDriveTalonFX[0].set(ControlMode.Velocity, leftSpeedTics);
     rightDriveTalonFX[0].set(ControlMode.Velocity, rightSpeedTics);
+  }
+
+  public int angleToTicks(double angle, int motor){
+    return (int)(angle*Constants.DriveConstants.ticksPerDegree[motor]);
+  }
+
+  public int DistanceToTicks(double angle, int motor){
+    return (int)(angle*Constants.DriveConstants.ticksPerFoot[motor]);
   }
 
   // isOnTarget methods that we see in 2021 code were removed as they seem to be

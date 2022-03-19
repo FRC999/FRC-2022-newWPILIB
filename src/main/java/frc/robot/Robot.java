@@ -163,7 +163,7 @@ public class Robot extends TimedRobot {
 
     // Update telemetry
     RobotContainer.smartDashboardSubsystem.updateDriveSubsystemTelemetry();
-    RobotContainer.smartDashboardSubsystem.updatePDPValues();
+    //RobotContainer.smartDashboardSubsystem.updatePDPValues();
 
   }
 
@@ -191,7 +191,7 @@ public class Robot extends TimedRobot {
    */
   private void determineRobotModel() {
     int modelNumber = 0;
-    final int startPosition = 8;
+    final int startPosition = 7;
     for (int inputNumber = startPosition; inputNumber <= 9; inputNumber++) {
       try (DigitalInput input = new DigitalInput(inputNumber)) {
 
@@ -271,15 +271,15 @@ public class Robot extends TimedRobot {
 
         // Drivetrain settings
         DriveConstants.isInvertdGearBox = false;
-        DriveConstants.leftMotorPortID = new int[] { 9 };
-        DriveConstants.rightMotorPortID = new int[] { 10 };
-        DriveConstants.kLeftEncoderPorts = new int[] { 9 };
-        DriveConstants.kRightEncoderPorts = new int[] { 10 };
+        DriveConstants.leftMotorPortID = new int[] { 4,3 };
+        DriveConstants.rightMotorPortID = new int[] { 2,1 };
+        DriveConstants.kLeftEncoderPorts = new int[] { 4,3 };
+        DriveConstants.kRightEncoderPorts = new int[] { 2,1 };
         DriveConstants.kLeftEncoderReversed = false;
         DriveConstants.kRightEncoderReversed = true;
 
-        DriveConstants.ticksPerFoot = new double[] {366369.0/30.0,366511.0/30.0};
-        DriveConstants.ticksPerDegree = new double[] {964147.0/10.0/360.0,973038.0/10.0/360.0};
+        DriveConstants.ticksPerFoot = new double[] {441928.0/30.0,443042.0/30.0};
+        DriveConstants.ticksPerDegree = new double[] {805613.0/10.0/360.0,815114.0/10.0/360.0};
 
         RobotDriveChassisConstants.wheelDiameter = 5;
         RobotDriveChassisConstants.encoderUnitsPerShaftRotation = 2048;
