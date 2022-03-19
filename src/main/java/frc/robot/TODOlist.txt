@@ -1,47 +1,4 @@
 This is a short-term TODO list
 
-For 3/11:
-
-Phase/inversion for climber motors, assign to the right buttons
-Check that the plunger-out button is working on bottom-yellow button
-Talk to the drivers re: new button assignments and safety/command cancel
-
-For 03/10:
-
-*** High Priority
-
-Measure kEncoderCPR (line 111 in Constants) to check the driving distance per 1 ft
-*** Test 1-ball limelight auto command
-
-*** Regular priority
-
-Check the autonomous routine
-Add the plunger out to on DisabledInit, and check that plunger in on Teleop init
-Limelight auto routine
-
-
-For 03/08:
-
-*** High Priority
-++++ Ask Nolan to solder wires in the buttonbox
-Talk to drivers re: what to do if you're stuck either with the intake or with the shooter or plunger
-
-*** Regular priority
-
-++++ Check the climber arm speed
-++++ Check the right climber arm direction
-++++ Check the encoders of both climber arms
-++++ Check the auto-shoot sequence (shoot without a ball, but check that the whole sequence goes from beginning to end)
-
-+++++ Create Phoenixvision feed on SmartDashboard
-+++++ Check why PhoenixVision does not output on Driver Station (or connect direct camera feed there)
-++   Reorganize icons on the SmartDashboard
-
-Look at the autonomous rooutine
-
-+++++ Get the 90 degree USB-C and connect to the roborio, 2nd monitor and other place
-
-Talk to drivers re: setup/cleanup procedure
-
-Add commands to interrupt drive, shooter, intake, climber subsystems
-    * done but not binded to a button
+Do not forget to put the robot back in the BRAKE mode. Search for TEST in the comments
+(it's in COAST now for characterization)
