@@ -187,6 +187,7 @@ public class Robot extends TimedRobot {
    * No jumper:   C2022
    * 9:           DEMOBOARD
    * 8:           FRANKENBOT
+   * 7:           C2020
    */
   private void determineRobotModel() {
     int modelNumber = 0;
@@ -207,6 +208,9 @@ public class Robot extends TimedRobot {
       case 0:
               Constants.RobotProperties.robotModel = RobotModel.C2022;
               break;
+      case 7:
+              Constants.RobotProperties.robotModel = RobotModel.C2020;
+              break;      
       case 8:
               Constants.RobotProperties.robotModel = RobotModel.FRANKENBOT;
               break;
@@ -256,6 +260,36 @@ public class Robot extends TimedRobot {
 
         //Robot.simpleCSVLogger.writeData("******  ---- **** Subsystem Configured", "FRANKENBOT");
         break;
+      case C2020:
+
+        // Subsystem Settings
+        RobotProperties.isIMU = true;
+        RobotProperties.isNaVX = true;
+        RobotProperties.driveInterface = DriveInterface.SPLITSTICK;
+        RobotProperties.isPneumatics = false;
+        RobotProperties.isTEMPShooterTest = false;
+
+        // Drivetrain settings
+        DriveConstants.isInvertdGearBox = false;
+        DriveConstants.leftMotorPortID = new int[] { 9 };
+        DriveConstants.rightMotorPortID = new int[] { 10 };
+        DriveConstants.kLeftEncoderPorts = new int[] { 9 };
+        DriveConstants.kRightEncoderPorts = new int[] { 10 };
+        DriveConstants.kLeftEncoderReversed = false;
+        DriveConstants.kRightEncoderReversed = true;
+
+        DriveConstants.ticksPerFoot = new double[] {366369.0/30.0,366511.0/30.0};
+        DriveConstants.ticksPerDegree = new double[] {964147.0/10.0/360.0,973038.0/10.0/360.0};
+
+        RobotDriveChassisConstants.wheelDiameter = 5;
+        RobotDriveChassisConstants.encoderUnitsPerShaftRotation = 2048;
+        RobotDriveChassisConstants.encoderGearReduction = 6.1;
+
+        // Pneumatics
+
+        //Robot.simpleCSVLogger.writeData("******  ---- **** Subsystem Configured", "FRANKENBOT");
+       break;
+
       case DEMOBOARD:
 
         // Subsystem Settings

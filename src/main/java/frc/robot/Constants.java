@@ -23,7 +23,7 @@ package frc.robot;
 public final class Constants {
 
     public static enum RobotModel {
-        FRANKENBOT, DEMOBOARD, C2022
+        FRANKENBOT, DEMOBOARD, C2022, C2020
     }
 
     public static enum DriveInterface {
