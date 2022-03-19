@@ -243,6 +243,9 @@ public class Robot extends TimedRobot {
         DriveConstants.kLeftEncoderReversed = false;
         DriveConstants.kRightEncoderReversed = true;
 
+        DriveConstants.ticksPerFoot = new double[] {366369.0/30.0,366511.0/30.0};
+        DriveConstants.ticksPerDegree = new double[] {964147.0/10.0/360.0,973038.0/10.0/360.0};
+
         RobotDriveChassisConstants.wheelDiameter = 4;
         RobotDriveChassisConstants.encoderUnitsPerShaftRotation = 2048;
         RobotDriveChassisConstants.encoderGearReduction = 6.1;

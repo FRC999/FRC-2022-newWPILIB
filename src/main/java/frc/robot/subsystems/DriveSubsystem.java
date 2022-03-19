@@ -66,7 +66,12 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     // Engage brake mode
-    driveTrainBrakeMode();
+    //driveTrainBrakeMode();
+
+    // TEST
+    driveTrainCoastMode();
+
+    zeroDriveEncoders();
 
     drive = new DifferentialDrive(leftDriveTalonFX[0], rightDriveTalonFX[0]);
 
@@ -77,6 +82,8 @@ public class DriveSubsystem extends SubsystemBase {
     // drive.setRightSideInverted(false);
 
     configureSimpleMagic();
+
+    zeroDriveEncoders();
 
   }
 

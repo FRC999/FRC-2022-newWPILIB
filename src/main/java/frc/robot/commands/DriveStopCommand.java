@@ -17,7 +17,11 @@ public class DriveStopCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    RobotContainer.driveSubsystem.driveTrainBrakeMode();
+    //RobotContainer.driveSubsystem.driveTrainBrakeMode();
+
+    // TEST
+    RobotContainer.driveSubsystem.driveTrainCoastMode();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.

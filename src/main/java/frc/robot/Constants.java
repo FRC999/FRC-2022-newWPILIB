@@ -159,6 +159,16 @@ public final class Constants {
         // Make smoother turns - see Cheezy Driving
         public static double turnAdjust = 0.6;
 
+        //autoRoutineConstants
+
+        //encoder ticks per foot
+        public static double[] ticksPerFoot = new double[] {};
+
+        //rotational ticks per degree
+        public static double[] ticksPerDegree = new double[] {};
+
+        
+
     }
     /**
      * A class containing relevant measurements of the field, ideally for use in autonomous.
