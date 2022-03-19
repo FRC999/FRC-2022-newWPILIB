@@ -117,6 +117,9 @@ public final class Constants {
         // MotionMagic constants section
 
         // Closed loop constants
+
+        public static int[] maximumLinearError;
+        public static int[] maximumAngleError;
         // How long we wait for a configuration change to happen before we give up and
         // report a failure in milliseconds
         public final static int configureTimeoutMs = 30;
@@ -162,12 +165,10 @@ public final class Constants {
         //autoRoutineConstants
 
         //encoder ticks per foot
-        public static double[] ticksPerFoot = new double[] {};
+        public static int[] ticksPerFoot = new int[] {};
 
         //rotational ticks per degree
-        public static double[] ticksPerDegree = new double[] {};
-
-        
+        public static int[] ticksPerDegree = new int[] {};
 
     }
     /**

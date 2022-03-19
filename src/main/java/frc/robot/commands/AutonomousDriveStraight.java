@@ -11,7 +11,7 @@ public class AutonomousDriveStraight extends CommandBase {
   /** Creates a new AutonomousDriveStraight. */
   double moveSpeed;
   public AutonomousDriveStraight(double speed) {
-    addRequirements(RobotContainer.driveSubsystem);
+    addRequirements(RobotContainer.driveSubsystem); 
     moveSpeed = speed;
   }
 

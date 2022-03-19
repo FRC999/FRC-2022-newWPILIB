@@ -247,8 +247,8 @@ public class Robot extends TimedRobot {
         DriveConstants.kLeftEncoderReversed = false;
         DriveConstants.kRightEncoderReversed = true;
 
-        DriveConstants.ticksPerFoot = new double[] {366369.0/30.0,366511.0/30.0};
-        DriveConstants.ticksPerDegree = new double[] {964147.0/10.0/360.0,973038.0/10.0/360.0};
+        DriveConstants.ticksPerFoot = new int[] {(int)(366369.0/30.0),(int)(366511.0/30.0)};
+        DriveConstants.ticksPerDegree = new int[] {(int)(964147.0/10.0/360.0),(int)(973038.0/10.0/360.0)};
 
         RobotDriveChassisConstants.wheelDiameter = 4;
         RobotDriveChassisConstants.encoderUnitsPerShaftRotation = 2048;
@@ -278,8 +278,11 @@ public class Robot extends TimedRobot {
         DriveConstants.kLeftEncoderReversed = false;
         DriveConstants.kRightEncoderReversed = true;
 
-        DriveConstants.ticksPerFoot = new double[] {441928.0/30.0,443042.0/30.0};
-        DriveConstants.ticksPerDegree = new double[] {805613.0/10.0/360.0,815114.0/10.0/360.0};
+        DriveConstants.ticksPerFoot = new int[] {(int)(441928.0/30.0),(int)(443042.0/30.0)};
+        DriveConstants.ticksPerDegree = new int[] {(int)(805613.0/10.0/360.0),(int)(815114.0/10.0/360.0)};
+
+        DriveConstants.maximumLinearError = new int[] {7000,7000};
+        DriveConstants.maximumAngleError = new int[] {250,250};
 
         RobotDriveChassisConstants.wheelDiameter = 5;
         RobotDriveChassisConstants.encoderUnitsPerShaftRotation = 2048;

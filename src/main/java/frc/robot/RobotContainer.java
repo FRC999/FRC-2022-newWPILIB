@@ -24,12 +24,14 @@ import frc.robot.commands.AutonomousTwoBallLimelight;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.CommandInterruptor;
 import frc.robot.commands.DriveManuallyCommand;
+import frc.robot.commands.DriveStopCommand;
 import frc.robot.commands.DriveFromHubAutonomousCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.ShooterArmPosition;
 import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
+import frc.robot.commands.TESTTenFeetForward;
 import frc.robot.commands.TargetAndShootHigh;
 import frc.robot.commands.TargetAndShootLow;
 import frc.robot.commands.TargetHorizontal;
@@ -264,7 +266,15 @@ public class RobotContainer {
           .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
 
         break;
-              
+
+      case C2020:
+
+        new JoystickButton(turnStick, 11)
+          .whenPressed(new  TESTTenFeetForward())
+          .whenReleased(new DriveStopCommand());
+
+        break;
+
       case C2022:
 
         // Test routine

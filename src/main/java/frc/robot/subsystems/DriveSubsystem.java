@@ -334,6 +334,29 @@ public class DriveSubsystem extends SubsystemBase {
     return (int)(angle*Constants.DriveConstants.ticksPerFoot[motor]);
   }
 
+  public boolean acceptableLinearError() {
+    return acceptableLinearError(0) || acceptableLinearError(1);
+  }
+  
+  public boolean acceptableLinearError(int motor){
+    double closedLoopError = ((motor==0)?leftDriveTalonFX[0].getClosedLoopError():rightDriveTalonFX[0].getClosedLoopError()) ;
+    return Math.abs(closedLoopError) < Constants.DriveConstants.maximumLinearError[motor] ;
+  }
+
+  public boolean acceptableAngleError() {
+    return acceptableDegreeError(0) || acceptableDegreeError(1);
+  }
+
+  public boolean acceptableDegreeError(int motor){
+    double closedLoopError = ((motor==0)?leftDriveTalonFX[0].getClosedLoopError():rightDriveTalonFX[0].getClosedLoopError()) ;
+    return Math.abs(closedLoopError) < Constants.DriveConstants.maximumAngleError[motor] ;
+  }
+
+  public double getDriveError(int motor) {
+    return ((motor==0)?leftDriveTalonFX[0].getClosedLoopError():rightDriveTalonFX[0].getClosedLoopError());// Returns the PID error for Pan motion control;
+  }
+
+
   // isOnTarget methods that we see in 2021 code were removed as they seem to be
   // related to the
   // "manual" trajectory driving rather than Kinematic driving one
