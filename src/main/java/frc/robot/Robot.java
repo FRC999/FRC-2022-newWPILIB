@@ -247,6 +247,8 @@ public class Robot extends TimedRobot {
         DriveConstants.kRightEncoderPorts = new int[] { 10 };
         DriveConstants.kLeftEncoderReversed = false;
         DriveConstants.kRightEncoderReversed = true;
+        DriveConstants.SensorPhase =  new boolean[] {false,false};
+        DriveConstants.MotorInvert =  new boolean[]  {false,true};
 
         DriveConstants.ticksPerFoot = new int[] {(int)(366369.0/30.0),(int)(366511.0/30.0)};
         DriveConstants.ticksPerDegree = new int[] {(int)(964147.0/10.0/360.0),(int)(973038.0/10.0/360.0)};
@@ -278,6 +280,8 @@ public class Robot extends TimedRobot {
         DriveConstants.kRightEncoderPorts = new int[] { 2,1 };
         DriveConstants.kLeftEncoderReversed = false;
         DriveConstants.kRightEncoderReversed = true;
+        DriveConstants.SensorPhase =  new boolean[] {false,false};
+        DriveConstants.MotorInvert =  new boolean[]  {false,true};
 
         DriveConstants.ticksPerFoot = new int[] {(int)(441928.0/30.0),(int)(443042.0/30.0)};
         DriveConstants.ticksPerDegree = new int[] {(int)(805613.0/10.0/360.0),(int)(815114.0/10.0/360.0)};
@@ -315,6 +319,8 @@ public class Robot extends TimedRobot {
         DriveConstants.kRightEncoderPorts = new int[] { 2 };
         DriveConstants.kLeftEncoderReversed = false;
         DriveConstants.kRightEncoderReversed = true;
+        DriveConstants.SensorPhase =  new boolean[] {false,false};
+        DriveConstants.MotorInvert =  new boolean[]  {false,true};
 
         // IMU
         PigeonIMU.pigeonIMUId = 3;
@@ -357,6 +363,8 @@ public class Robot extends TimedRobot {
         DriveConstants.kRightEncoderPorts = new int[] { 1,2 };
         DriveConstants.kLeftEncoderReversed = false;
         DriveConstants.kRightEncoderReversed = true;
+        DriveConstants.SensorPhase =  new boolean[] {true,true};
+        DriveConstants.MotorInvert =  new boolean[]  {true,false};
 
         // IMU
         PigeonIMU.pigeonIMUId = 5;

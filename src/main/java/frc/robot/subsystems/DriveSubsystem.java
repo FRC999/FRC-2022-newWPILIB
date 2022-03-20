@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
+import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import frc.robot.Constants;
@@ -38,30 +39,30 @@ public class DriveSubsystem extends SubsystemBase {
 
     System.out.println("Primary Motor - Left " + DriveConstants.leftMotorPortID[0] + " Primary Motor - Right " + DriveConstants.rightMotorPortID[0] + " Number of motors per side " + DriveConstants.rightMotorPortID.length);
 
+    for (int motor = 0; motor < DriveConstants.leftMotorPortID.length; motor++) {
+      leftDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.leftMotorPortID[motor]);
+      leftDriveTalonFX[motor].configFactoryDefault(); // reset the controller to defaults
+      if (motor == 0) { // setup master
+        leftDriveTalonFX[motor].set(ControlMode.PercentOutput, 0); // set the motor to Percent Output with Default of 0
+        leftDriveTalonFX[motor].setInverted(Constants.DriveConstants.MotorInvert[0]);
+      } else { // setup followers
+        leftDriveTalonFX[motor].follow(leftDriveTalonFX[0]);
+        leftDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
+        System.out.println("Left Follower " + motor);
+      }
+    }
+
     for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
       rightDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.rightMotorPortID[motor]);
       rightDriveTalonFX[motor].configFactoryDefault(); // reset the controller to defaults
 
       if (motor == 0) { // setup master
         rightDriveTalonFX[motor].set(ControlMode.PercentOutput, 0); // set the motor to Percent Output with Default of 0
-        rightDriveTalonFX[motor].setInverted( ! Constants.DriveConstants.isInvertdGearBox); // right side will be inverted
+        rightDriveTalonFX[motor].setInverted( Constants.DriveConstants.MotorInvert[1]);
       } else { // setup followers
         rightDriveTalonFX[motor].follow(rightDriveTalonFX[0]);
         rightDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
         System.out.println("Right Follower " + motor);
-      }
-    }
-
-    for (int motor = 0; motor < DriveConstants.leftMotorPortID.length; motor++) {
-      leftDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.leftMotorPortID[motor]);
-      leftDriveTalonFX[motor].configFactoryDefault(); // reset the controller to defaults
-      if (motor == 0) { // setup master
-        leftDriveTalonFX[motor].set(ControlMode.PercentOutput, 0); // set the motor to Percent Output with Default of 0
-        leftDriveTalonFX[motor].setInverted(Constants.DriveConstants.isInvertdGearBox); // left side will NOT be inverted
-      } else { // setup followers
-        leftDriveTalonFX[motor].follow(leftDriveTalonFX[0]);
-        leftDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
-        System.out.println("Left Follower " + motor);
       }
     }
 
@@ -83,7 +84,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     configureSimpleMagic();
 
-    zeroDriveEncoders();
+    zeroDriveEncoders(); // Needs to be done after configuring Motion Magic
 
   }
 
@@ -194,7 +195,9 @@ public class DriveSubsystem extends SubsystemBase {
   public void zeroDriveEncoders() {
     rightDriveTalonFX[0].setSelectedSensorPosition(0);
     leftDriveTalonFX[0].setSelectedSensorPosition(0);
-    driveTrainCoastMode(); // TODO: figure out why this was introduced in 2020
+    rightDriveTalonFX[0].setSelectedSensorPosition(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx, DriveConstants.configureTimeoutMs);
+    leftDriveTalonFX[0].setSelectedSensorPosition(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx, DriveConstants.configureTimeoutMs);
+    // driveTrainCoastMode(); // TODO: figure out why this was introduced in 2020 - removed
   }
 
   /**
@@ -217,7 +220,29 @@ public class DriveSubsystem extends SubsystemBase {
     // We assume we have the same number of left motors as we have the right ones
     for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
 
+      // Reset motors to defaults - already done during initialization
+      //rightDriveTalonFX[motor].configFactoryDefault();
+      //leftDriveTalonFX[motor].configFactoryDefault();
+      leftDriveTalonFX[motor].setSensorPhase(Constants.DriveConstants.SensorPhase[0]);
+      rightDriveTalonFX[motor].setSensorPhase(Constants.DriveConstants.SensorPhase[1]);
+
+      /* Config the sensor used for Primary PID and sensor direction  - ex */
+      leftDriveTalonFX[motor].configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 
+        Constants.DriveConstants.kPIDLoopIdx,
+        Constants.DriveConstants.configureTimeoutMs);
+
+      /* Config the sensor used for Primary PID and sensor direction  - ex */
+      rightDriveTalonFX[motor].configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 
+        DriveConstants.kPIDLoopIdx,
+        DriveConstants.configureTimeoutMs);
+
+
+      /* Configure motor neutral deadband */
+      rightDriveTalonFX[motor].configNeutralDeadband(DriveConstants.NeutralDeadband, DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].configNeutralDeadband(DriveConstants.NeutralDeadband, DriveConstants.configureTimeoutMs);
+
       /* Set status frame periods to ensure we don't have stale data */
+      
       rightDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 20,
           DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 20,
@@ -226,56 +251,55 @@ public class DriveSubsystem extends SubsystemBase {
           DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_10_Targets, 20,
           DriveConstants.configureTimeoutMs);
+
+      /**
+      * Max out the peak output (for all modes). However you can limit the output of
+      * a given PID object with configClosedLoopPeakOutput().
+      */
+      leftDriveTalonFX[motor].configPeakOutputForward(+1.0, DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].configPeakOutputReverse(-1.0, DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].configNominalOutputForward(0, DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].configNominalOutputReverse(0, DriveConstants.configureTimeoutMs);
+
+      rightDriveTalonFX[motor].configPeakOutputForward(+1.0, DriveConstants.configureTimeoutMs);
+      rightDriveTalonFX[motor].configPeakOutputReverse(-1.0, DriveConstants.configureTimeoutMs);
+      rightDriveTalonFX[motor].configNominalOutputForward(0, DriveConstants.configureTimeoutMs);
+      rightDriveTalonFX[motor].configNominalOutputReverse(0, DriveConstants.configureTimeoutMs);      
+      
+      /* FPID Gains for each side of drivetrain */
+      leftDriveTalonFX[motor].selectProfileSlot(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx);
+      leftDriveTalonFX[motor].config_kP(DriveConstants.SLOT_0, DriveConstants.motionMagicPidP_Value,
+        DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].config_kI(DriveConstants.SLOT_0, DriveConstants.motionMagicPidI_Value,
+        DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].config_kD(DriveConstants.SLOT_0, DriveConstants.motionMagicPidD_Value,
+        DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].config_kF(DriveConstants.SLOT_0, DriveConstants.motionMagicPidF_Value,
+        DriveConstants.configureTimeoutMs);
+
+      leftDriveTalonFX[motor].config_IntegralZone(DriveConstants.SLOT_0, DriveConstants.Izone_0,
+        DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].configClosedLoopPeakOutput(DriveConstants.SLOT_0, DriveConstants.PeakOutput_0,
+        DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].configAllowableClosedloopError(DriveConstants.SLOT_0, 5, DriveConstants.configureTimeoutMs);
+
+      rightDriveTalonFX[motor].selectProfileSlot(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx);
+      rightDriveTalonFX[motor].config_kP(DriveConstants.SLOT_0, DriveConstants.motionMagicPidP_Value,
+        DriveConstants.configureTimeoutMs);
+      rightDriveTalonFX[motor].config_kI(DriveConstants.SLOT_0, DriveConstants.motionMagicPidI_Value,
+        DriveConstants.configureTimeoutMs);
+      rightDriveTalonFX[motor].config_kD(DriveConstants.SLOT_0, DriveConstants.motionMagicPidD_Value,
+        DriveConstants.configureTimeoutMs);
+      rightDriveTalonFX[motor].config_kF(DriveConstants.SLOT_0, DriveConstants.motionMagicPidF_Value,
+        DriveConstants.configureTimeoutMs);
+
+      rightDriveTalonFX[motor].config_IntegralZone(DriveConstants.SLOT_0, DriveConstants.Izone_0,
+        DriveConstants.configureTimeoutMs);
+      rightDriveTalonFX[motor].configClosedLoopPeakOutput(DriveConstants.SLOT_0, DriveConstants.PeakOutput_0,
+        DriveConstants.configureTimeoutMs);
+      rightDriveTalonFX[motor].configAllowableClosedloopError(DriveConstants.SLOT_0, 5, DriveConstants.configureTimeoutMs);
+
     }
-
-    // Leading motors only
-
-    /* Configure motor neutral deadband */
-    rightDriveTalonFX[0].configNeutralDeadband(DriveConstants.NeutralDeadband, DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configNeutralDeadband(DriveConstants.NeutralDeadband, DriveConstants.configureTimeoutMs);
-
-    /**
-     * Max out the peak output (for all modes). However you can limit the output of
-     * a given PID object with configClosedLoopPeakOutput().
-     */
-    leftDriveTalonFX[0].configPeakOutputForward(+1.0, DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configPeakOutputReverse(-1.0, DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configNominalOutputForward(0, DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configNominalOutputReverse(0, DriveConstants.configureTimeoutMs);
-
-    rightDriveTalonFX[0].configPeakOutputForward(+1.0, DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].configPeakOutputReverse(-1.0, DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].configNominalOutputForward(0, DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].configNominalOutputReverse(0, DriveConstants.configureTimeoutMs);
-
-    /* FPID Gains for each side of drivetrain */
-    leftDriveTalonFX[0].config_kP(DriveConstants.SLOT_0, DriveConstants.motionMagicPidP_Value,
-        DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].config_kI(DriveConstants.SLOT_0, DriveConstants.motionMagicPidI_Value,
-        DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].config_kD(DriveConstants.SLOT_0, DriveConstants.motionMagicPidD_Value,
-        DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].config_kF(DriveConstants.SLOT_0, DriveConstants.motionMagicPidF_Value,
-        DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].config_IntegralZone(DriveConstants.SLOT_0, DriveConstants.Izone_0,
-        DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configClosedLoopPeakOutput(DriveConstants.SLOT_0, DriveConstants.PeakOutput_0,
-        DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configAllowableClosedloopError(DriveConstants.SLOT_0, 5, DriveConstants.configureTimeoutMs);
-
-    rightDriveTalonFX[0].config_kP(DriveConstants.SLOT_0, DriveConstants.motionMagicPidP_Value,
-        DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].config_kI(DriveConstants.SLOT_0, DriveConstants.motionMagicPidI_Value,
-        DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].config_kD(DriveConstants.SLOT_0, DriveConstants.motionMagicPidD_Value,
-        DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].config_kF(DriveConstants.SLOT_0, DriveConstants.motionMagicPidF_Value,
-        DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].config_IntegralZone(DriveConstants.SLOT_0, DriveConstants.Izone_0,
-        DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].configClosedLoopPeakOutput(DriveConstants.SLOT_0, DriveConstants.PeakOutput_0,
-        DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].configAllowableClosedloopError(DriveConstants.SLOT_0, 5, DriveConstants.configureTimeoutMs);
 
     /**
      * 1ms per loop. PID loop can be slowed down if need be. For example, - if

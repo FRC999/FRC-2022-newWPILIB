@@ -104,6 +104,13 @@ public final class Constants {
 
         public static int[] kLeftEncoderPorts = new int[] { 1 };
         public static int[] kRightEncoderPorts = new int[] { 2 };
+
+
+        // Sensor phase - to ensure that sensor is positive when the output is positive
+        public static boolean[] SensorPhase =  {false,false};
+        // Invert motors
+        public static boolean[] MotorInvert =  {true,false};
+
         public static boolean kLeftEncoderReversed = false;
         public static boolean kRightEncoderReversed = true;
 
@@ -118,11 +125,19 @@ public final class Constants {
 
         // Closed loop constants
 
-        public static int[] maximumLinearError;
-        public static int[] maximumAngleError;
+        /**
+	    * Talon FX supports multiple (cascaded) PID loops. For
+	    * now we just want the primary one.
+	    */
+        public static final int kPIDLoopIdx = 0;
+
         // How long we wait for a configuration change to happen before we give up and
         // report a failure in milliseconds
         public final static int configureTimeoutMs = 30;
+
+        public static int[] maximumLinearError;
+        public static int[] maximumAngleError;
+        
         // Full motor output value
         public final static int fullMotorOutput = 1023;
         // How many milliseconds between each closed loop call
