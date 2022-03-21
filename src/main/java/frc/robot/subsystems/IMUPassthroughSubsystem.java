@@ -56,6 +56,10 @@ public class IMUPassthroughSubsystem implements IMUInterface {
     return imu.getPitch();
   }
 
+  public double getTurnRate() {
+    return imu.getTurnRate();
+  }
+
   public Rotation2d getHeading() {
     return imu.getHeading();
   }

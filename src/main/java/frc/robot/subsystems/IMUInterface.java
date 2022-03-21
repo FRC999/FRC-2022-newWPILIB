@@ -11,5 +11,7 @@ public interface IMUInterface {
 
     double zeroYaw();
 
+    double getTurnRate();
+    
     Rotation2d getHeading();
 }

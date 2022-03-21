@@ -88,6 +88,12 @@ public class PigeonIMUSubsystem extends SubsystemBase implements IMUInterface {
     // negative
   }
 
+  public double getTurnRate() {
+    double[] ypr = new double[3];
+    pidgey.getRawGyro(ypr);
+    return -ypr[2];
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

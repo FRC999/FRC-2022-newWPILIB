@@ -82,6 +82,10 @@ public class NavXIMUSubsystem extends SubsystemBase implements IMUInterface {
     return NavX;
   }
 
+  public double getTurnRate() {
+    return NavX.getRate();
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
