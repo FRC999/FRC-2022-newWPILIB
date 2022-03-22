@@ -197,6 +197,9 @@ public class DriveSubsystem extends SubsystemBase {
     leftDriveTalonFX[0].setSelectedSensorPosition(0);
     rightDriveTalonFX[0].setSelectedSensorPosition(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx, DriveConstants.configureTimeoutMs);
     leftDriveTalonFX[0].setSelectedSensorPosition(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx, DriveConstants.configureTimeoutMs);
+    rightDriveTalonFX[0].getSensorCollection().setIntegratedSensorPosition(0, DriveConstants.configureTimeoutMs);
+    leftDriveTalonFX[0].getSensorCollection().setIntegratedSensorPosition(0, DriveConstants.configureTimeoutMs);
+
     // driveTrainCoastMode(); // TODO: figure out why this was introduced in 2020 - removed
   }
 
