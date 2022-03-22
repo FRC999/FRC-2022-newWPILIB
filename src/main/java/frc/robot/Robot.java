@@ -303,12 +303,12 @@ public class Robot extends TimedRobot {
         // Subsystem Settings
         RobotProperties.isIMU = true;
         RobotProperties.isNaVX = false;
-        RobotProperties.driveInterface = DriveInterface.ONENEWBB;
+        RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = false;
         RobotProperties.isShooter = false;
         RobotProperties.isPotentiometer = false;
         RobotProperties.isColorSensor = false;
-        RobotProperties.isCANdle = true;
+        RobotProperties.isCANdle = false;
         RobotProperties.isTestMotor = false;
 
         // Drivetrain settings

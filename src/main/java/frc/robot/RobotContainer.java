@@ -243,10 +243,12 @@ public class RobotContainer {
 
       case DEMOBOARD:
 
-        new JoystickButton(driveStick, 7) // testing trajectory binding
-          .whileHeld(new AutonomousTrajectoryRioCommand("10ftForward.wpilib"))
-          .whenReleased(new InstantCommand(driveSubsystem::driveTrainBrakeMode,driveSubsystem)
-          .andThen(new InstantCommand(() -> driveSubsystem.manualDrive(0, 0))));
+        //new JoystickButton(driveStick, 7) // testing trajectory binding
+        //  .whileHeld(new AutonomousTrajectoryRioCommand("10ftForward.wpilib"))
+        //  .whenReleased(new InstantCommand(driveSubsystem::driveTrainBrakeMode,driveSubsystem)
+        //  .andThen(new InstantCommand(() -> driveSubsystem.manualDrive(0, 0))));
+
+        
         
         //new JoystickButton(driveStick, 9).whenPressed(new InstantCommand(shooterSubsystem::calibrateForwardSlow, shooterSubsystem));
         //new JoystickButton(driveStick, 9).whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff, shooterSubsystem));
@@ -263,8 +265,12 @@ public class RobotContainer {
         //new JoystickButton(driveStick, 10).whenReleased(new InstantCommand(testMotorSubsystem::motorOff, testMotorSubsystem));
 
         // Switch to next shooting goal
-        new JoystickButton(bbl, Constants.OIC2022TEST.ShooterLowerGoalNext)
-          .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
+        //new JoystickButton(bbl, Constants.OIC2022TEST.ShooterLowerGoalNext)
+        //  .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
+
+        new JoystickButton(turnStick, 11)
+        .whenPressed(new  AutonomousDriveLinear(2))
+        .whenReleased(new DriveStopCommand());
 
         break;
 
