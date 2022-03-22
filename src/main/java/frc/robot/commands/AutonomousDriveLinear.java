@@ -15,6 +15,8 @@ public class AutonomousDriveLinear extends CommandBase {
   public AutonomousDriveLinear(double feet) {
     // Use addRequirements() here to declare subsystem dependencies.
 
+    addRequirements(RobotContainer.driveSubsystem);
+
     finalEncoderValues = new int[2];
     finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerFoot[0] * feet);
     finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerFoot[1] * feet);
