@@ -268,7 +268,7 @@ public class RobotContainer {
         //new JoystickButton(bbl, Constants.OIC2022TEST.ShooterLowerGoalNext)
         //  .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
 
-        new JoystickButton(turnStick, 11)
+        new JoystickButton(driveStick, 11)
         .whenPressed(new  AutonomousDriveLinear(2))
         .whenReleased(new DriveStopCommand());
 
