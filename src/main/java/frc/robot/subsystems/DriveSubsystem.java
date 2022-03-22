@@ -213,6 +213,11 @@ public class DriveSubsystem extends SubsystemBase {
     drive.arcadeDrive(fwd, rot);
   }
 
+  public void resetToFactoryDefaults() {
+    leftDriveTalonFX[0].configFactoryDefault();
+    leftDriveTalonFX[1].configFactoryDefault();
+  }
+
   /**
    * We configure drivetrain for SimpleMagic here. Note that the drivetrain will
    * work without it. But using it may allow you to smooth the driving pattern and
@@ -347,6 +352,7 @@ public class DriveSubsystem extends SubsystemBase {
   public void simpleMotionMagic(int leftEncoderVal, int rightEncoderVal) {
     // Test method that moves robot forward a given number of wheel rotations
     leftDriveTalonFX[0].set(ControlMode.MotionMagic, leftEncoderVal);
+    rightDriveTalonFX[0].set(ControlMode.MotionMagic, rightEncoderVal);
   }
 
   public void simpleMotionMagicSetFollower() {

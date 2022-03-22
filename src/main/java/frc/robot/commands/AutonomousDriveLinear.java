@@ -31,6 +31,9 @@ public class AutonomousDriveLinear extends CommandBase {
   @Override
   public void initialize() {
 
+    RobotContainer.driveSubsystem.resetToFactoryDefaults();
+    RobotContainer.driveSubsystem.configureSimpleMagic();
+
     RobotContainer.driveSubsystem.zeroDriveEncoders();
 
     System.out.println("**** Init A T L " + finalEncoderValues[0]);
