@@ -72,8 +72,8 @@ public class AutonomousDriveLinear extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    //return false;
-    return acceptableLinearError();
+    return false;
+    //return acceptableLinearError();
   }
 
   public boolean acceptableLinearError() {
