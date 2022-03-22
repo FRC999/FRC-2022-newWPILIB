@@ -325,6 +325,9 @@ public class Robot extends TimedRobot {
         DriveConstants.ticksPerFoot = new int[] {(int)(441928.0/30.0),(int)(443042.0/30.0)};
         DriveConstants.ticksPerDegree = new int[] {(int)(805613.0/10.0/360.0),(int)(815114.0/10.0/360.0)};
 
+        DriveConstants.maximumLinearError = new int[] {7000,7000};
+        DriveConstants.maximumAngleError = new int[] {250,250};
+
         // IMU
         PigeonIMU.pigeonIMUId = 3;
 
