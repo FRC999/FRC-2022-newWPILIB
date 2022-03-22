@@ -50,7 +50,7 @@ public class AutonomousDriveLinear extends CommandBase {
     //RobotContainer.driveSubsystem.leftDriveTalonFX[0].setSafetyEnabled(false);
     //RobotContainer.driveSubsystem.rightDriveTalonFX[0].setSafetyEnabled(false);
 
-    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[1]);
+    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[0]);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
