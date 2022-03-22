@@ -12,25 +12,30 @@ import frc.robot.subsystems.DriveSubsystem;
 public class AutonomousDriveLinear extends CommandBase {
 
   public int finalEncoderValues[];
+
+  private double feet;
+
   /** Creates a new AutonomousDriveLinear. */
-  public AutonomousDriveLinear(double feet) {
+  public AutonomousDriveLinear(double feetToDrive) {
     // Use addRequirements() here to declare subsystem dependencies.
+    feet = feetToDrive;
 
     addRequirements(RobotContainer.driveSubsystem);
-
-    finalEncoderValues = new int[2];
-    finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerFoot[0] * feet);
-    finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerFoot[1] * feet);
-
-    System.out.println("**** A T L " + finalEncoderValues[0]);
-    System.out.println("**** A T R " + finalEncoderValues[1]);
-
-    RobotContainer.driveSubsystem.zeroDriveEncoders();
+    
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
+    finalEncoderValues = new int[2];
+    finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerFoot[0] * feet);
+    finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerFoot[1] * feet);
+
+    //System.out.println("**** A T L " + finalEncoderValues[0]);
+    //System.out.println("**** A T R " + finalEncoderValues[1]);
+
+    RobotContainer.driveSubsystem.zeroDriveEncoders();
 
     RobotContainer.driveSubsystem.resetToFactoryDefaults();
     RobotContainer.driveSubsystem.safetyOff();
