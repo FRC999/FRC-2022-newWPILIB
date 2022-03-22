@@ -7,6 +7,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.DriveSubsystem;
 
 public class AutonomousDriveLinear extends CommandBase {
 
@@ -32,9 +33,8 @@ public class AutonomousDriveLinear extends CommandBase {
   public void initialize() {
 
     RobotContainer.driveSubsystem.resetToFactoryDefaults();
-    RobotContainer.driveSubsystem.configureSimpleMagic();
     RobotContainer.driveSubsystem.safetyOff();
-
+    RobotContainer.driveSubsystem.configureSimpleMagic();
     RobotContainer.driveSubsystem.zeroDriveEncoders();
 
     System.out.println("**** Init A T L " + finalEncoderValues[0]);
@@ -52,8 +52,8 @@ public class AutonomousDriveLinear extends CommandBase {
   @Override
   public void execute() {
 
-    //System.out.println("**** Exec A T L " + finalEncoderValues[0]);
-    //System.out.println("**** Exec A T R " + finalEncoderValues[1]);
+    System.out.println("**** Exec A T L " + finalEncoderValues[0]);
+    System.out.println("**** Exec A T R " + finalEncoderValues[1]);
 
     //RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[1]);
   }

@@ -18,7 +18,7 @@ public class DriveStopCommand extends CommandBase {
   @Override
   public void initialize() {
     RobotContainer.driveSubsystem.driveTrainBrakeMode();
-
+    RobotContainer.driveSubsystem.manualDrive(0, 0);
     // TEST Coast Mode
     //RobotContainer.driveSubsystem.driveTrainCoastMode();
 
@@ -27,7 +27,7 @@ public class DriveStopCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    RobotContainer.driveSubsystem.manualDrive(0, 0);
+
   }
 
   // Called once the command ends or is interrupted.

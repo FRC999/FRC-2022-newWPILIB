@@ -219,8 +219,10 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void safetyOff() {
-    leftDriveTalonFX[0].setSafetyEnabled(false);;
+    leftDriveTalonFX[0].setSafetyEnabled(false);
+    leftDriveTalonFX[0].setExpiration(100);
     rightDriveTalonFX[0].setSafetyEnabled(false);
+    rightDriveTalonFX[0].setExpiration(100);
   }
 
 
