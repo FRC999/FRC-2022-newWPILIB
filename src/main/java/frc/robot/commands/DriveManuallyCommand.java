@@ -51,7 +51,7 @@ public class DriveManuallyCommand extends CommandBase {
       break;
     }
 
-    System.out.println("*** MDr");
+    //System.out.println("*** MDr");
 
     RobotContainer.driveSubsystem.manualDrive(move, turn * Constants.DriveConstants.turnAdjust);
   }

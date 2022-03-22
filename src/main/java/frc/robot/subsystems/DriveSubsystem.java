@@ -215,8 +215,14 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void resetToFactoryDefaults() {
     leftDriveTalonFX[0].configFactoryDefault();
-    leftDriveTalonFX[0].configFactoryDefault();
+    rightDriveTalonFX[0].configFactoryDefault();
   }
+
+  public void safetyOff() {
+    leftDriveTalonFX[0].setSafetyEnabled(false);;
+    rightDriveTalonFX[0].setSafetyEnabled(false);
+  }
+
 
   /**
    * We configure drivetrain for SimpleMagic here. Note that the drivetrain will
