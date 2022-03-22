@@ -36,10 +36,10 @@ public class AutonomousDriveLinear extends CommandBase {
     System.out.println("**** Init A T L " + finalEncoderValues[0]);
     System.out.println("**** Init A T R " + finalEncoderValues[1]);
 
-    RobotContainer.driveSubsystem.simpleMotionMagicSetFollower();
+    //RobotContainer.driveSubsystem.simpleMotionMagicSetFollower();
 
-    RobotContainer.driveSubsystem.leftDriveTalonFX[0].setSafetyEnabled(false);
-    RobotContainer.driveSubsystem.rightDriveTalonFX[0].setSafetyEnabled(false);
+    //RobotContainer.driveSubsystem.leftDriveTalonFX[0].setSafetyEnabled(false);
+    //RobotContainer.driveSubsystem.rightDriveTalonFX[0].setSafetyEnabled(false);
 
     RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[1]);
   }
@@ -51,7 +51,7 @@ public class AutonomousDriveLinear extends CommandBase {
     System.out.println("**** Exec A T L " + finalEncoderValues[0]);
     System.out.println("**** Exec A T R " + finalEncoderValues[1]);
 
-    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[1]);
+    //RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[1]);
   }
 
   // Called once the command ends or is interrupted.
