@@ -344,7 +344,10 @@ public class DriveSubsystem extends SubsystemBase {
   public void simpleMotionMagic(int leftEncoderVal, int rightEncoderVal) {
     // Test method that moves robot forward a given number of wheel rotations
     leftDriveTalonFX[0].set(ControlMode.MotionMagic, leftEncoderVal);
-    rightDriveTalonFX[0].set(ControlMode.MotionMagic, rightEncoderVal);
+  }
+
+  public void simpleMotionMagicSetFollower() {
+    rightDriveTalonFX[0].follow(leftDriveTalonFX[0]);
   }
 
   /**
