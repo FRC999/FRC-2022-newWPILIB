@@ -41,10 +41,10 @@ public class AutonomousDriveLinear extends CommandBase {
   @Override
   public void execute() {
 
-    System.out.println("**** A T L " + finalEncoderValues[0]);
-    System.out.println("**** A T R " + finalEncoderValues[1]);
+    System.out.println("**** Exec A T L " + finalEncoderValues[0]);
+    System.out.println("**** Exec A T R " + finalEncoderValues[1]);
 
-    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[1]);
+//    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[1]);
   }
 
   // Called once the command ends or is interrupted.
