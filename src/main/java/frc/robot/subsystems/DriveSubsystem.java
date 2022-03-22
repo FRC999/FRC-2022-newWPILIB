@@ -50,6 +50,8 @@ public class DriveSubsystem extends SubsystemBase {
         leftDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
         System.out.println("Left Follower " + motor);
       }
+
+      leftDriveTalonFX[motor].setSafetyEnabled(false);
     }
 
     for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
@@ -64,6 +66,8 @@ public class DriveSubsystem extends SubsystemBase {
         rightDriveTalonFX[motor].setInverted(InvertType.FollowMaster); // set green lights when going forward
         System.out.println("Right Follower " + motor);
       }
+
+      rightDriveTalonFX[motor].setSafetyEnabled(false);
     }
 
     // Engage brake mode
