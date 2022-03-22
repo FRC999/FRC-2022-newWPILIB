@@ -267,10 +267,10 @@ public class DriveSubsystem extends SubsystemBase {
           DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_10_Targets, 20,
           DriveConstants.configureTimeoutMs);
-      rightDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 20,
-          DriveConstants.configureTimeoutMs);
-      leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 20,
-          DriveConstants.configureTimeoutMs);
+      //rightDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 20,
+      //    DriveConstants.configureTimeoutMs);
+      //leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 20,
+      //    DriveConstants.configureTimeoutMs);
 
       /**
       * Max out the peak output (for all modes). However you can limit the output of
