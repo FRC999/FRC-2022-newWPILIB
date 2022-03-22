@@ -215,7 +215,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void resetToFactoryDefaults() {
     leftDriveTalonFX[0].configFactoryDefault();
-    leftDriveTalonFX[1].configFactoryDefault();
+    leftDriveTalonFX[0].configFactoryDefault();
   }
 
   /**
