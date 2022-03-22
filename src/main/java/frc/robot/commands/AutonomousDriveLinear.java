@@ -33,6 +33,7 @@ public class AutonomousDriveLinear extends CommandBase {
 
     RobotContainer.driveSubsystem.resetToFactoryDefaults();
     RobotContainer.driveSubsystem.configureSimpleMagic();
+    RobotContainer.driveSubsystem.safetyOff();
 
     RobotContainer.driveSubsystem.zeroDriveEncoders();
 
