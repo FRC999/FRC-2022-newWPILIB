@@ -251,6 +251,10 @@ public class DriveSubsystem extends SubsystemBase {
           DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_10_Targets, 20,
           DriveConstants.configureTimeoutMs);
+      rightDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 20,
+          DriveConstants.configureTimeoutMs);
+      leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 20,
+          DriveConstants.configureTimeoutMs);
 
       /**
       * Max out the peak output (for all modes). However you can limit the output of
@@ -277,11 +281,13 @@ public class DriveSubsystem extends SubsystemBase {
       leftDriveTalonFX[motor].config_kF(DriveConstants.SLOT_0, DriveConstants.motionMagicPidF_Value,
         DriveConstants.configureTimeoutMs);
 
+      /*
       leftDriveTalonFX[motor].config_IntegralZone(DriveConstants.SLOT_0, DriveConstants.Izone_0,
         DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].configClosedLoopPeakOutput(DriveConstants.SLOT_0, DriveConstants.PeakOutput_0,
         DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].configAllowableClosedloopError(DriveConstants.SLOT_0, 5, DriveConstants.configureTimeoutMs);
+      */
 
       rightDriveTalonFX[motor].selectProfileSlot(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx);
       rightDriveTalonFX[motor].config_kP(DriveConstants.SLOT_0, DriveConstants.motionMagicPidP_Value,
@@ -293,11 +299,13 @@ public class DriveSubsystem extends SubsystemBase {
       rightDriveTalonFX[motor].config_kF(DriveConstants.SLOT_0, DriveConstants.motionMagicPidF_Value,
         DriveConstants.configureTimeoutMs);
 
+      /* 
       rightDriveTalonFX[motor].config_IntegralZone(DriveConstants.SLOT_0, DriveConstants.Izone_0,
         DriveConstants.configureTimeoutMs);
       rightDriveTalonFX[motor].configClosedLoopPeakOutput(DriveConstants.SLOT_0, DriveConstants.PeakOutput_0,
         DriveConstants.configureTimeoutMs);
       rightDriveTalonFX[motor].configAllowableClosedloopError(DriveConstants.SLOT_0, 5, DriveConstants.configureTimeoutMs);
+      */
 
     }
 
