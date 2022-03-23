@@ -302,7 +302,7 @@ public class Robot extends TimedRobot {
       case DEMOBOARD:
 
         // Subsystem Settings
-        RobotProperties.isIMU = true;
+        RobotProperties.isIMU = false;
         RobotProperties.isNaVX = false;
         RobotProperties.driveInterface = DriveInterface.ONESTICK;
         RobotProperties.isPneumatics = false;

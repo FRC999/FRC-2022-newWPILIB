@@ -95,14 +95,14 @@ public class TESTMotionMagic1motor extends CommandBase {
     /* Zero the sensor once on robot boot up */
     _talon.setSelectedSensorPosition(0, kPIDLoopIdx, kTimeoutMs);
 
-    _talon.set(TalonFXControlMode.MotionMagic, 10000);
+    _talon.set(TalonFXControlMode.MotionMagic, 30000);
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    
+
   }
 
   // Called once the command ends or is interrupted.
