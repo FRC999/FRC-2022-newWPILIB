@@ -132,7 +132,7 @@ public class RobotContainer {
   public RobotContainer() {
     
     //Configure SendableChooser to contain autonomous routines.
-    AutonomousConfigure();
+    // AutonomousConfigure();
     
     // Configure the button bindings
     configureDriverInterface();
@@ -141,7 +141,7 @@ public class RobotContainer {
     //pneumaticsSubsystem = new PneumaticsSubsystem();
 
     // Set Driver telemetry
-    shuffleboardSubsystem.setDriveSubsystemTelemetry(driveSubsystem);
+    //shuffleboardSubsystem.setDriveSubsystemTelemetry(driveSubsystem);
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
