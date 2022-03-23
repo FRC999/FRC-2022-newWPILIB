@@ -11,6 +11,8 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class AutonomousDriveLinear extends CommandBase {
 
+  private static final boolean DEBUG = true;
+
   public int finalEncoderValues[];
 
   private double feet;
@@ -35,21 +37,12 @@ public class AutonomousDriveLinear extends CommandBase {
     //System.out.println("**** A T L " + finalEncoderValues[0]);
     //System.out.println("**** A T R " + finalEncoderValues[1]);
 
-    //RobotContainer.driveSubsystem.zeroDriveEncoders();
-
-    RobotContainer.driveSubsystem.resetToFactoryDefaults();
-    RobotContainer.driveSubsystem.safetyOff();
-    RobotContainer.driveSubsystem.configureSimpleMagic();
     RobotContainer.driveSubsystem.zeroDriveEncoders();
 
     System.out.println("**** Init A T L " + finalEncoderValues[0]);
     System.out.println("**** Init A T R " + finalEncoderValues[1]);
 
-    //RobotContainer.driveSubsystem.simpleMotionMagicSetFollower();
-
-    //RobotContainer.driveSubsystem.leftDriveTalonFX[0].setSafetyEnabled(false);
-    //RobotContainer.driveSubsystem.rightDriveTalonFX[0].setSafetyEnabled(false);
-
+    // Drive with MotionMagic Talon PID to calculated encoder value
     RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[0]);
   }
 
@@ -57,14 +50,16 @@ public class AutonomousDriveLinear extends CommandBase {
   @Override
   public void execute() {
 
-    System.out.println("**** Exec A T L " + finalEncoderValues[0]);
-    System.out.println("**** Exec A T R " + finalEncoderValues[1]);
-    System.out.println("**** Exec A N L " + RobotContainer.driveSubsystem.getLeftEncoder());
-    System.out.println("**** Exec A N R " + RobotContainer.driveSubsystem.getRightEncoder());
-    System.out.println("**** Exec A E L " + RobotContainer.driveSubsystem.getDriveError(0));
-    System.out.println("**** Exec A E R " + RobotContainer.driveSubsystem.getDriveError(1));
 
-    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[0]);
+    if (DEBUG) { // only telemetry; should not need to re-run the MotionMagic
+      System.out.println("**** Exec A T L " + finalEncoderValues[0]);
+      System.out.println("**** Exec A T R " + finalEncoderValues[1]);
+      System.out.println("**** Exec A N L " + RobotContainer.driveSubsystem.getLeftEncoder());
+      System.out.println("**** Exec A N R " + RobotContainer.driveSubsystem.getRightEncoder());
+      System.out.println("**** Exec A E L " + RobotContainer.driveSubsystem.getDriveError(0));
+      System.out.println("**** Exec A E R " + RobotContainer.driveSubsystem.getDriveError(1));
+    }
+
   }
 
   // Called once the command ends or is interrupted.
@@ -77,12 +72,15 @@ public class AutonomousDriveLinear extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
-    //return acceptableLinearError();
+    //return false;
+    return acceptableLinearError();
+
+    // TODO: check if we can use the PID error instead
+
   }
 
   public boolean acceptableLinearError() {
-    return acceptableLinearError(0) || acceptableLinearError(1);
+    return acceptableLinearError(0) || acceptableLinearError(1);  // 0 - error from left master motor, 1 - from the right master motor
   }
   
   public boolean acceptableLinearError(int motor){
@@ -90,7 +88,9 @@ public class AutonomousDriveLinear extends CommandBase {
         RobotContainer.driveSubsystem.getLeftEncoder() - finalEncoderValues[motor]
       : RobotContainer.driveSubsystem.getRightEncoder() - finalEncoderValues[motor]) ;
 
-      System.out.println("A C L M " + motor + " E " + closedLoopError);
+      if (DEBUG) {
+        System.out.println("A C L M " + motor + " E " + closedLoopError);
+      }
 
     return Math.abs(closedLoopError) < Constants.DriveConstants.maximumLinearError[motor] ;
   }

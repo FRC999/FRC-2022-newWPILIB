@@ -80,6 +80,7 @@ public class DriveSubsystem extends SubsystemBase {
     zeroDriveEncoders();
 
     drive = new DifferentialDrive(leftDriveTalonFX[0], rightDriveTalonFX[0]);
+    drive.setSafetyEnabled(false); // safety must be disabled siince we plan to use Motion Magic
 
     // Prevent WPI drivetrain class from inverting input for right side motors
     // because we already inverted them
@@ -181,11 +182,6 @@ public class DriveSubsystem extends SubsystemBase {
     return (int) leftDriveTalonFX[0].getSelectedSensorPosition();
   }
 
-    /** Get the number of tics moved by the left encoder */
-    public int getLeftEncoder(int motor) {
-      return (int) leftDriveTalonFX[motor].getSelectedSensorPosition();
-    }
-
   /** Get the number of tics moved by the left encoder */
   public int getRightEncoder() {
     return (int) rightDriveTalonFX[0].getSelectedSensorPosition();
@@ -202,7 +198,7 @@ public class DriveSubsystem extends SubsystemBase {
     return (int) rightDriveTalonFX[0].getSelectedSensorVelocity();
   }
 
-  public void zeroDriveEncoders() {
+  public void zeroDriveEncoders() {  // zero encoders on master mmotor controllers of the drivetrain
 
     rightDriveTalonFX[0].setSelectedSensorPosition(0);
     leftDriveTalonFX[0].setSelectedSensorPosition(0);
@@ -250,8 +246,8 @@ public class DriveSubsystem extends SubsystemBase {
   public void configureSimpleMagic() {
 
     // We assume we have the same number of left motors as we have the right ones
-    //for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
-    for (int motor = 0; motor < 1; motor++) {
+    for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
+    //for (int motor = 0; motor < 1; motor++) {
 
       /* Config the sensor used for Primary PID and sensor direction  - ex */
       leftDriveTalonFX[motor].configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 
@@ -267,9 +263,6 @@ public class DriveSubsystem extends SubsystemBase {
       rightDriveTalonFX[motor].configNeutralDeadband(DriveConstants.NeutralDeadband, DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].configNeutralDeadband(DriveConstants.NeutralDeadband, DriveConstants.configureTimeoutMs);
 
-      // Reset motors to defaults - already done during initialization
-      //rightDriveTalonFX[motor].configFactoryDefault();
-      //leftDriveTalonFX[motor].configFactoryDefault();
       leftDriveTalonFX[motor].setSensorPhase(Constants.DriveConstants.SensorPhase[0]);
       rightDriveTalonFX[motor].setSensorPhase(Constants.DriveConstants.SensorPhase[1]);
 
@@ -318,13 +311,12 @@ public class DriveSubsystem extends SubsystemBase {
       leftDriveTalonFX[motor].config_kF(DriveConstants.SLOT_0, DriveConstants.motionMagicPidF_Value,
         DriveConstants.configureTimeoutMs);
 
-      /*
       leftDriveTalonFX[motor].config_IntegralZone(DriveConstants.SLOT_0, DriveConstants.Izone_0,
         DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].configClosedLoopPeakOutput(DriveConstants.SLOT_0, DriveConstants.PeakOutput_0,
         DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].configAllowableClosedloopError(DriveConstants.SLOT_0, 5, DriveConstants.configureTimeoutMs);
-      */
+      
 
       rightDriveTalonFX[motor].selectProfileSlot(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx);
       rightDriveTalonFX[motor].config_kP(DriveConstants.SLOT_0, DriveConstants.motionMagicPidP_Value,
@@ -336,13 +328,12 @@ public class DriveSubsystem extends SubsystemBase {
       rightDriveTalonFX[motor].config_kF(DriveConstants.SLOT_0, DriveConstants.motionMagicPidF_Value,
         DriveConstants.configureTimeoutMs);
 
-      /* 
       rightDriveTalonFX[motor].config_IntegralZone(DriveConstants.SLOT_0, DriveConstants.Izone_0,
         DriveConstants.configureTimeoutMs);
       rightDriveTalonFX[motor].configClosedLoopPeakOutput(DriveConstants.SLOT_0, DriveConstants.PeakOutput_0,
         DriveConstants.configureTimeoutMs);
       rightDriveTalonFX[motor].configAllowableClosedloopError(DriveConstants.SLOT_0, 5, DriveConstants.configureTimeoutMs);
-      */
+      
 
     }
 
@@ -352,10 +343,10 @@ public class DriveSubsystem extends SubsystemBase {
      * derivative error never gets large enough to be useful. - sensor movement is
      * very slow causing the derivative error to be near zero.
      */
-    //rightDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
-    //    DriveConstants.configureTimeoutMs);
-    //leftDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
-    //    DriveConstants.configureTimeoutMs);
+    rightDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
+        DriveConstants.configureTimeoutMs);
+    leftDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
+        DriveConstants.configureTimeoutMs);
 
     /* Motion Magic Configurations */
 
@@ -365,18 +356,15 @@ public class DriveSubsystem extends SubsystemBase {
      */
     leftDriveTalonFX[0].configMotionAcceleration(DriveConstants.motionMagicAcceleration,
         DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configMotionCruiseVelocity(2* DriveConstants.motionMagicCruiseVelocity,
+    leftDriveTalonFX[0].configMotionCruiseVelocity(DriveConstants.motionMagicCruiseVelocity,
         DriveConstants.configureTimeoutMs);
     leftDriveTalonFX[0].configMotionSCurveStrength(DriveConstants.motionMagicSmoothing);
 
     rightDriveTalonFX[0].configMotionAcceleration(DriveConstants.motionMagicAcceleration,
         DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].configMotionCruiseVelocity(2*DriveConstants.motionMagicCruiseVelocity,
+    rightDriveTalonFX[0].configMotionCruiseVelocity(DriveConstants.motionMagicCruiseVelocity,
         DriveConstants.configureTimeoutMs);
     rightDriveTalonFX[0].configMotionSCurveStrength(DriveConstants.motionMagicSmoothing);
-
-    leftDriveTalonFX[0].setSelectedSensorPosition(0, 0, DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].setSelectedSensorPosition(0, 0, DriveConstants.configureTimeoutMs);
 
   } // End configureDriveTrainControllersForSimpleMagic
 
@@ -385,10 +373,6 @@ public class DriveSubsystem extends SubsystemBase {
     // Test method that moves robot forward a given number of wheel rotations
     leftDriveTalonFX[0].set(TalonFXControlMode.MotionMagic, leftEncoderVal);
     rightDriveTalonFX[0].set(TalonFXControlMode.MotionMagic, rightEncoderVal);
-  }
-
-  public void simpleMotionMagicSetFollower() {
-    rightDriveTalonFX[0].follow(leftDriveTalonFX[0]);
   }
 
   /**
