@@ -156,6 +156,10 @@ public class Robot extends TimedRobot {
       simpleCSVLogger.init(new String[] { "Module" }, new String[] { "Message" }); // start the logging; initialize the
                                                                                    // log file on the USB stick
     }
+
+    // Put robot in a brake mode for teleop driving
+    RobotContainer.driveSubsystem.driveTrainBrakeMode();
+
   }
 
   /** This function is called periodically during operator control. */
@@ -163,7 +167,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     // Update telemetry
-    RobotContainer.smartDashboardSubsystem.updateDriveSubsystemTelemetry();
+    //RobotContainer.smartDashboardSubsystem.updateDriveSubsystemTelemetry();
     //RobotContainer.smartDashboardSubsystem.updatePDPValues();
 
   }

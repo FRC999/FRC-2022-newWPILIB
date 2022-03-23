@@ -22,14 +22,15 @@ public class ShooterOneButtonShotPreset extends SequentialCommandGroup {
       sequence(
         new InstantCommand(() -> RobotContainer.shooterSubsystem.setShootingSolution(distance,goal)),
         // start shooter motor as soon as we know the shooting solution speed
-        new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotor((RobotContainer.shooterSubsystem.getShootingSolution())[1])),
         new InstantCommand(() -> RobotContainer.shooterSubsystem.tiltShooterArm( (RobotContainer.shooterSubsystem.getShootingSolution())[0])),
-        new WaitCommand(1), // TODO - check the wheel speed, adjust this time to make sure the shooter wheel gets up to speed
+        new WaitCommand(0.5),
+        new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotor((RobotContainer.shooterSubsystem.getShootingSolution())[1])),
+        new WaitCommand(0.5), // TODO - check the wheel speed, adjust this time to make sure the shooter wheel gets up to speed
         new InstantCommand(RobotContainer.shooterSubsystem::extendPlunger),
         new WaitCommand(0.2),
         new InstantCommand(RobotContainer.shooterSubsystem::retractPlunger),
         new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor)
-      ) // not bringing it down automatically, in case we have another ball in the hopper
+      ) // not bringing it down automatically, in case we have another ball in the hopper or the shooting did not clear the ball
     );
   }
 }
