@@ -43,7 +43,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     leftDriveTalonFX[0] = new WPI_TalonFX(DriveConstants.leftMotorPortID[0]);
 
-    if (false) {
+
 
     for (int motor = 0; motor < DriveConstants.leftMotorPortID.length; motor++) {
       leftDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.leftMotorPortID[motor]);
@@ -60,7 +60,7 @@ public class DriveSubsystem extends SubsystemBase {
       leftDriveTalonFX[motor].setSafetyEnabled(false);
     }
 
-
+    if (false) {
 
     for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
       rightDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.rightMotorPortID[motor]);
