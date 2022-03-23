@@ -24,7 +24,7 @@ public class SmartDashboardSubsystem extends SubsystemBase {
   public SmartDashboardSubsystem() {
 
     // This subsystem needs to be instantiated after all device-related ones
-    updateDriveSubsystemTelemetry(); // initial update for the drive subsystem
+    //updateDriveSubsystemTelemetry(); // initial update for the drive subsystem
 
   }
 
