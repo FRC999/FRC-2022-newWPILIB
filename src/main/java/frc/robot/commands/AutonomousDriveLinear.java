@@ -64,7 +64,7 @@ public class AutonomousDriveLinear extends CommandBase {
     System.out.println("**** Exec A E L " + RobotContainer.driveSubsystem.getDriveError(0));
     System.out.println("**** Exec A E R " + RobotContainer.driveSubsystem.getDriveError(1));
 
-    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[1]);
+    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[0]);
   }
 
   // Called once the command ends or is interrupted.

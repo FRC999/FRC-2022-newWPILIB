@@ -32,6 +32,7 @@ import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.ShooterArmPosition;
 import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
+import frc.robot.commands.TESTMotionMagic1motor;
 import frc.robot.commands.TESTTenFeetForward;
 import frc.robot.commands.TargetAndShootHigh;
 import frc.robot.commands.TargetAndShootLow;
@@ -270,6 +271,10 @@ public class RobotContainer {
 
         new JoystickButton(driveStick, 11)
         .whenPressed(new  AutonomousDriveLinear(20))
+        .whenReleased(new DriveStopCommand());
+
+        new JoystickButton(driveStick, 12)
+        .whenPressed(new TESTMotionMagic1motor(driveSubsystem.leftDriveTalonFX[0]))
         .whenReleased(new DriveStopCommand());
 
         break;
