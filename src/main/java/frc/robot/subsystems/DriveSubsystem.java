@@ -76,7 +76,7 @@ public class DriveSubsystem extends SubsystemBase {
       rightDriveTalonFX[motor].setSafetyEnabled(false);
     }
 
-    if (false) {
+
 
     // Engage brake mode
     driveTrainBrakeMode();
@@ -85,6 +85,8 @@ public class DriveSubsystem extends SubsystemBase {
     //driveTrainCoastMode();
 
     zeroDriveEncoders();
+
+    if (false) {
 
     drive = new DifferentialDrive(leftDriveTalonFX[0], rightDriveTalonFX[0]);
 
