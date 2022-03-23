@@ -87,9 +87,12 @@ public class DriveSubsystem extends SubsystemBase {
     zeroDriveEncoders();
 
 
-    if (false) {
-      
+
+
     drive = new DifferentialDrive(leftDriveTalonFX[0], rightDriveTalonFX[0]);
+    drive.setSafetyEnabled(false);
+
+    if (false) {
 
     // Prevent WPI drivetrain class from inverting input for right side motors
     // because we already inverted them
