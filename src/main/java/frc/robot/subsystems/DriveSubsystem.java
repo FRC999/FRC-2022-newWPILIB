@@ -87,7 +87,8 @@ public class DriveSubsystem extends SubsystemBase {
     zeroDriveEncoders();
 
 
-
+    if (false) {
+      
     drive = new DifferentialDrive(leftDriveTalonFX[0], rightDriveTalonFX[0]);
 
     // Prevent WPI drivetrain class from inverting input for right side motors
@@ -96,7 +97,7 @@ public class DriveSubsystem extends SubsystemBase {
     // default anyway
     // drive.setRightSideInverted(false);
 
-    if (false) {
+
 
     configureSimpleMagic();
 
