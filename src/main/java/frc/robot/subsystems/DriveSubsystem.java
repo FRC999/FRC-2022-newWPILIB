@@ -60,8 +60,6 @@ public class DriveSubsystem extends SubsystemBase {
       leftDriveTalonFX[motor].setSafetyEnabled(false);
     }
 
-    if (false) {
-
     for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
       rightDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.rightMotorPortID[motor]);
       rightDriveTalonFX[motor].configFactoryDefault(); // reset the controller to defaults
@@ -78,6 +76,7 @@ public class DriveSubsystem extends SubsystemBase {
       rightDriveTalonFX[motor].setSafetyEnabled(false);
     }
 
+    if (false) {
 
     // Engage brake mode
     driveTrainBrakeMode();
