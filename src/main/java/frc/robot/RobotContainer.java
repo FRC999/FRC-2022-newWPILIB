@@ -275,7 +275,7 @@ public class RobotContainer {
 
         new JoystickButton(driveStick, 12)
         .whenPressed(new TESTMotionMagic1motor(driveSubsystem.leftDriveTalonFX[0]))
-        //.whenReleased(new DriveStopCommand())
+        .whenReleased(new DriveStopCommand())
         ;
 
         break;
