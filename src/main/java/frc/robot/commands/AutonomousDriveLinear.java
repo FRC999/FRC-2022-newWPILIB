@@ -35,7 +35,7 @@ public class AutonomousDriveLinear extends CommandBase {
     //System.out.println("**** A T L " + finalEncoderValues[0]);
     //System.out.println("**** A T R " + finalEncoderValues[1]);
 
-    RobotContainer.driveSubsystem.zeroDriveEncoders();
+    //RobotContainer.driveSubsystem.zeroDriveEncoders();
 
     RobotContainer.driveSubsystem.resetToFactoryDefaults();
     RobotContainer.driveSubsystem.safetyOff();

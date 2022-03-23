@@ -156,13 +156,13 @@ public final class Constants {
 
         // Gains for MotionMagic
         //public final static double motionMagicPidP_Value = 0.75;// * fullMotorOutput / encoderUnitsPerShaftRotation;
-        public final static double motionMagicPidP_Value = 7.5;
+        public final static double motionMagicPidP_Value = 0.2;
         //public final static double motionMagicPidI_Value = 0.005;// * fullMotorOutput / encoderUnitsPerShaftRotation;
-        public final static double motionMagicPidI_Value = 0;
+        public final static double motionMagicPidI_Value = 0.0;
         //public final static double motionMagicPidD_Value = 0.01;
-        public final static double motionMagicPidD_Value = 0;
+        public final static double motionMagicPidD_Value = 0.0;
         //public final static double motionMagicPidF_Value = 2;
-        public final static double motionMagicPidF_Value = 0;
+        public final static double motionMagicPidF_Value = 0.2;
 
         public final static int motionMagicCruiseVelocity = 2250 * 3;
         public final static int motionMagicAcceleration = 2250 * 3;

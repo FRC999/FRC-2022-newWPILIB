@@ -280,6 +280,7 @@ public class Robot extends TimedRobot {
         DriveConstants.kRightEncoderPorts = new int[] { 2,1 };
         DriveConstants.kLeftEncoderReversed = false;
         DriveConstants.kRightEncoderReversed = true;
+        //DriveConstants.SensorPhase =  new boolean[] {true,true};
         DriveConstants.SensorPhase =  new boolean[] {false,false};
         DriveConstants.MotorInvert =  new boolean[]  {false,true};
 

@@ -51,6 +51,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Right Encoder Speed", RobotContainer.driveSubsystem.getRightEncoderSpeed());
     SmartDashboard.putNumber("Left Motor Error", RobotContainer.driveSubsystem.getDriveError(0));
     SmartDashboard.putNumber("Right Motor Error", RobotContainer.driveSubsystem.getDriveError(1));
+
+    SmartDashboard.putNumber("Left1 Encoder Value", RobotContainer.driveSubsystem.getLeftEncoder(1));
   }
 
   public void updateShooterValues() {

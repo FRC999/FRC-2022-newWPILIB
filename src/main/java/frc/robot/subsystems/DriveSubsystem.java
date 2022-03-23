@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
+import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
@@ -180,6 +181,11 @@ public class DriveSubsystem extends SubsystemBase {
     return (int) leftDriveTalonFX[0].getSelectedSensorPosition();
   }
 
+    /** Get the number of tics moved by the left encoder */
+    public int getLeftEncoder(int motor) {
+      return (int) leftDriveTalonFX[motor].getSelectedSensorPosition();
+    }
+
   /** Get the number of tics moved by the left encoder */
   public int getRightEncoder() {
     return (int) rightDriveTalonFX[0].getSelectedSensorPosition();
@@ -197,14 +203,20 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void zeroDriveEncoders() {
+
     rightDriveTalonFX[0].setSelectedSensorPosition(0);
     leftDriveTalonFX[0].setSelectedSensorPosition(0);
-    rightDriveTalonFX[0].setSelectedSensorPosition(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx, DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].setSelectedSensorPosition(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx, DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].getSensorCollection().setIntegratedSensorPosition(0, DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].getSensorCollection().setIntegratedSensorPosition(0, DriveConstants.configureTimeoutMs);
+    //rightDriveTalonFX[0].setSelectedSensorPosition(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx, DriveConstants.configureTimeoutMs);
+    //leftDriveTalonFX[0].setSelectedSensorPosition(DriveConstants.SLOT_0, DriveConstants.kPIDLoopIdx, DriveConstants.configureTimeoutMs);
+    //rightDriveTalonFX[0].getSensorCollection().setIntegratedSensorPosition(0, DriveConstants.configureTimeoutMs);
+    //leftDriveTalonFX[0].getSensorCollection().setIntegratedSensorPosition(0, DriveConstants.configureTimeoutMs);
 
     // driveTrainCoastMode(); // TODO: figure out why this was introduced in 2020 - removed
+
+    // TEST C2020
+    rightDriveTalonFX[1].setSelectedSensorPosition(0);
+    leftDriveTalonFX[1].setSelectedSensorPosition(0);
+
   }
 
   /**
@@ -238,13 +250,8 @@ public class DriveSubsystem extends SubsystemBase {
   public void configureSimpleMagic() {
 
     // We assume we have the same number of left motors as we have the right ones
-    for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
-
-      // Reset motors to defaults - already done during initialization
-      //rightDriveTalonFX[motor].configFactoryDefault();
-      //leftDriveTalonFX[motor].configFactoryDefault();
-      leftDriveTalonFX[motor].setSensorPhase(Constants.DriveConstants.SensorPhase[0]);
-      rightDriveTalonFX[motor].setSensorPhase(Constants.DriveConstants.SensorPhase[1]);
+    //for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
+    for (int motor = 0; motor < 1; motor++) {
 
       /* Config the sensor used for Primary PID and sensor direction  - ex */
       leftDriveTalonFX[motor].configSelectedFeedbackSensor(TalonFXFeedbackDevice.IntegratedSensor, 
@@ -256,20 +263,30 @@ public class DriveSubsystem extends SubsystemBase {
         DriveConstants.kPIDLoopIdx,
         DriveConstants.configureTimeoutMs);
 
-
       /* Configure motor neutral deadband */
       rightDriveTalonFX[motor].configNeutralDeadband(DriveConstants.NeutralDeadband, DriveConstants.configureTimeoutMs);
       leftDriveTalonFX[motor].configNeutralDeadband(DriveConstants.NeutralDeadband, DriveConstants.configureTimeoutMs);
 
+      // Reset motors to defaults - already done during initialization
+      //rightDriveTalonFX[motor].configFactoryDefault();
+      //leftDriveTalonFX[motor].configFactoryDefault();
+      leftDriveTalonFX[motor].setSensorPhase(Constants.DriveConstants.SensorPhase[0]);
+      rightDriveTalonFX[motor].setSensorPhase(Constants.DriveConstants.SensorPhase[1]);
+
+      leftDriveTalonFX[motor].setInverted(Constants.DriveConstants.MotorInvert[0]);
+      rightDriveTalonFX[motor].setInverted( Constants.DriveConstants.MotorInvert[1]);
+
+
+
       /* Set status frame periods to ensure we don't have stale data */
       
-      rightDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 20,
+      rightDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 10,
           DriveConstants.configureTimeoutMs);
-      leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 20,
+      leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_13_Base_PIDF0, 10,
           DriveConstants.configureTimeoutMs);
-      rightDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_10_Targets, 20,
+      rightDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_10_Targets, 10,
           DriveConstants.configureTimeoutMs);
-      leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_10_Targets, 20,
+      leftDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_10_Targets, 10,
           DriveConstants.configureTimeoutMs);
       //rightDriveTalonFX[motor].setStatusFramePeriod(StatusFrame.Status_2_Feedback0, 20,
       //    DriveConstants.configureTimeoutMs);
@@ -335,10 +352,10 @@ public class DriveSubsystem extends SubsystemBase {
      * derivative error never gets large enough to be useful. - sensor movement is
      * very slow causing the derivative error to be near zero.
      */
-    rightDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
-        DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
-        DriveConstants.configureTimeoutMs);
+    //rightDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
+    //    DriveConstants.configureTimeoutMs);
+    //leftDriveTalonFX[0].configClosedLoopPeriod(0, DriveConstants.closedLoopPeriodMs,
+    //    DriveConstants.configureTimeoutMs);
 
     /* Motion Magic Configurations */
 
@@ -348,23 +365,26 @@ public class DriveSubsystem extends SubsystemBase {
      */
     leftDriveTalonFX[0].configMotionAcceleration(DriveConstants.motionMagicAcceleration,
         DriveConstants.configureTimeoutMs);
-    leftDriveTalonFX[0].configMotionCruiseVelocity(DriveConstants.motionMagicCruiseVelocity,
+    leftDriveTalonFX[0].configMotionCruiseVelocity(2* DriveConstants.motionMagicCruiseVelocity,
         DriveConstants.configureTimeoutMs);
     leftDriveTalonFX[0].configMotionSCurveStrength(DriveConstants.motionMagicSmoothing);
 
     rightDriveTalonFX[0].configMotionAcceleration(DriveConstants.motionMagicAcceleration,
         DriveConstants.configureTimeoutMs);
-    rightDriveTalonFX[0].configMotionCruiseVelocity(DriveConstants.motionMagicCruiseVelocity,
+    rightDriveTalonFX[0].configMotionCruiseVelocity(2*DriveConstants.motionMagicCruiseVelocity,
         DriveConstants.configureTimeoutMs);
     rightDriveTalonFX[0].configMotionSCurveStrength(DriveConstants.motionMagicSmoothing);
+
+    leftDriveTalonFX[0].setSelectedSensorPosition(0, 0, DriveConstants.configureTimeoutMs);
+    rightDriveTalonFX[0].setSelectedSensorPosition(0, 0, DriveConstants.configureTimeoutMs);
 
   } // End configureDriveTrainControllersForSimpleMagic
 
 
   public void simpleMotionMagic(int leftEncoderVal, int rightEncoderVal) {
     // Test method that moves robot forward a given number of wheel rotations
-    leftDriveTalonFX[0].set(ControlMode.MotionMagic, leftEncoderVal);
-    rightDriveTalonFX[0].set(ControlMode.MotionMagic, rightEncoderVal);
+    leftDriveTalonFX[0].set(TalonFXControlMode.MotionMagic, leftEncoderVal);
+    rightDriveTalonFX[0].set(TalonFXControlMode.MotionMagic, rightEncoderVal);
   }
 
   public void simpleMotionMagicSetFollower() {
