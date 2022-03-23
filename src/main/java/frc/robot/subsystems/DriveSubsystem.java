@@ -214,8 +214,8 @@ public class DriveSubsystem extends SubsystemBase {
     // driveTrainCoastMode(); // TODO: figure out why this was introduced in 2020 - removed
 
     // TEST C2020
-    rightDriveTalonFX[1].setSelectedSensorPosition(0);
-    leftDriveTalonFX[1].setSelectedSensorPosition(0);
+    //rightDriveTalonFX[1].setSelectedSensorPosition(0);
+    //leftDriveTalonFX[1].setSelectedSensorPosition(0);
 
   }
 
