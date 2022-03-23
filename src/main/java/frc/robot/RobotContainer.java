@@ -269,13 +269,14 @@ public class RobotContainer {
         //new JoystickButton(bbl, Constants.OIC2022TEST.ShooterLowerGoalNext)
         //  .whenPressed(new InstantCommand(() -> shooterSubsystem.nextShootingSolution(1)));
 
-        new JoystickButton(driveStick, 11)
-        .whenPressed(new  AutonomousDriveLinear(20))
-        .whenReleased(new DriveStopCommand());
+        //new JoystickButton(driveStick, 11)
+        //.whenPressed(new  AutonomousDriveLinear(20))
+        //.whenReleased(new DriveStopCommand());
 
         new JoystickButton(driveStick, 12)
-        .whenPressed(new TESTMotionMagic1motor(driveSubsystem.leftDriveTalonFX[0]))
-        .whenReleased(new DriveStopCommand());
+        .whenPressed(new TESTMotionMagic1motor())
+        //.whenReleased(new DriveStopCommand())
+        ;
 
         break;
 

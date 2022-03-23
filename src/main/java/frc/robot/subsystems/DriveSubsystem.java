@@ -33,6 +33,8 @@ public class DriveSubsystem extends SubsystemBase {
 
   public DriveSubsystem() {
 
+
+    if (false) {
     /**
      * create objects for the left-side and right-side motors reset controllers to
      * defaults setup followers set controller orientation set encoder phase
@@ -90,6 +92,8 @@ public class DriveSubsystem extends SubsystemBase {
     configureSimpleMagic();
 
     zeroDriveEncoders(); // Needs to be done after configuring Motion Magic
+
+  }
 
   }
 
