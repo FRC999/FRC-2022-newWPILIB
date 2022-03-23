@@ -86,7 +86,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     zeroDriveEncoders();
 
-    if (false) {
+
 
     drive = new DifferentialDrive(leftDriveTalonFX[0], rightDriveTalonFX[0]);
 
@@ -95,6 +95,8 @@ public class DriveSubsystem extends SubsystemBase {
     // The new 2022 version of the libraries will stop inverting the motors by
     // default anyway
     // drive.setRightSideInverted(false);
+
+    if (false) {
 
     configureSimpleMagic();
 
