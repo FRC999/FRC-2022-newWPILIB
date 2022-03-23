@@ -145,14 +145,14 @@ public class RobotContainer {
 
     // Configure default commands
     // Set the default drive command to split-stick arcade drive
-    driveSubsystem.setDefaultCommand(
+   // driveSubsystem.setDefaultCommand(
         // A split-stick arcade command, with forward/backward controlled by the left
         // hand, and turning controlled by the right.
         // new RunCommand(() ->
         // driveSubsystem.arcadeDrive(joystick.getLeftY(),
         // joystick.getRightX()), driveSubsystem));
 
-        new DriveManuallyCommand());
+    //    new DriveManuallyCommand());
 
     // Don't start kinematics untill we're ready
     if (Constants.RobotProperties.isIMU) {
