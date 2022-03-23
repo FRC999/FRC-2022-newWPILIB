@@ -15,7 +15,8 @@ import frc.robot.RobotContainer;
 public class TESTMotionMagic1motor extends CommandBase {
   /** Creates a new TESTMotionMagic1motor. */
 
-  WPI_TalonFX _talon = new WPI_TalonFX(1, "rio");
+  // WPI_TalonFX _talon = new WPI_TalonFX(1, "rio");
+  WPI_TalonFX _talon;
 
   public static final int kSlotIdx = 0;
 	public static final int kPIDLoopIdx = 0;
@@ -28,10 +29,12 @@ public class TESTMotionMagic1motor extends CommandBase {
   double kPeakOutput = 1.0;
 
 
-  public TESTMotionMagic1motor() {
+  public TESTMotionMagic1motor(WPI_TalonFX cTalon) {
     // Use addRequirements() here to declare subsystem dependencies.
 
     addRequirements(RobotContainer.driveSubsystem);
+
+    _talon = cTalon;
 
   }
 

@@ -34,13 +34,16 @@ public class DriveSubsystem extends SubsystemBase {
   public DriveSubsystem() {
 
 
-    if (false) {
     /**
      * create objects for the left-side and right-side motors reset controllers to
      * defaults setup followers set controller orientation set encoder phase
      */
 
     System.out.println("Primary Motor - Left " + DriveConstants.leftMotorPortID[0] + " Primary Motor - Right " + DriveConstants.rightMotorPortID[0] + " Number of motors per side " + DriveConstants.rightMotorPortID.length);
+
+    leftDriveTalonFX[0] = new WPI_TalonFX(DriveConstants.leftMotorPortID[0]);
+
+    if (false) {
 
     for (int motor = 0; motor < DriveConstants.leftMotorPortID.length; motor++) {
       leftDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.leftMotorPortID[motor]);
@@ -57,6 +60,8 @@ public class DriveSubsystem extends SubsystemBase {
       leftDriveTalonFX[motor].setSafetyEnabled(false);
     }
 
+
+
     for (int motor = 0; motor < DriveConstants.rightMotorPortID.length; motor++) {
       rightDriveTalonFX[motor] = new WPI_TalonFX(DriveConstants.rightMotorPortID[motor]);
       rightDriveTalonFX[motor].configFactoryDefault(); // reset the controller to defaults
@@ -72,6 +77,7 @@ public class DriveSubsystem extends SubsystemBase {
 
       rightDriveTalonFX[motor].setSafetyEnabled(false);
     }
+
 
     // Engage brake mode
     driveTrainBrakeMode();
@@ -93,7 +99,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     zeroDriveEncoders(); // Needs to be done after configuring Motion Magic
 
-  }
+    }
 
   }
 
