@@ -21,7 +21,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   private static final double CALIBRATEMOTORPOWER = 0.3;
   private static final double FULLFORWARDSPEED = 1.0;
-  private static final double FULLREVERSESPEED = -0.7;
+  private static final double FULLREVERSESPEED = -0.5;
 
   public WPI_TalonSRX tiltMotorController;
   private WPI_TalonSRX[] wheelMotorControllers;

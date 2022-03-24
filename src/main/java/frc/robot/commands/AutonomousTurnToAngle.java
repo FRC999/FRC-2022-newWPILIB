@@ -9,18 +9,18 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 
-public class AutonomousDriveLinear extends CommandBase {
+public class AutonomousTurnToAngle extends CommandBase {
 
   private static final boolean DEBUG = true;
 
   public int finalEncoderValues[];
 
-  private double feet;
+  private double angle;
 
   /** Creates a new AutonomousDriveLinear. */
-  public AutonomousDriveLinear(double feetToDrive) {
+  public AutonomousTurnToAngle(double angleToTurn) {
     // Use addRequirements() here to declare subsystem dependencies.
-    feet = feetToDrive;
+    angle = angleToTurn;
 
     addRequirements(RobotContainer.driveSubsystem);
     
@@ -31,8 +31,8 @@ public class AutonomousDriveLinear extends CommandBase {
   public void initialize() {
 
     finalEncoderValues = new int[2];
-    finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerFoot[0] * feet);
-    finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerFoot[1] * feet);
+    finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerDegree[0] * angle * (-1));
+    finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerDegree[1] * angle);
 
     //System.out.println("**** A T L " + finalEncoderValues[0]);
     //System.out.println("**** A T R " + finalEncoderValues[1]);
@@ -43,7 +43,7 @@ public class AutonomousDriveLinear extends CommandBase {
     System.out.println("**** Init A T R " + finalEncoderValues[1]);
 
     // Drive with MotionMagic Talon PID to calculated encoder value
-    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[0]);
+    RobotContainer.driveSubsystem.simpleMotionMagic(finalEncoderValues[0],finalEncoderValues[1]);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

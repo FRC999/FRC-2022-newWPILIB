@@ -21,6 +21,7 @@ import frc.robot.commands.AutonomousBackLimelight9ft;
 import frc.robot.commands.AutonomousDriveLinear;
 import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.AutonomousTrajectoryRioCommand;
+import frc.robot.commands.AutonomousTurnToAngle;
 import frc.robot.commands.AutonomousTwoBallLimelight;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.CommandInterruptor;
@@ -285,6 +286,20 @@ public class RobotContainer {
           .whenPressed(new  AutonomousDriveLinear(2))
           .whenReleased(new DriveStopCommand());
 
+          new JoystickButton(turnStick, 12)
+          .whenPressed(new  AutonomousDriveLinear(10))
+          .whenReleased(new DriveStopCommand());
+
+        new JoystickButton(turnStick, 9)
+          .whenPressed(new  AutonomousTurnToAngle(180))
+          .whenReleased(new DriveStopCommand());
+        new JoystickButton(turnStick, 10)
+          .whenPressed(new  AutonomousTurnToAngle(-180))
+          .whenReleased(new DriveStopCommand());
+
+          new JoystickButton(turnStick, 7)
+          .whenPressed(new  InstantCommand(driveSubsystem::zeroDriveEncoders, driveSubsystem));
+
         break;
 
       case C2022:
@@ -295,6 +310,15 @@ public class RobotContainer {
         // *****************
         // *** DRIVESTICK ***
         // *****************
+
+        new JoystickButton(driveStick, 9)
+        .whenPressed(new  AutonomousDriveLinear(2))
+        .whenReleased(new DriveStopCommand());
+
+        new JoystickButton(driveStick, 10)
+        .whenPressed(new  AutonomousDriveLinear(10))
+        .whenReleased(new DriveStopCommand());
+
 
         // one-button reverse
         JoystickButton intakeShooterReverse = new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeShooterReverseButton) ;
@@ -334,6 +358,14 @@ public class RobotContainer {
         // *****************
         // *** TURNSTICK ***
         // *****************
+
+        new JoystickButton(turnStick, 9)
+          .whenPressed(new  AutonomousTurnToAngle(180))
+          .whenReleased(new DriveStopCommand());
+        new JoystickButton(turnStick, 10)
+          .whenPressed(new  AutonomousTurnToAngle(-180))
+          .whenReleased(new DriveStopCommand());
+
 
         // one-button ball intake
         JoystickButton ballIntoShooterButton = new JoystickButton(turnStick, Constants.OIC2022TEST.BallIntoShooterButton) ;

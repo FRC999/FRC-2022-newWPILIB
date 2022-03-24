@@ -255,7 +255,9 @@ public class Robot extends TimedRobot {
         DriveConstants.MotorInvert =  new boolean[]  {false,true};
 
         DriveConstants.ticksPerFoot = new int[] {(int)(366369.0/30.0),(int)(366511.0/30.0)};
-        DriveConstants.ticksPerDegree = new int[] {(int)(964147.0/10.0/360.0),(int)(973038.0/10.0/360.0)};
+        //DriveConstants.ticksPerDegree = new int[] {(int)(964147.0/10.0/360.0),(int)(973038.0/10.0/360.0)};
+        DriveConstants.ticksPerDegree = new int[] {(int)(38151.5/196.0),(int)(38151.5/196.0)};
+
 
         RobotDriveChassisConstants.wheelDiameter = 4;
         RobotDriveChassisConstants.encoderUnitsPerShaftRotation = 2048;
@@ -289,7 +291,7 @@ public class Robot extends TimedRobot {
         DriveConstants.MotorInvert =  new boolean[]  {false,true};
 
         DriveConstants.ticksPerFoot = new int[] {(int)(441928.0/30.0),(int)(443042.0/30.0)};
-        DriveConstants.ticksPerDegree = new int[] {(int)(805613.0/10.0/360.0),(int)(815114.0/10.0/360.0)};
+        DriveConstants.ticksPerDegree = new int[] {(int)(805613.0/10.0/355.0),(int)(805613.0/10.0/355.0)};
 
         DriveConstants.maximumLinearError = new int[] {7000,7000};
         DriveConstants.maximumAngleError = new int[] {250,250};
@@ -376,6 +378,13 @@ public class Robot extends TimedRobot {
         DriveConstants.kRightEncoderReversed = true;
         DriveConstants.SensorPhase =  new boolean[] {true,true};
         DriveConstants.MotorInvert =  new boolean[]  {true,false};
+
+        DriveConstants.ticksPerFoot = new int[] {(int)(15646),(int)(15646)};
+        DriveConstants.ticksPerDegree = new int[] {(int)(805613.0/10.0/284.0),(int)(805613.0/10.0/284.0)};
+
+        DriveConstants.maximumLinearError = new int[] {7000,7000};
+        DriveConstants.maximumAngleError = new int[] {250,250};
+
 
         // IMU
         PigeonIMU.pigeonIMUId = 5;
