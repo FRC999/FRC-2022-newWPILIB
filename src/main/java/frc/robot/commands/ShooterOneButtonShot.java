@@ -22,7 +22,7 @@ public class ShooterOneButtonShot extends SequentialCommandGroup {
         sequence(
           new WaitCommand(1),
           new InstantCommand(RobotContainer.shooterSubsystem::extendPlunger),
-          new WaitCommand(1),
+          new WaitCommand(0.2),
           new InstantCommand(RobotContainer.shooterSubsystem::retractPlunger),
           new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor)
         ), // end sequence
