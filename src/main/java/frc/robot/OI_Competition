@@ -1,36 +1,52 @@
-DRIVE JOYSTICK
 
-RIGHT JOYSTICK
+TurnStick
 
-BUTTON BOARD
+1 - intake + shooter (ball in)
 
-( 1 ) Intake Down
+9 - Auto rotate +180
+10 - Auto rotate -180
+11 - Intake down
+12 - Intake up
 
-( 2 ) Intake Up
+DriveStick
 
-( 3 ) Intake Start
+1 - intake + shooter reverse (ball out)
+3 - shooter arm to 0 and calibrate
+4 - shooter arm to 45 degrees + tilt adjustment via tail
 
-( 4 ) Intake Stop
+9 - AutoDrive 2ft
+10 - AutoDrive 10ft
+11 - Intake down
+12 - Intake up
 
-( 5 ) Intake Reverse
 
-( 6 ) Ball-in sequence
-    CheckSensors->ShooterUp->(IntakeStart && WaitForHopperSensor)->
-    IntakeStop->ShooterDown->CheckShooterSensor
+AuxStick
 
-( 7 ) Shooter sequence
-    CheckShooterSensor->CheckVisionToGetAngle->
-        (TiltArmToAngle && RotateWheels)->WaitUntilSpeed->
-        (PushPlunger && CheckShooterSensor)->(StopWheels && PullPlunger && TiltArmDown)
+1 - manual shooting with tail adjustments (checks that the ball is in shooter)
+3 - previous lower goal setting
+4 - previous high goal setting
+5 - next lower goal setting
+6 - next high goal setting
+7 - shooter tilt down
+8 - shooter tilt up
+9 - zero shooter tilt encoder
+11 - shoot using current preset firing solution
+12 - shoot current tilt using firing solution preset power
 
-( 8 ) 
+Box2
 
-( 9 ) 
+1 - retractthirdarm
+2 - extendthirdarm
 
-( 10 ) 
+3,4,5 - presets (close - 6, middle - 9, far - 14)
 
-( 11 ) 
-( 11 ) 
-( 11 ) 
+6,9 - climber arms UP
+7,8 - climber arms Down
 
-( 12 ) Calibrate Shooter Arm
+Box1
+
+1 - command interruptor switch
+8,7 - test Auto - should not be used for now
+9 - Climber Up (both)
+10 - lock climber/plunger out
+11 - Climber Down (both)
