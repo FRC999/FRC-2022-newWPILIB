@@ -353,7 +353,7 @@ public final class Constants {
         public final static boolean MotorInvert =  true;  
 
         // Peak Output - forward and reverse*(-1)
-        public final static double PeakOutput = 0.3;
+        public final static double PeakOutput = 0.5;
 
         public final static int Izone_0 = 500;
         public final static double PeakOutput_0 = 1;
