@@ -380,7 +380,7 @@ public class Robot extends TimedRobot {
         DriveConstants.MotorInvert =  new boolean[]  {true,false};
 
         DriveConstants.ticksPerFoot = new int[] {(int)(15646),(int)(15646)};
-        DriveConstants.ticksPerDegree = new int[] {(int)(805613.0/10.0/290.0),(int)(805613.0/10.0/284.0)};
+        DriveConstants.ticksPerDegree = new int[] {(int)(805613.0/10.0/309.0),(int)(805613.0/10.0/295.0)};
 
         DriveConstants.maximumLinearError = new int[] {7000,7000};
         DriveConstants.maximumAngleError = new int[] {250,250};

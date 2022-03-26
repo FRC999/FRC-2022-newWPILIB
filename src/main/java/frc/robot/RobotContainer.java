@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
+import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.DriveInterface;
@@ -22,6 +23,7 @@ import frc.robot.commands.AutonomousDriveLinear;
 import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.AutonomousTurnToAngle;
+import frc.robot.commands.AutonomousTurnToAngleLimelight;
 import frc.robot.commands.AutonomousTwoBallLimelight;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.CommandInterruptor;
@@ -231,10 +233,10 @@ public class RobotContainer {
 
     switch (RobotProperties.robotModel) {
       case FRANKENBOT:
-        new JoystickButton(driveStick, 7)
+       /* new JoystickButton(driveStick, 7)
           .whenPressed(new AutonomousTrajectoryRioCommand("10ftForward.wpilib"))
           .whenReleased(new InstantCommand(driveSubsystem::driveTrainBrakeMode)
-          .andThen(new InstantCommand(() -> driveSubsystem.manualDrive(0, 0))));
+          .andThen(new InstantCommand(() -> driveSubsystem.manualDrive(0, 0))); */
         // new JoystickButton(driveStick, 11).whenPressed(new FrankenbotExtendSolenoid());
         // new JoystickButton(driveStick, 12).whenPressed(new FrankenbotRetractSolenoid());
 
@@ -310,6 +312,25 @@ public class RobotContainer {
         // *****************
         // *** DRIVESTICK ***
         // *****************
+
+        new JoystickButton(driveStick, 8)
+        .whenPressed(
+          new InstantCommand(RobotContainer.intakeSubsystem::rotateIntakeForward,RobotContainer.intakeSubsystem)
+          .andThen(new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotorReverse(-0.5),RobotContainer.shooterSubsystem))
+          .andThen(new AutonomousDriveLinear(4))
+          .andThen(new InstantCommand(RobotContainer.intakeSubsystem::stopIntakeMotor,RobotContainer.intakeSubsystem))
+          .andThen(new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor,RobotContainer.shooterSubsystem))
+
+        )
+        .whenReleased(new DriveStopCommand());
+
+        
+
+        new JoystickButton(driveStick, 7)
+        .whenPressed(new  AutonomousTurnToAngleLimelight()
+        .andThen(new WaitCommand(0.25))
+        .andThen(new AutonomousTurnToAngleLimelight()))
+        ;
 
         new JoystickButton(driveStick, 9)
         .whenPressed(new  AutonomousDriveLinear(2))

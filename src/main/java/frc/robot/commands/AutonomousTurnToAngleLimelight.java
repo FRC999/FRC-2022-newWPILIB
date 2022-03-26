@@ -9,7 +9,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveSubsystem;
 
-public class AutonomousTurnToAngle extends CommandBase {
+public class AutonomousTurnToAngleLimelight extends CommandBase {
 
   private static final boolean DEBUG = true;
 
@@ -20,9 +20,9 @@ public class AutonomousTurnToAngle extends CommandBase {
   private int tolerance;
 
   /** Creates a new AutonomousDriveLinear. */
-  public AutonomousTurnToAngle(double angleToTurn) {
+  public AutonomousTurnToAngleLimelight() {
     // Use addRequirements() here to declare subsystem dependencies.
-    angle = angleToTurn;
+
 
     addRequirements(RobotContainer.driveSubsystem);
     
@@ -31,6 +31,8 @@ public class AutonomousTurnToAngle extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+
+    angle = (-1)*RobotContainer.shooterSubsystem.getTargetHorizontalOffset();
 
     finalEncoderValues = new int[2];
     if (angle>=0){
