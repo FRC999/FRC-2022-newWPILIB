@@ -31,8 +31,14 @@ public class AutonomousTurnToAngle extends CommandBase {
   public void initialize() {
 
     finalEncoderValues = new int[2];
-    finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerDegree[0] * angle * (-1));
-    finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerDegree[1] * angle);
+    if (angle>=0){
+      finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerDegree[0] * angle * (-1));
+      finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerDegree[0] * angle);
+    } else {
+      finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerDegree[1] * angle * (-1));
+      finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerDegree[1] * angle);  
+    }
+    
 
     //System.out.println("**** A T L " + finalEncoderValues[0]);
     //System.out.println("**** A T R " + finalEncoderValues[1]);

@@ -360,10 +360,10 @@ public class RobotContainer {
         // *****************
 
         new JoystickButton(turnStick, 9)
-          .whenPressed(new  AutonomousTurnToAngle(180))
+          .whenPressed(new  AutonomousTurnToAngle(90))
           .whenReleased(new DriveStopCommand());
         new JoystickButton(turnStick, 10)
-          .whenPressed(new  AutonomousTurnToAngle(-180))
+          .whenPressed(new  AutonomousTurnToAngle(-90))
           .whenReleased(new DriveStopCommand());
 
 
