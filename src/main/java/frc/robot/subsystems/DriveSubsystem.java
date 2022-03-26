@@ -8,14 +8,19 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.DemandType;
+import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.RemoteFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.sensors.PigeonIMU;
+import com.ctre.phoenix.sensors.PigeonIMU_StatusFrame;
 
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -37,6 +42,43 @@ public class DriveSubsystem extends SubsystemBase {
   PigeonIMU pidgey;
   public final static int REMOTE_0 = 0;
 	public final static int REMOTE_1 = 1;
+  public final static int PID_PRIMARY = 0;
+	public final static int PID_TURN = 1;
+  public final static int SLOT_0 = 0;
+	public final static int SLOT_1 = 1;
+	public final static int SLOT_2 = 2;
+	public final static int SLOT_3 = 3;
+  public final static int kSlot_Distanc = SLOT_0;
+	public final static int kSlot_Turning = SLOT_1;
+	public final static int kSlot_Velocit = SLOT_2;
+	public final static int kSlot_MotProf = SLOT_3;
+  public final static double kGains_Turning_kP =2.0;
+  public final static double kGains_Turning_kI = 0.0;
+  public final static double kGains_Turning_kD = 4.0;
+  public final static double kGains_Turning_kF = 0.0;
+  public final static double kGains_Turning_kIzone = 200;
+  public final static double kGains_Turning_kPeakOutput = 1.0;
+  /**
+	 * This is a property of the Pigeon IMU, and should not be changed.
+	 */
+	public final static int kPigeonUnitsPerRotation = 8192;
+
+  /**
+	 * Using the configSelectedFeedbackCoefficient() function, scale units to 3600 per rotation.
+	 * This is nice as it keeps 0.1 degrees of resolution, and is fairly intuitive.
+	 */
+	public final static double kTurnTravelUnitsPerRotation = 3600;
+
+	/**
+	 * Set to zero to skip waiting for confirmation.
+	 * Set to nonzero to wait and report to DS if action fails.
+	 */
+	public final static int kTimeoutMs = 30;
+
+	/**
+	 * Motor neutral dead-band, set to the minimum 0.1%.
+	 */
+	public final static double kNeutralDeadband = 0.001;
 
   public DriveSubsystem() {
 
@@ -100,6 +142,12 @@ public class DriveSubsystem extends SubsystemBase {
     // drive.setRightSideInverted(false);
 
     configureSimpleMagic();
+
+
+    if (Constants.RobotProperties.isIMU && ! Constants.RobotProperties.isNaVX) { // If robot has Pigeon IMU
+      configureSimpleAUXMagix(); // prepare for the Pigeon PID
+      zeroHeading(); // zero YAW
+    }
 
     zeroDriveEncoders(); // Needs to be done after configuring Motion Magic
 
@@ -381,20 +429,65 @@ public class DriveSubsystem extends SubsystemBase {
 
   public void configureSimpleAUXMagix() {
 
-		/* Configure the Remote Talon's selected sensor as a remote sensor for the right Talon */
-		rightDriveTalonFX[0].configRemoteFeedbackFilter(leftDriveTalonFX[0].getDeviceID(),					// Device ID of Source
-												RemoteSensorSource.TalonFX_SelectedSensor,	// Remote Feedback Source
-												REMOTE_0,							// Source number [0, 1]
-												DriveConstants.configureTimeoutMs);						// Configuration Timeout
-		
-		/* Configure the Pigeon IMU to the other remote slot available on the right Talon */
+    /*
+     * Configure the Remote Talon's selected sensor as a remote sensor for the right
+     * Talon
+     */
+    rightDriveTalonFX[0].configRemoteFeedbackFilter(leftDriveTalonFX[0].getDeviceID(), // Device ID of Source
+        RemoteSensorSource.TalonFX_SelectedSensor, // Remote Feedback Source
+        REMOTE_0, // Source number [0, 1]
+        DriveConstants.configureTimeoutMs); // Configuration Timeout
+
+    /*
+     * Configure the Pigeon IMU to the other remote slot available on the right
+     * Talon
+     */
     rightDriveTalonFX[0].configRemoteFeedbackFilter(pidgey.getDeviceID(),
-                        RemoteFeedbackDevice.Remotesensor0,
-												REMOTE_1,	
-												DriveConstants.configureTimeoutMs);
+        RemoteSensorSource.GadgeteerPigeon_Yaw,
+        REMOTE_1,
+        DriveConstants.configureTimeoutMs);
+    /*
+     * Scale the Selected Sensor using a coefficient (Values explained in
+     * Constants.java
+     */
+    rightDriveTalonFX[0].configSelectedFeedbackCoefficient(
+        kTurnTravelUnitsPerRotation / kPigeonUnitsPerRotation, // Coefficient
+        PID_TURN, // PID Slot of Source
+        kTimeoutMs); // Configuration Timeout
+
+		/* Set status frame periods */
+		rightDriveTalonFX[0].setStatusFramePeriod(StatusFrameEnhanced.Status_12_Feedback1, 10, kTimeoutMs);
+		rightDriveTalonFX[0].setStatusFramePeriod(StatusFrameEnhanced.Status_13_Base_PIDF0, 10, kTimeoutMs);
+		rightDriveTalonFX[0].setStatusFramePeriod(StatusFrameEnhanced.Status_14_Turn_PIDF1, 10, kTimeoutMs);
+		pidgey.setStatusFramePeriod(PigeonIMU_StatusFrame.CondStatus_9_SixDeg_YPR , 5, kTimeoutMs);
+
+		/* FPID Gains */
+		rightDriveTalonFX[0].config_kP(kSlot_Turning, kGains_Turning_kP, kTimeoutMs);
+		rightDriveTalonFX[0].config_kI(kSlot_Turning, kGains_Turning_kI, kTimeoutMs);
+		rightDriveTalonFX[0].config_kD(kSlot_Turning, kGains_Turning_kD, kTimeoutMs);
+		rightDriveTalonFX[0].config_kF(kSlot_Turning, kGains_Turning_kF, kTimeoutMs);
+		rightDriveTalonFX[0].config_IntegralZone(kSlot_Turning, kGains_Turning_kIzone, kTimeoutMs);
+		rightDriveTalonFX[0].configClosedLoopPeakOutput(kSlot_Turning, kGains_Turning_kPeakOutput, kTimeoutMs);
+		rightDriveTalonFX[0].configAllowableClosedloopError(kSlot_Turning, 0, kTimeoutMs);	
+
+    rightDriveTalonFX[0].configClosedLoopPeriod(1, 1, kTimeoutMs);
+
+    rightDriveTalonFX[0].configAuxPIDPolarity(false, kTimeoutMs);
 
   }
 
+  void zeroHeading() {
+		pidgey.setYaw(0, kTimeoutMs);
+		pidgey.setAccumZAngle(0, kTimeoutMs);
+		System.out.println("[Pigeon] All sensors are zeroed.\n");
+	}
+
+  public void turnToAnglePigeon(double _targetAngle) {
+    zeroHeading(); // zero the YAW values
+    rightDriveTalonFX[0].selectProfileSlot(kSlot_Turning, PID_TURN);
+    rightDriveTalonFX[0].set(ControlMode.PercentOutput, 0, DemandType.AuxPID, _targetAngle);
+    leftDriveTalonFX[0].follow(rightDriveTalonFX[0], FollowerType.AuxOutput1);
+  }
 
   public void simpleMotionMagic(int leftEncoderVal, int rightEncoderVal) {
     // Test method that moves robot forward a given number of wheel rotations
