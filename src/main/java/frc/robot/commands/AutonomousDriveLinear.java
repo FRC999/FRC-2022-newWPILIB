@@ -17,10 +17,14 @@ public class AutonomousDriveLinear extends CommandBase {
 
   private double feet;
 
+  private int tolerance;
+
   /** Creates a new AutonomousDriveLinear. */
   public AutonomousDriveLinear(double feetToDrive) {
     // Use addRequirements() here to declare subsystem dependencies.
     feet = feetToDrive;
+
+    tolerance = (int)(Constants.DriveConstants.ticksPerFoot[0]/6);
 
     addRequirements(RobotContainer.driveSubsystem);
     
@@ -72,9 +76,10 @@ public class AutonomousDriveLinear extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    //return false;
     //return acceptableLinearError();
 
+      return Math.abs(finalEncoderValues[0]-RobotContainer.driveSubsystem.getLeftEncoder())<tolerance;
     // TODO: check if we can use the PID error instead
 
   }
