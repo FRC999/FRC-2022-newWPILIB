@@ -20,12 +20,12 @@ import frc.robot.RobotContainer;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonomousLinearLimelight extends SequentialCommandGroup {
+public class AutonomousLinearLimelightShootingDriveDistanceDirection extends SequentialCommandGroup {
 
   public double SHOOTINGDISTANCE = 9; // ft
 
   /** Creates a new AutonomousBackLimelight. */
-  public AutonomousLinearLimelight(double shootingDistance, double direction) { // direction +1 or -1
+  public AutonomousLinearLimelightShootingDriveDistanceDirection(double shootingDistance, double direction) { // direction +1 or -1
 
     SHOOTINGDISTANCE = shootingDistance;
 
@@ -35,9 +35,9 @@ public class AutonomousLinearLimelight extends SequentialCommandGroup {
       sequence(
         new IntakeDown(),
         //new CalibrateShooterArmWithLimitSwitch(),
-        new InstantCommand(RobotContainer.shooterSubsystem::zeroTiltMotorEncoder,RobotContainer.shooterSubsystem),
+        //new InstantCommand(RobotContainer.shooterSubsystem::zeroTiltMotorEncoder,RobotContainer.shooterSubsystem),
         race(
-          new WaitCommand(7),
+          new WaitCommand(7), // max drive time; may need to be adjusted for longer drives
           new DriveUntilDistanceLimelightDirection(direction)
         ),
         

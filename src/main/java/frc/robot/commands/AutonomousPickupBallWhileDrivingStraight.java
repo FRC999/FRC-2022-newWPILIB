@@ -6,29 +6,25 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.ShooterSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonomousTwoBallLimelight180 extends SequentialCommandGroup {
-  /** Creates a new AutonomousTwoBallLimelight180. */
-  public AutonomousTwoBallLimelight180() {
+public class AutonomousPickupBallWhileDrivingStraight extends SequentialCommandGroup {
+  /** Creates a new AutonomousPickupBallWhileDrivingStraight. */
+  public AutonomousPickupBallWhileDrivingStraight(double distance) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-     /* sequence(
-         new AutonomousBackLimelight9ft(),
-        new AutonomousDriveLinear(1.0),
-        new RotateCommand(180),
+      sequence(
         new InstantCommand(RobotContainer.intakeSubsystem::rotateIntakeForward,RobotContainer.intakeSubsystem),
-        new InstantCommand(RobotContainer.shooterSubsystem::startShooterWheelMotorReverse,RobotContainer.shooterSubsystem),
-        race(
-          new WaitCommand(2.0),
-          new AutonomousDriveLinear(0.3)
-        ),
-        */
-    );  
+        new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotorReverse(ShooterSubsystem.FULLREVERSESPEED),RobotContainer.shooterSubsystem),
+        new AutonomousDriveLinear(distance),
+        new InstantCommand(RobotContainer.intakeSubsystem::stopIntakeMotor,RobotContainer.intakeSubsystem),
+        new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor,RobotContainer.shooterSubsystem)
+      )
+    );
   }
 }
