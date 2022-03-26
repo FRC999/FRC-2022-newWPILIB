@@ -17,6 +17,8 @@ public class AutonomousTurnToAngle extends CommandBase {
 
   private double angle;
 
+  private int tolerance;
+
   /** Creates a new AutonomousDriveLinear. */
   public AutonomousTurnToAngle(double angleToTurn) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -34,11 +36,15 @@ public class AutonomousTurnToAngle extends CommandBase {
     if (angle>=0){
       finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerDegree[0] * angle * (-1));
       finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerDegree[0] * angle);
+      tolerance = (int)(Constants.DriveConstants.ticksPerDegree[0]);
+
     } else {
       finalEncoderValues[0] = (int)(Constants.DriveConstants.ticksPerDegree[1] * angle * (-1));
-      finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerDegree[1] * angle);  
+      finalEncoderValues[1] = (int)(Constants.DriveConstants.ticksPerDegree[1] * angle);
+      tolerance = (int)(Constants.DriveConstants.ticksPerDegree[1]);  
     }
     
+    System.out.println("**** Turn tolerance " + tolerance);
 
     //System.out.println("**** A T L " + finalEncoderValues[0]);
     //System.out.println("**** A T R " + finalEncoderValues[1]);
@@ -78,8 +84,9 @@ public class AutonomousTurnToAngle extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    //return false;
     //return acceptableLinearError();
+    return Math.abs(finalEncoderValues[0]-RobotContainer.driveSubsystem.getLeftEncoder())<tolerance;
 
     // TODO: check if we can use the PID error instead
 
