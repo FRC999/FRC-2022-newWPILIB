@@ -10,10 +10,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.RemoteSensorSource;
 import com.ctre.phoenix.motorcontrol.StatusFrame;
 import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.TalonFXFeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -30,6 +32,11 @@ public class DriveSubsystem extends SubsystemBase {
   // For isOnTarget
   boolean wasOnTarget = false;
   int withinAcceptableErrorLoops = 0;
+
+  // AUX PID
+  PigeonIMU pidgey;
+  public final static int REMOTE_0 = 0;
+	public final static int REMOTE_1 = 1;
 
   public DriveSubsystem() {
 
@@ -69,6 +76,10 @@ public class DriveSubsystem extends SubsystemBase {
       }
 
       rightDriveTalonFX[motor].setSafetyEnabled(false);
+
+      // get PigeonIMU for AuxPID
+      pidgey = PigeonIMUSubsystem.getPidgey();
+
     }
 
     // Engage brake mode
@@ -367,6 +378,22 @@ public class DriveSubsystem extends SubsystemBase {
     rightDriveTalonFX[0].configMotionSCurveStrength(DriveConstants.motionMagicSmoothing);
 
   } // End configureDriveTrainControllersForSimpleMagic
+
+  public void configureSimpleAUXMagix() {
+
+		/* Configure the Remote Talon's selected sensor as a remote sensor for the right Talon */
+		rightDriveTalonFX[0].configRemoteFeedbackFilter(leftDriveTalonFX[0].getDeviceID(),					// Device ID of Source
+												RemoteSensorSource.TalonFX_SelectedSensor,	// Remote Feedback Source
+												REMOTE_0,							// Source number [0, 1]
+												DriveConstants.configureTimeoutMs);						// Configuration Timeout
+		
+		/* Configure the Pigeon IMU to the other remote slot available on the right Talon */
+    rightDriveTalonFX[0].configRemoteFeedbackFilter(pidgey.getDeviceID(),
+                        RemoteFeedbackDevice.Remotesensor0,
+												REMOTE_1,	
+												DriveConstants.configureTimeoutMs);
+
+  }
 
 
   public void simpleMotionMagic(int leftEncoderVal, int rightEncoderVal) {

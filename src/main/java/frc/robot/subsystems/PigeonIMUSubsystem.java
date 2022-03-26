@@ -13,7 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 public class PigeonIMUSubsystem extends SubsystemBase implements IMUInterface {
 
   private WPI_TalonSRX pigeyTalonSRX;
-  private PigeonIMU pidgey;
+  private static PigeonIMU pidgey;
   private double[] xyz = new double[3]; // so not to allocate one every time
 
   /** Creates a new PigeonIMUSubsystem. */
@@ -92,6 +92,10 @@ public class PigeonIMUSubsystem extends SubsystemBase implements IMUInterface {
     double[] ypr = new double[3];
     pidgey.getRawGyro(ypr);
     return -ypr[2];
+  }
+
+  public static PigeonIMU getPidgey(){
+    return pidgey;
   }
 
   @Override

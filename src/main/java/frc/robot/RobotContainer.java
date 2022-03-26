@@ -74,10 +74,10 @@ public class RobotContainer {
 
   private final AutonomousPlaceholderCommand placeholderAutoCommand = new AutonomousPlaceholderCommand();
 
-  public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
-
   // Only one IMU subsystem should be used
   public static final IMUPassthroughSubsystem imuSubsystem = new IMUPassthroughSubsystem();
+
+  public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
   public static final PneumaticsSubsystem pneumaticsSubsystem = new PneumaticsSubsystem();
 
