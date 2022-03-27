@@ -306,7 +306,10 @@ public class ShooterSubsystem extends SubsystemBase {
 
   /**
    * Tilt Shooter arm at specific angle
-   * This will be extensively used by the commands that need to hold the arm at specific angle
+   * This will be extensively used by the instant commands that need to hold the arm at specific angle
+   * @param double degrees
+   * @return void
+   * Note that it does not tell you when it's done getting to the angle. Wait accordingly.
    */
   public void tiltShooterArm(double degrees) {
     tiltMotorController.set(ControlMode.Position, zeroTiltPosition - degreesToEncoderClicks(degrees));
@@ -322,17 +325,25 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   /**
-   * Convert encoder clicks to degrees for the tilt motor
+   * Convert degrees to encoder clicks for the tilt motor
    * Note that the resolution and error of this process is 0.17 of a degree
    */
    public int degreesToEncoderClicks(double degrees) {
     return (int)(Constants.ShooterConstants.encoderUnitsPerShaftRotation * degrees / 360.0) ;
   }
 
+  /**
+   * Convert encoder clicks to degrees for the tilt motor
+   * Note that the resolution and error of this process is 0.17 of a degree
+   */
   public int EncoderClicksToDegrees(int clicks) {
     return (int)(360.0 * clicks / Constants.ShooterConstants.encoderUnitsPerShaftRotation) ;
   }
 
+  /**
+   * Get current tilt angle in degrees (int) for the shooting solution
+   * @return degrees
+   */
   public int getTiltAngle() {
     return EncoderClicksToDegrees((int)(getTiltEncoder() - zeroTiltPosition));
   }
@@ -341,14 +352,24 @@ public class ShooterSubsystem extends SubsystemBase {
     return zeroTiltPosition;
   }
 
+  /**
+   * Get position of the Z-tail for the manual tilt adjustment
+   * @return tiltAdjustment -1..+1 * 20 (range -20 ... +20)
+   */
   public double getTiltAdjustment() {
     return RobotContainer.driveStick.getRawAxis(3)*20;
   }
 
+  /**
+   * Extend shooter plunger
+   */
   public void extendPlunger() {
     shooterSolenoid.set(Value.kForward);
   }
 
+  /**
+   * Retract shooter plunger
+   */
   public void retractPlunger() {
     shooterSolenoid.set(Value.kReverse);
   }

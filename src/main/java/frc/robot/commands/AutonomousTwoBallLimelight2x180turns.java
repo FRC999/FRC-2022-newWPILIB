@@ -13,7 +13,9 @@ import frc.robot.RobotContainer;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutonomousTwoBallLimelight2x180turns extends SequentialCommandGroup {
-  /** Creates a new AutonomousTwoBallLimelight180. */
+  /**
+   *  Creates a new AutonomousTwoBallLimelight180.
+  */
 
   public final double FIRSTBALLSHOOTINGDISTANCE = 7.0;
   public final double DISTANCETOPICKSECONBALL = 4;
@@ -27,6 +29,7 @@ public class AutonomousTwoBallLimelight2x180turns extends SequentialCommandGroup
         new InstantCommand(RobotContainer.shooterSubsystem::zeroTiltMotorEncoder,RobotContainer.shooterSubsystem), // set 0 for the shooter tilt
         new AutonomousLinearLimelightShootingDriveDistanceDirection(FIRSTBALLSHOOTINGDISTANCE, -1), // First ball
         new DriveStopCommand(),
+        new InstantCommand(() -> RobotContainer.shooterSubsystem.tiltShooterArm(0)), // lower shooter arm
         new AutonomousDriveLinear(1.0), // go forward 1 ft - shoud be at 6ft now
         new DriveStopCommand(),
         new RotateCommand(180), // turn around

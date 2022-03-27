@@ -9,14 +9,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
 
-/**
- * Intake down
- * Drive back for up to 2 seconds, until the Limelight shows you're 9 ft from the target
- * Stop
- * Wait 0.5s
- * Shoot 9ft preset
- */
-
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
@@ -24,7 +16,13 @@ public class AutonomousLinearLimelightShootingDriveDistanceDirection extends Seq
 
   public double SHOOTINGDISTANCE = 9; // ft
 
-  /** Creates a new AutonomousBackLimelight. */
+    /**
+    *  Creates a new AutonomousLinearLimelightShootingDriveDistanceDirection.
+    * 
+    * @param double shootingDistance Distance to drive
+    * @param double direction -1 drive backwards, +1 drive forward. Can also be used to reduce driving speed
+    * 
+    */
   public AutonomousLinearLimelightShootingDriveDistanceDirection(double shootingDistance, double direction) { // direction +1 or -1
 
     SHOOTINGDISTANCE = shootingDistance;
