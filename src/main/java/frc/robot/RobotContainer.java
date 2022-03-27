@@ -20,7 +20,6 @@ import frc.robot.Constants.OIConstants;
 import frc.robot.Constants.RobotProperties;
 import frc.robot.commands.AutonomousBackLimelight9ft;
 import frc.robot.commands.AutonomousDriveLinear;
-import frc.robot.commands.AutonomousPlaceholderCommand;
 import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.AutonomousTurnToAngle;
 import frc.robot.commands.AutonomousTurnToAngleLimelight;
@@ -73,8 +72,6 @@ import frc.robot.subsystems.TargetingCamera;
 
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-
-  private final AutonomousPlaceholderCommand placeholderAutoCommand = new AutonomousPlaceholderCommand();
 
   public static final DriveSubsystem driveSubsystem = new DriveSubsystem();
 
