@@ -19,7 +19,13 @@ public class AutonomousDriveLinear extends CommandBase {
 
   private int tolerance;
 
-  /** Creates a new AutonomousDriveLinear. */
+  /** 
+   * Creates a new AutonomousDriveLinear.
+   * 
+   * Drive forward/backwards ft specified in a parameter using MotionMagic PID on Falcons
+   * 
+   * @param double feetToDrive - how many feet to drive + forward - backwards
+  */
   public AutonomousDriveLinear(double feetToDrive) {
     // Use addRequirements() here to declare subsystem dependencies.
     feet = feetToDrive;

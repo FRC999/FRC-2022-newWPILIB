@@ -13,7 +13,15 @@ import frc.robot.subsystems.ShooterSubsystem;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutonomousPickupBallWhileDrivingStraight extends SequentialCommandGroup {
-  /** Creates a new AutonomousPickupBallWhileDrivingStraight. */
+  /** 
+   * Creates a new AutonomousPickupBallWhileDrivingStraight.
+   * 
+   * - Turn ON intake and shooter wheels
+   * - Drive forward "distance" ft
+   * - Turn OFF intake and shooter wheels
+   * 
+   * @param double distance - distance to drive forward
+   */
   public AutonomousPickupBallWhileDrivingStraight(double distance) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
