@@ -66,15 +66,15 @@ public class ShooterSubsystem extends SubsystemBase {
       {49.0, 0.402} //5 ft low goal
     }, 
     {
-      {71.0, 0.543}, //6 ft high goal
+      {67.0, 0.543}, //6 ft high goal
       {47.0, 0.402} //6 ft low goal
     },
     {
-      {73.0, 0.618}, //7 ft high goal
+      {67.0, 0.618}, //7 ft high goal
       {45.0, 0.460} //7 ft low goal
     },
     {
-      {71.0, 0.598}, //8 ft high goal
+      {69.0, 0.598}, //8 ft high goal
       {43.0, 0.465} //8 ft low goal
     },
     {
@@ -511,6 +511,16 @@ public class ShooterSubsystem extends SubsystemBase {
               )
             /30.48);
   }
+
+  /**
+   * Return TRUE if target distance matches parameter
+   * @param distance - int distance to target
+   * @return
+   */
+  public boolean isTargetDistance(int distance) {
+    return Math.round(getTargetDistance()) == distance;
+  }
+
 
   public boolean targetDistanceNotLess(double distance){
     return getTargetDistance()>=distance; }

@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
@@ -28,15 +29,20 @@ public class AutonomousTwoBallLimelight2x180turns extends SequentialCommandGroup
      sequence(
         new InstantCommand(RobotContainer.shooterSubsystem::zeroTiltMotorEncoder,RobotContainer.shooterSubsystem), // set 0 for the shooter tilt
         new AutonomousLinearLimelightShootingDriveDistanceDirection(FIRSTBALLSHOOTINGDISTANCE, -1), // First ball
+        new PrintCommand("*** First Ball Done"),
         new DriveStopCommand(),
         new InstantCommand(() -> RobotContainer.shooterSubsystem.tiltShooterArm(0)), // lower shooter arm
         new AutonomousDriveLinear(1.0), // go forward 1 ft - shoud be at 6ft now
         new DriveStopCommand(),
-        new RotateCommand(180), // turn around
+        new AutonomousTurnToAngle(180), // turn around
         new DriveStopCommand(),
         new AutonomousPickupBallWhileDrivingStraight(DISTANCETOPICKSECONBALL), // 11 ft
-        new RotateCommand(180), // turn around; now about 9 ft to the target - intake is 3ft 
-        new ShooterOneButtonShotPreset((int)SECONDBALLSHOOTINGDISTANCE, 0)
+        new AutonomousTurnToAngle(180), // turn around; now about 9 ft to the target - intake is 3ft 
+        new AutonomousTurnToAngleLimelight(),
+        new AutonomousTurnToAngleLimelight(),
+        new ShooterOneButtonShotPreset((int)SECONDBALLSHOOTINGDISTANCE, 0),
+
+        new DriveStopCommand()
      )
     );  
   }

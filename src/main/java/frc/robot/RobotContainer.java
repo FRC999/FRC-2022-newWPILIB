@@ -24,6 +24,7 @@ import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.AutonomousTurnToAngle;
 import frc.robot.commands.AutonomousTurnToAngleLimelight;
 import frc.robot.commands.AutonomousTwoBallLimelight;
+import frc.robot.commands.AutonomousTwoBallLimelight2x180turns;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.CommandInterruptor;
 import frc.robot.commands.DriveManuallyCommand;
@@ -310,7 +311,7 @@ public class RobotContainer {
         // *** DRIVESTICK ***
         // *****************
 
-        new JoystickButton(driveStick, 8)
+        /*new JoystickButton(driveStick, 8)
         .whenPressed(
           new InstantCommand(RobotContainer.intakeSubsystem::rotateIntakeForward,RobotContainer.intakeSubsystem)
           .andThen(new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotorReverse(-0.5),RobotContainer.shooterSubsystem))
@@ -320,13 +321,18 @@ public class RobotContainer {
 
         )
         .whenReleased(new DriveStopCommand());
-
+       */
         
 
         new JoystickButton(driveStick, 7)
         .whenPressed(new  AutonomousTurnToAngleLimelight()
         .andThen(new WaitCommand(0.25))
         .andThen(new AutonomousTurnToAngleLimelight()))
+        ;
+
+        new JoystickButton(driveStick, 8)
+        .whenPressed(new  AutonomousTwoBallLimelight2x180turns())
+        .whenReleased(new DriveStopCommand())
         ;
 
         new JoystickButton(driveStick, 9)
