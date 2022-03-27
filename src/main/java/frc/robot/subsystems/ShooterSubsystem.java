@@ -34,6 +34,8 @@ public class ShooterSubsystem extends SubsystemBase {
   private final double LIMELIGHTHEIGHT = 85.1; // cm
   private final double UPPERHUBHEIGHT = 264;   // cm
 
+  private final double BULLSEYEANGLE = 4.0; // Angle to target when the shot hits
+
   /**
    * We suppose to zero encoder when we calibrate the shooter arm
    * But if something happens during calibration, we need to remember the ZERO (down) position of the tilt arm
@@ -537,8 +539,17 @@ public class ShooterSubsystem extends SubsystemBase {
   public double getTargetHorizontalOffset() { // -29.8 to 29.8 degrees
     return RobotContainer.networkTablesSubsystem.getDouble("limelight", "tx", 0);
   }
-  public boolean targetDetected() {
+
+  /**
+   * Check if Limelight detects target
+   * @return true/false
+   */
+  public boolean isTargetDetected() {
     return (RobotContainer.networkTablesSubsystem.getDouble("limelight", "tv", 0) == 1)?true:false;
+  }
+
+  public boolean isBullsEye() {
+    return isTargetDetected() && Math.abs(getTargetHorizontalOffset())< BULLSEYEANGLE ;
   }
 
   @Override

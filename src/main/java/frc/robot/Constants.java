@@ -146,7 +146,7 @@ public final class Constants {
         public final static double NeutralDeadband = 0.001;
 
         public final static int Izone_0 = 500;
-        public final static double PeakOutput_0 = 1;
+        public static double PeakOutput_0 = 1;
 
         /**
          * Talon PID methods often demand slot ID's, so we wil keep this here I do not

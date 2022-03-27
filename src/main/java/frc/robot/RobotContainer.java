@@ -32,6 +32,7 @@ import frc.robot.commands.DriveStopCommand;
 import frc.robot.commands.DriveFromHubAutonomousCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
+import frc.robot.commands.ShootOverIntake;
 import frc.robot.commands.ShooterArmPosition;
 import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
@@ -382,6 +383,10 @@ public class RobotContainer {
         // *****************
         // *** TURNSTICK ***
         // *****************
+
+        new JoystickButton(turnStick, 7)
+        .whenPressed(new  ShootOverIntake());
+
 
         new JoystickButton(turnStick, 9)
           .whenPressed(new  AutonomousTurnToAngle(90))
