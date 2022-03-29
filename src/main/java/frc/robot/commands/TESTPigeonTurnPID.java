@@ -13,9 +13,9 @@ import frc.robot.RobotContainer;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TESTPigeonTurnPID extends PIDCommand {
 
-  public static final double kTurnP = 1;
+  public static final double kTurnP = 0.75;
   public static final double kTurnI = 0;
-  public static final double kTurnD = 0;
+  public static final double kTurnD = 0.5;
 
   public static final double kMaxTurnRateDegPerS = 100;
   public static final double kMaxTurnAccelerationDegPerSSquared = 300;
@@ -48,6 +48,6 @@ public class TESTPigeonTurnPID extends PIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return getController().atSetpoint();
   }
 }
