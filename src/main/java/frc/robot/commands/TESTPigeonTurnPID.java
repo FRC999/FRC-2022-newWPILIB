@@ -32,7 +32,7 @@ public class TESTPigeonTurnPID extends PIDCommand {
       // Set reference to target
       targetAngleDegrees,
       // Pipe output to turn robot
-      output -> RobotContainer.driveSubsystem.arcadeDrive(0, output),
+      output -> RobotContainer.driveSubsystem.arcadeDrive(0, (-1)*output),
       // Require the drive
       RobotContainer.driveSubsystem);
 
