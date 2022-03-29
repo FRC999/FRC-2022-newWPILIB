@@ -24,7 +24,7 @@ public class TargetVertical extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (! RobotContainer.shooterSubsystem.targetDetected()) { // end the command if you do not see the target when you start
+    if (! RobotContainer.shooterSubsystem.isTargetDetected()) { // end the command if you do not see the target when you start
       endCommand = true;
     }
     distance = RobotContainer.shooterSubsystem.getTargetDistance();

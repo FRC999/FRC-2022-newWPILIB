@@ -385,6 +385,9 @@ public class Robot extends TimedRobot {
         DriveConstants.maximumLinearError = new int[] {7000,7000};
         DriveConstants.maximumAngleError = new int[] {250,250};
 
+        // MotionMagic
+        DriveConstants.PeakOutput_0 = 0.5;
+
 
         // IMU
         PigeonIMU.pigeonIMUId = 5;

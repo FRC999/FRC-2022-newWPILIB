@@ -23,12 +23,14 @@ import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.AutonomousTurnToAngle;
 import frc.robot.commands.AutonomousTurnToAngleLimelight;
 import frc.robot.commands.AutonomousTwoBallLimelight;
+import frc.robot.commands.AutonomousTwoBallLimelight2x180turns;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.CommandInterruptor;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.DriveStopCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
+import frc.robot.commands.ShootOverIntake;
 import frc.robot.commands.ShooterArmPosition;
 import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
@@ -301,7 +303,7 @@ public class RobotContainer {
         // *** DRIVESTICK ***
         // *****************
 
-        new JoystickButton(driveStick, 8)
+        /*new JoystickButton(driveStick, 8)
         .whenPressed(
           new InstantCommand(RobotContainer.intakeSubsystem::rotateIntakeForward,RobotContainer.intakeSubsystem)
           .andThen(new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotorReverse(-0.5),RobotContainer.shooterSubsystem))
@@ -311,13 +313,18 @@ public class RobotContainer {
 
         )
         .whenReleased(new DriveStopCommand());
-
+       */
         
 
         new JoystickButton(driveStick, 7)
         .whenPressed(new  AutonomousTurnToAngleLimelight()
         .andThen(new WaitCommand(0.25))
         .andThen(new AutonomousTurnToAngleLimelight()))
+        ;
+
+        new JoystickButton(driveStick, 8)
+        .whenPressed(new  AutonomousTwoBallLimelight2x180turns())
+        .whenReleased(new DriveStopCommand())
         ;
 
         new JoystickButton(driveStick, 9)
@@ -367,6 +374,10 @@ public class RobotContainer {
         // *****************
         // *** TURNSTICK ***
         // *****************
+
+        new JoystickButton(turnStick, 7)
+        .whenPressed(new  ShootOverIntake());
+
 
         new JoystickButton(turnStick, 9)
           .whenPressed(new  AutonomousTurnToAngle(90))

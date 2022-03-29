@@ -10,8 +10,10 @@ import frc.robot.RobotContainer;
 public class DriveUntilDistanceLimelightDirection extends CommandBase {
 
   double direction;
+  double distance;
   /** Creates a new DriveUntilDistanceLimelight. */
-  public DriveUntilDistanceLimelightDirection(double d) { // direction 1 - forward; -1 - backwards
+  public DriveUntilDistanceLimelightDirection(double dst, double d) { // direction 1 - forward; -1 - backwards
+    distance = dst;
     direction = d;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.driveSubsystem);
@@ -36,6 +38,6 @@ public class DriveUntilDistanceLimelightDirection extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return RobotContainer.shooterSubsystem.targetDistanceNotLess(10);
+    return RobotContainer.shooterSubsystem.targetDistanceNotLess(distance);
   }
 }

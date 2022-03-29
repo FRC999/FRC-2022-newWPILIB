@@ -36,7 +36,7 @@ public class AutonomousLinearLimelightShootingDriveDistanceDirection extends Seq
         //new InstantCommand(RobotContainer.shooterSubsystem::zeroTiltMotorEncoder,RobotContainer.shooterSubsystem),
         race(
           new WaitCommand(7), // max drive time; may need to be adjusted for longer drives
-          new DriveUntilDistanceLimelightDirection(direction)
+          new DriveUntilDistanceLimelightDirection(SHOOTINGDISTANCE, direction)
         ),
         
         new DriveStopCommand(),
