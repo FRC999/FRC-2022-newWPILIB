@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants.DriveInterface;
@@ -28,19 +27,12 @@ import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.CommandInterruptor;
 import frc.robot.commands.DriveManuallyCommand;
 import frc.robot.commands.DriveStopCommand;
-import frc.robot.commands.DriveFromHubAutonomousCommand;
 import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.ShooterArmPosition;
 import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
-import frc.robot.commands.TESTMotionMagic1motor;
-import frc.robot.commands.TESTTenFeetForward;
 import frc.robot.commands.TargetAndShootHigh;
-import frc.robot.commands.TargetAndShootLow;
-import frc.robot.commands.TargetHorizontal;
-import frc.robot.commands.TargetVertical;
-import frc.robot.commands.TwoBallAuto;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
@@ -60,7 +52,6 @@ import frc.robot.subsystems.ColorSensorSubsystem;
  */
 import frc.robot.subsystems.TEMPShooterTestSubsystem;
 import frc.robot.subsystems.TESTMotorSubsystem;
-import frc.robot.subsystems.TargetingCamera;
 
 /**
  * This class is where the bulk of the robot should be declared. Since

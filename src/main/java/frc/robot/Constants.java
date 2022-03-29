@@ -263,7 +263,7 @@ public final class Constants {
         // buttonbox1 (left)
 
         public static final int ClimberSafetySwitch = 1;
-        public static final int CommandInterruptorSwitch = 1;
+        public static final int CommandInterruptorSwitch = 3;
         public static final int ClimberUp0 = 6;
         public static final int ClimberDown0 = 7;
         public static final int ClimberDown = 11;
