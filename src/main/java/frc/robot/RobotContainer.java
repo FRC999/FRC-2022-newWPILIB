@@ -32,8 +32,10 @@ import frc.robot.commands.FrankenbotExtendSolenoid;
 import frc.robot.commands.FrankenbotRetractSolenoid;
 import frc.robot.commands.ShootOverIntake;
 import frc.robot.commands.ShooterArmPosition;
+import frc.robot.commands.ShooterOneButtonCurrentAnglePower9;
 import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
+import frc.robot.commands.ShooterOneButtonShotPresetLimelight;
 import frc.robot.commands.TargetAndShootHigh;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -491,87 +493,79 @@ public class RobotContainer {
         // *****************
 
         // Command interruptor - interrupt interruptable commands that use motors - in case they get stuck
-        new JoystickButton(bbl, Constants.OIC2022TEST.CommandInterruptorSwitch)
+        new JoystickButton(bbl, Constants.OIC2022TEST.CommandInterruptorSwitch) // 3
         .whenPressed(new CommandInterruptor());
 
-        new JoystickButton(bbl, Constants.OIC2022TEST.Autonomous1ballTestButton)
-          .whenPressed(new AutonomousBackLimelight9ft());
-
-        new JoystickButton(bbl, Constants.OIC2022TEST.Autonomous2ballTestButton)
-          .whenPressed(new AutonomousTwoBallLimelight());
-
-        // Climber arms together
-        // Shooter arm slowly UP
-        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown)
-          .whenPressed(new  InstantCommand(climberSubsystem::calibrateBackSlow,climberSubsystem))
-          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
-        // Shooter arm slowly DOWN
-        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp)
-          .whenPressed(new  InstantCommand(climberSubsystem::calibrateForwardSlow,climberSubsystem))
-          .whenReleased(new InstantCommand(climberSubsystem::climberMotorOff,climberSubsystem));
-
+        new JoystickButton(bbl, Constants.OIC2022TEST.RetractThirdArm) // 7
+          //.and(climberSafetySwitch)
+          .whenPressed(new  InstantCommand(climberSubsystem::extendThirdArm,climberSubsystem));
+        new JoystickButton(bbl, Constants.OIC2022TEST.ExtendThirdArm)  // 8
+          .whenPressed(new InstantCommand(climberSubsystem::retractThirdArm,climberSubsystem));
 
         // Shooter plunger and climber arms lock - same pneumatics
-        new JoystickButton(bbl, Constants.OIC2022TEST.ShooterPlungerButton)
+        new JoystickButton(bbl, Constants.OIC2022TEST.ShooterPlungerButton) // 10
           .whenPressed(new InstantCommand(shooterSubsystem::extendPlunger,shooterSubsystem));
           //.whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
 
-        // *****************
-        // ***  BBRIGHT   ***
-        // *****************
-
-        JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
-
-        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp0)
+        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp0) // 9
           //.and(climberSafetySwitch)
           .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
     
-        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown0)
+        new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown0) // 11
           //.and(climberSafetySwitch)
           .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
 
-        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp1)
+        // ******************
+        // ***  BBRIGHT   ***
+        // ******************
+
+        JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
+
+        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp1) // 2
           //.and(climberSafetySwitch)
           .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
     
-        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown1)
+        new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown1) // 1
           //.and(climberSafetySwitch)
           .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
 
-        new JoystickButton(bbr, Constants.OIC2022TEST.RetractThirdArm)
-          //.and(climberSafetySwitch)
-          .whenPressed(new  InstantCommand(climberSubsystem::extendThirdArm,climberSubsystem));
-        new JoystickButton(bbr, Constants.OIC2022TEST.ExtendThirdArm)
-          .whenPressed(new InstantCommand(climberSubsystem::retractThirdArm,climberSubsystem));
+        new JoystickButton(bbr, Constants.OIC2022TEST.AutoShootHighButton) // 3
+          .whenPressed(new ShooterOneButtonShotPresetLimelight()) ; // shoot at high target with Limelight distance and power
 
-        /*
-          new JoystickButton(bbr, Constants.OIC2022TEST.PresetClose)
-          .whenActive(
-            new InstantCommand(() -> shooterSubsystem.setShootingSolution(6,0),shooterSubsystem)
-                .andThen(new InstantCommand(() -> shooterSubsystem.tiltShooterArm( (shooterSubsystem.getShootingSolution())[0])))
-                .andThen(new WaitCommand(2))
-                .andThen(new InstantCommand(shooterSubsystem::extendPlunger))  // push plunger; no subsystem requirement, so not to stop motors
-                .andThen(new WaitCommand(1))  // Wait 1 second)
-                .andThen(new InstantCommand(shooterSubsystem::retractPlunger))  // retract plunger
-                .andThen(new InstantCommand(shooterSubsystem::stopShooterWheelMotor))  // stop shooter motor
-              .deadlineWith (
-                  new InstantCommand(() -> shooterSubsystem.startShooterWheelMotor( (shooterSubsystem.getShootingSolution())[1])) // Spin the wheels, continue until the end of the sequence
-              ) // end deadlinewith
-            );
+        new JoystickButton(bbr, Constants.OIC2022TEST.PresetMiddle) // 4
+          .whenPressed(new ShooterOneButtonShotPreset(9,0)) ;       // shoot at 9ft high target
+
+        new JoystickButton(bbr, Constants.OIC2022TEST.PresetFar) // 5
+          .whenPressed(new ShooterOneButtonShotPreset(14,0)) ;       // shoot at 14ft high target
+
+        new JoystickButton(bbr, Constants.OIC2022TEST.AutoXCenterLimelightButton) // 6
+          .whenPressed(new AutonomousTurnToAngleLimelight()) ;       // shoot at 14ft high target
+          
+        // Shooter arm calibration
+        new JoystickButton(bbr, Constants.OIC2022TEST.CalibrateTiltBBButton) // 7
+          .whenPressed(new CalibrateShooterArmWithLimitSwitch());
+
+        new JoystickButton(bbr, Constants.OIC2022TEST.ManualShootPower9Button) // 9
+          .whenPressed(new ShooterOneButtonCurrentAnglePower9());
+
+        // Shooter arm slowly forward
+        new JoystickButton(bbr, Constants.OIC2022TEST.TiltUPBBButton)
+          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateForwardSlow,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
+        // Shooter arm slowly back
+        new JoystickButton(bbr, Constants.OIC2022TEST.TiltDownBBButton)
+          .whenPressed(new  InstantCommand(shooterSubsystem::calibrateBackSlow,shooterSubsystem))
+          .whenReleased(new InstantCommand(shooterSubsystem::tiltMotorOff,shooterSubsystem));
+
+
+        /*new JoystickButton(bbr, Constants.OIC2022TEST.PresetClose)
+          .whenPressed(new ShooterOneButtonShotPreset(6,0)) ;       // shoot at 6ft high target
         */
 
-        new JoystickButton(bbr, Constants.OIC2022TEST.PresetClose)
-          .whenPressed(new ShooterOneButtonShotPreset(6,0)) ;       // shoot at 6ft high target
-
-        new JoystickButton(bbr, Constants.OIC2022TEST.PresetMiddle)
-          .whenPressed(new ShooterOneButtonShotPreset(9,0)) ;       // shoot at 6ft high target
-
-        new JoystickButton(bbr, Constants.OIC2022TEST.PresetFar)
-          .whenPressed(new ShooterOneButtonShotPreset(14,0)) ;       // shoot at 14ft high target
 
         /*
         // Intake FORWARD test

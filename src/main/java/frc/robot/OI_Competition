@@ -40,18 +40,32 @@ AuxStick
 
 Box2
 
-1 - retractthirdarm
-2 - extendthirdarm
+2 - Right Climber UP
+1 - Right Climber DOWN
 
-3,4,5 - presets (close - 6, middle - 9, far - 14)
+3 - preset shoot per distance
 
-6,9 - climber arms UP
-7,8 - climber arms Down
+4 - 9ft preset shoot
+5 - 14ft preset shoot
+
+6 - X-center on target via Limelight
+
+7 - calibrate shooter arm
+
+9 - manual shoot, current angle, power of preset 9
+
+8 - Shooter Angle UP
+10 - Shooter Angle Down
+
 
 Box1
 
 1 - command interruptor switch
-8,7 - test Auto - should not be used for now
-9 - Climber Up (both)
+
+7,8 - third arm
+
+9 - Left Climber UP
+11 - Left Climber DOWN
+
 10 - lock climber/plunger out
-11 - Climber Down (both)
+
