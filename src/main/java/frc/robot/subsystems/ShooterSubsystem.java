@@ -514,6 +514,16 @@ public class ShooterSubsystem extends SubsystemBase {
             /30.48);
   }
 
+  public double getTargetDistanceRaw(){
+    return  (UPPERHUBHEIGHT-LIMELIGHTHEIGHT) /
+              Math.tan(
+                Math.toRadians(
+                  LIMELIGHTANGLE + getTargetVerticalOffset()
+                )
+              )
+            /30.48;
+  }
+
   /**
    * Return TRUE if target distance matches parameter
    * @param distance - int distance to target
