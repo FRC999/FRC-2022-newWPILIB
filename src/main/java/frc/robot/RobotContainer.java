@@ -423,6 +423,8 @@ public class RobotContainer {
          * Stop the wheels
          * 
         */
+
+        /*
         //Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
         Trigger ballInShooterDetector = new Trigger(() -> true);
 
@@ -487,7 +489,7 @@ public class RobotContainer {
               ) // end deadlinewith
           ); // end whenactive
 
-
+        */
         // *****************
         // ***  BBLEFT   ***
         // *****************
