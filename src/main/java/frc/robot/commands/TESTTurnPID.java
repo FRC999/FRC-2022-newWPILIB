@@ -17,10 +17,10 @@ public class TESTTurnPID extends PIDCommand {
   public static final double kStabilizationP = 1;
   public static final double kStabilizationI = 0.5;
   public static final double kStabilizationD = 0;
-  public static final double kTurnP = 1;
-  public static final double kTurnI = 0;
-  public static final double kTurnD = 0;
-  public static final double kTurnToleranceDeg = 5;
+  public static final double kTurnP = 0.7;
+  public static final double kTurnI = 0.002;
+  public static final double kTurnD = 0.5;
+  public static final double kTurnToleranceDeg = 1;
   public static final double kTurnRateToleranceDegPerS = 10; // degrees per second
 
   /** Creates a new TESTTurnPID. */
@@ -32,12 +32,12 @@ public class TESTTurnPID extends PIDCommand {
     // Set reference to target
     targetAngleDegrees,
     // Pipe output to turn robot
-    output -> RobotContainer.driveSubsystem.arcadeDrive(0, output),
+    output -> RobotContainer.driveSubsystem.arcadeDrive(0, -output),
     // Require the drive
     RobotContainer.driveSubsystem);
 
     // Set the controller to be continuous (because it is an angle controller)
-    getController().enableContinuousInput(-180, 180);
+    getController().enableContinuousInput(-360000, 360000);
     // Set the controller tolerance - the delta tolerance ensures the robot is stationary at the
     // setpoint before it is considered as having reached the reference
     getController()
