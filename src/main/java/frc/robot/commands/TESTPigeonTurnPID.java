@@ -13,15 +13,15 @@ import frc.robot.RobotContainer;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TESTPigeonTurnPID extends PIDCommand {
 
-  public static final double kTurnP = 0.75;
+  public static final double kTurnP = 0.02;
   public static final double kTurnI = 0;
-  public static final double kTurnD = 0.5;
+  public static final double kTurnD = 0;
 
-  public static final double kMaxTurnRateDegPerS = 100;
-  public static final double kMaxTurnAccelerationDegPerSSquared = 300;
+  public static final double kMaxTurnRateDegPerS = 20;
+  public static final double kMaxTurnAccelerationDegPerSSquared = 40;
 
   public static final double kTurnToleranceDeg = 1;
-  public static final double kTurnRateToleranceDegPerS = 10; // degrees per second
+  public static final double kTurnRateToleranceDegPerS = 100; // degrees per second
 
   /** Creates a new TESTPigeonTurnPID2. */
   public TESTPigeonTurnPID( double targetAngleDegrees ) {
@@ -30,9 +30,9 @@ public class TESTPigeonTurnPID extends PIDCommand {
       // Close loop on heading
       RobotContainer.imuSubsystem::getYaw,
       // Set reference to target
-      targetAngleDegrees,
+      targetAngleDegrees+RobotContainer.imuSubsystem.getYaw(),
       // Pipe output to turn robot
-      output -> RobotContainer.driveSubsystem.arcadeDrive(0, (-1)*output),
+      output -> RobotContainer.driveSubsystem.arcadeDrive(0, (-1)*output*(0.2)),
       // Require the drive
       RobotContainer.driveSubsystem);
 
@@ -48,6 +48,7 @@ public class TESTPigeonTurnPID extends PIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    System.out.println("A " + RobotContainer.imuSubsystem.getYaw());
     return getController().atSetpoint();
   }
 }
