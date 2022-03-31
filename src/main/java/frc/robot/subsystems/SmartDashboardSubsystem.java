@@ -102,6 +102,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putBoolean("L9", RobotContainer.shooterSubsystem.isTargetDistance(9));
     SmartDashboard.putBoolean("L14", RobotContainer.shooterSubsystem.isTargetDistance(14));
     SmartDashboard.putBoolean("LBE", RobotContainer.shooterSubsystem.isBullsEye());
+    SmartDashboard.putNumber("Limelight RAW distance", RobotContainer.shooterSubsystem.getTargetDistanceRaw());
+
   }
 
   public void updateColorSensorValues() {
