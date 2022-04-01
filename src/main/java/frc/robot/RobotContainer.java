@@ -34,7 +34,7 @@ import frc.robot.commands.ShootOverIntake;
 import frc.robot.commands.ShooterArmPosition;
 import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
-import frc.robot.commands.TESTPigeonTurnAngle;
+import frc.robot.commands.PigeonTurnToAngle;
 import frc.robot.commands.TargetAndShootHigh;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -381,10 +381,10 @@ public class RobotContainer {
 
 
         new JoystickButton(turnStick, 9)
-          .whenPressed(new  TESTPigeonTurnAngle(180))
+          .whenPressed(new  PigeonTurnToAngle(180))
           .whenReleased(new DriveStopCommand());
         new JoystickButton(turnStick, 10)
-          .whenPressed(new  TESTPigeonTurnAngle(0))
+          .whenPressed(new  PigeonTurnToAngle(0))
           .whenReleased(new DriveStopCommand());
 
 

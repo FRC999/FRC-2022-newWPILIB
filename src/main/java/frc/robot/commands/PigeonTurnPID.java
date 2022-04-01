@@ -11,7 +11,7 @@ import frc.robot.RobotContainer;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class TESTPigeonTurnPID extends PIDCommand {
+public class PigeonTurnPID extends PIDCommand {
 
   public static final double kTurnP = 0.142;
   public static final double kTurnI = 0.0;
@@ -24,7 +24,7 @@ public class TESTPigeonTurnPID extends PIDCommand {
   public static final double kTurnRateToleranceDegPerS = 360; // degrees per second
 
   /** Creates a new TESTPigeonTurnPID2. */
-  public TESTPigeonTurnPID( double targetAngleDegrees ) {
+  public PigeonTurnPID( double targetAngleDegrees ) {
     super(
       new PIDController(kTurnP, kTurnI, kTurnD),
       // Close loop on heading

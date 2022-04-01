@@ -61,7 +61,7 @@ public class ShooterSubsystem extends SubsystemBase {
     {{}},  // 3 ft - skip
     { // 4ft
       {80.0, 0.819}, //skip high goal
-      {65.0, 0.285} //5 ft low goal
+      {65.0, 0.285} //4 ft low goal
     }, 
     { // 5ft
       {73.0, 0.59}, //skip high goal
