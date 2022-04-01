@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
@@ -21,10 +22,11 @@ public class PigeonTurnToAngle extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new InstantCommand(RobotContainer.imuSubsystem::zeroYaw),
-      race(
+  //    race(
         new PigeonTurnPID(targetAngleDegrees),
-        new WaitCommand(MAXTURNTIME)
-      )
+    //    new WaitCommand(MAXTURNTIME)
+      new PrintCommand("** Turn is done **")
+    //  )
     );
   }
 }
