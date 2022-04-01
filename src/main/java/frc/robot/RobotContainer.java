@@ -381,11 +381,12 @@ public class RobotContainer {
 
 
         new JoystickButton(turnStick, 9)
-          .whenPressed(
-            new InstantCommand(() -> IMUPassthroughSubsystem.imu.zeroYaw(),imuSubsystem)
+          .whenActive(
+            new InstantCommand(RobotContainer.imuSubsystem::zeroYaw)
               .andThen(new PigeonTurnToAngle(180))
           )
-          .whenReleased(new DriveStopCommand());
+          .whenInactive(new DriveStopCommand())
+          ;
         new JoystickButton(turnStick, 10)
           .whenPressed(new  PigeonTurnToAngle(0))
           .whenReleased(new DriveStopCommand());
