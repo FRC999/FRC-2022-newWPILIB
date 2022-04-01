@@ -381,10 +381,10 @@ public class RobotContainer {
 
 
         new JoystickButton(turnStick, 9)
-          .whenPressed(new  TESTPigeonTurnAngle(90))
+          .whenPressed(new  TESTPigeonTurnAngle(180))
           .whenReleased(new DriveStopCommand());
         new JoystickButton(turnStick, 10)
-          .whenPressed(new  TESTPigeonTurnAngle(-90))
+          .whenPressed(new  TESTPigeonTurnAngle(0))
           .whenReleased(new DriveStopCommand());
 
 

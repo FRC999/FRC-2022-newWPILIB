@@ -13,15 +13,15 @@ import frc.robot.RobotContainer;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TESTPigeonTurnPID extends PIDCommand {
 
-  public static final double kTurnP = 0.02;
-  public static final double kTurnI = 0;
-  public static final double kTurnD = 0;
+  public static final double kTurnP = 0.142;
+  public static final double kTurnI = 0.0;
+  public static final double kTurnD = 0.022;
 
   public static final double kMaxTurnRateDegPerS = 20;
-  public static final double kMaxTurnAccelerationDegPerSSquared = 40;
+  public static final double kMaxTurnAccelerationDegPerSSquared = 20;
 
   public static final double kTurnToleranceDeg = 1;
-  public static final double kTurnRateToleranceDegPerS = 100; // degrees per second
+  public static final double kTurnRateToleranceDegPerS = 360; // degrees per second
 
   /** Creates a new TESTPigeonTurnPID2. */
   public TESTPigeonTurnPID( double targetAngleDegrees ) {
