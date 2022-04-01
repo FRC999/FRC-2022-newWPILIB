@@ -21,10 +21,7 @@ public class PigeonTurnToAngle extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new InstantCommand(RobotContainer.imuSubsystem::zeroYaw),
-  //    race(
-        new PigeonTurnPID(targetAngleDegrees),
-    //    new WaitCommand(MAXTURNTIME)
+      new PigeonTurnPID(targetAngleDegrees),
       new PrintCommand("** Turn is done **")
     //  )
     );
