@@ -32,7 +32,7 @@ public class PigeonTurnPID extends PIDCommand {
       // Set reference to target
       targetAngleDegrees+RobotContainer.imuSubsystem.getYaw(),
       // Pipe output to turn robot
-      output -> RobotContainer.driveSubsystem.arcadeDrive(0, (-1)*output*(0.1)),
+      output -> RobotContainer.driveSubsystem.arcadeDrive(0, (-1)*output*(0.2)),
       // Require the drive
       RobotContainer.driveSubsystem);
 
