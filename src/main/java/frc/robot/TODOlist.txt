@@ -1,3 +1,6 @@
 This is a short-term TODO list
 
-Recheck motor inversion and phase for all robots due to the changes to the drive motor init code
+Test zero-Yaw method
+
+Correct AutonomousTwoBallLimelight2x180turnsPigeon method with the right angle values
+
