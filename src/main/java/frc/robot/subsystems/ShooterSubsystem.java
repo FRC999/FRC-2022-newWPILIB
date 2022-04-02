@@ -480,6 +480,15 @@ public class ShooterSubsystem extends SubsystemBase {
     return shootingSolution[1];
   }
 
+  public double[] getShootingSolution(int distance) { // get angle,power for a specific shooting solution, high goal
+    if (distance >0 && distance < artilleryTable.length) {
+      return  artilleryTable[distance][0];
+    } else {
+      return new double[] {0.0,0.0};
+    }
+  }
+
+
   public int getAttemptedDistanceSelection(){
     return attemptedDistanceSelection;
   }
