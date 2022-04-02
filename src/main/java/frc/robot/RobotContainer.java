@@ -22,7 +22,6 @@ import frc.robot.commands.AutonomousDriveLinear;
 import frc.robot.commands.AutonomousTrajectoryRioCommand;
 import frc.robot.commands.AutonomousTurnToAngle;
 import frc.robot.commands.AutonomousTurnToAngleLimelight;
-import frc.robot.commands.AutonomousTwoBallLimelight;
 import frc.robot.commands.AutonomousTwoBallLimelight2x180turns;
 import frc.robot.commands.AutonomousTwoBallLimelight2x180turnsPigeon;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
@@ -162,7 +161,7 @@ public class RobotContainer {
     //port autonomous routines as commands
     //sets the default option of the SendableChooser to the simplest autonomous command. (from touching the hub, drive until outside the tarmac zone) 
     autoChooser.setDefaultOption("OneBall Lime", new AutonomousBackLimelight9ft());
-    autoChooser.addOption("Two Ball Auto", new AutonomousTwoBallLimelight());
+    autoChooser.addOption("Two Ball Auto Lime", new AutonomousTwoBallLimelight2x180turnsPigeon());
     autoChooser.addOption("OneBall Lime", new AutonomousBackLimelight9ft()); // one-ball limelight-driven command
     //port SendableChooser data to the SmartDashboard
     SmartDashboard.putData(autoChooser);
@@ -394,11 +393,6 @@ public class RobotContainer {
           .whenPressed(new  PigeonTurnToAngle(0))
           .whenReleased(new DriveStopCommand());
 
-        new JoystickButton(bbl, 4)
-          .whenPressed(new  AutonomousTwoBallLimelight2x180turnsPigeon())
-          .whenReleased(new DriveStopCommand());
-
-
         // one-button ball intake
         JoystickButton ballIntoShooterButton = new JoystickButton(turnStick, Constants.OIC2022TEST.BallIntoShooterButton) ;
         ballIntoShooterButton
@@ -506,11 +500,11 @@ public class RobotContainer {
         new JoystickButton(bbl, Constants.OIC2022TEST.CommandInterruptorSwitch)
         .whenPressed(new CommandInterruptor());
 
-        new JoystickButton(bbl, Constants.OIC2022TEST.Autonomous1ballTestButton)
-          .whenPressed(new AutonomousBackLimelight9ft());
+        new JoystickButton(bbl, Constants.OIC2022TEST.Autonomous2ballTestButton) // 7
+          .whenPressed(new AutonomousTwoBallLimelight2x180turnsPigeon());
 
-        new JoystickButton(bbl, Constants.OIC2022TEST.Autonomous2ballTestButton)
-          .whenPressed(new AutonomousTwoBallLimelight());
+        new JoystickButton(bbl, Constants.OIC2022TEST.Autonomous1ballTestButton) // 8
+          .whenPressed(new AutonomousBackLimelight9ft());
 
         // Climber arms together
         // Shooter arm slowly UP
