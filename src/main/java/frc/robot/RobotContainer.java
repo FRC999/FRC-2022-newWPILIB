@@ -523,7 +523,7 @@ public class RobotContainer {
         // ***  BBRIGHT   ***
         // ******************
 
-        JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
+        //JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
 
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp1) // 2
           //.and(climberSafetySwitch)
