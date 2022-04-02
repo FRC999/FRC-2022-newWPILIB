@@ -16,7 +16,7 @@ public class AutonomousTwoBallLimelight2x180turnsPigeon extends SequentialComman
 
   private final double FIRSTBALLSHOOTINGDISTANCE = 7.0;
   private final double DISTANCETOPICKSECONBALL = 4;
-  private final double SECONDBALLSHOOTINGDISTANCE = 9; // ft
+  private final double SECONDBALLSHOOTINGDISTANCE = 10; // ft
 
   /** Creates a new AutonomousTwoBallLimelight2x180turnsPigeon. */
   public AutonomousTwoBallLimelight2x180turnsPigeon() {
