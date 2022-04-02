@@ -20,7 +20,7 @@ public class ShooterOneButtonShotPreset extends SequentialCommandGroup {
     addCommands(
       sequence(
         new InstantCommand(() -> RobotContainer.shooterSubsystem.setShootingSolution(distance,goal),RobotContainer.shooterSubsystem),
-        new InstantCommand(() -> RobotContainer.shooterSubsystem.tiltShooterArm( (RobotContainer.shooterSubsystem.getShootingSolution())[0])),
+        new InstantCommand(() -> RobotContainer.shooterSubsystem.tiltShooterArm( (RobotContainer.shooterSubsystem.getShootingSolution(distance))[0])),
         new WaitCommand(1),
         deadline (
           sequence(
@@ -30,7 +30,7 @@ public class ShooterOneButtonShotPreset extends SequentialCommandGroup {
             new InstantCommand(RobotContainer.shooterSubsystem::retractPlunger),
             new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor)
           ), // end sequence
-          new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotor( (RobotContainer.shooterSubsystem.getShootingSolution())[1]))
+          new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotor( (RobotContainer.shooterSubsystem.getShootingSolution(distance))[1]))
         ) //end deadline
       )
     );
