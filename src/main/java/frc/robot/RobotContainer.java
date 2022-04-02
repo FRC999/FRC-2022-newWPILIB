@@ -325,12 +325,12 @@ public class RobotContainer {
         .andThen(new WaitCommand(0.25))
         .andThen(new AutonomousTurnToAngleLimelight()))
         ;
-
+        */
         new JoystickButton(driveStick, 8)
-        .whenPressed(new  AutonomousTwoBallLimelight2x180turns())
+        .whenPressed(new  AutonomousTwoBallLimelight2x180turnsPigeon())
         .whenReleased(new DriveStopCommand())
         ;
-
+        /*
         new JoystickButton(driveStick, 9)
         .whenPressed(new  AutonomousDriveLinear(2))
         .whenReleased(new DriveStopCommand());
@@ -353,7 +353,8 @@ public class RobotContainer {
 
         // Shooter arm calibration
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmCalibrateButton)   // 3
-          .whenPressed(new CalibrateShooterArmWithLimitSwitch());
+          //.whenPressed(new CalibrateShooterArmWithLimitSwitch());
+          .whenPressed(new InstantCommand(shooterSubsystem::tiltShooterArm0,shooterSubsystem));
 
         // Shooter arm to 45 +- manual adjustment via Z-tail
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)  // 4

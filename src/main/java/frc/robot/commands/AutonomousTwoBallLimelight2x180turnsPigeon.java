@@ -15,8 +15,8 @@ import frc.robot.RobotContainer;
 public class AutonomousTwoBallLimelight2x180turnsPigeon extends SequentialCommandGroup {
 
   private final double FIRSTBALLSHOOTINGDISTANCE = 7.0;
-  private final double DISTANCETOPICKSECONBALL = 4;
-  private final double SECONDBALLSHOOTINGDISTANCE = 10; // ft
+  private final double DISTANCETOPICKSECONBALL = 5;
+  private final double SECONDBALLSHOOTINGDISTANCE = 11; // ft
 
   /** Creates a new AutonomousTwoBallLimelight2x180turnsPigeon. */
   public AutonomousTwoBallLimelight2x180turnsPigeon() {
@@ -38,8 +38,8 @@ public class AutonomousTwoBallLimelight2x180turnsPigeon extends SequentialComman
         new PigeonTurnToAngle(0), // turn around; now about 9 ft to the target - intake is 3ft 
         //new AutonomousTurnToAngleLimelight(),
         //new AutonomousTurnToAngleLimelight(),
-        new PigeonTurnToAngleLimelightXcenter(),
-        new PigeonTurnToAngleLimelightXcenter(),
+        //new PigeonTurnToAngleLimelightXcenter(),
+        //new PigeonTurnToAngleLimelightXcenter(),
         new ShooterOneButtonShotPreset((int)SECONDBALLSHOOTINGDISTANCE, 0),
 
         new DriveStopCommand()

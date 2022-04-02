@@ -321,6 +321,10 @@ public class ShooterSubsystem extends SubsystemBase {
     //tiltMotorController.set(ControlMode.Position,  zeroTiltPosition -540);
   }
 
+  public void tiltShooterArm0() {
+    tiltShooterArm(0);
+  }
+
   // Remember tilt encoder setting - used to remember the ZERO position
   public void initTiltShooterArm() {
     zeroTiltPosition = getTiltEncoder();
