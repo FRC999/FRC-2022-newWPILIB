@@ -319,7 +319,7 @@ public class RobotContainer {
         .whenReleased(new DriveStopCommand());
        */
         
-
+        /*
         new JoystickButton(driveStick, 7)
         .whenPressed(new  AutonomousTurnToAngleLimelight()
         .andThen(new WaitCommand(0.25))
@@ -338,10 +338,10 @@ public class RobotContainer {
         new JoystickButton(driveStick, 10)
         .whenPressed(new  AutonomousDriveLinear(10))
         .whenReleased(new DriveStopCommand());
-
+        */
 
         // one-button reverse
-        JoystickButton intakeShooterReverse = new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeShooterReverseButton) ;
+        JoystickButton intakeShooterReverse = new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeShooterReverseButton) ;   // 1
         intakeShooterReverse
           .whileHeld(   // Rotate intake and shooter wheels to get the ball IN
             new InstantCommand(intakeSubsystem::rotateIntakeReverse,intakeSubsystem)
@@ -352,11 +352,11 @@ public class RobotContainer {
           );
 
         // Shooter arm calibration
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmCalibrateButton)
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmCalibrateButton)   // 3
           .whenPressed(new CalibrateShooterArmWithLimitSwitch());
 
         // Shooter arm to 45 +- manual adjustment via Z-tail
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)  // 4
           .whenPressed(new ShooterArmPosition());
 
         // climber PID test - left arm
@@ -372,8 +372,8 @@ public class RobotContainer {
 
 
         // Intake UP/DOWN
-        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
-        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));  // 11
+        new JoystickButton(driveStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));   // 12
 
         // *****************
         // *** TURNSTICK ***
