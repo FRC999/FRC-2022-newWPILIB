@@ -15,6 +15,7 @@ import frc.robot.RobotContainer;
 public class ShooterOneButtonCurrentAnglePower9 extends SequentialCommandGroup {
   /** Creates a new ShooterOneButtonCurrentAnglePower9. */
   public ShooterOneButtonCurrentAnglePower9() {
+    addRequirements(RobotContainer.shooterSubsystem);
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
