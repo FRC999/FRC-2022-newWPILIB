@@ -262,38 +262,47 @@ public final class Constants {
 
         // buttonbox1 (left)
 
-        public static final int ClimberSafetySwitch = 1;
         public static final int CommandInterruptorSwitch = 3;
-        public static final int ClimberUp0 = 6;
-        public static final int ClimberDown0 = 7;
+
+        public static final int RetractThirdArm = 7;
+        public static final int ExtendThirdArm = 8;
+        public static final int ShooterPlungerButton = 10;
+
+        public static final int ClimberUp0 = 9;
+        public static final int ClimberDown0 = 11;
+
+        // -- 3/30 below should not be used
+        public static final int ClimberSafetySwitch = 1;
         public static final int ClimberDown = 11;
         public static final int ClimberUp = 9;
-        public static final int ShooterPlungerButton = 10;
-        // --
         public static final int TargetHorizontalButton = 4;
         public static final int TargetVerticalHighButton = 5;
         public static final int TargetVerticalLowButton = 6;
         public static final int AutoShootLowButton = 7;
-        public static final int AutoShootHighButton = 8;
+
         public static final int ZeroClimberEncoders = 10;
         
         //TODO: TEST BUTTONS (CURRENTLY USED FOR AUTO COMMANDS)
         public static final int Autonomous1ballTestButton = 8;
         public static final int Autonomous2ballTestButton = 7;
 
-        // buttonbox2 (right)
+        // **** buttonbox2 (right) ****
 
-        public static int RetractThirdArm = 1;
-        public static int ExtendThirdArm = 2;
+        public static final int ClimberUp1 = 2;
+        public static final int ClimberDown1 = 1;
 
-        // Presents - close, medium, far
-        public static final int PresetClose = 3;
+        public static final int AutoShootHighButton = 3;
         public static final int PresetMiddle = 4;
         public static final int PresetFar = 5;
+        public static final int AutoXCenterLimelightButton = 6;
+        public static final int CalibrateTiltBBButton = 7;
+        public static final int ManualShootPower9Button = 9;
+        public static final int TiltUPBBButton = 8;
+        public static final int TiltDownBBButton = 10;
 
-        public static final int ClimberUp1 = 9;
-        public static final int ClimberDown1 = 8;
-       
+        // -- 3/30 below should not be used
+        // Presents - close, medium, far
+        public static final int PresetClose = 3;       
     }
     public static final class PigeonIMU {
         // If you have PigeonIMU, this is the ID of the Talon SRX the IMU is connected

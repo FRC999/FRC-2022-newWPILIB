@@ -93,21 +93,4 @@ public class AutonomousTurnToAngleLimelight extends CommandBase {
     // TODO: check if we can use the PID error instead
 
   }
-
-  public boolean acceptableLinearError() {
-    return acceptableLinearError(0) || acceptableLinearError(1);  // 0 - error from left master motor, 1 - from the right master motor
-  }
-  
-  public boolean acceptableLinearError(int motor){
-    double closedLoopError = ((motor==0)?
-        RobotContainer.driveSubsystem.getLeftEncoder() - finalEncoderValues[motor]
-      : RobotContainer.driveSubsystem.getRightEncoder() - finalEncoderValues[motor]) ;
-
-      if (DEBUG) {
-        System.out.println("A C L M " + motor + " E " + closedLoopError);
-      }
-
-    return Math.abs(closedLoopError) < Constants.DriveConstants.maximumLinearError[motor] ;
-  }
-
 }
