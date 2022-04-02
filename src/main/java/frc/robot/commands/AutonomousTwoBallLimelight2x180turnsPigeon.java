@@ -25,6 +25,7 @@ public class AutonomousTwoBallLimelight2x180turnsPigeon extends SequentialComman
     addCommands(
       sequence(
         new InstantCommand(RobotContainer.shooterSubsystem::zeroTiltMotorEncoder,RobotContainer.shooterSubsystem), // set 0 for the shooter tilt
+        new InstantCommand(RobotContainer.imuSubsystem::zeroYaw),
         new AutonomousLinearLimelightShootingDriveDistanceDirection(FIRSTBALLSHOOTINGDISTANCE, -1), // First ball
         new PrintCommand("*** First Ball Done"),
         new DriveStopCommand(),

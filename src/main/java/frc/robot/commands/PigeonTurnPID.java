@@ -23,6 +23,8 @@ public class PigeonTurnPID extends PIDCommand {
   public static final double kTurnToleranceDeg = 1;
   public static final double kTurnRateToleranceDegPerS = 5; // degrees per second
 
+  private double angle;
+
   /** Creates a new TESTPigeonTurnPID2. */
   public PigeonTurnPID( double targetAngleDegrees ) {
     super(
@@ -30,11 +32,14 @@ public class PigeonTurnPID extends PIDCommand {
       // Close loop on heading
       RobotContainer.imuSubsystem::getYaw,
       // Set reference to target
-      targetAngleDegrees+RobotContainer.imuSubsystem.getYaw(),
+      // targetAngleDegrees+RobotContainer.imuSubsystem.getYaw(),
+      targetAngleDegrees,
       // Pipe output to turn robot
       output -> RobotContainer.driveSubsystem.arcadeDrive(0, (-1)*output*(0.2)),
       // Require the drive
       RobotContainer.driveSubsystem);
+
+      angle = targetAngleDegrees;
 
       // Set the controller to be continuous (because it is an angle controller)
       getController().enableContinuousInput(-368640, 368640);
@@ -48,7 +53,7 @@ public class PigeonTurnPID extends PIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println("A " + RobotContainer.imuSubsystem.getYaw());
+    System.out.println("A " + RobotContainer.imuSubsystem.getYaw() + " T " + angle);
     return getController().atSetpoint();
   }
 }

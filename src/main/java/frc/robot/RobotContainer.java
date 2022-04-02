@@ -24,6 +24,7 @@ import frc.robot.commands.AutonomousTurnToAngle;
 import frc.robot.commands.AutonomousTurnToAngleLimelight;
 import frc.robot.commands.AutonomousTwoBallLimelight;
 import frc.robot.commands.AutonomousTwoBallLimelight2x180turns;
+import frc.robot.commands.AutonomousTwoBallLimelight2x180turnsPigeon;
 import frc.robot.commands.CalibrateShooterArmWithLimitSwitch;
 import frc.robot.commands.CommandInterruptor;
 import frc.robot.commands.DriveManuallyCommand;
@@ -383,12 +384,18 @@ public class RobotContainer {
         new JoystickButton(turnStick, 9)
           .whenActive(
             new InstantCommand(RobotContainer.imuSubsystem::zeroYaw)
-              .andThen(new PigeonTurnToAngle(180))
+              .andThen(
+                new PigeonTurnToAngle(180)
+                )
           )
           .whenInactive(new DriveStopCommand())
           ;
         new JoystickButton(turnStick, 10)
           .whenPressed(new  PigeonTurnToAngle(0))
+          .whenReleased(new DriveStopCommand());
+
+        new JoystickButton(bbl, 3)
+          .whenPressed(new  AutonomousTwoBallLimelight2x180turnsPigeon())
           .whenReleased(new DriveStopCommand());
 
 
