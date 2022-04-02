@@ -37,6 +37,7 @@ import frc.robot.commands.ShooterOneButtonShot;
 import frc.robot.commands.ShooterOneButtonShotPreset;
 import frc.robot.commands.ShooterOneButtonShotPresetLimelight;
 import frc.robot.commands.PigeonTurnToAngle;
+import frc.robot.commands.PigeonTurnToAngleLimelightXcenter;
 import frc.robot.commands.TargetAndShootHigh;
 import frc.robot.subsystems.CANdleSubsystem;
 import frc.robot.subsystems.ClimberSubsystem;
@@ -407,8 +408,8 @@ public class RobotContainer {
           );
 
         // Intake UP/DOWN
-        new JoystickButton(turnStick, Constants.OIC2022TEST.IntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
-        new JoystickButton(turnStick, Constants.OIC2022TEST.IntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
+        new JoystickButton(turnStick, Constants.OIC2022TEST.TurnstickIntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
+        new JoystickButton(turnStick, Constants.OIC2022TEST.TurnstickIntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
         //new JoystickButton(turnStick, Constants.OIC2022TEST.TurnstickIntakeDownButton).whenPressed(new InstantCommand(intakeSubsystem::lowerIntake, intakeSubsystem));
         //new JoystickButton(turnStick, Constants.OIC2022TEST.TurnstickIntakeUpButton).whenPressed(new InstantCommand(intakeSubsystem::raiseIntake, intakeSubsystem));
 
@@ -550,7 +551,7 @@ public class RobotContainer {
           .whenPressed(new ShooterOneButtonShotPreset(14,0)) ;       // shoot at 14ft high target
 
         new JoystickButton(bbr, Constants.OIC2022TEST.AutoXCenterLimelightButton) // 6
-          .whenPressed(new AutonomousTurnToAngleLimelight()) ;       // shoot at 14ft high target
+          .whenPressed(new PigeonTurnToAngleLimelightXcenter()) ;       // shoot at 14ft high target
           
         // Shooter arm calibration
         new JoystickButton(bbr, Constants.OIC2022TEST.CalibrateTiltBBButton) // 7

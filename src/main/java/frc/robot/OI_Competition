@@ -3,12 +3,14 @@ TurnStick
 
 1 - intake + shooter (ball in)
 
+3 - Intake up
+4 - Intake down
+
 7 - shootoverintake
 
 9 - Auto rotate +180
 10 - Auto rotate -180
-11 - Intake down
-12 - Intake up
+
 
 DriveStick
 
@@ -24,19 +26,6 @@ DriveStick
 11 - Intake down
 12 - Intake up
 
-
-AuxStick
-
-1 - manual shooting with tail adjustments (checks that the ball is in shooter)
-3 - previous lower goal setting
-4 - previous high goal setting
-5 - next lower goal setting
-6 - next high goal setting
-7 - shooter tilt down
-8 - shooter tilt up
-9 - zero shooter tilt encoder
-11 - shoot using current preset firing solution
-12 - shoot current tilt using firing solution preset power
 
 Box2
 
