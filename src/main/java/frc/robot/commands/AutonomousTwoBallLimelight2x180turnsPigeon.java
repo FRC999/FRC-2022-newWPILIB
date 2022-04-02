@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.ShooterSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -35,7 +36,17 @@ public class AutonomousTwoBallLimelight2x180turnsPigeon extends SequentialComman
         new PigeonTurnToAngle(180), // turn around
         new DriveStopCommand(),
         new AutonomousPickupBallWhileDrivingStraight(DISTANCETOPICKSECONBALL), // 11 ft
-        new PigeonTurnToAngle(0), // turn around; now about 9 ft to the target - intake is 3ft 
+
+        new InstantCommand(RobotContainer.intakeSubsystem::rotateIntakeForward,RobotContainer.intakeSubsystem),
+        new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotorReverse(-0.5),RobotContainer.shooterSubsystem),
+
+        new PigeonTurnToAngle(-3), // turn around; now about 9 ft to the target - intake is 3ft 
+
+
+        new InstantCommand(RobotContainer.intakeSubsystem::stopIntakeMotor,RobotContainer.intakeSubsystem),
+        new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor,RobotContainer.shooterSubsystem),
+
+
         //new AutonomousTurnToAngleLimelight(),
         //new AutonomousTurnToAngleLimelight(),
         //new PigeonTurnToAngleLimelightXcenter(),
