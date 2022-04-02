@@ -14,7 +14,8 @@ import frc.robot.RobotContainer;
 public class PigeonTurnPID extends PIDCommand {
 
   //public static final double kTurnP = 0.140;
-  public static final double kTurnP = 0.070;
+  //public static final double kTurnP = 0.070;
+  public static final double kTurnP = 0.140;
   public static final double kTurnI = 0.010;
   public static final double kTurnD = 0.032;
 
