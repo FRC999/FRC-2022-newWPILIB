@@ -76,15 +76,15 @@ public class ShooterSubsystem extends SubsystemBase {
       {45.0, 0.460} //7 ft low goal
     },
     {
-      {65.0, 0.674}, //8 ft high goal
+      {65.0, 0.62745}, //8 ft high goal
       {43.0, 0.465} //8 ft low goal
     },
     {
-      {65.0, 0.674}, //9 ft high goal
+      {65.0, 0.6259}, //9 ft high goal
       {45.0, 0.5} //9 ft low goal
     },
     {
-      {63.0, 0.674}, //10 ft high goal
+      {63.25, 0.66545}, //10 ft high goal
       {42.0, 0.507} //10 ft low goal
     },
     {
@@ -92,27 +92,27 @@ public class ShooterSubsystem extends SubsystemBase {
       {42.0, 0.507} //11 ft low goal
     },
     {
-      {61.5, 0.756}, //12 ft high goal
+      {60.75, 0.7065}, //12 ft high goal
       {45.0, 0.543} //12 ft low goal
     },
     {
-      {60.0, 0.807}, //13 ft high goal
+      {60.0, 0.708}, //13 ft high goal
       {46.0, 0.547} //13 ft low goal
     },
     {
-      {58.7, 0.815}, //14 ft high goal
+      {58.5, 0.7435}, //14 ft high goal
       {44.0, 0.59} //14 ft low goal
     },
     {
-      {57.0, 0.831}, //15 ft high goal
+      {57.0, 0.77925}, //15 ft high goal
       {45.0, 0.61} //15 ft low goal
     },
     {
-      {54.29, 0.867}, //16 ft high goal
+      {55.64, 0.8045}, //16 ft high goal
       {} //16 ft low goal
     },
     {
-      {54.29, 0.867}, //17 ft high
+      {49.88, 0.830}, //17 ft high
       {} //skip 17 ft low
     },
     {
@@ -123,6 +123,7 @@ public class ShooterSubsystem extends SubsystemBase {
       {51.77, 0.933}, //19 ft high goal
       {50.0, 0.751} //skip
     }
+
   };
 
   //array that keeps current shooter firing values, element 0 is angle, element 1 is power
