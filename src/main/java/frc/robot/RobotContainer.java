@@ -394,7 +394,7 @@ public class RobotContainer {
           .whenPressed(new  PigeonTurnToAngle(0))
           .whenReleased(new DriveStopCommand());
 
-        new JoystickButton(bbl, 3)
+        new JoystickButton(bbl, 4)
           .whenPressed(new  AutonomousTwoBallLimelight2x180turnsPigeon())
           .whenReleased(new DriveStopCommand());
 
