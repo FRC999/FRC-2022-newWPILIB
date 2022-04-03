@@ -563,8 +563,8 @@ public class RobotContainer {
         new JoystickButton(bbr, Constants.OIC2022TEST.PresetFar) // 5
           .whenPressed(new ShooterOneButtonShotPreset(14,0)) ;       // shoot at 14ft high target
 
-        //new JoystickButton(bbr, Constants.OIC2022TEST.AutoXCenterLimelightButton) // 6
-        //  .whenPressed(new PigeonTurnToAngleLimelightXcenter()) ;       // shoot at 14ft high target
+        new JoystickButton(bbr, Constants.OIC2022TEST.AutoXCenterLimelightButton) // 6
+          .whenPressed(new PigeonTurnToAngleLimelightXcenter()) ;       // shoot at 14ft high target
           
         // Shooter arm calibration
         new JoystickButton(bbr, Constants.OIC2022TEST.CalibrateTiltBBButton) // 7
