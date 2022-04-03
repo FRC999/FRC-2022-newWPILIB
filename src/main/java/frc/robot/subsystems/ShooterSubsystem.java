@@ -43,6 +43,8 @@ public class ShooterSubsystem extends SubsystemBase {
    */
   private double zeroTiltPosition;
 
+  private double rememberedTargetHorizontalOffset;
+
   private final int MAXDISTANCE = 19;
   private final int MINDISTANCE = 3;
 

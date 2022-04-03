@@ -56,6 +56,10 @@ public class IMUPassthroughSubsystem implements IMUInterface {
     return imu.zeroYaw();
   }
 
+  public double setYaw(double y) {
+    return imu.setYaw(y);
+  }
+
   public double getTurnRate() {
     return imu.getTurnRate();
   }

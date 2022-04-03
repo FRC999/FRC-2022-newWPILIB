@@ -75,6 +75,12 @@ public class PigeonIMUSubsystem extends SubsystemBase implements IMUInterface {
     return temporaryDouble;
   }
 
+  public double setYaw(double y) {
+    double temporaryDouble = getYaw();
+    pidgey.setYaw(y);
+    return temporaryDouble;
+  }
+
   /**
    * Provide heading in degrees with the angle increasing clockwise hence the
    * negative value of getAngle

@@ -68,6 +68,13 @@ public class NavXIMUSubsystem extends SubsystemBase implements IMUInterface {
     return temporaryDouble;
   }
 
+  public double setYaw(double y) {
+    double temporaryDouble = NavX.getYaw();
+    NavX.zeroYaw();
+    NavX.setAngleAdjustment(y);
+    return temporaryDouble;
+  }
+
   /**
    * Provide heading in degrees with the angle increasing clockwise hence the
    * negative value of getAngle

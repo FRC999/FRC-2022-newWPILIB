@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.PrintCommand;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -501,6 +502,17 @@ public class RobotContainer {
         // ***  BBLEFT   ***
         // *****************
 
+        new JoystickButton(bbl, 4)
+          .whenPressed(new  PigeonTurnToAngleLimelightXcenter())
+          .whenReleased(new DriveStopCommand());
+
+        new JoystickButton(bbl, 5)
+          .whenActive(
+            new  PrintCommand( "B5" + (-1)*RobotContainer.shooterSubsystem.getTargetHorizontalOffset() )
+            )
+          .whenInactive(new DriveStopCommand());
+
+
         // Command interruptor - interrupt interruptable commands that use motors - in case they get stuck
         new JoystickButton(bbl, Constants.OIC2022TEST.CommandInterruptorSwitch) // 3
         .whenPressed(new CommandInterruptor());
@@ -551,8 +563,8 @@ public class RobotContainer {
         new JoystickButton(bbr, Constants.OIC2022TEST.PresetFar) // 5
           .whenPressed(new ShooterOneButtonShotPreset(14,0)) ;       // shoot at 14ft high target
 
-        new JoystickButton(bbr, Constants.OIC2022TEST.AutoXCenterLimelightButton) // 6
-          .whenPressed(new PigeonTurnToAngleLimelightXcenter()) ;       // shoot at 14ft high target
+        //new JoystickButton(bbr, Constants.OIC2022TEST.AutoXCenterLimelightButton) // 6
+        //  .whenPressed(new PigeonTurnToAngleLimelightXcenter()) ;       // shoot at 14ft high target
           
         // Shooter arm calibration
         new JoystickButton(bbr, Constants.OIC2022TEST.CalibrateTiltBBButton) // 7
