@@ -405,13 +405,13 @@ public class RobotContainer {
             new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem)
             .alongWith(new InstantCommand(shooterSubsystem::startShooterWheelMotorReverse,shooterSubsystem))
             // also tilt the shooter down to 0
-            .alongWith(new InstantCommand(shooterSubsystem::tiltShooterArmDownForce))
+            //.alongWith(new InstantCommand(shooterSubsystem::tiltShooterArmDownForce))
             )
           .whenReleased( // Stop intake and shooter wheel
             new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem)
             .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem))
             // relese tilt motor
-            .alongWith(new InstantCommand(shooterSubsystem::tiltMotorOff))
+            //.alongWith(new InstantCommand(shooterSubsystem::tiltMotorOff))
           );
 
         // Intake UP/DOWN
