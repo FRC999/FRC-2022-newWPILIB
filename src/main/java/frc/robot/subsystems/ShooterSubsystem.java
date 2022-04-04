@@ -328,6 +328,11 @@ public class ShooterSubsystem extends SubsystemBase {
     tiltShooterArm(0);
   }
 
+  // Force-keep the tilt down
+  public void tiltShooterArmDownForce() {
+    tiltShooterArm(-5);
+  }
+
   // Remember tilt encoder setting - used to remember the ZERO position
   public void initTiltShooterArm() {
     zeroTiltPosition = getTiltEncoder();
