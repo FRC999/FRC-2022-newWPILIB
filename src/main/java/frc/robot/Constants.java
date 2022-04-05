@@ -381,7 +381,7 @@ public final class Constants {
         */
 
         public final static double P_TILT = 0.8;
-        public final static double I_TILT = 0.0002;
+        public final static double I_TILT = 0.0;
         public final static double D_TILT = 0.8;
         
 
