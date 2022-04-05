@@ -23,7 +23,7 @@ public class ShooterOneButtonShotPresetLimelight extends SequentialCommandGroup 
         new InstantCommand(() -> RobotContainer.shooterSubsystem.setShootingSolution(
             (int)(Math.round(RobotContainer.shooterSubsystem.getTargetDistance())),0)
             ,RobotContainer.shooterSubsystem),
-        new InstantCommand(() -> RobotContainer.shooterSubsystem.tiltShooterArm( (RobotContainer.shooterSubsystem.getShootingSolution())[0])),
+        new InstantCommand(() -> RobotContainer.shooterSubsystem.tiltShooterArm( (RobotContainer.shooterSubsystem.getShootingSolution())[0]), RobotContainer.shooterSubsystem),
         new WaitCommand(1),
         deadline (
           sequence(

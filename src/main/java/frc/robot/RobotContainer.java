@@ -506,7 +506,7 @@ public class RobotContainer {
         */
   
         Trigger climberLockDetector = new Trigger(() -> shooterSubsystem.isClimberLockEngaged());
-        
+
         // *****************
         // ***  BBLEFT   ***
         // *****************
@@ -563,8 +563,12 @@ public class RobotContainer {
           .whileActiveContinuous(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
 
+
+        Trigger targetDetector = new Trigger(() -> shooterSubsystem.isTargetDetected());
+
         new JoystickButton(bbr, Constants.OIC2022TEST.AutoShootHighButton) // 3
-          .whenPressed(new ShooterOneButtonShotPresetLimelight()) ; // shoot at high target with Limelight distance and power
+          .and(targetDetector)  // Do not autoshoot if no target detected
+          .whenActive(new ShooterOneButtonShotPresetLimelight()) ; // shoot at high target with Limelight distance and power
 
         new JoystickButton(bbr, Constants.OIC2022TEST.PresetMiddle) // 4
           .whenPressed(new ShooterOneButtonShotPreset(9,0)) ;       // shoot at 9ft high target
