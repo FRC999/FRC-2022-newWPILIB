@@ -402,16 +402,18 @@ public class RobotContainer {
         JoystickButton ballIntoShooterButton = new JoystickButton(turnStick, Constants.OIC2022TEST.BallIntoShooterButton) ;
         ballIntoShooterButton
           .whileHeld(   // Rotate intake and shooter wheels to get the ball IN
-            new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem)
+            new InstantCommand(shooterSubsystem::tiltShooterArmDownForce,shooterSubsystem)
+            .andThen(new InstantCommand(intakeSubsystem::rotateIntakeForward,intakeSubsystem)
             .alongWith(new InstantCommand(shooterSubsystem::startShooterWheelMotorReverse,shooterSubsystem))
             // also tilt the shooter down to 0
-            .alongWith(new InstantCommand(shooterSubsystem::tiltShooterArmDownForce))
+            )
             )
           .whenReleased( // Stop intake and shooter wheel
-            new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem)
+            new InstantCommand(shooterSubsystem::tiltShooterArm0,shooterSubsystem)
+            .andThen(new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem)
             .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem))
             // relese tilt motor
-            .alongWith(new InstantCommand(shooterSubsystem::tiltMotorOff))
+            .alongWith(new InstantCommand(shooterSubsystem::tiltMotorOff)))
           );
 
         // Intake UP/DOWN
