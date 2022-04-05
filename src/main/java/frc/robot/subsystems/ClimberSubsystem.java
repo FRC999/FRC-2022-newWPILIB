@@ -155,6 +155,14 @@ public class ClimberSubsystem extends SubsystemBase {
     climberMotorControllers[motor].set(CLIMBEREXTENDED);
   }
 
+  public boolean isLeftArmLimitSwitchOn() {
+    return climberMotorControllers[0].isRevLimitSwitchClosed() == 1;
+  }
+
+  public boolean isRightArmLimitSwitchOn() {
+    return climberMotorControllers[0].isFwdLimitSwitchClosed() == 1;
+  }
+
   public void calibrateForwardSlow() {
 
     // System.out.println("*** C F");

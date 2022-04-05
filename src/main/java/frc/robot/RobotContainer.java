@@ -507,6 +507,9 @@ public class RobotContainer {
   
         Trigger climberLockDetector = new Trigger(() -> shooterSubsystem.isClimberLockEngaged());
 
+        Trigger climberLeftArmLimitSwitchDetector = new Trigger(() -> climberSubsystem.isLeftArmLimitSwitchOn());
+        Trigger climberRightArmLimitSwitchDetector = new Trigger(() -> climberSubsystem.isRightArmLimitSwitchOn());
+
         // *****************
         // ***  BBLEFT   ***
         // *****************
@@ -544,6 +547,7 @@ public class RobotContainer {
     
         new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown0) // 11
           .and(climberLockDetector)
+          .and(climberLeftArmLimitSwitchDetector)
           .whileActiveContinuous(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
 
@@ -560,6 +564,7 @@ public class RobotContainer {
     
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown1) // 1
           .and(climberLockDetector)
+          .and(climberRightArmLimitSwitchDetector)
           .whileActiveContinuous(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
 
