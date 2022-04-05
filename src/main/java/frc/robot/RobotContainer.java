@@ -504,6 +504,8 @@ public class RobotContainer {
               ) // end deadlinewith
           ); // end whenactive
         */
+  
+        Trigger climberLockDetector = new Trigger(() -> shooterSubsystem.isClimberLockEngaged());
         
         // *****************
         // ***  BBLEFT   ***
@@ -536,13 +538,13 @@ public class RobotContainer {
           //.whenReleased(new InstantCommand(shooterSubsystem::retractPlunger,shooterSubsystem));
 
         new JoystickButton(bbl, Constants.OIC2022TEST.ClimberUp0) // 9
-          //.and(climberSafetySwitch)
-          .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(0),climberSubsystem))
+          .and(climberLockDetector)
+          .whileActiveContinuous(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
     
         new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown0) // 11
-          //.and(climberSafetySwitch)
-          .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
+          .and(climberLockDetector)
+          .whileActiveContinuous(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
 
         // ******************
@@ -552,13 +554,13 @@ public class RobotContainer {
         //JoystickButton climberSafetySwitch = new JoystickButton(auxStick,Constants.OIC2022TEST.ClimberSafetySwitch);
 
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberUp1) // 2
-          //.and(climberSafetySwitch)
-          .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
+          .and(climberLockDetector)
+          .whileActiveContinuous(new  InstantCommand(() -> climberSubsystem.calibrateForwardSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
     
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown1) // 1
-          //.and(climberSafetySwitch)
-          .whileHeld(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
+          .and(climberLockDetector)
+          .whileActiveContinuous(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
 
         new JoystickButton(bbr, Constants.OIC2022TEST.AutoShootHighButton) // 3
