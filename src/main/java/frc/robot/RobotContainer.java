@@ -505,7 +505,7 @@ public class RobotContainer {
           ); // end whenactive
         */
   
-        Trigger climberLockDetector = new Trigger(() -> shooterSubsystem.isClimberLockEngaged());
+        Trigger climberLockDetector = new Trigger(() -> shooterSubsystem.isClimberLockNotEngaged());
 
         Trigger climberLeftArmLimitSwitchDetector = new Trigger(() -> climberSubsystem.isLeftArmLimitSwitchNotOn());
         Trigger climberRightArmLimitSwitchDetector = new Trigger(() -> climberSubsystem.isRightArmLimitSwitchNotOn());

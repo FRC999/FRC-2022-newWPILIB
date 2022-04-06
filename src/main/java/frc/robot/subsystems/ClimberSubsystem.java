@@ -31,7 +31,7 @@ public class ClimberSubsystem extends SubsystemBase {
   private int[] maxEncoder = new int[] {19833,19833};
 
 
-  private WPI_TalonSRX[] climberMotorControllers;
+  public WPI_TalonSRX[] climberMotorControllers;
 
   /** Creates a new ClimberSubsystem. */
   public ClimberSubsystem() {
@@ -160,7 +160,7 @@ public class ClimberSubsystem extends SubsystemBase {
   }
 
   public boolean isRightArmLimitSwitchNotOn() {
-    return climberMotorControllers[0].isFwdLimitSwitchClosed() != 1;
+    return climberMotorControllers[1].isFwdLimitSwitchClosed() != 1;
   }
 
   public void calibrateForwardSlow() {

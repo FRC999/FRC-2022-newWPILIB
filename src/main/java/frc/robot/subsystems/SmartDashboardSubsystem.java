@@ -77,6 +77,9 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Climber0 Error", RobotContainer.climberSubsystem.getEncoderError(0));
     SmartDashboard.putNumber("Climber1 Encoder", RobotContainer.climberSubsystem.getEncoder(1));
     SmartDashboard.putNumber("Climber1 Error", RobotContainer.climberSubsystem.getEncoderError(1));
+    SmartDashboard.putNumber("Climber0 FL", RobotContainer.climberSubsystem.climberMotorControllers[1].isFwdLimitSwitchClosed());
+    SmartDashboard.putNumber("Climber0 RL", RobotContainer.climberSubsystem.climberMotorControllers[1].isRevLimitSwitchClosed());
+  
   }
 
   public void updateTestMotorValues() {

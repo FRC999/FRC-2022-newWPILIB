@@ -381,8 +381,8 @@ public class ShooterSubsystem extends SubsystemBase {
     shooterSolenoid.set(Value.kForward);
   }
 
-  public boolean isClimberLockEngaged() {
-    return shooterSolenoid.get() == Value.kForward ;
+  public boolean isClimberLockNotEngaged() {
+    return shooterSolenoid.get() != Value.kForward ;
   }
 
   /**
