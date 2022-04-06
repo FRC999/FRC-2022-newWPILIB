@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class ClimberSubsystem extends SubsystemBase {
 
@@ -155,12 +156,15 @@ public class ClimberSubsystem extends SubsystemBase {
     climberMotorControllers[motor].set(CLIMBEREXTENDED);
   }
 
+  /** 
+   * Red switch (button 1 on the left box) is a climber limit switch override override
+   */
   public boolean isLeftArmLimitSwitchNotOn() {
-    return climberMotorControllers[0].isRevLimitSwitchClosed() != 1;
+    return climberMotorControllers[0].isRevLimitSwitchClosed() != 1 || RobotContainer.bbl.getRawButton(1);
   }
 
   public boolean isRightArmLimitSwitchNotOn() {
-    return climberMotorControllers[1].isFwdLimitSwitchClosed() != 1;
+    return climberMotorControllers[1].isFwdLimitSwitchClosed() != 1 || RobotContainer.bbl.getRawButton(1);
   }
 
   public void calibrateForwardSlow() {
