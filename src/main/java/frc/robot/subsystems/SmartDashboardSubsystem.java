@@ -63,6 +63,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Tilt ZT", RobotContainer.shooterSubsystem.getTiltZT() );
   }
 
+  public void ballIntakeCalibrationValues() {
+    SmartDashboard.putNumber("Intake Power ", (RobotContainer.turnStick.getRawAxis(3)+1)/2.0);
+    SmartDashboard.putNumber("Shooter Wheel Intake Power ", (RobotContainer.turnStick.getRawAxis(3)+1)/2.0);
+  }
+
   public void updateShooterSolutionValues() {
     SmartDashboard.putNumber("Shooter Angle", RobotContainer.shooterSubsystem.getShooterAnglePID() );
     SmartDashboard.putNumber("Shooter Power", RobotContainer.shooterSubsystem.getShooterWheelPID() );
@@ -172,6 +177,11 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
     if (RobotProperties.driveInterface == DriveInterface.ONESTICK) {
       updateOUValues();
+    }
+
+    /** Telemetry for Intake speed calibration */
+    if ( RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.BallIntakeCalibrationSwitch)) {
+      ballIntakeCalibrationValues();
     }
 
     updateLimelightValues();

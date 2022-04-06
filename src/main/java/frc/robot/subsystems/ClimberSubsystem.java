@@ -160,11 +160,11 @@ public class ClimberSubsystem extends SubsystemBase {
    * Red switch (button 1 on the left box) is a climber limit switch override override
    */
   public boolean isLeftArmLimitSwitchNotOn() {
-    return climberMotorControllers[0].isRevLimitSwitchClosed() != 1 || RobotContainer.bbl.getRawButton(1);
+    return climberMotorControllers[0].isRevLimitSwitchClosed() != 1 || RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.ClimberLimitSwitchOverrideSwitch);
   }
 
   public boolean isRightArmLimitSwitchNotOn() {
-    return climberMotorControllers[1].isFwdLimitSwitchClosed() != 1 || RobotContainer.bbl.getRawButton(1);
+    return climberMotorControllers[1].isFwdLimitSwitchClosed() != 1 || RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.ClimberLimitSwitchOverrideSwitch);
   }
 
   public void calibrateForwardSlow() {

@@ -13,6 +13,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
@@ -427,7 +428,12 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void startShooterWheelMotorReverse() {
-    startShooterWheelMotorReverse(FULLREVERSESPEED);  // No need to adjust it
+    if ( ! RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.BallIntakeCalibrationSwitch)) {
+      startShooterWheelMotorReverse(FULLREVERSESPEED);  // No need to adjust it
+    } else { // intake calibration
+      startShooterWheelMotorReverse((RobotContainer.driveStick.getRawAxis(3)-1)/2.0);
+      // SmartDashboard.putNumber("Shooter Wheel Intake Power ", (RobotContainer.turnStick.getRawAxis(3)+1)/2.0);
+    }
   }
 
   public void startShooterWheelMotorReverse(double power) {

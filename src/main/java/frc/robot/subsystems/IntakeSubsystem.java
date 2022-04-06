@@ -10,8 +10,10 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class IntakeSubsystem extends SubsystemBase {
   private WPI_TalonSRX intakeMotorController;
@@ -50,7 +52,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void rotateIntakeForward() {
     intakeMotorController.setNeutralMode(NeutralMode.Brake);
-    intakeMotorController.set(Constants.IntakeConstants.intakeForwardSpeed);
+    if ( ! RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.BallIntakeCalibrationSwitch)) {
+      intakeMotorController.set(Constants.IntakeConstants.intakeForwardSpeed);
+    } else { // intake calibration
+      intakeMotorController.set( (RobotContainer.turnStick.getRawAxis(3)+1)/2.0 );
+      // SmartDashboard.putNumber("Intake Power ", (RobotContainer.turnStick.getRawAxis(3)+1)/2.0);
+    }
   }
 
   public void rotateIntakeReverse() {
