@@ -49,6 +49,10 @@ public class ShooterSubsystem extends SubsystemBase {
   private final int MAXDISTANCE = 19;
   private final int MINDISTANCE = 3;
 
+  private int shooterPowerAdjustment = 0; // adjust shooter power dynamically during the game
+  private final int shooterPowerAdjustmentLimit = 10; // how many steps to adjust power by
+  private final int shooterPowerAdjustmentPercentage = 5; // how much to adjust shooter power per step (percent)
+
   /**
    * Artillery firing table -
    *  First dimension - distance-to target (ft)
@@ -57,7 +61,7 @@ public class ShooterSubsystem extends SubsystemBase {
    * 
    * Distance is measured from the outer edge of the upper ring to the edge of the back bumper 
    */
-  private final double[][][] artilleryTable = {
+  private double[][][] artilleryTable = {
     {{}},  // 0 ft - skip
     {{}},  // 1 ft - skip
     {{}},  // 2 ft - skip
@@ -129,6 +133,8 @@ public class ShooterSubsystem extends SubsystemBase {
 
   };
 
+  private double[][][] artilleryTableCopy;
+
   //array that keeps current shooter firing values, element 0 is angle, element 1 is power
   private double [] shootingSolution = new double [2];
   private boolean shootingSolutionSet = false;  // used to determine whether Shooting Solution was set successfully
@@ -138,7 +144,7 @@ public class ShooterSubsystem extends SubsystemBase {
   /** Creates a new ShooterSubsystem. */
   public ShooterSubsystem() {
 
-
+    artilleryTableCopy = artilleryTable.clone();
 
     if (Constants.RobotProperties.isShooter) {
       tiltMotorController = new WPI_TalonSRX(Constants.ShooterConstants.tiltMotorPortID);
@@ -563,7 +569,6 @@ public class ShooterSubsystem extends SubsystemBase {
     return Math.round(getTargetDistance()) == distance;
   }
 
-
   public boolean targetDistanceNotLess(double distance){
     return getTargetDistance()>=distance; }
 
@@ -590,6 +595,38 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public boolean isBullsEye() {
     return isTargetDetected() && Math.abs(getTargetHorizontalOffset())< BULLSEYEANGLE ;
+  }
+
+  /** Manual shooter power adjustment DOWN during the game */
+  public void shooterPowerAdjustLower() {
+    if (shooterPowerAdjustment> -shooterPowerAdjustmentLimit) {
+      shooterPowerAdjustment--;
+      changeArtilleryTable();
+      SmartDashboard.putNumber("ShooterPowerAdjustment",shooterPowerAdjustment);
+    }
+  }
+
+  /** Manual shooter power adjustment UP during the game */
+  public void shooterPowerAdjustHigher() {
+    if (shooterPowerAdjustment< shooterPowerAdjustmentLimit) {
+      shooterPowerAdjustment++;
+      changeArtilleryTable();
+      SmartDashboard.putNumber("ShooterPowerAdjustment",shooterPowerAdjustment);
+    }
+  }
+
+  public int getShooterPowerAdjustment() {
+    return shooterPowerAdjustment;
+  }
+
+  public void changeArtilleryTable() {
+    for (int distance=0;distance<artilleryTable.length;distance++)
+    {
+      if (artilleryTable[distance][0].length == 2) {
+        artilleryTable[distance][0][1] = artilleryTableCopy[distance][0][1] *
+          ( 1 + (shooterPowerAdjustment*shooterPowerAdjustmentPercentage)/100.0 ) ;       // high goal power adjustment
+      }
+    }
   }
 
   @Override
