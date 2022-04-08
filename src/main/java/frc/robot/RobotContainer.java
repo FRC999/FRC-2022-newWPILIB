@@ -526,6 +526,9 @@ public class RobotContainer {
           .and (manualShootingPowerAdjustmentDetector)
           .whenActive(new  InstantCommand(shooterSubsystem::shooterPowerAdjustLower));
 
+        manualShootingPowerAdjustmentDetector
+          .whenInactive(new  InstantCommand(shooterSubsystem::restoreArtilleryTable));
+
         /*
         new JoystickButton(bbl, 4)
           .whenPressed(new  PigeonTurnToAngleLimelightXcenter())
