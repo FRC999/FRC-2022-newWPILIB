@@ -50,6 +50,10 @@ public class ShooterSubsystem extends SubsystemBase {
   private final int MAXDISTANCE = 19;
   private final int MINDISTANCE = 3;
 
+  private int shooterPowerAdjustment = 0; // adjust shooter power dynamically during the game
+  private final int shooterPowerAdjustmentLimit = 10; // how many steps to adjust power by
+  private final int shooterPowerAdjustmentPercentage = 5; // how much to adjust shooter power per step (percent)
+
   /**
    * Artillery firing table -
    *  First dimension - distance-to target (ft)
@@ -58,7 +62,79 @@ public class ShooterSubsystem extends SubsystemBase {
    * 
    * Distance is measured from the outer edge of the upper ring to the edge of the back bumper 
    */
-  private final double[][][] artilleryTable = {
+  private double[][][] artilleryTable = {
+    {{}},  // 0 ft - skip
+    {{}},  // 1 ft - skip
+    {{}},  // 2 ft - skip
+    {{}},  // 3 ft - skip
+    { // 4ft
+      {80.0, 0.819}, //skip high goal
+      {65.0, 0.285} //4 ft low goal
+    }, 
+    { // 5ft
+      {73.0, 0.59}, //skip high goal
+      {49.0, 0.402} //5 ft low goal
+    }, 
+    {
+      {65.0, 0.59}, //6 ft high goal
+      {47.0, 0.402} //6 ft low goal
+    },
+    {
+      {65.0, 0.629}, //7 ft high goal
+      {45.0, 0.460} //7 ft low goal
+    },
+    {
+      {65.0, 0.62745}, //8 ft high goal
+      {43.0, 0.465} //8 ft low goal
+    },
+    {
+      {65.0, 0.6259}, //9 ft high goal
+      {45.0, 0.5} //9 ft low goal
+    },
+    {
+      {63.25, 0.66545}, //10 ft high goal
+      {42.0, 0.507} //10 ft low goal
+    },
+    {
+      {61.5, 0.705}, //11 ft high goal
+      {42.0, 0.507} //11 ft low goal
+    },
+    {
+      {60.75, 0.7065}, //12 ft high goal
+      {45.0, 0.543} //12 ft low goal
+    },
+    {
+      {60.0, 0.708}, //13 ft high goal
+      {46.0, 0.547} //13 ft low goal
+    },
+    {
+      {58.5, 0.7435}, //14 ft high goal
+      {44.0, 0.59} //14 ft low goal
+    },
+    {
+      {57.0, 0.77925}, //15 ft high goal
+      {45.0, 0.61} //15 ft low goal
+    },
+    {
+      {55.64, 0.8045}, //16 ft high goal
+      {} //16 ft low goal
+    },
+    {
+      {49.88, 0.830}, //17 ft high
+      {} //skip 17 ft low
+    },
+    {
+      {53.35, 0.882}, //18 ft high
+      {}
+    },
+    {
+      {51.77, 0.933}, //19 ft high goal
+      {50.0, 0.751} //skip
+    }
+
+  };
+
+  private double[][][] artilleryTableOrig = {
     {{}},  // 0 ft - skip
     {{}},  // 1 ft - skip
     {{}},  // 2 ft - skip
@@ -612,6 +688,56 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public boolean isBullsEye() {
     return isTargetDetected() && Math.abs(getTargetHorizontalOffset())< BULLSEYEANGLE ;
+  }
+
+  public void arrayDeepCopy (double source[][][], double target[][][]) {
+    for (int i=0; i<source.length; i++) {
+      for (int j=0; j<source[i].length; j++) {
+        for (int k=0;k<source[i][j].length;k++) {
+          target[i][j][k] = source[i][j][k] ;
+        }
+      }
+    }
+  }
+
+  /** Manual shooter power adjustment DOWN during the game */
+  public void shooterPowerAdjustLower() {
+    if (shooterPowerAdjustment> -shooterPowerAdjustmentLimit) {
+      shooterPowerAdjustment--;
+      changeArtilleryTable();
+      SmartDashboard.putNumber("ShooterPowerAdjustment",shooterPowerAdjustment);
+    }
+  }
+
+  /** Manual shooter power adjustment UP during the game */
+  public void shooterPowerAdjustHigher() {
+    if (shooterPowerAdjustment< shooterPowerAdjustmentLimit) {
+      shooterPowerAdjustment++;
+      changeArtilleryTable();
+      SmartDashboard.putNumber("ShooterPowerAdjustment",shooterPowerAdjustment);
+    }
+  }
+
+  public int getShooterPowerAdjustment() {
+    return shooterPowerAdjustment;
+  }
+
+  public void changeArtilleryTable() {
+
+    for (int i=0; i<artilleryTable.length; i++) {
+      for (int j=0; j<artilleryTable[i].length; j++) {
+        for (int k=0;k<artilleryTable[i][j].length;k++) {
+          if (k==1) { // adjust distances
+            artilleryTable[i][j][k] =
+              Math.min(artilleryTable[i][j][k]*( 1 + (shooterPowerAdjustment*shooterPowerAdjustmentPercentage)/100.0 ),1.0) ;
+          }
+        }
+      }
+    }
+  }
+
+  public void restoreArtilleryTable() {
+    arrayDeepCopy(artilleryTableOrig, artilleryTable);
   }
 
   @Override
