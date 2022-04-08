@@ -32,7 +32,8 @@ public class ShootOverIntake extends SequentialCommandGroup {
           ), // end sequence
           new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotor(1.0))
         ), //end deadline
-        new IntakeDown()
+        new IntakeDown(),
+        new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem)
       )
     );
   }

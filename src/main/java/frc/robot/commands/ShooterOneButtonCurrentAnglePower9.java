@@ -29,7 +29,8 @@ public class ShooterOneButtonCurrentAnglePower9 extends SequentialCommandGroup {
             new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor)
           ), // end sequence
           new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotor( (RobotContainer.shooterSubsystem.getShootingSolution(9))[1]))
-        ) //end deadline
+        ), //end deadline
+        new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem)
       )
     );
   }

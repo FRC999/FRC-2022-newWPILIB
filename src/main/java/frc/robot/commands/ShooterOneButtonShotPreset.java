@@ -31,7 +31,8 @@ public class ShooterOneButtonShotPreset extends SequentialCommandGroup {
             new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor)
           ), // end sequence
           new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotor( (RobotContainer.shooterSubsystem.getShootingSolution(distance))[1]))
-        ) //end deadline
+        ), //end deadline
+        new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem)
       )
     );
   }

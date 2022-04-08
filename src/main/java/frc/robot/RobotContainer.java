@@ -349,7 +349,8 @@ public class RobotContainer {
             .alongWith(new InstantCommand(shooterSubsystem::startShooterWheelMotor,shooterSubsystem)) )
           .whenReleased( // Stop intake and shooter wheel
             new InstantCommand(intakeSubsystem::stopIntakeMotor,intakeSubsystem)
-            .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem)) 
+            .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem))
+            .andThen(new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem)) 
           );
 
         // Shooter arm calibration
@@ -414,6 +415,7 @@ public class RobotContainer {
             .alongWith(new InstantCommand(shooterSubsystem::stopShooterWheelMotor,shooterSubsystem))
             // relese tilt motor
             .alongWith(new InstantCommand(shooterSubsystem::tiltMotorOff)))
+            .andThen(new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem)) 
           );
 
         // Intake UP/DOWN

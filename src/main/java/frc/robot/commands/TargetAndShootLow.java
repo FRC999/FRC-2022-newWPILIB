@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.RobotContainer;
@@ -41,7 +42,8 @@ public class TargetAndShootLow extends SequentialCommandGroup {
               new ShooterOneButtonShot()
             ),
             new TargetVertical(1) // tilt shooter arm to the degree indicated in the shooter solution
-          )  // end deadline
+          ),  // end deadline
+          new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem)
         )
       );
 

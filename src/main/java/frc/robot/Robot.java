@@ -97,6 +97,9 @@ public class Robot extends TimedRobot {
       //}
     //}
 
+    // disable tilt motor
+    RobotContainer.shooterSubsystem.releaseTiltMotor();
+
     // disable loggin if needed
     if (Constants.RobotProperties.robotLogging) {
       simpleCSVLogger.forceSync();

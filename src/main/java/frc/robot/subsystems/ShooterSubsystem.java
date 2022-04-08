@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.TalonSRXControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -331,7 +332,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   // Force-keep the tilt down
   public void tiltShooterArmDownForce() {
-    tiltShooterArm(-5);
+    tiltShooterArm(0);
   }
 
   // Remember tilt encoder setting - used to remember the ZERO position
@@ -448,6 +449,10 @@ public class ShooterSubsystem extends SubsystemBase {
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Coast);
     wheelMotorControllers[0].set(0);
     wheelMotorControllers[1].set(0);
+  }
+
+  public void releaseTiltMotor() {
+    tiltMotorController.set(TalonSRXControlMode.PercentOutput, 0);
   }
 
   /**

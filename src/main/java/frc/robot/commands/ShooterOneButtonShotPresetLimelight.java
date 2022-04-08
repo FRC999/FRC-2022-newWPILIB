@@ -34,7 +34,8 @@ public class ShooterOneButtonShotPresetLimelight extends SequentialCommandGroup 
             new InstantCommand(RobotContainer.shooterSubsystem::stopShooterWheelMotor)
           ), // end sequence
           new InstantCommand(() -> RobotContainer.shooterSubsystem.startShooterWheelMotor( (RobotContainer.shooterSubsystem.getShootingSolution())[1]))
-        ) //end deadline
+        ), //end deadline
+        new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem)
       )
     );
   }
