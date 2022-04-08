@@ -272,7 +272,24 @@ public class ShooterSubsystem extends SubsystemBase {
     panMotorController.configClosedLoopPeriod(1, Constants.ShooterConstants.closedLoopPeriodMs, Constants.ShooterConstants.configureTimeoutMs);
     */
 
+    /* // Current Limiter - commented out for now
+
+    tiltMotorController.configPeakCurrentLimit(6, 10);          // 6 amps
+    tiltMotorController.configPeakCurrentDuration(1000, 10);    // for more than 10 seconds
+    tiltMotorController.configContinuousCurrentLimit(0.5, 10);  // drop the output to 0.5A
+    tiltMotorController.EnableCurrentLimit(true);               // enable
+
+    */
+
   } // End configurePanMotorControllerForPosition
+
+  public void enableTiltCurrentLimit () {
+    tiltMotorController.enableCurrentLimit(true);
+  }
+
+  public void disableTiltCurrentLimit () {
+    tiltMotorController.enableCurrentLimit(false);
+  }
 
   public void calibrateForwardSlow() {
 
