@@ -40,7 +40,7 @@ public class AutonomousTwoBallLimelight2x180turns extends SequentialCommandGroup
         new AutonomousTurnToAngleLimelight(),
         new AutonomousTurnToAngleLimelight(),
         new ShooterOneButtonShotPreset((int)SECONDBALLSHOOTINGDISTANCE, 0),
-
+        new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem), // do not hold the power
         new DriveStopCommand()
      )
     );  

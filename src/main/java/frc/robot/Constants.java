@@ -222,7 +222,7 @@ public final class Constants {
         // drivestick
 
         public static final int IntakeShooterReverseButton = 1;
-        public static final int ShooterArmCalibrateButton = 3;
+        public static final int ShooterArmToZeroButton = 3;
         public static final int ShooterArmAngleButton = 4;
         public static final int IntakeDownButton = 11;
         public static final int IntakeUpButton = 12;

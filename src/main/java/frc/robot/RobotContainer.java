@@ -354,10 +354,10 @@ public class RobotContainer {
           );
 
         // Shooter arm calibration
-        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmCalibrateButton)   // 3
+        new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmToZeroButton)   // 3
           //.whenPressed(new CalibrateShooterArmWithLimitSwitch());
-          .whenPressed(new InstantCommand(shooterSubsystem::tiltShooterArm0,shooterSubsystem));
-
+          .whenPressed(new InstantCommand(shooterSubsystem::tiltShooterArm0,shooterSubsystem))
+          .whenReleased(new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem)); // do not hold the power
         // Shooter arm to 45 +- manual adjustment via Z-tail
         new JoystickButton(driveStick, Constants.OIC2022TEST.ShooterArmAngleButton)  // 4
           .whenPressed(new ShooterArmPosition());
@@ -549,7 +549,7 @@ public class RobotContainer {
     
         new JoystickButton(bbl, Constants.OIC2022TEST.ClimberDown0) // 11
           .and(climberLockDetector)
-          .and(climberLeftArmLimitSwitchDetector)
+          //.and(climberLeftArmLimitSwitchDetector) // limit switch check disabled
           .whileActiveContinuous(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(0),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(0),climberSubsystem));
 
@@ -566,7 +566,7 @@ public class RobotContainer {
     
         new JoystickButton(bbr, Constants.OIC2022TEST.ClimberDown1) // 1
           .and(climberLockDetector)
-          .and(climberRightArmLimitSwitchDetector)
+          //.and(climberRightArmLimitSwitchDetector)  // limit switch check disabled
           .whileActiveContinuous(new  InstantCommand(() -> climberSubsystem.calibrateBackSlow(1),climberSubsystem))
           .whenInactive(new InstantCommand(() -> climberSubsystem.climberMotorOff(1),climberSubsystem));
 
