@@ -516,6 +516,17 @@ public class RobotContainer {
         // ***  BBLEFT   ***
         // *****************
 
+        Trigger manualShootingPowerAdjustmentDetector = new Trigger(() -> RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.ClimberLimitSwitchOverrideSwitch));
+
+        new JoystickButton(bbl, 4)
+          .and (manualShootingPowerAdjustmentDetector)
+          .whenActive(new  InstantCommand(shooterSubsystem::shooterPowerAdjustHigher));
+
+        new JoystickButton(bbl, 5)
+          .and (manualShootingPowerAdjustmentDetector)
+          .whenActive(new  InstantCommand(shooterSubsystem::shooterPowerAdjustLower));
+
+        /*
         new JoystickButton(bbl, 4)
           .whenPressed(new  PigeonTurnToAngleLimelightXcenter())
           .whenReleased(new DriveStopCommand());
@@ -525,7 +536,7 @@ public class RobotContainer {
             new  PrintCommand( "B5" + (-1)*RobotContainer.shooterSubsystem.getTargetHorizontalOffset() )
             )
           .whenInactive(new DriveStopCommand());
-
+        */
 
         // Command interruptor - interrupt interruptable commands that use motors - in case they get stuck
         new JoystickButton(bbl, Constants.OIC2022TEST.CommandInterruptorSwitch) // 3
