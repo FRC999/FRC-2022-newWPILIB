@@ -61,12 +61,12 @@ public class AutonomousDriveLinear extends CommandBase {
 
 
     if (DEBUG) { // only telemetry; should not need to re-run the MotionMagic
-      System.out.println("**** Exec A T L " + finalEncoderValues[0]);
-      System.out.println("**** Exec A T R " + finalEncoderValues[1]);
-      System.out.println("**** Exec A N L " + RobotContainer.driveSubsystem.getLeftEncoder());
-      System.out.println("**** Exec A N R " + RobotContainer.driveSubsystem.getRightEncoder());
-      System.out.println("**** Exec A E L " + RobotContainer.driveSubsystem.getDriveError(0));
-      System.out.println("**** Exec A E R " + RobotContainer.driveSubsystem.getDriveError(1));
+      //System.out.println("**** Exec A T L " + finalEncoderValues[0]);
+      //System.out.println("**** Exec A T R " + finalEncoderValues[1]);
+      //System.out.println("**** Exec A N L " + RobotContainer.driveSubsystem.getLeftEncoder());
+      //System.out.println("**** Exec A N R " + RobotContainer.driveSubsystem.getRightEncoder());
+      //System.out.println("**** Exec A E L " + RobotContainer.driveSubsystem.getDriveError(0));
+      //System.out.println("**** Exec A E R " + RobotContainer.driveSubsystem.getDriveError(1));
     }
 
   }
