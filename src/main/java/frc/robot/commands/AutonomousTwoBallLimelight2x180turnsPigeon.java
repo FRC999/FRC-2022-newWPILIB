@@ -50,9 +50,12 @@ public class AutonomousTwoBallLimelight2x180turnsPigeon extends SequentialComman
 
         //new AutonomousTurnToAngleLimelight(),
         //new AutonomousTurnToAngleLimelight(),
-        //new PigeonTurnToAngleLimelightXcenter(),
-        //new PigeonTurnToAngleLimelightXcenter(),
-        new ShooterOneButtonShotPreset((int)SECONDBALLSHOOTINGDISTANCE, 0),
+        new PigeonTurnToAngleLimelightXcenter(),
+        new PigeonTurnToAngleLimelightXcenter(),
+        new PigeonTurnToAngleLimelightXcenter(),
+
+        //new ShooterOneButtonShotPreset((int)SECONDBALLSHOOTINGDISTANCE, 0),
+        new ShooterOneButtonShotPresetLimelight(),
         new InstantCommand(RobotContainer.shooterSubsystem::releaseTiltMotor,RobotContainer.shooterSubsystem), // make sure the power is off on tilt
 
         new DriveStopCommand()
