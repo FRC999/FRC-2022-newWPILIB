@@ -82,9 +82,9 @@ public class PigeonTurnPIDXLimelight extends PIDCommand {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    System.out.println(
-      "PE " + getController().getPositionError() + " TA " + targetAngleDegrees + " A " + RobotContainer.imuSubsystem.getYaw()
-    );
+    // System.out.println(
+    //  "PE " + getController().getPositionError() + " TA " + targetAngleDegrees + " A " + RobotContainer.imuSubsystem.getYaw()
+    //);
     return getController().atSetpoint();
   }
 }

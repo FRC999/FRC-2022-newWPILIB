@@ -10,7 +10,7 @@ import frc.robot.RobotContainer;
 
 public class AutonomousDriveLinear extends CommandBase {
 
-  private static final boolean DEBUG = true;
+  private static final boolean DEBUG = false;
 
   public int finalEncoderValues[];
 
