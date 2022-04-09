@@ -1,6 +1,4 @@
 This is a short-term TODO list
 
-Test zero-Yaw method
-
-Correct AutonomousTwoBallLimelight2x180turnsPigeon method with the right angle values
+Check AutonomousChooser
 
