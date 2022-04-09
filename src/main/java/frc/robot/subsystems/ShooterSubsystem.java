@@ -100,27 +100,27 @@ public class ShooterSubsystem extends SubsystemBase {
       {42.0, 0.507} //11 ft low goal
     },
     {
-      {60.75, 0.7065}, //12 ft high goal
+      {60.75, 0.77715}, //12 ft high goal
       {45.0, 0.543} //12 ft low goal
     },
     {
-      {60.0, 0.708}, //13 ft high goal
+      {60.0, 0.7434}, //13 ft high goal
       {46.0, 0.547} //13 ft low goal
     },
     {
-      {58.5, 0.7435}, //14 ft high goal
+      {58.5, 0.81774}, //14 ft high goal
       {44.0, 0.59} //14 ft low goal
     },
     {
-      {57.0, 0.77925}, //15 ft high goal
+      {57.0, 0.857175}, //15 ft high goal
       {45.0, 0.61} //15 ft low goal
     },
     {
-      {55.64, 0.8045}, //16 ft high goal
+      {55.64, 0.88495}, //16 ft high goal
       {} //16 ft low goal
     },
     {
-      {49.88, 0.830}, //17 ft high
+      {49.88, 0.88495}, //17 ft high
       {} //skip 17 ft low
     },
     {
@@ -172,27 +172,27 @@ public class ShooterSubsystem extends SubsystemBase {
       {42.0, 0.507} //11 ft low goal
     },
     {
-      {60.75, 0.7065}, //12 ft high goal
+      {60.75, 0.77715}, //12 ft high goal
       {45.0, 0.543} //12 ft low goal
     },
     {
-      {60.0, 0.708}, //13 ft high goal
+      {60.0, 0.7434}, //13 ft high goal
       {46.0, 0.547} //13 ft low goal
     },
     {
-      {58.5, 0.7435}, //14 ft high goal
+      {58.5, 0.81774}, //14 ft high goal
       {44.0, 0.59} //14 ft low goal
     },
     {
-      {57.0, 0.77925}, //15 ft high goal
+      {57.0, 0.857175}, //15 ft high goal
       {45.0, 0.61} //15 ft low goal
     },
     {
-      {55.64, 0.8045}, //16 ft high goal
+      {55.64, 0.88495}, //16 ft high goal
       {} //16 ft low goal
     },
     {
-      {49.88, 0.830}, //17 ft high
+      {49.88, 0.88495}, //17 ft high
       {} //skip 17 ft low
     },
     {
