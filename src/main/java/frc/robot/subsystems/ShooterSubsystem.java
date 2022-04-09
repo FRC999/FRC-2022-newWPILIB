@@ -76,7 +76,7 @@ public class ShooterSubsystem extends SubsystemBase {
       {49.0, 0.402} //5 ft low goal
     }, 
     {
-      {65.0, 0.59}, //6 ft high goal
+      {60.0, 0.59}, //6 ft high goal
       {47.0, 0.402} //6 ft low goal
     },
     {
@@ -112,23 +112,27 @@ public class ShooterSubsystem extends SubsystemBase {
       {44.0, 0.59} //14 ft low goal
     },
     {
-      {57.0, 0.857175}, //15 ft high goal
+      {52.0, 0.857175}, //15 ft high goal
       {45.0, 0.61} //15 ft low goal
     },
     {
-      {55.64, 0.88495}, //16 ft high goal
+      {49.0, 0.88495}, //16 ft high goal
       {} //16 ft low goal
     },
     {
-      {49.88, 0.88495}, //17 ft high
+      {47.0, 0.88495}, //17 ft high
       {} //skip 17 ft low
     },
     {
-      {53.35, 0.882}, //18 ft high
+      {58.83, 0.9724}, //18 ft high
       {}
     },
     {
-      {51.77, 0.933}, //19 ft high goal
+      {58.83, 0.98}, //19 ft high goal
+      {50.0, 0.751} //skip
+    },
+    {
+      {58.83, 1.00}, //20 ft high goal
       {50.0, 0.751} //skip
     }
 
@@ -148,7 +152,7 @@ public class ShooterSubsystem extends SubsystemBase {
       {49.0, 0.402} //5 ft low goal
     }, 
     {
-      {65.0, 0.59}, //6 ft high goal
+      {60.0, 0.59}, //6 ft high goal
       {47.0, 0.402} //6 ft low goal
     },
     {
@@ -184,23 +188,27 @@ public class ShooterSubsystem extends SubsystemBase {
       {44.0, 0.59} //14 ft low goal
     },
     {
-      {57.0, 0.857175}, //15 ft high goal
+      {52.0, 0.857175}, //15 ft high goal
       {45.0, 0.61} //15 ft low goal
     },
     {
-      {55.64, 0.88495}, //16 ft high goal
+      {49.0, 0.88495}, //16 ft high goal
       {} //16 ft low goal
     },
     {
-      {49.88, 0.88495}, //17 ft high
+      {47.0, 0.88495}, //17 ft high
       {} //skip 17 ft low
     },
     {
-      {53.35, 0.882}, //18 ft high
+      {58.83, 0.9724}, //18 ft high
       {}
     },
     {
-      {51.77, 0.933}, //19 ft high goal
+      {58.83, 0.98}, //19 ft high goal
+      {50.0, 0.751} //skip
+    },
+    {
+      {58.83, 1.00}, //20 ft high goal
       {50.0, 0.751} //skip
     }
 
