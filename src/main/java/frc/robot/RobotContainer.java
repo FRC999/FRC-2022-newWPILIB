@@ -526,8 +526,12 @@ public class RobotContainer {
           .and (manualShootingPowerAdjustmentDetector)
           .whenActive(new  InstantCommand(shooterSubsystem::shooterPowerAdjustLower));
 
-        manualShootingPowerAdjustmentDetector
-          .whenInactive(new  InstantCommand(shooterSubsystem::restoreArtilleryTable));
+        /**
+         * Shooting with Z-tail adjustments for shooter calibration
+         */
+        new JoystickButton(bbl, 6)
+          .and (manualShootingPowerAdjustmentDetector)
+          .whenActive(new ShooterOneButtonShot());
 
         /*
         new JoystickButton(bbl, 4)

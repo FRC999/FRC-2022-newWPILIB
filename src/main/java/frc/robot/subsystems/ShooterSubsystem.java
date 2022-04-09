@@ -500,10 +500,17 @@ public class ShooterSubsystem extends SubsystemBase {
     return RobotContainer.turnStick.getRawAxis(3)*0.5 + 0.5;
   }
 
+  /**
+   * Set shooter wheel motor power with Z-tail adjustment
+   */
   public void startShooterWheelMotor() {
     startShooterWheelMotor(FULLFORWARDSPEED * shooterWheelPowerAdjustment() ); // adjust shooter power
   }
 
+  /**
+   * Set shooter wheel motor power to a power provided as an argument
+   * @param power - shooting power 0..1
+   */
   public void startShooterWheelMotor(double power) {
     wheelMotorControllers[0].setNeutralMode(NeutralMode.Brake);
     wheelMotorControllers[1].setNeutralMode(NeutralMode.Brake);

@@ -13,7 +13,9 @@ import frc.robot.RobotContainer;
 // This works fine s inline command as well, but we want to make this group used in Autonomous sequences as well as Teleop
 
 public class ShooterOneButtonShot extends SequentialCommandGroup {
-  /** Creates a new ShooterOneButtonShot. */
+  /** Creates a new ShooterOneButtonShot.
+   * Uses Shooter Power adjusted by Z-tail
+   */
   public ShooterOneButtonShot() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
