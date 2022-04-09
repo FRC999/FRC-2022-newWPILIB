@@ -729,7 +729,7 @@ public class ShooterSubsystem extends SubsystemBase {
         for (int k=0;k<artilleryTable[i][j].length;k++) {
           if (k==1) { // adjust distances
             artilleryTable[i][j][k] =
-              Math.min(artilleryTable[i][j][k]*( 1 + (shooterPowerAdjustment*shooterPowerAdjustmentPercentage)/100.0 ),1.0) ;
+              Math.min(artilleryTableOrig[i][j][k]*( 1 + (shooterPowerAdjustment*shooterPowerAdjustmentPercentage)/100.0 ),1.0) ;
           }
         }
       }
@@ -738,6 +738,7 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public void restoreArtilleryTable() {
     arrayDeepCopy(artilleryTableOrig, artilleryTable);
+    shooterPowerAdjustment = 0; // remove the adjustment
   }
 
   @Override
