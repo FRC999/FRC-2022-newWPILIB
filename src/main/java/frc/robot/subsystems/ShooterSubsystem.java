@@ -76,7 +76,7 @@ public class ShooterSubsystem extends SubsystemBase {
       {49.0, 0.402} //5 ft low goal
     }, 
     {
-      {60.0, 0.59}, //6 ft high goal
+      {62.0, 0.531}, //6 ft high goal
       {47.0, 0.402} //6 ft low goal
     },
     {
@@ -152,7 +152,7 @@ public class ShooterSubsystem extends SubsystemBase {
       {49.0, 0.402} //5 ft low goal
     }, 
     {
-      {60.0, 0.59}, //6 ft high goal
+      {62.0, 0.531}, //6 ft high goal
       {47.0, 0.402} //6 ft low goal
     },
     {
