@@ -494,7 +494,7 @@ public final class Constants {
 
     public static final class CANdleConstants {
 
-        public static final int CANdlePort = 6;
+        public static final int CANdlePort = 0;
         public static final int XBOXPort = 1 ; // to control CANdle
         public static final int MaxBrightnessAngle = 90;
         public static final int MidBrightnessAngle = 180;

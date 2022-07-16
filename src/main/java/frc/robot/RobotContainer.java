@@ -308,6 +308,9 @@ public class RobotContainer {
         // *** DRIVESTICK ***
         // *****************
 
+        new JoystickButton(driveStick, 9).whenPressed(new InstantCommand (RobotContainer.candleSubsystem::setLEDBlue))
+          .whenReleased(new InstantCommand (RobotContainer.candleSubsystem::setLEDOff));
+
         /*new JoystickButton(driveStick, 8)
         .whenPressed(
           new InstantCommand(RobotContainer.intakeSubsystem::rotateIntakeForward,RobotContainer.intakeSubsystem)
