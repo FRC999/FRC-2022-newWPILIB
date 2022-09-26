@@ -13,11 +13,11 @@ import frc.robot.RobotContainer;
 
 public class CalibrateShooterArmWithLimitSwitch extends CommandBase {
   private final double CALIBRATIONPERCENTOUTPUT = 0.3 ; // should be reasonably slow; we do not want to hit the pan hard
-  private boolean failToCalibrate = false ; // this will be set if calibration cannot be done, for instance, if the DIO limit cannot be read
+  //private boolean failToCalibrate = false ; // this will be set if calibration cannot be done, for instance, if the DIO limit cannot be read
 
   // The Limit switch is interruptor - meaning, the circuit is closed until it's pressed.
   // That means its value will be FALSE until it's pressed
-  private DigitalInput shooterLimitSwitch; 
+  //private DigitalInput shooterLimitSwitch; 
 
   /** Creates a new CalibrateShooterArmWithLimitSwitch. */
   public CalibrateShooterArmWithLimitSwitch() {
@@ -33,7 +33,8 @@ public class CalibrateShooterArmWithLimitSwitch extends CommandBase {
 
     System.out.println("Setting up DIO "+Constants.ShooterConstants.shooterLimitSwitchDIOPort);
 
-      // initialize the limit switch
+    /*  
+    // initialize the limit switch
       if(shooterLimitSwitch == null) {
         try {
           shooterLimitSwitch = new DigitalInput(Constants.ShooterConstants.shooterLimitSwitchDIOPort) ;
@@ -43,6 +44,7 @@ public class CalibrateShooterArmWithLimitSwitch extends CommandBase {
         }
       }
       System.out.println("DIO initialized");
+      */
 
       // Start downward rotation of the shooter motor
       RobotContainer.shooterSubsystem.tiltMotorController.set(ControlMode.PercentOutput, CALIBRATIONPERCENTOUTPUT);
@@ -68,14 +70,13 @@ public class CalibrateShooterArmWithLimitSwitch extends CommandBase {
     // zero out the shooter arm encoder
     RobotContainer.shooterSubsystem.zeroTiltMotorEncoder();
     System.out.println("*** Calibration ended. Interrupted: " + interrupted);
-    System.out.println("SLS " + shooterLimitSwitch.get());
-
+    System.out.println("SLS " + RobotContainer.dioSubsystem.getSwitchStatus()) ;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     System.out.println("*** Calibration Command finish");
-    return failToCalibrate || shooterLimitSwitch.get() ;
+    return RobotContainer.dioSubsystem.getSwitchStatus() ;
   }
 }

@@ -113,6 +113,10 @@ public class SmartDashboardSubsystem extends SubsystemBase {
     SmartDashboard.putNumber("Limelight RAW distance", RobotContainer.shooterSubsystem.getTargetDistanceRaw());
  
   }
+  
+  public void updateDIOValues(){
+    SmartDashboard.putBoolean("DIO Switch", RobotContainer.dioSubsystem.getSwitchStatus());
+  }
 
   public void updateColorSensorValues() {
     SmartDashboard.putNumber("Shooter Color Sensor Proximity", RobotContainer.colorSensorSubsystem.getObjectProximityShooter());
@@ -140,6 +144,8 @@ public class SmartDashboardSubsystem extends SubsystemBase {
 
   // TODO: check values to be put on smart dashboard
   public void updateAllDisplays() {
+
+    updateDIOValues();
 
     if (Constants.RobotProperties.isIMU) {
       updateIMUValues();

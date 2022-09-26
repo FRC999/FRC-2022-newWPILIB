@@ -54,6 +54,7 @@ import frc.robot.subsystems.ShooterSubsystem;
 import frc.robot.subsystems.ShuffleboardSubsystem;
 import frc.robot.subsystems.SmartDashboardSubsystem;
 import frc.robot.subsystems.ColorSensorSubsystem;
+import frc.robot.subsystems.DIOSubsystem;
 /**
  * Temporary testing
  */
@@ -99,6 +100,8 @@ public class RobotContainer {
   public static final PowerDistributionPanelSubsystem pdpSubsystem = new PowerDistributionPanelSubsystem();
 
   public static NetworkTablesSubsystem networkTablesSubsystem = new NetworkTablesSubsystem();
+
+  public static DIOSubsystem dioSubsystem = new DIOSubsystem(); 
 
   // public static TargetingCamera targetingCamera = new TargetingCamera();
 
