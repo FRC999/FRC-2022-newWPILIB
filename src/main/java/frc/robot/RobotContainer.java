@@ -447,7 +447,7 @@ public class RobotContainer {
          * Stop the wheels
          * 
         */
-        /*
+        
         //Trigger ballInShooterDetector = new Trigger(() -> colorSensorSubsystem.isBallInShooter());
         Trigger ballInShooterDetector = new Trigger(() -> true);
 
@@ -511,7 +511,7 @@ public class RobotContainer {
               new InstantCommand(() -> shooterSubsystem.startShooterWheelMotor( (shooterSubsystem.getShootingSolution())[1])) // Spin the wheels, continue until the end of the sequence
               ) // end deadlinewith
           ); // end whenactive
-        */
+        
   
         Trigger climberLockDetector = new Trigger(() -> shooterSubsystem.isClimberLockNotEngaged());
 

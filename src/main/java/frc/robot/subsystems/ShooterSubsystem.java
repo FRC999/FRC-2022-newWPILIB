@@ -525,7 +525,9 @@ public class ShooterSubsystem extends SubsystemBase {
     wheelMotorControllers[0].set(power);
     wheelMotorControllers[1].set(power);
 
-    shooterSpeedPID = power; 
+    shooterSpeedPID = power;
+    
+    System.out.println("*** SP: " + power);
   }
 
   public double getShooterWheelPID() {

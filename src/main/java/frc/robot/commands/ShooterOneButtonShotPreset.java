@@ -17,6 +17,7 @@ public class ShooterOneButtonShotPreset extends SequentialCommandGroup {
   public ShooterOneButtonShotPreset(int distance, int goal) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
+
     addCommands(
       sequence(
         new InstantCommand(() -> RobotContainer.shooterSubsystem.setShootingSolution(distance,goal),RobotContainer.shooterSubsystem),
