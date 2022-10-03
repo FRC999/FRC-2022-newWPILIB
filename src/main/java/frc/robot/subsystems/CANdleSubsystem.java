@@ -13,6 +13,11 @@ import frc.robot.Constants;
 
 public class CANdleSubsystem extends SubsystemBase {
 
+  private CANdle m_candle;
+  private final int LedCount = 8;
+  private Animation m_toAnimate = null;
+
+
   private CANdle candle;
   // private final int LedCount = 8;
   // private Animation m_toAnimate = null;
