@@ -307,6 +307,14 @@ public class RobotContainer {
         // Test routine
         // TODO: Replace with command sequences for the competition
 
+        Trigger ballInShooterDetectorBlue = new Trigger(() -> colorSensorSubsystem.isBallBlueShooter());
+        ballInShooterDetectorBlue.whenActive(new InstantCommand(candleSubsystem::setLEDBlue))
+          .whenInactive(new InstantCommand(candleSubsystem::setLEDOff));
+
+          Trigger ballInShooterDetectorRed = new Trigger(() -> colorSensorSubsystem.isBallRedShooter());
+          ballInShooterDetectorRed.whenActive(new InstantCommand(candleSubsystem::setLEDRed))
+            .whenInactive(new InstantCommand(candleSubsystem::setLEDOff));
+
         // *****************
         // *** DRIVESTICK ***
         // *****************
