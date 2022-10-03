@@ -333,6 +333,10 @@ public class RobotContainer {
         )
         .whenReleased(new DriveStopCommand());
        */
+
+       // LED
+       new JoystickButton(driveStick, 7).whenPressed(candleSubsystem::incrementAnimation, candleSubsystem);
+       new JoystickButton(driveStick, 8).whenPressed(candleSubsystem::decrementAnimation, candleSubsystem);
         
         /*
         new JoystickButton(driveStick, 7)
@@ -341,10 +345,10 @@ public class RobotContainer {
         .andThen(new AutonomousTurnToAngleLimelight()))
         ;
         */
-        new JoystickButton(driveStick, 8)
+        /* new JoystickButton(driveStick, 8)
         .whenPressed(new  AutonomousTwoBallLimelight2x180turnsPigeon())
         .whenReleased(new DriveStopCommand())
-        ;
+        ; */
         /*
         new JoystickButton(driveStick, 9)
         .whenPressed(new  AutonomousDriveLinear(2))
