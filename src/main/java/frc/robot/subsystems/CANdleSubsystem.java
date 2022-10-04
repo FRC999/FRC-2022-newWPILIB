@@ -127,7 +127,37 @@ public class CANdleSubsystem extends SubsystemBase {
             m_toAnimate = null;
             break;
     }
+    
     //System.out.println("Changed to " + m_currentAnimation.toString());
   }
+  public void incrementAnimation() {
+    switch(m_currentAnimation) {
+        case ColorFlow: changeAnimation(AnimationTypes.Fire); break;
+        case Fire: changeAnimation(AnimationTypes.Larson); break;
+        case Larson: changeAnimation(AnimationTypes.Rainbow); break;
+        case Rainbow: changeAnimation(AnimationTypes.RgbFade); break;
+        case RgbFade: changeAnimation(AnimationTypes.SingleFade); break;
+        case SingleFade: changeAnimation(AnimationTypes.Strobe); break;
+        case Strobe: changeAnimation(AnimationTypes.Twinkle); break;
+        case Twinkle: changeAnimation(AnimationTypes.TwinkleOff); break;
+        case TwinkleOff: changeAnimation(AnimationTypes.ColorFlow); break;
+        case SetAll: changeAnimation(AnimationTypes.ColorFlow); break;
+    }
+}
+public void decrementAnimation() {
+    switch(m_currentAnimation) {
+        case ColorFlow: changeAnimation(AnimationTypes.TwinkleOff); break;
+        case Fire: changeAnimation(AnimationTypes.ColorFlow); break;
+        case Larson: changeAnimation(AnimationTypes.Fire); break;
+        case Rainbow: changeAnimation(AnimationTypes.Larson); break;
+        case RgbFade: changeAnimation(AnimationTypes.Rainbow); break;
+        case SingleFade: changeAnimation(AnimationTypes.RgbFade); break;
+        case Strobe: changeAnimation(AnimationTypes.SingleFade); break;
+        case Twinkle: changeAnimation(AnimationTypes.Strobe); break;
+        case TwinkleOff: changeAnimation(AnimationTypes.Twinkle); break;
+        case SetAll: changeAnimation(AnimationTypes.ColorFlow); break;
+    }
+  }
+
 
 }
