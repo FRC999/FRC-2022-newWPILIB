@@ -337,7 +337,7 @@ public class RobotContainer {
        // LED
        new JoystickButton(driveStick, 7).whenPressed(candleSubsystem::incrementAnimation, candleSubsystem);
        new JoystickButton(driveStick, 8).whenPressed(candleSubsystem::decrementAnimation, candleSubsystem);
-        
+       new JoystickButton(driveStick, 2).whenPressed(candleSubsystem::setColors, candleSubsystem); 
         /*
         new JoystickButton(driveStick, 7)
         .whenPressed(new  AutonomousTurnToAngleLimelight()
