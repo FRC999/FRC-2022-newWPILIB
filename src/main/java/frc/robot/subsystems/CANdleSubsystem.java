@@ -18,7 +18,7 @@ import frc.robot.Constants;
 public class CANdleSubsystem extends SubsystemBase {
 
   private CANdle m_candle;
-  private final int LedCount = 8;
+  private final int LedCount = 300;
   private Animation m_toAnimate = null;
   private AnimationTypes m_currentAnimation;
 
@@ -64,8 +64,8 @@ public class CANdleSubsystem extends SubsystemBase {
     }
   }
 
-  private void changeAnimation(AnimationTypes setall) {
-  }
+  //private void changeAnimation(AnimationTypes setall) {
+  //}
 
 
   //tasks: Create 3 methods: LED=red, LED=blue, LED off
@@ -92,7 +92,7 @@ public class CANdleSubsystem extends SubsystemBase {
   }
 
   public void changeAnimation(AnimationTypes toChange) {
-    //m_currentAnimation = toChange;
+    m_currentAnimation = toChange;
     
     switch(toChange)
     {
@@ -128,7 +128,7 @@ public class CANdleSubsystem extends SubsystemBase {
             break;
     }
     
-    //System.out.println("Changed to " + m_currentAnimation.toString());
+    System.out.println("Changed to " + m_currentAnimation.toString());
   }
   public void incrementAnimation() {
     switch(m_currentAnimation) {
