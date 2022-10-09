@@ -14,10 +14,10 @@ import com.ctre.phoenix.led.TwinkleOffAnimation.TwinkleOffPercent;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
 
 public class CANdleSubsystem extends SubsystemBase {
 
-  private CANdle m_candle;
   private final int LedCount = 300;
   private Animation m_toAnimate = null;
   private AnimationTypes m_currentAnimation;
@@ -161,6 +161,15 @@ public void decrementAnimation() {
 
   public void setColors() {
     changeAnimation(AnimationTypes.SetAll);
+  }
+
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
+    if(m_toAnimate != null) {
+      candle.animate(m_toAnimate);
+    }
+    //m_candle.modulateVBatOutput(RobotContainer.xboxControllerCANdle.getRightY());
   }
 
 }
