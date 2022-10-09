@@ -129,6 +129,11 @@ public class CANdleSubsystem extends SubsystemBase {
     }
     
     System.out.println("Changed to " + m_currentAnimation.toString());
+
+    if(m_toAnimate != null) {
+      candle.animate(m_toAnimate);
+    }
+
   }
   public void incrementAnimation() {
     switch(m_currentAnimation) {
@@ -166,9 +171,9 @@ public void decrementAnimation() {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    if(m_toAnimate != null) {
-      candle.animate(m_toAnimate);
-    }
+    //if(m_toAnimate != null) {
+    //  candle.animate(m_toAnimate);
+    //}
     //m_candle.modulateVBatOutput(RobotContainer.xboxControllerCANdle.getRightY());
   }
 
