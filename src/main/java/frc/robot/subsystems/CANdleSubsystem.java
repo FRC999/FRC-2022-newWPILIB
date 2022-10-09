@@ -159,5 +159,8 @@ public void decrementAnimation() {
     }
   }
 
+  public void setColors() {
+    changeAnimation(AnimationTypes.SetAll);
+  }
 
 }
