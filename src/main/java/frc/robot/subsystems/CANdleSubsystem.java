@@ -37,8 +37,9 @@ public class CANdleSubsystem extends SubsystemBase {
     Twinkle,
     TwinkleOff,
     SetAll
-}
-/** Creates a new CANdleSubsystem. */
+  }
+
+  /** Creates a new CANdleSubsystem. */
   public CANdleSubsystem() {
 
     if (Constants.RobotProperties.isCANdle) {
@@ -47,7 +48,6 @@ public class CANdleSubsystem extends SubsystemBase {
       System.out.println("Initializing CANdle");
 
       candle = new CANdle(Constants.CANdleConstants.CANdlePort);
-      
 
       changeAnimation(AnimationTypes.SetAll);
       CANdleConfiguration configAll = new CANdleConfiguration();
@@ -64,103 +64,140 @@ public class CANdleSubsystem extends SubsystemBase {
     }
   }
 
-  //private void changeAnimation(AnimationTypes setall) {
-  //}
+  // private void changeAnimation(AnimationTypes setall) {
+  // }
 
+  // tasks: Create 3 methods: LED=red, LED=blue, LED off
 
-  //tasks: Create 3 methods: LED=red, LED=blue, LED off
-
-  public void setLEDBlue()
-  {
+  public void setLEDBlue() {
 
     System.out.println("Set CANDLE blue");
 
-    candle.setLEDs(10,10,200);
+    candle.setLEDs(10, 10, 200);
     candle.modulateVBatOutput(0.9);
   }
 
-  public void setLEDRed()
-  {
-    candle.setLEDs(200,10,10);
+  public void setLEDRed() {
+    candle.setLEDs(200, 10, 10);
     candle.modulateVBatOutput(0.9);
   }
 
-  public void setLEDOff()
-  {
-    candle.setLEDs(0,0,0);
+  public void setLEDOff() {
+    candle.setLEDs(0, 0, 0);
     candle.modulateVBatOutput(0);
   }
 
   public void changeAnimation(AnimationTypes toChange) {
     m_currentAnimation = toChange;
-    
-    switch(toChange)
-    {
-        case ColorFlow:
-            m_toAnimate = new ColorFlowAnimation(128, 20, 70, 0, 0.7, LedCount, Direction.Forward);
-            break;
-        case Fire:
-            m_toAnimate = new FireAnimation(0.5, 0.7, LedCount, 0.7, 0.5);
-            break;
-        case Larson:
-            m_toAnimate = new LarsonAnimation(0, 255, 46, 0, 1, LedCount, BounceMode.Front, 3);
-            break;
-        case Rainbow:
-            m_toAnimate = new RainbowAnimation(1, 0.1, LedCount);
-            break;
-        case RgbFade:
-            m_toAnimate = new RgbFadeAnimation(0.7, 0.4, LedCount);
-            break;
-        case SingleFade:
-            m_toAnimate = new SingleFadeAnimation(50, 2, 200, 0, 0.5, LedCount);
-            break;
-        case Strobe:
-            m_toAnimate = new StrobeAnimation(240, 10, 180, 0, 98.0 / 256.0, LedCount);
-            break;
-        case Twinkle:
-            m_toAnimate = new TwinkleAnimation(30, 70, 60, 0, 0.4, LedCount, TwinklePercent.Percent6);
-            break;
-        case TwinkleOff:
-            m_toAnimate = new TwinkleOffAnimation(70, 90, 175, 0, 0.8, LedCount, TwinkleOffPercent.Percent100);
-            break;
-        case SetAll:
-            m_toAnimate = null;
-            break;
+
+    switch (toChange) {
+      case ColorFlow:
+        m_toAnimate = new ColorFlowAnimation(128, 20, 70, 0, 0.7, LedCount, Direction.Forward);
+        break;
+      case Fire:
+        m_toAnimate = new FireAnimation(0.5, 0.7, LedCount, 0.7, 0.5);
+        break;
+      case Larson:
+        m_toAnimate = new LarsonAnimation(0, 255, 46, 0, 1, LedCount, BounceMode.Front, 3);
+        break;
+      case Rainbow:
+        m_toAnimate = new RainbowAnimation(1, 0.1, LedCount);
+        break;
+      case RgbFade:
+        m_toAnimate = new RgbFadeAnimation(0.7, 0.4, LedCount);
+        break;
+      case SingleFade:
+        m_toAnimate = new SingleFadeAnimation(50, 2, 200, 0, 0.5, LedCount);
+        break;
+      case Strobe:
+        m_toAnimate = new StrobeAnimation(240, 10, 180, 0, 98.0 / 256.0, LedCount);
+        break;
+      case Twinkle:
+        m_toAnimate = new TwinkleAnimation(30, 70, 60, 0, 0.4, LedCount, TwinklePercent.Percent6);
+        break;
+      case TwinkleOff:
+        m_toAnimate = new TwinkleOffAnimation(70, 90, 175, 0, 0.8, LedCount, TwinkleOffPercent.Percent100);
+        break;
+      case SetAll:
+        m_toAnimate = null;
+        break;
     }
-    
+
     System.out.println("Changed to " + m_currentAnimation.toString());
 
-    if(m_toAnimate != null) {
+    if (m_toAnimate != null) {
       candle.animate(m_toAnimate);
     }
 
   }
+
   public void incrementAnimation() {
-    switch(m_currentAnimation) {
-        case ColorFlow: changeAnimation(AnimationTypes.Fire); break;
-        case Fire: changeAnimation(AnimationTypes.Larson); break;
-        case Larson: changeAnimation(AnimationTypes.Rainbow); break;
-        case Rainbow: changeAnimation(AnimationTypes.RgbFade); break;
-        case RgbFade: changeAnimation(AnimationTypes.SingleFade); break;
-        case SingleFade: changeAnimation(AnimationTypes.Strobe); break;
-        case Strobe: changeAnimation(AnimationTypes.Twinkle); break;
-        case Twinkle: changeAnimation(AnimationTypes.TwinkleOff); break;
-        case TwinkleOff: changeAnimation(AnimationTypes.ColorFlow); break;
-        case SetAll: changeAnimation(AnimationTypes.ColorFlow); break;
+    switch (m_currentAnimation) {
+      case ColorFlow:
+        changeAnimation(AnimationTypes.Fire);
+        break;
+      case Fire:
+        changeAnimation(AnimationTypes.Larson);
+        break;
+      case Larson:
+        changeAnimation(AnimationTypes.Rainbow);
+        break;
+      case Rainbow:
+        changeAnimation(AnimationTypes.RgbFade);
+        break;
+      case RgbFade:
+        changeAnimation(AnimationTypes.SingleFade);
+        break;
+      case SingleFade:
+        changeAnimation(AnimationTypes.Strobe);
+        break;
+      case Strobe:
+        changeAnimation(AnimationTypes.Twinkle);
+        break;
+      case Twinkle:
+        changeAnimation(AnimationTypes.TwinkleOff);
+        break;
+      case TwinkleOff:
+        changeAnimation(AnimationTypes.ColorFlow);
+        break;
+      case SetAll:
+        changeAnimation(AnimationTypes.ColorFlow);
+        break;
     }
-}
-public void decrementAnimation() {
-    switch(m_currentAnimation) {
-        case ColorFlow: changeAnimation(AnimationTypes.TwinkleOff); break;
-        case Fire: changeAnimation(AnimationTypes.ColorFlow); break;
-        case Larson: changeAnimation(AnimationTypes.Fire); break;
-        case Rainbow: changeAnimation(AnimationTypes.Larson); break;
-        case RgbFade: changeAnimation(AnimationTypes.Rainbow); break;
-        case SingleFade: changeAnimation(AnimationTypes.RgbFade); break;
-        case Strobe: changeAnimation(AnimationTypes.SingleFade); break;
-        case Twinkle: changeAnimation(AnimationTypes.Strobe); break;
-        case TwinkleOff: changeAnimation(AnimationTypes.Twinkle); break;
-        case SetAll: changeAnimation(AnimationTypes.ColorFlow); break;
+  }
+
+  public void decrementAnimation() {
+    switch (m_currentAnimation) {
+      case ColorFlow:
+        changeAnimation(AnimationTypes.TwinkleOff);
+        break;
+      case Fire:
+        changeAnimation(AnimationTypes.ColorFlow);
+        break;
+      case Larson:
+        changeAnimation(AnimationTypes.Fire);
+        break;
+      case Rainbow:
+        changeAnimation(AnimationTypes.Larson);
+        break;
+      case RgbFade:
+        changeAnimation(AnimationTypes.Rainbow);
+        break;
+      case SingleFade:
+        changeAnimation(AnimationTypes.RgbFade);
+        break;
+      case Strobe:
+        changeAnimation(AnimationTypes.SingleFade);
+        break;
+      case Twinkle:
+        changeAnimation(AnimationTypes.Strobe);
+        break;
+      case TwinkleOff:
+        changeAnimation(AnimationTypes.Twinkle);
+        break;
+      case SetAll:
+        changeAnimation(AnimationTypes.ColorFlow);
+        break;
     }
   }
 
@@ -171,10 +208,10 @@ public void decrementAnimation() {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    //if(m_toAnimate != null) {
-    //  candle.animate(m_toAnimate);
-    //}
-    //m_candle.modulateVBatOutput(RobotContainer.xboxControllerCANdle.getRightY());
+    // if(m_toAnimate != null) {
+    // candle.animate(m_toAnimate);
+    // }
+    // m_candle.modulateVBatOutput(RobotContainer.xboxControllerCANdle.getRightY());
   }
 
 }
