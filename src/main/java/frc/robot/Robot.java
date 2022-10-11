@@ -362,8 +362,8 @@ public class Robot extends TimedRobot {
         // Subsystem Settings
         RobotProperties.isIMU = true;
         RobotProperties.isNaVX = false;
-        //RobotProperties.driveInterface = DriveInterface.SPLITNEWBB; // TODO: change to SPLITSTICK before comp
-        RobotProperties.driveInterface = DriveInterface.THREENEWBB;
+        RobotProperties.driveInterface = DriveInterface.SPLITNEWBB; // TODO: change to SPLITSTICK before comp
+        //RobotProperties.driveInterface = DriveInterface.THREENEWBB;
         RobotProperties.isPneumatics = true;
         RobotProperties.isShooter = true;
         RobotProperties.isPotentiometer = false;
