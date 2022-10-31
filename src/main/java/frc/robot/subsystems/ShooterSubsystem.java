@@ -93,8 +93,8 @@ public class ShooterSubsystem extends SubsystemBase {
       //{43.0, 0.465} //8 ft low goal
     },
     {
-      {71.0, 0.79}, //9 ft high goal
-      {71.0, 0.79}
+      {69, 0.88}, //9 ft high goal
+      {69, 0.88}
       //{65.0,1.0}, 
       //{45.0, 0.5} //9 ft low goal
     },
@@ -119,8 +119,8 @@ public class ShooterSubsystem extends SubsystemBase {
       //{46.0, 0.547} //13 ft low goal
     },
     {
-      {62, 0.97}, //14 ft high goal
-      {62, 0.97}
+      {66, 1.0}, //14 ft high goal
+      {66, 1.0}
       //{44.0, 0.59} //14 ft low goal
     },
     {
@@ -183,8 +183,8 @@ public class ShooterSubsystem extends SubsystemBase {
       //{43.0, 0.465} //8 ft low goal
     },
     {
-      {71.0, 0.79}, //9 ft high goal
-      {71.0, 0.79}
+      {69, 0.88}, //9 ft high goal
+      {69, 0.88}
       //{65.0,1.0}, 
       //{45.0, 0.5} //9 ft low goal
     },
@@ -209,8 +209,8 @@ public class ShooterSubsystem extends SubsystemBase {
       //{46.0, 0.547} //13 ft low goal
     },
     {
-      {62, 0.97}, //14 ft high goal
-      {62, 0.97}
+      {66, 1.0}, //14 ft high goal
+      {66, 1.0}
       //{44.0, 0.59} //14 ft low goal
     },
     {
@@ -568,12 +568,12 @@ public class ShooterSubsystem extends SubsystemBase {
   }
 
   public void startShooterWheelMotorReverse() {
-    if ( ! RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.BallIntakeCalibrationSwitch)) {
+    //if ( ! RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.BallIntakeCalibrationSwitch)) {
       startShooterWheelMotorReverse(FULLREVERSESPEED);  // No need to adjust it
-    } else { // intake calibration
-      startShooterWheelMotorReverse((RobotContainer.driveStick.getRawAxis(3)-1)/2.0);
+    //} else { // intake calibration
+      //startShooterWheelMotorReverse((RobotContainer.driveStick.getRawAxis(3)-1)/2.0);
       // SmartDashboard.putNumber("Shooter Wheel Intake Power ", (RobotContainer.turnStick.getRawAxis(3)+1)/2.0);
-    }
+   // }
   }
 
   public void startShooterWheelMotorReverse(double power) {

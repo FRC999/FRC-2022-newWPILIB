@@ -535,6 +535,7 @@ public class RobotContainer {
         // *****************
 
         Trigger manualShootingPowerAdjustmentDetector = new Trigger(() -> RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.ClimberLimitSwitchOverrideSwitch));
+      
 
         new JoystickButton(bbl, 4)
           .and (manualShootingPowerAdjustmentDetector)
@@ -550,6 +551,10 @@ public class RobotContainer {
         new JoystickButton(bbl, 6)
           .and (manualShootingPowerAdjustmentDetector)
           .whenActive(new ShooterOneButtonShot());
+
+        new JoystickButton(bbl, 2)
+          .whenPressed(new InstantCommand(() -> driveSubsystem.setDriveHalfSpeedValue(true)))
+          .whenReleased(new InstantCommand(() -> driveSubsystem.setDriveHalfSpeedValue(false)));
 
         /*
         new JoystickButton(bbl, 4)

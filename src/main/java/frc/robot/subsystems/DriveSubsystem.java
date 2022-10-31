@@ -27,6 +27,10 @@ public class DriveSubsystem extends SubsystemBase {
   public WPI_TalonFX[] leftDriveTalonFX = new WPI_TalonFX[DriveConstants.leftMotorPortID.length];
   public DifferentialDrive drive;
 
+  boolean driveHalfSpeedValue=false;
+  
+
+
   // For isOnTarget
   boolean wasOnTarget = false;
   int withinAcceptableErrorLoops = 0;
@@ -174,7 +178,8 @@ public class DriveSubsystem extends SubsystemBase {
     
     // drive.arcadeDrive(deadbandMove(move), deadbandTurn(turn));
     // System.out.println("D X "+move + " Y " + turn);
-    drive.arcadeDrive(move, turn);
+    //drive.arcadeDrive(move, turn);
+    drive.arcadeDrive(move*( (driveHalfSpeedValue) ? 0.5 : 1), turn*( (driveHalfSpeedValue) ? 0.5 : 1)  );
   }
 
   /** Get the number of tics moved by the left encoder */
@@ -418,6 +423,10 @@ public class DriveSubsystem extends SubsystemBase {
 
   public double getDriveError(int motor) {
     return ((motor==0)?leftDriveTalonFX[0].getClosedLoopError():rightDriveTalonFX[0].getClosedLoopError());// Returns the PID error for Pan motion control;
+  }
+
+  public void setDriveHalfSpeedValue (boolean value) {
+    driveHalfSpeedValue = value;
   }
 
 

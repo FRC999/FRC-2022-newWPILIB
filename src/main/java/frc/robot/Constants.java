@@ -263,7 +263,7 @@ public final class Constants {
         // buttonbox1 (left)
 
         public static final int ClimberLimitSwitchOverrideSwitch = 1;
-        public static final int BallIntakeCalibrationSwitch = 2;
+        public static final int DriveHalfSpeedSwitch = 2;
         public static final int CommandInterruptorSwitch = 3;
 
         public static final int RetractThirdArm = 7;

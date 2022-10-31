@@ -52,12 +52,12 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void rotateIntakeForward() {
     intakeMotorController.setNeutralMode(NeutralMode.Brake);
-    if ( ! RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.BallIntakeCalibrationSwitch)) {
+   // if ( ! RobotContainer.bbl.getRawButton(Constants.OIC2022TEST.BallIntakeCalibrationSwitch)) {
       intakeMotorController.set(Constants.IntakeConstants.intakeForwardSpeed);
-    } else { // intake calibration
-      intakeMotorController.set( (RobotContainer.turnStick.getRawAxis(3)+1)/2.0 );
+    //} else { // intake calibration
+      //intakeMotorController.set( (RobotContainer.turnStick.getRawAxis(3)+1)/2.0 );
       // SmartDashboard.putNumber("Intake Power ", (RobotContainer.turnStick.getRawAxis(3)+1)/2.0);
-    }
+   // }
   }
 
   public void rotateIntakeReverse() {
